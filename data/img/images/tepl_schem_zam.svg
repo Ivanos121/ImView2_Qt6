@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 781.52178 700"
+   width="781.52185"
+   height="655.59772"
+   version="1.1"
+   id="svg535"
+   sodipodi:docname="1256.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview537"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="2"
+     inkscape:cx="197.5"
+     inkscape:cy="248.75"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g201"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     viewbox-height="700"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <desc
+     id="desc9">125.dxf - scale = 0.9871414611135643, origin = (1711.598578585238, 1078.590701033003), method = auto</desc>
+  <defs
+     id="defs23">
+    <marker
+       id="ExperimentalArrow"
+       refX="5"
+       refY="3"
+       orient="auto-start-reverse"
+       inkscape:stockid="ExperimentalArrow"
+       inkscape:isstock="true">
+      <path
+         style="fill:context-stroke"
+         d="M 10,3 0,6 V 0 Z"
+         id="path231499" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path231249" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker231524"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path231522" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow2Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(1.1,0,0,1.1,1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path231264" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path231246" />
+    </marker>
+    <marker
+       id="DistanceX"
+       orient="auto"
+       refX="0"
+       refY="0"
+       style="overflow:visible">
+      <path
+         d="M 3,-3 -3,3 M 0,-5 V 5"
+         style="stroke:#000000;stroke-width:0.5"
+         id="path11" />
+    </marker>
+    <pattern
+       id="Hatch"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8"
+       x="0"
+       y="0">
+      <path
+         d="M8 4 l-4,4"
+         stroke="#000000"
+         stroke-width="0.25"
+         linecap="square"
+         id="path14" />
+      <path
+         d="M6 2 l-4,4"
+         stroke="#000000"
+         stroke-width="0.25"
+         linecap="square"
+         id="path16" />
+      <path
+         d="M4 0 l-4,4"
+         stroke="#000000"
+         stroke-width="0.25"
+         linecap="square"
+         id="path18" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE" />
+    <symbol
+       id="*PAPER_SPACE" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="0"
+     id="g201"
+     transform="translate(0.55000001,-467.47196)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       d="m 227.586,740.57706 -0.062,35.887"
+       id="path25" />
+    <path
+       d="m 227.5605,740.57682 -0.0178,24.98159"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path27" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       d="m 227.586,854.52506 -0.057,32.619"
+       id="path29" />
+    <path
+       d="m 227.5605,854.52479 -0.0178,24.98159"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path31" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.05971;marker-start:url(#marker231524)"
+       d="m 402.86052,915.28106 -33.30652,-0.062"
+       id="path33" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.05933;marker-start:url(#marker231524)"
+       d="m 288.88814,915.28106 -33.28214,-0.062"
+       id="path37" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.05957;marker-start:url(#marker231524)"
+       d="m 602.30175,915.28106 -33.29775,-0.062"
+       id="path41" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06084;marker-start:url(#marker231524)"
+       d="m 488.4331,915.28106 -33.3771,-0.062"
+       id="path45" />
+    <path
+       d="m 227.52622,945.7756 -0.0177,32.69004"
+       style="fill:none;stroke:#000000;stroke-width:1.2552;marker-start:url(#marker231524)"
+       id="path51" />
+    <path
+       d="m 227.52486,1058.7047 -0.0158,34.7792"
+       style="fill:none;stroke:#000000;stroke-width:1.22423;marker-start:url(#marker231524)"
+       id="path55" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06127;marker-start:url(#marker231524)"
+       d="m 629.931,942.50878 -0.062,33.40428"
+       id="path57" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.05888;marker-start:url(#marker231524)"
+       d="m 629.931,1056.6038 -0.062,33.2567"
+       id="path61" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       d="m 249.282,1106.0805 136.946,-65.38"
+       id="path65" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.08226;marker-end:url(#Arrow1Lend)"
+       d="M 456.66782,1007.08 609.78561,934.06217"
+       id="path67" />
+    <path
+       d="m 386.22824,1040.703 -23.6628,11.2969"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path71" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06575;marker-start:url(#marker231524)"
+       d="m 52.213294,915.26152 33.178168,-0.0588"
+       id="path73" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.05977;marker-start:url(#marker231524)"
+       d="m 166.13997,915.27406 33.31003,-0.058"
+       id="path77" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06794;marker-start:url(#marker231524)"
+       d="m 40.513988,937.95958 67.857322,68.10492"
+       id="path81" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06256;marker-start:url(#marker231524)"
+       d="m 165.21432,1062.5664 41.36443,42.0509"
+       id="path83" />
+    <path
+       d="m 38.460378,912.41877 v 0 0"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path85" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06794;marker-start:url(#marker231524)"
+       d="M 24.8651,742.61497 24.803,776.44106"
+       id="path91" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.07518;marker-start:url(#marker231524)"
+       d="M 24.8651,856.1032 24.803,890.38906"
+       id="path95" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.07268;marker-end:url(#Arrow1Lend)"
+       d="m 41.17456,697.09403 53.084592,-51.5004"
+       id="path99" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.07046;marker-end:url(#Arrow1Lend)"
+       d="m 151.67272,589.96064 56.46666,-54.94717"
+       id="path101" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.09284;marker-end:url(#Arrow1Lend)"
+       d="m 629.69751,890.3844 0.11156,-143.00755"
+       id="path107" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.09178;marker-end:url(#Arrow1Lend)"
+       d="m 629.86754,666.70742 0.0945,-121.66992"
+       id="path109" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       d="M 252.43,516.31906 H 605.194"
+       id="path111" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.0631;marker-end:url(#Arrow1Lend)"
+       d="m 410.65853,698.27861 -34.671,-34.65578"
+       id="path117" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06419;marker-start:url(#marker231524)"
+       d="m 401.05481,715.75306 -34.73881,0.016"
+       id="path121" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.991976"
+       d="M 284.51749,715.8282 252.368,715.77192"
+       id="path125" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 249.596,897.86106 72.557,-65.528"
+       id="path129" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 322.153,832.33306 h 66.683"
+       id="path131" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 345.106,828.35706 -17.726,-0.019"
+       id="path133" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 327.38,828.33806 8.876,-12.91"
+       id="path135" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 336.256,815.42806 8.85,12.929"
+       id="path137" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 53.7593,1101.8605 H 120.442"
+       id="path139" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 76.7121,1097.8905 -17.7258,-0.02"
+       id="path141" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 58.9863,1097.8705 8.8765,-12.91"
+       id="path143" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 67.8628,1084.9605 8.8493,12.93"
+       id="path145" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 120.442,1101.8605 82.24,16.08"
+       id="path147" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 525.985,680.59406 h 75.007"
+       id="path149" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 548.938,676.61806 -17.726,-0.019"
+       id="path151" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 531.212,676.59906 8.877,-12.91"
+       id="path153" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 540.089,663.68906 8.849,12.929"
+       id="path155" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.449931;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 526.01003,680.56903 -73.72837,28.16491"
+       id="path157" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 477.932,1060.0805 h 66.683"
+       id="path159" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 500.885,1056.1105 -17.726,-0.02"
+       id="path161" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 483.159,1056.0905 8.876,-12.91"
+       id="path163" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 492.035,1043.1805 8.85,12.93"
+       id="path165" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 544.615,1060.0805 61.835,42.06"
+       id="path167" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.07246;marker-end:url(#Arrow1Lend)"
+       d="M 319.32169,607.48184 247.3439,535.3999"
+       id="path171" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.08897;stroke-linecap:round;marker-end:url(#Arrow1Lend)"
+       d="M 252.28603,1117.9405 H 391.4133"
+       id="path173" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.09184;stroke-linecap:round;marker-end:url(#Arrow1Lend)"
+       d="m 472.34328,1117.9406 126.45966,-0.01"
+       id="path179" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.06252;marker-start:url(#marker231524)"
+       d="m 227.623,543.53133 -0.062,33.48273"
+       id="path181" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.02215"
+       d="m 227.623,659.97547 -0.057,30.98659"
+       id="path185" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.103"
+       d="m 727.95355,839.57962 0.0726,-94.64003"
+       id="path189" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.08743;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;marker-start:url(#marker231524)"
+       d="m 728.08464,663.9577 0.094,-121.39454"
+       id="path191" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round"
+       d="m 654.77,517.71206 h 48.602"
+       id="path195" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.07175;stroke-linecap:round;marker-start:url(#marker231524)"
+       d="m 649.8444,896.70529 78.1237,-57.09738"
+       id="path197" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="FOR"
+     id="g251"
+     transform="translate(0.55000001,-467.47196)">
+    <text
+       x="230.81328"
+       y="527.31122"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text205"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan58895">0</tspan></text>
+    <text
+       x="233.53703"
+       y="727.04791"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text209"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan75447">3</tspan></text>
+    <text
+       x="233.50032"
+       y="924.4978"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text213"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan94991">c</tspan></text>
+    <text
+       x="436.22479"
+       y="926.4978"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text217"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan156787">4</tspan></text>
+    <text
+       x="633.76788"
+       y="924.36914"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text221"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan2354">3</tspan></text>
+    <text
+       x="233.46609"
+       y="1125.2157"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text225"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan113887">p</tspan></text>
+    <text
+       x="631.83929"
+       y="1127.3107"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text229"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan124521">в</tspan></text>
+    <text
+       x="29.921982"
+       y="926.23236"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text233"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan37189">2</tspan></text>
+    <text
+       x="28.816296"
+       y="725.02496"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text237"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan50129">1</tspan></text>
+    <text
+       x="636.02753"
+       y="528.52032"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text241"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan173737">0</tspan></text>
+    <text
+       x="432.21643"
+       y="725.03198"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text245"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan169479">k</tspan></text>
+    <text
+       x="732.24445"
+       y="526.52039"
+       style="font-size:10.778px;font-family:Arial;fill:#000000"
+       id="text249"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan180097">0</tspan></text>
+    <g
+       id="g185101"
+       transform="translate(-80.118484,34.481699)">
+      <path
+         id="path6248"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 169.80664,170.83984 162.98438,191.25 h 6.82226 6.82422 z"
+         transform="matrix(1.0677279,0,0,1.0677279,-4.8589637,473.37685)" />
+    </g>
+    <g
+       id="g185101-56"
+       transform="rotate(90,202.09405,741.47679)">
+      <path
+         id="path6248-2"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 169.80664,170.83984 162.98438,191.25 h 6.82226 6.82422 z"
+         transform="matrix(1.0677279,0,0,1.0677279,-4.8589637,473.37685)" />
+    </g>
+    <g
+       id="g185101-5"
+       transform="translate(51.174677,-0.0371136)">
+      <path
+         id="path6248-3"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 169.80664,170.83984 162.98438,191.25 h 6.82226 6.82422 z"
+         transform="matrix(1.0677279,0,0,1.0677279,-4.8589637,473.37685)" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Layer3"
+     id="g533"
+     transform="translate(0.55000001,-467.47196)">
+    <text
+       x="217.58125"
+       y="526.07452"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text255"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan56997">θ</tspan></text>
+    <path
+       d="m 252.43005,516.31946 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path257" />
+    <text
+       x="219.75119"
+       y="726.48041"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text261"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan73849">θ</tspan></text>
+    <path
+       d="m 252.36796,715.76937 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path263" />
+    <text
+       x="215.71448"
+       y="923.9303"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text267"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan93435">θ</tspan></text>
+    <path
+       d="m 241.71689,776.48841 -0.13506,78.06013 -27.44284,-0.0475 0.13506,-78.06013 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path269" />
+    <text
+       x="254.77637"
+       y="797.30731"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text273"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan78055">λ</tspan></text>
+    <text
+       x="271.28253"
+       y="798.20795"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text277"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan79823">c3</tspan></text>
+    <path
+       d="m 255.60579,915.21928 a 28.074785,28.074785 0 1 0 -56.14957,0 28.074785,28.074785 0 1 0 56.14957,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path279" />
+    <path
+       d="m 369.5292,929.41238 -78.06013,-0.13506 0.0475,-27.44283 78.06013,0.13505 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path281" />
+    <text
+       x="422.43893"
+       y="925.9303"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text285"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan154229">θ</tspan></text>
+    <path
+       d="m 455.05571,915.21928 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path287" />
+    <path
+       d="m 568.97912,929.41238 -78.06013,-0.13506 0.0475,-27.44283 78.06013,0.13505 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path289" />
+    <text
+       x="617.88885"
+       y="923.9303"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text293"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan143821">θ</tspan></text>
+    <path
+       d="m 654.50562,915.21928 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path295" />
+    <text
+       x="219.68024"
+       y="1126.6482"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text299"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+         id="tspan2511">θ</tspan></text>
+    <path
+       d="m 252.29701,1117.937 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path301" />
+    <path
+       d="m 241.67554,978.75333 -0.13506,78.06057 -27.44284,-0.047 0.13506,-78.06055 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path303" />
+    <text
+       x="618.05347"
+       y="1126.7432"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text307"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan122805">θ</tspan></text>
+    <path
+       d="m 644.0617,975.93751 -0.13506,78.06059 -27.44283,-0.047 0.13506,-78.06057 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path309" />
+    <path
+       d="m 657.73802,1117.9354 a 28.074785,28.074785 0 1 0 -56.14957,0 28.074785,28.074785 0 1 0 56.14957,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path311" />
+    <path
+       d="m 462.6206,1019.5869 -70.50216,33.509 -11.7804,-24.7857 70.50216,-33.50941 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path313" />
+    <path
+       d="m 85.524895,929.39631 78.060145,-0.12622 -0.0444,-27.44285 -78.06015,0.12622 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path315" />
+    <path
+       d="m 49.61491,915.19633 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path321" />
+    <path
+       d="m 119.09043,995.68394 54.24389,56.13426 -19.73441,19.07 -54.243892,-56.134 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path323" />
+    <text
+       x="15.030441"
+       y="726.45746"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text327"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan48031">θ</tspan></text>
+    <path
+       d="m 49.647214,715.74641 a 24.807455,24.807455 0 1 0 -49.614909,0 24.807455,24.807455 0 1 0 49.614909,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path329" />
+    <path
+       d="m 38.996147,776.46546 -0.135058,78.06013 -27.442838,-0.0475 0.135059,-78.06013 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path331" />
+    <text
+       x="52.05563"
+       y="797.28436"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text335"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan43609">λ</tspan></text>
+    <text
+       x="68.561806"
+       y="798.185"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text339"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan45725">21</tspan></text>
+    <path
+       d="m 161.07393,599.47717 -55.59446,54.79652 -19.264276,-19.5448 55.594456,-54.79652 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path341" />
+    <text
+       x="621.92084"
+       y="527.46729"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text345"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan172589">θ</tspan></text>
+    <path
+       d="m 654.76962,517.71226 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path347" />
+    <path
+       d="m 643.58932,666.76254 -0.13506,78.06013 -27.44284,-0.0475 0.13506,-78.06013 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path349" />
+    <text
+       x="89.178932"
+       y="590.37543"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text353"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan52069">λ</tspan></text>
+    <text
+       x="105.6851"
+       y="589.27606"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text357"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+         id="tspan53515">10</tspan></text>
+    <text
+       x="117.75821"
+       y="890.1889"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text361"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan38873">λ</tspan></text>
+    <text
+       x="134.26437"
+       y="891.08954"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text365"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan40561">с2</tspan></text>
+    <text
+       x="155.48215"
+       y="1015.4446"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text369"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan24427">λ</tspan></text>
+    <text
+       x="173.98831"
+       y="1016.3453"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text373"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan32151">р2</tspan></text>
+    <text
+       x="251.36821"
+       y="997.22784"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text377"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan106971">λ</tspan></text>
+    <text
+       x="269.87439"
+       y="996.12848"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text381"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan108527">pc</tspan></text>
+    <text
+       x="392.21756"
+       y="997.6485"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text385"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan132281">λ</tspan></text>
+    <text
+       x="419.27377"
+       y="1094.8242"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text385-3"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan118945">λ</tspan></text>
+    <text
+       x="408.72372"
+       y="996.54913"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text389"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan137985">p3</tspan></text>
+    <text
+       x="651.25104"
+       y="992.15656"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text393"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan140889">λ</tspan></text>
+    <text
+       x="517.10272"
+       y="890.13202"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text397"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan149495">λ</tspan></text>
+    <text
+       x="533.60889"
+       y="891.03265"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000"
+       id="text401"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan151475">43</tspan></text>
+    <text
+       x="320.07489"
+       y="892.12933"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text405"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan89647">λ</tspan></text>
+    <text
+       x="336.58105"
+       y="893.02991"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text409"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan91165">с4</tspan></text>
+    <text
+       x="650.39264"
+       y="688.16614"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text413"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan158863">λ</tspan></text>
+    <text
+       x="666.8988"
+       y="689.06677"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text417"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan160215">30</tspan></text>
+    <text
+       x="668.48035"
+       y="990.88904"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text421"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.057px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan142131">в3</tspan></text>
+    <path
+       d="m 652.24737,915.21928 a 22.549202,22.549202 0 1 0 -45.0984,0 22.549202,22.549202 0 1 0 45.0984,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path423" />
+    <path
+       d="m 452.79745,915.21928 a 22.549202,22.549202 0 1 0 -45.0984,0 22.549202,22.549202 0 1 0 45.0984,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path425" />
+    <path
+       d="m 47.356657,915.19633 a 22.549202,22.549202 0 1 0 -45.098404,0 22.549202,22.549202 0 1 0 45.098404,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path427" />
+    <path
+       d="m 47.388961,715.74641 a 22.549202,22.549202 0 1 0 -45.098403,0 22.549202,22.549202 0 1 0 45.098403,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path429" />
+    <path
+       d="m 250.1097,715.76937 a 22.549202,22.549202 0 1 0 -45.0984,0 22.549202,22.549202 0 1 0 45.0984,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path431" />
+    <text
+       x="416.43057"
+       y="724.46448"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text435"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan167235">θ</tspan></text>
+    <path
+       d="m 453.04736,715.75345 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path437" />
+    <path
+       d="m 366.29137,729.96246 -78.06013,-0.13505 0.0475,-27.44284 78.06013,0.13506 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path439" />
+    <text
+       x="314.83704"
+       y="692.67938"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text443"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan69975">λ</tspan></text>
+    <text
+       x="331.34323"
+       y="693.58002"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text447"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan71425">3k</tspan></text>
+    <text
+       x="347.41321"
+       y="827.64355"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text451"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan81697">P</tspan></text>
+    <text
+       x="361.41211"
+       y="828.54419"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text455"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan86851">c</tspan></text>
+    <text
+       x="81.019501"
+       y="1097.1733"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text459"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, '"
+         id="tspan1064">P</tspan></text>
+    <text
+       x="99.018417"
+       y="1098.074"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text463"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan27053">р</tspan></text>
+    <text
+       x="551.24542"
+       y="675.90448"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text467"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan162109">P</tspan></text>
+    <text
+       x="569.24432"
+       y="676.80511"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text471"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan163813">кк</tspan></text>
+    <text
+       x="505.19205"
+       y="1055.3948"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text475"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan127323">P</tspan></text>
+    <text
+       x="521.19098"
+       y="1056.2954"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text479"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan128741">в</tspan></text>
+    <path
+       d="m 328.98842,597.73949 55.35832,55.03508 -19.34815,19.46178 -55.35831,-55.03507 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path481" />
+    <text
+       x="354.42325"
+       y="611.77887"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text485"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan67239">λ</tspan></text>
+    <text
+       x="370.92944"
+       y="610.6795"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text489"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan68541">к0</tspan></text>
+    <path
+       d="m 250.17179,516.31946 a 22.549202,22.549202 0 1 0 -45.0984,0 22.549202,22.549202 0 1 0 45.0984,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path491" />
+    <path
+       d="m 652.51136,517.71226 a 22.549202,22.549202 0 1 0 -45.0984,0 22.549202,22.549202 0 1 0 45.0984,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path493" />
+    <path
+       d="m 472.29148,1132.1291 -78.06014,-0.1351 0.0475,-27.4428 78.06013,0.135 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path495" />
+    <text
+       x="15.874226"
+       y="925.36218"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text499"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan34583">θ</tspan></text>
+    <text
+       x="435.34332"
+       y="1095.7468"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text503"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan121345">рв</tspan></text>
+    <path
+       d="m 241.7536,577.0385 -0.13506,78.06013 -27.44283,-0.0475 0.13505,-78.06014 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path505" />
+    <text
+       x="250.81308"
+       y="599.85742"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text509"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan60573">λ</tspan></text>
+    <text
+       x="267.31924"
+       y="600.75806"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text513"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan62251">30</tspan></text>
+    <text
+       x="718.13782"
+       y="525.46729"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text517"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan177595">θ</tspan></text>
+    <path
+       d="m 752.98658,517.71226 a 24.807455,24.807455 0 1 0 -49.61491,0 24.807455,24.807455 0 1 0 49.61491,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path519" />
+    <path
+       d="m 741.80628,666.76254 -0.13506,78.06013 -27.44284,-0.0475 0.13506,-78.06013 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path521" />
+    <text
+       x="748.60962"
+       y="684.16614"
+       style="font-size:30.713px;font-family:Arial;fill:#000000"
+       id="text525"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30.713px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan182785">λ</tspan></text>
+    <text
+       x="765.11578"
+       y="685.06677"
+       style="font-size:11.057px;font-family:Arial;fill:#000000"
+       id="text529"
+       sodipodi:role="line"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         id="tspan184831">03</tspan></text>
+    <path
+       d="m 750.72832,517.71226 a 22.549202,22.549202 0 1 0 -45.0984,0 22.549202,22.549202 0 1 0 45.0984,0 z"
+       style="fill:none;stroke:#000000;stroke-width:1.1"
+       id="path531" />
+  </g>
+</svg>

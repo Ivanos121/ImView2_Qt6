@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <vent_dannie>
+        <general_settings>
+            <soprotivlenie sdt value="0.11"/>
+            <extenal_diameter_ventilator value="0.17"/>
+            <shirina_lopatki_ventilatora value="0.035"/>
+            <chastota_vrasachenia_ventilatora value="1410"/>
+            <plotnost_vozducha value="1.2754"/>
+            <summarnaja_ploschad_otverstiy_v_setke_kogucha value="0.0025"/>
+            <Obchaja_ploschad_setki_kogucha value="0.0175"/>
+            <Ploschad_sechenia_v_meste_povorota_k_rabochemu_kolesu value="0.157"/>
+            <Ugol_povorota_potoka_k_vchodnim_kromkam_lopatok_rabochego_kolesa value="58"/>
+            <Ploschad_sechenia_v_meste_povorota_pered_vchodom_v_megrebernye_kanaly value="0.12"/>
+            <Ugol_povorota_potoka_pered_vhodom_v_megrebernye_kanaly value="58"/>
+            <Ploschad_sechenia_pered_vhodom_v_megrebernye_kanaly value="0.0012"/>
+            <Ploschad_sechenia_megrebernyh_kanalov_ot_staniny_do_koguha_ventilatora value="0.0012"/>
+            <Ugol_natekania_potoka_na_rebra_staniny value="45"/>
+            <Ugol_povorota_potoka_v_megrebernych_kanalah value="90"/>
+        </general_settings>
+    </vent_dannie>
+</resources>

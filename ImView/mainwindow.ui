@@ -1,0 +1,2759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1499</width>
+    <height>1019</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IM View</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_25">
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_34">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>540</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>540</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>6</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <layout class="QGridLayout" name="gridLayout_33">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Настройки сеанса&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTreeView" name="treeView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="toolTipDuration">
+           <number>-3</number>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="autoScroll">
+           <bool>true</bool>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>false</bool>
+          </property>
+          <property name="animated">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="SaveProgectToFile">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="LoadProgect">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>Настроечный коэффициент kpsi =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Настроечный коэффициент gp =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_13">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Расчет поправочных коэффициентов&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lineEdit_14">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Настроечный коэффициент ki =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="lineEdit_15">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>Настроечный коэффициент gpsi =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="lineEdit_18">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>Настроечный коэффициент gb =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="lineEdit_17">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEdit_16">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Настроечный коэффициент gd =</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>550</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Индуктивность фазы ротора, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Активное сопротивление фазы ротора, Ом =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_12">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="text">
+              <string>Активное сопротивление фазы статора, Ом =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="lineEdit_9">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Индуктивность фазы статора, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="lineEdit_8">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lineEdit_10">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEdit_11">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>Индуктивность взаимоиндукции, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_15">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги предварительной идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>550</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_32">
+           <item row="1" column="1">
+            <widget class="QLabel" name="label_42">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEdit_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label_43">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="lineEdit_4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="label_44">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLineEdit" name="lineEdit_5">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="label_45">
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="lineEdit_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_41">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги текущей идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="save_identf_in_file">
+          <property name="text">
+           <string>сохранить параметры схемы замещения в файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_19">
+       <widget class="QLabel" name="label_35">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>130</y>
+          <width>161</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Прогноз температур</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_20">
+       <layout class="QGridLayout" name="gridLayout_27">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_40">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Оценка остаточного теплового ресурса обмотки статора&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_17">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_10">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_11">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButton_12">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_21">
+       <widget class="QLabel" name="label_37">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>150</y>
+          <width>131</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Выходные данные</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_22">
+       <widget class="QLabel" name="label_38">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>100</y>
+          <width>251</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Результаты теплового наблюдателя</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Настройки графиков&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tableWidget">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Применить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_4">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги измерений&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="tabWidget_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab_10">
+           <attribute name="title">
+            <string>Результаты измерений</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_13">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_11">
+           <attribute name="title">
+            <string>Энергетические характеристики</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_12">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_4">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_25">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Регулировка напряжения&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_9" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QSlider" name="horizontalSlider_2">
+             <property name="maximum">
+              <number>400</number>
+             </property>
+             <property name="singleStep">
+              <number>1</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit_2">
+             <property name="minimumSize">
+              <size>
+               <width>125</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>125</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_33">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Droid Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Регулировка нагрузки&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_8" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QSlider" name="horizontalSlider">
+             <property name="value">
+              <number>0</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEdit">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>0</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="save_electromagn2_file">
+          <property name="text">
+           <string>Сохранить график в файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_18">
+       <layout class="QGridLayout" name="gridLayout_16">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_39">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Параметры тепловой идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_16">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="load_Vent_dannie_2">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="save_Vent_dannie_2">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_8">
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>30</y>
+          <width>271</width>
+          <height>178</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Узлы&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton">
+           <property name="text">
+            <string>Обозначение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_2">
+           <property name="text">
+            <string>Температура</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_3">
+           <property name="text">
+            <string>Емкость рассеяния</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_4">
+           <property name="text">
+            <string>Мощность рассеяния</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_9">
+           <property name="text">
+            <string>Скрыть элементы</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>290</y>
+          <width>281</width>
+          <height>178</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Тепловые проводимости&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_5">
+           <property name="text">
+            <string>Обозначение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_6">
+           <property name="text">
+            <string>Значение</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_7">
+           <property name="text">
+            <string>Мощность рассеяния</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_8">
+           <property name="text">
+            <string>Падение температуры</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="radioButton_10">
+           <property name="text">
+            <string>Скрыть элементы</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_10">
+       <layout class="QGridLayout" name="gridLayout_11">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Исходные данные вентиляции&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QTableWidget" name="tableWidget_7">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="load_Vent_dannie">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="save_Vent_dannie">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QPushButton" name="vent_result">
+          <property name="text">
+           <string>Расчет</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_22">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Результаты измерений (тепло общ)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="save_tepl_graph_file">
+          <property name="text">
+           <string>Сохранить график в файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_16">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_31">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Исходные данные для теплового наблюдателя&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_14">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_4">
+          <property name="text">
+           <string>Расчет</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_17">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QLabel" name="label_32">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Результаты измерений&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_15">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_6">
+          <property name="text">
+           <string>Сохранить графики в файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_6">
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Результаты измерения draw line&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>545</height>
+           </size>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_7">
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Результаты измерения draw popper&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="tableWidget_6">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>545</height>
+           </size>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_9">
+       <layout class="QGridLayout" name="gridLayout_15">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Исходные данные для теплового расчета&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="load_tepl_dannie">
+          <property name="text">
+           <string>Загрузить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QPushButton" name="save_tepl_dannie">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Сохранить</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QTableWidget" name="tableWidget_9">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QPushButton" name="tepl_result">
+          <property name="text">
+           <string>Расчет</string>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_11">
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Аэродинамические сопротивления&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_11">
+            <property name="text">
+             <string>Обозначение</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_12">
+            <property name="text">
+             <string>Значение</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_13">
+            <property name="text">
+             <string>Скрыть элементы</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_27">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Расчетные значения аэродинамических сопротивлений&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QTableWidget" name="tableWidget_13">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_12">
+       <layout class="QGridLayout" name="gridLayout_14">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_24">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Измеренные параметры системы вентиляции&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QTableWidget" name="tableWidget_8">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>500</height>
+           </size>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_7">
+          <property name="text">
+           <string>Сохранить график</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_13">
+       <layout class="QGridLayout" name="gridLayout_17">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_28">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Энергетическая диаграмма &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;асинхронного электродвигателя&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_10">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_14">
+       <layout class="QGridLayout" name="gridLayout_18">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_29">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Энергетическая диаграмма &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;вентилятора&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_11">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_15">
+       <layout class="QGridLayout" name="gridLayout_19">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_30">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Расчетные величины вентиляционной сети&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_12">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_24">
+       <layout class="QGridLayout" name="gridLayout_24">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_46">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги идентификации вентиляционной сети&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTableWidget" name="tableWidget_20">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_23">
+       <layout class="QGridLayout" name="gridLayout_29">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_36">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Тепловая модель с учетом вентиляции&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTabWidget" name="tabWidget_4">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab_16">
+           <attribute name="title">
+            <string>Параметры модели</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_31">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_18">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_17">
+           <attribute name="title">
+            <string>Итоги измерений</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_30">
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="tableWidget_19">
+              <property name="alternatingRowColors">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButton_13">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="pushButton_14">
+          <property name="text">
+           <string>PushButton</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1" rowspan="2">
+     <widget class="QPushButton" name="switch_regim_upr">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>15</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Images.qrc">
+        <normaloff>:/system_icons/data/img/system_icons/go-next.svg</normaloff>:/system_icons/data/img/system_icons/go-next.svg</iconset>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="3">
+     <widget class="poisk" name="widget_12" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>86</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3">
+     <widget class="Start_app" name="widget_15" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>255</red>
+            <green>255</green>
+            <blue>255</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled/>
+       </palette>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" rowspan="2">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex">
+       <number>4</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Исходные данные</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="datas" name="widget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <attribute name="title">
+        <string>Предварительная и текущая идентификация параметров схемы замещения</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="identf" name="widget_2" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_14">
+       <attribute name="title">
+        <string>Предварительная и текущая идентификация параметров тепловой модели</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="Tepl_identf" name="widget_10" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_18">
+       <attribute name="title">
+        <string>Предварительная и текущая идентификация параметров вентиляционной сети и вентилятора</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_23">
+        <item row="0" column="0">
+         <widget class="Vent_identf" name="widget_7" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Энергетические показатели</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_20">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_12">
+           <attribute name="title">
+            <string>Электромагнитные процессы</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_21">
+            <item row="0" column="0">
+             <widget class="electromagn" name="widget_3" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_13">
+           <attribute name="title">
+            <string>Энергетическая диаграмма двигателя</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_22">
+            <item row="0" column="0">
+             <widget class="QWebEngineView" name="webEngineView">
+              <property name="url">
+               <url>
+                <string>about:blank</string>
+               </url>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Тепловая модель</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="teplovent" name="widget_5" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Вентиляционная модель</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="vent_model" name="widget_6" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Прогноз температур</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>Оценка остаточного ресурса обмотки статора</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_26">
+        <item row="0" column="0">
+         <widget class="Ostat_resurs" name="widget_13" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Выходные данные</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="Itogs" name="widget_4" native="true">
+          <layout class="QGridLayout" name="gridLayout_2"/>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+   <widget class="QWidget" name="widget_11" native="true">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>6</y>
+      <width>457</width>
+      <height>722</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1499</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menufile">
+    <property name="title">
+     <string>&amp;Файл</string>
+    </property>
+    <widget class="QMenu" name="menu_6">
+     <property name="title">
+      <string>Недавние файлы</string>
+     </property>
+     <addaction name="actionmy"/>
+     <addaction name="actionmy2"/>
+     <addaction name="actionmy3"/>
+     <addaction name="actionmy4"/>
+     <addaction name="actionmy5"/>
+    </widget>
+    <addaction name="action_create"/>
+    <addaction name="open_file"/>
+    <addaction name="menu_6"/>
+    <addaction name="separator"/>
+    <addaction name="save_file"/>
+    <addaction name="save_as_file"/>
+    <addaction name="action_save_graph_file"/>
+    <addaction name="action_close_progect"/>
+    <addaction name="separator"/>
+    <addaction name="print_preview"/>
+    <addaction name="print_file"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuabout">
+    <property name="title">
+     <string>&amp;Справка</string>
+    </property>
+    <addaction name="actionhelp"/>
+    <addaction name="actionabout"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>&amp;Инструменты</string>
+    </property>
+    <addaction name="nastroiki"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>&amp;Правка</string>
+    </property>
+    <addaction name="actionundo"/>
+    <addaction name="actionredo"/>
+    <addaction name="separator"/>
+    <addaction name="actioncut"/>
+    <addaction name="actioncopy"/>
+    <addaction name="actionpaste"/>
+    <addaction name="deletes"/>
+    <addaction name="separator"/>
+    <addaction name="actionpoisk"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>&amp;Идентификация параметров</string>
+    </property>
+    <addaction name="identf_pusk"/>
+    <addaction name="identf_stop"/>
+    <addaction name="separator"/>
+    <addaction name="identf_nastr"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>Исходные данные</string>
+    </property>
+    <addaction name="enter_dannie"/>
+    <addaction name="save_dannie"/>
+    <addaction name="delete_dannie"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>&amp;Энергетические показатели</string>
+    </property>
+    <addaction name="electromagn_start"/>
+    <addaction name="electromagn_stop"/>
+    <addaction name="kalibr_osc"/>
+   </widget>
+   <addaction name="menufile"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu"/>
+   <addaction name="menuabout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_create"/>
+   <addaction name="open_file"/>
+   <addaction name="save_file"/>
+   <addaction name="save_as_file"/>
+   <addaction name="separator"/>
+   <addaction name="print_preview"/>
+   <addaction name="print_file"/>
+   <addaction name="separator"/>
+   <addaction name="actionundo"/>
+   <addaction name="actionredo"/>
+   <addaction name="separator"/>
+   <addaction name="actioncut"/>
+   <addaction name="actioncopy"/>
+   <addaction name="actionpaste"/>
+   <addaction name="separator"/>
+   <addaction name="enter_dannie"/>
+   <addaction name="save_dannie"/>
+   <addaction name="delete_dannie"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="identf_pusk"/>
+   <addaction name="identf_stop"/>
+   <addaction name="separator"/>
+   <addaction name="actionteplident_start"/>
+   <addaction name="actionteplident_stop"/>
+   <addaction name="separator"/>
+   <addaction name="ventidentf_start"/>
+   <addaction name="vent_identf_stop"/>
+   <addaction name="separator"/>
+   <addaction name="electromagn_start"/>
+   <addaction name="electromagn_stop"/>
+   <addaction name="kalibr_osc"/>
+   <addaction name="separator"/>
+   <addaction name="actionaction_graph"/>
+   <addaction name="action_gruph"/>
+  </widget>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/application-exit.svg</normaloff>:/system_icons/data/img/system_icons/application-exit.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionhelp">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/system-help.svg</normaloff>:/system_icons/data/img/system_icons/system-help.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Справка</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionabout">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/help-about.svg</normaloff>:/system_icons/data/img/system_icons/help-about.svg</iconset>
+   </property>
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
+  <action name="open_file">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-open.svg</normaloff>:/system_icons/data/img/system_icons/document-open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="save_file">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="print_file">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-print.svg</normaloff>:/system_icons/data/img/system_icons/document-print.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Печать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="save_as_file">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save-as.svg</normaloff>:/system_icons/data/img/system_icons/document-save-as.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить как</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionundo">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-undo.svg</normaloff>:/system_icons/data/img/system_icons/edit-undo.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Отменить действие</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionredo">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-redo.svg</normaloff>:/system_icons/data/img/system_icons/edit-redo.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Повторить действие</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actioncut">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-cut.svg</normaloff>:/system_icons/data/img/system_icons/edit-cut.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Вырезать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actioncopy">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-copy.svg</normaloff>:/system_icons/data/img/system_icons/edit-copy.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Копировать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionpaste">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-paste.svg</normaloff>:/system_icons/data/img/system_icons/edit-paste.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Вставить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionpoisk">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-find.svg</normaloff>:/system_icons/data/img/system_icons/edit-find.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Поиск/замена</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="deletes">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="identf_pusk">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Пуск</string>
+   </property>
+   <property name="toolTip">
+    <string>Запуск предварительной идентификации параметров схемы замещения</string>
+   </property>
+  </action>
+  <action name="identf_stop">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Стоп</string>
+   </property>
+  </action>
+  <action name="identf_nastr">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
+   </property>
+  </action>
+  <action name="nastroiki">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/NP_24.svg</normaloff>:/icons/data/img/icons/NP_24.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="enter_dannie">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-open.svg</normaloff>:/system_icons/data/img/system_icons/document-open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Ввести данные</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="save_dannie">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить данные</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="delete_dannie">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</normaloff>:/system_icons/data/img/system_icons/edit-delete.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить данные</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="electromagn_start">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Запуск</string>
+   </property>
+  </action>
+  <action name="electromagn_stop">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Останов</string>
+   </property>
+  </action>
+  <action name="kalibr_osc">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Калибровка осциллографа</string>
+   </property>
+  </action>
+  <action name="nastr_graph">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/image/data/img/icons/labplot-axis-vertical.png</normaloff>:/image/data/img/icons/labplot-axis-vertical.png</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки графиков</string>
+   </property>
+  </action>
+  <action name="actionresult">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/image/data/img/icons/map-flat.png</normaloff>:/image/data/img/icons/map-flat.png</iconset>
+   </property>
+   <property name="text">
+    <string>Итоги измерений</string>
+   </property>
+  </action>
+  <action name="actionresultidentf">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/image/data/img/icons/labplot-xy-interpolation-curve.png</normaloff>:/image/data/img/icons/labplot-xy-interpolation-curve.png</iconset>
+   </property>
+   <property name="text">
+    <string>Итоги идентификации</string>
+   </property>
+  </action>
+  <action name="action_27">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/archivator_white_24.svg</normaloff>:/icons/data/img/icons/archivator_white_24.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение архиватора</string>
+   </property>
+  </action>
+  <action name="action_28">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/osc_white_24.svg</normaloff>:/icons/data/img/icons/osc_white_24.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение осциллографа</string>
+   </property>
+  </action>
+  <action name="action_29">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/plk_white_24.svg</normaloff>:/icons/data/img/icons/plk_white_24.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение ПЛК</string>
+   </property>
+  </action>
+  <action name="action_30">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/moment_white_24.svg</normaloff>:/icons/data/img/icons/moment_white_24.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Подключение управления моментом</string>
+   </property>
+  </action>
+  <action name="actionteplident_start">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start_3.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_3.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Пуск2</string>
+   </property>
+   <property name="toolTip">
+    <string>Запуск идентификации параметров тепловой модели</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionteplident_stop">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_3.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_3.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Стоп2</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="print_preview">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-preview-archive.svg</normaloff>:/system_icons/data/img/system_icons/document-preview-archive.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Предварительный просмотр</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="actionmy">
+   <property name="text">
+    <string>&amp;recentFileActions1</string>
+   </property>
+  </action>
+  <action name="actionmy2">
+   <property name="text">
+    <string>r&amp;ecentFileActions2</string>
+   </property>
+  </action>
+  <action name="actionmy3">
+   <property name="text">
+    <string>re&amp;centFileActions3</string>
+   </property>
+  </action>
+  <action name="actionmy4">
+   <property name="text">
+    <string>rece&amp;ntFileActions4</string>
+   </property>
+  </action>
+  <action name="actionmy5">
+   <property name="text">
+    <string>recen&amp;tFileActions5</string>
+   </property>
+  </action>
+  <action name="action_close_progect">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-close.svg</normaloff>:/system_icons/data/img/system_icons/document-close.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть файл</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="action_close_session">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-close.svg</normaloff>:/system_icons/data/img/system_icons/document-close.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть сессию</string>
+   </property>
+  </action>
+  <action name="action_save_graph_file">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-save.svg</normaloff>:/system_icons/data/img/system_icons/document-save.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить график в файл</string>
+   </property>
+  </action>
+  <action name="action_create">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/document-new.svg</normaloff>:/system_icons/data/img/system_icons/document-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Создать</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="ventidentf_start">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-start_4.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_4.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Идентификация параметров вентиляционной модели</string>
+   </property>
+   <property name="toolTip">
+    <string>Идентификация параметров вентиляционной модели</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="vent_identf_stop">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_4.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_4.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Идентификация параметров вентиляционной модели</string>
+   </property>
+   <property name="toolTip">
+    <string>Останов</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionaction_graph">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg</normaloff>:/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg</iconset>
+   </property>
+   <property name="text">
+    <string>action_graph</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_gruph">
+   <property name="text">
+    <string>action_gruph</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+  <customwidget>
+   <class>poisk</class>
+   <extends>QWidget</extends>
+   <header>poisk.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>datas</class>
+   <extends>QWidget</extends>
+   <header>datas.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>identf</class>
+   <extends>QWidget</extends>
+   <header>identf.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>electromagn</class>
+   <extends>QWidget</extends>
+   <header>electromagn.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Itogs</class>
+   <extends>QWidget</extends>
+   <header>itogs.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>teplovent</class>
+   <extends>QWidget</extends>
+   <header>teplovent.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>vent_model</class>
+   <extends>QWidget</extends>
+   <header>vent_model.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Tepl_identf</class>
+   <extends>QWidget</extends>
+   <header>tepl_identf.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Ostat_resurs</class>
+   <extends>QWidget</extends>
+   <header>ostat_resurs.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Start_app</class>
+   <extends>QWidget</extends>
+   <header>start_app.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Vent_identf</class>
+   <extends>QWidget</extends>
+   <header>vent_identf.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="Images.qrc"/>
+ </resources>
+ <connections/>
+</ui>
