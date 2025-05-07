@@ -115,7 +115,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    updateWindowSize();
+   // updateWindowSize();
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+
 
     // QScreen *screen = QGuiApplication::primaryScreen();
     // if (screen)

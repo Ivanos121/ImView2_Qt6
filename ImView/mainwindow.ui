@@ -87,10 +87,10 @@
            <string notr="true"/>
           </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarAsNeeded</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
           </property>
           <property name="autoScroll">
            <bool>true</bool>
@@ -437,7 +437,7 @@
            <item row="1" column="0">
             <widget class="QLabel" name="label_10">
              <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
              </property>
              <property name="text">
               <string>Активное сопротивление фазы статора, Ом =</string>
@@ -694,7 +694,7 @@
         <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Orientation::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -1008,7 +1008,7 @@
               <number>1</number>
              </property>
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -1081,7 +1081,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <number>0</number>
              </property>
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -1863,7 +1863,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2534,7 +2534,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Запуск идентификации параметров тепловой модели</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::NoRole</enum>
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="actionteplident_stop">
@@ -2546,7 +2546,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Стоп2</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::NoRole</enum>
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="print_preview">
@@ -2640,7 +2640,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Идентификация параметров вентиляционной модели</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::NoRole</enum>
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="vent_identf_stop">
@@ -2655,7 +2655,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Останов</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::NoRole</enum>
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="actionaction_graph">
@@ -2667,7 +2667,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>action_graph</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::NoRole</enum>
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
   <action name="action_gruph">
@@ -2675,7 +2675,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>action_gruph</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::NoRole</enum>
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
  </widget>

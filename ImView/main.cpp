@@ -13,6 +13,9 @@
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+
+
     QApplication a(argc, argv);
 
     QCoreApplication::setOrganizationName("ImView");
@@ -28,6 +31,9 @@ int main(int argc, char *argv[])
     }
 
 
+    QFont font = QApplication::font();
+    font.setPointSize(10); // Устанавливаем размер шрифта в логических пикселях
+    QApplication::setFont(font);
 
 
     QSettings settings( "BRU", "IM View");
