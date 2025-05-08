@@ -42,6 +42,8 @@ Ksettings::Ksettings(QWidget *parent) :
     ui->stackedWidget->setCurrentIndex(0);
     ui->comboBox->addItem(tr("Русский язык"));
     ui->comboBox->addItem(tr("English language"));
+    ui->comboBox_2->addItem(tr("Фиксированные сообщения"));
+    ui->comboBox_2->addItem(tr("Всплывающие сообщения"));
     // ui->comboBox->setCurrentIndex(0);
 
     /*connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),

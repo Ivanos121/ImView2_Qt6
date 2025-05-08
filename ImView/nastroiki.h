@@ -20,6 +20,8 @@ public:
     MainWindow *wf;
 
 
+public slots:
+    void translator();
 private slots:
 
     void on_pushButton_clicked();
