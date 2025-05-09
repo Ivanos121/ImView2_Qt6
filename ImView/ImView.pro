@@ -1,4 +1,4 @@
-QT       += core gui sql webenginewidgets serialport printsupport svgwidgets xml network core5compat
+QT       += core gui sql webenginewidgets serialport printsupport svgwidgets xml network core5compat dbus
 
 CONFIG += c++20 debug
 CONFIG -= qml_debug

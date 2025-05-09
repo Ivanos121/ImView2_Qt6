@@ -35,17 +35,40 @@ int main(int argc, char *argv[])
     font.setPointSize(10); // Устанавливаем размер шрифта в логических пикселях
     QApplication::setFont(font);
 
-
     QSettings settings( "BRU", "IM View");
     settings.beginGroup( "language interface" );
     QString lokal = settings.value( "QtLanguage_", "").toString();
     settings.endGroup();
 
-    QString aaaaa = QString("QtLanguage_") + lokal;
+    QString language = QString("QtLanguage_") + lokal;
     QTranslator *qtLanguageTranslator = new QTranslator();
-    qtLanguageTranslator->load(aaaaa);
-    qApp->installTranslator(qtLanguageTranslator);
 
+    if(lokal == "ru_RU")
+    {
+        if (qtLanguageTranslator->load("/home/elf/ImView2_Qt6/language/QtLanguage_ru_RU.qm"))
+        {
+            a.installTranslator(qtLanguageTranslator);
+        }
+        else
+        {
+            qDebug() << "Translation file not loaded!";
+        }
+    }
+    else
+        if(lokal == "en_US")
+        {
+            if (qtLanguageTranslator->load("/home/elf/ImView2_Qt6/language/QtLanguage_en_US.qm"))
+            {
+                a.installTranslator(qtLanguageTranslator);
+            }
+            else
+            {
+                qDebug() << "Translation file not loaded!";
+            }
+        }
+
+    // delete qtLanguageTranslator;
+    // qtLanguageTranslator = nullptr;
 
 
     MainWindow w;

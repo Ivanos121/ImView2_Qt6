@@ -3707,31 +3707,65 @@ void MainWindow::changeEvent(QEvent *event)
     {
             ui->retranslateUi(this);
     }
+    QMainWindow::changeEvent(event);
 }
 
 void MainWindow::translate_en()
 {
-    qtLanguageTranslator = new QTranslator();
-    qtLanguageTranslator->load("QtLanguage_en_US");
     qApp->removeTranslator(qtLanguageTranslator);
-    qApp->installTranslator(qtLanguageTranslator);
+    // delete qtLanguageTranslator;
+    // qtLanguageTranslator = nullptr;
+
+    qtLanguageTranslator = new QTranslator();
+    if (qtLanguageTranslator->load("/home/elf/ImView2_Qt6/language/QtLanguage_en_US.qm"))
+    {
+        qApp->installTranslator(qtLanguageTranslator);
+        qDebug() << "Translation file en_US loaded!";
+    }
+    else
+    {
+        qDebug() << "Translation file en_US not loaded!";
+    }
+    // qtLanguageTranslator = nullptr;
 }
 
 void MainWindow::translate_ru()
 {
     qApp->removeTranslator(qtLanguageTranslator);
-    qApp->removeTranslator(qtLanguageTranslator);
+    // delete qtLanguageTranslator;
+    // qtLanguageTranslator = nullptr;
+
+    qtLanguageTranslator = new QTranslator();
+    if (qtLanguageTranslator->load("/home/elf/ImView2_Qt6/language/QtLanguage_ru_RU.qm"))
+    {
+        qApp->installTranslator(qtLanguageTranslator);
+        qDebug() << "Translation file ru_RU loaded!";
+    }
+    else
+    {
+        qDebug() << "Translation file ru_RU not loaded!";
+    }
+   // qtLanguageTranslator = nullptr;
 }
 
 void MainWindow::translator()
 {
-    QTranslator qtLanguageTranslator;
-    QSettings settings( "BRU", "IM View");
-    settings.beginGroup( "language interface" );
-    QString lokal = settings.value( "QtLanguage_", "").toString();
-    settings.endGroup();
-    qtLanguageTranslator.load("QtLanguage_" + lokal);   // Загружаем перевод
-    qApp->installTranslator(&qtLanguageTranslator);
+    // QTranslator *qtLanguageTranslator = new QTranslator();
+    // QSettings settings( "BRU", "IM View");
+    // settings.beginGroup( "language interface" );
+    // QString lokal = settings.value( "QtLanguage_", "").toString();
+    // settings.endGroup();
+    // QString language = QString("QtLanguage_") + lokal;
+
+   // qtLanguageTranslator->load("QtLanguage_" + lokal);   // Загружаем перевод
+   // qApp->installTranslator(&qtLanguageTranslator);
+
+
+    // qApp->removeTranslator(qtLanguageTranslator);
+    // if (qtLanguageTranslator->load("/home/elf/ImView2_Qt6/language/" + language + ".qm"))
+    // {
+    //     qApp->installTranslator(qtLanguageTranslator);
+    // }
 }
 
 void MainWindow::nastroiki()

@@ -47,7 +47,7 @@ void CheckBoxHeader::paintSection(QPainter* painter, const QRect& rect, int logi
 
 void CheckBoxHeader::mousePressEvent(QMouseEvent* event)
 {
-    int logicalIndex = logicalIndexAt(event->x(), event->y());
+    int logicalIndex = logicalIndexAt(event->position().x(), event->position().y());
 
     if (logicalIndex == 1)
     {

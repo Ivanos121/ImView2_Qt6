@@ -43,7 +43,7 @@ Nastroiki::Nastroiki(QWidget *parent)
   /*  connect(ui->comboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged),
             [=](const QString &text){ wf->translator(); });*/
 
-    connect(ui->comboBox,&QComboBox::currentIndexChanged,this, &Nastroiki::translator);
+    connect(ui->comboBox,&QComboBox::currentIndexChanged,this, &Nastroiki::switch_language);
 
         connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
             [=](int index){ ui->pushButton_2->setEnabled(true); });
@@ -75,6 +75,10 @@ Nastroiki::Nastroiki(QWidget *parent)
     {
         ui->comboBox_2->setCurrentIndex(1);
     }
+
+    connect(ui->pushButton_2, &QPushButton::clicked, this, &Nastroiki::apply_action);
+    connect(ui->pushButton, &QPushButton::clicked, this, &Nastroiki::enter_action);
+    connect(ui->pushButton_3, &QPushButton::clicked, this, &Nastroiki::close_action);
 }
 
 Nastroiki::~Nastroiki()
@@ -82,12 +86,11 @@ Nastroiki::~Nastroiki()
     delete ui;
 }
 
-void Nastroiki::on_pushButton_clicked()
+void Nastroiki::enter_action()
 {
-
     if(ui->comboBox->currentText() == "Русский язык")
     {
-        ui->comboBox->setCurrentIndex(0);
+        //ui->comboBox->setCurrentIndex(0);
         wf->translate_ru();
         QSettings settings( "BRU", "IM View");
         settings.beginGroup( "language interface" );
@@ -96,7 +99,7 @@ void Nastroiki::on_pushButton_clicked()
     }
     else if(ui->comboBox->currentText()  == "English language")
     {
-        ui->comboBox->setCurrentIndex(1);
+        //ui->comboBox->setCurrentIndex(1);
         wf->translate_en();
         QSettings settings( "BRU", "IM View");
         settings.beginGroup( "language interface" );
@@ -115,20 +118,20 @@ void Nastroiki::on_pushButton_clicked()
     else if(ui->comboBox_2->currentText()  == "Всплывающие сообщения")
     {
         ui->comboBox_2->setCurrentIndex(1);
-        wf->translate_en();
         QSettings settings( "BRU", "IM View");
         settings.beginGroup( "System_messages" );
         settings.setValue( "Messages", "nonfix");
         settings.endGroup();
     }
+
     close();
 }
 
-void Nastroiki::on_pushButton_2_clicked()
+void Nastroiki::apply_action()
 {
     if(ui->comboBox->currentText() == "Русский язык")
     {
-        ui->comboBox->setCurrentIndex(0);
+        //ui->comboBox->setCurrentIndex(0);
         wf->translate_ru();
         QSettings settings( "BRU", "IM View");
         settings.beginGroup( "language interface" );
@@ -137,7 +140,7 @@ void Nastroiki::on_pushButton_2_clicked()
     }
     else if(ui->comboBox->currentText()  == "English language")
     {
-        ui->comboBox->setCurrentIndex(1);
+        //ui->comboBox->setCurrentIndex(1);
         wf->translate_en();
         QSettings settings( "BRU", "IM View");
         settings.beginGroup( "language interface" );
@@ -156,16 +159,17 @@ void Nastroiki::on_pushButton_2_clicked()
     else if(ui->comboBox_2->currentText()  == "Всплывающие сообщения")
     {
         ui->comboBox_2->setCurrentIndex(1);
-        wf->translate_en();
         QSettings settings( "BRU", "IM View");
         settings.beginGroup( "System_messages" );
         settings.setValue( "Messages", "nonfix");
         settings.endGroup();
     }
     ui->pushButton_2->setEnabled(false);
+    //connect(ui->comboBox,&QComboBox::currentIndexChanged,this, &Nastroiki::switch_language);
+    //switch_language();
 }
 
-void Nastroiki::on_pushButton_3_clicked()
+void Nastroiki::close_action()
 {
     close();
 }
@@ -175,7 +179,7 @@ void Nastroiki::on_listWidget_itemSelectionChanged()
     ui->stackedWidget->setCurrentIndex(ui->listWidget->currentRow());
 }
 
-void Nastroiki::translator()
+void Nastroiki::switch_language()
 {
     wf->translator();
 }

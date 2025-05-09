@@ -21,12 +21,12 @@ public:
 
 
 public slots:
-    void translator();
+    void switch_language();
 private slots:
 
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
+    void enter_action();
+    void apply_action();
+    void close_action();
     void on_listWidget_itemSelectionChanged();
 
 private:

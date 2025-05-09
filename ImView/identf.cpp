@@ -13,6 +13,12 @@
 #include <QColorDialog>
 #include <cmath>
 #include <QSpinBox>
+#include <QSettings>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusVariant>
+#include <QDBusReply>
+#include <QDBusInterface>
 
 double key;
 Model model;
@@ -185,8 +191,59 @@ void identf::realtimeDataSlot()
             dataSource->stop();
             wf->ui->identf_stop->setEnabled(false);
             wf->ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
-            QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
-            wf->ui->stackedWidget->show();
+
+            QSettings settings( "BRU", "IM View");
+            settings.beginGroup( "System_messages" );
+            QString lokal = settings.value( "Messages", "").toString();
+            settings.endGroup();
+
+            if(lokal == "fix")
+            {
+                QMessageBox::information(this, tr("Сообщение"), tr("Расчет окончен!"));
+            }
+            else if(lokal == "nonfix")
+            {
+                QDBusInterface notifyInterface("org.freedesktop.Notifications",
+                                               "/org/freedesktop/Notifications",
+                                               "org.freedesktop.Notifications",
+                                               QDBusConnection::sessionBus());
+
+                if (!notifyInterface.isValid())
+                {
+                    qWarning() << "Failed to connect to notifications service";
+                    return;
+                }
+
+                // Parameters for Notify method:
+                // app_name, replaces_id, app_icon, summary, body, actions, hints, expire_timeout
+                QString appName = QCoreApplication::applicationName();
+                uint replacesId = 0; // 0 means no existing notification to replace
+                QString appIcon = "/home/elf/undoredo/data/IM_96x96.png"; // icon name or path
+                QString summary = "Hello";
+                QString body = "Расчет окончен!";
+                QStringList actions; // empty list means no actions
+                QVariantMap hints;   // additional hints (empty here)
+                int expireTimeout = 5000; // milliseconds
+
+                QDBusReply<uint> reply = notifyInterface.call("Notify",
+                                                              appName,
+                                                              replacesId,
+                                                              appIcon,
+                                                              summary,
+                                                              body,
+                                                              actions,
+                                                              hints,
+                                                              expireTimeout);
+
+                if (reply.isValid()) {
+                    uint notificationId = reply.value();
+                    qDebug() << "Notification sent with ID:" << notificationId;
+                } else {
+                    qWarning() << "Failed to send notification:" << reply.error().message();
+                    return;
+                }
+            }
+                wf->ui->stackedWidget->show();
             wf->ui->stackedWidget->setCurrentIndex(1);
        }
        minR2 = DBL_MAX;
