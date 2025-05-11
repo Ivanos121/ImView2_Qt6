@@ -29,6 +29,8 @@ private slots:
     void close_action();
     void on_listWidget_itemSelectionChanged();
 
+    void enabled_button();
+    void enabled_button_2();
 private:
     Ui::Nastroiki *ui;
     QTranslator qtLanguageTranslator;

@@ -16,8 +16,8 @@ public:
     ~Vent_settings();
 
 private slots:
-    void on_pushButton_2_clicked();
-
+    void close_vent_dannie();
+    void apply_vent_dannie();
 private:
     Ui::Vent_settings *ui;
 };

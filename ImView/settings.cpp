@@ -38,7 +38,7 @@ Ksettings::Ksettings(QWidget *parent) :
 
     connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Ksettings::on_listWidget_itemSelectionChanged);
 
-    QTranslator *qtLanguageTranslator = nullptr ;
+    //QTranslator *qtLanguageTranslator = nullptr ;
     ui->stackedWidget->setCurrentIndex(0);
     ui->comboBox->addItem(tr("Русский язык"));
     ui->comboBox->addItem(tr("English language"));
@@ -52,8 +52,8 @@ Ksettings::Ksettings(QWidget *parent) :
                 qApp->installTranslator(qtLanguageTranslator);        // Устанавливаем перевод в приложение
             });*/
 
-    connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            [=](int index){ ui->pushButton_2->setEnabled(true); });
+    // connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+    //         [=](int index){ ui->pushButton_2->setEnabled(true); });
 
 }
 

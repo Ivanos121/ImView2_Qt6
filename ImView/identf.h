@@ -11,7 +11,7 @@
 #include "datasource_el.h"
 #include "model.h"
 #include "modell.h"
-#include "plot.h"
+// #include "plot.h"
 #include "mainwindow.h"
 #include "spinboxdelegate.h"
 

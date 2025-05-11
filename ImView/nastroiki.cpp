@@ -45,8 +45,11 @@ Nastroiki::Nastroiki(QWidget *parent)
 
     connect(ui->comboBox,&QComboBox::currentIndexChanged,this, &Nastroiki::switch_language);
 
-        connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            [=](int index){ ui->pushButton_2->setEnabled(true); });
+    // connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
+    //         [=](int index){ ui->pushButton_2->setEnabled(true); });
+
+    connect(ui->comboBox, &QComboBox::currentIndexChanged,this, &Nastroiki::enabled_button);
+    connect(ui->comboBox_2, &QComboBox::currentIndexChanged,this, &Nastroiki::enabled_button_2);
 
     QSettings settings( "BRU", "IM View");
     settings.beginGroup( "language interface" );
@@ -76,9 +79,21 @@ Nastroiki::Nastroiki(QWidget *parent)
         ui->comboBox_2->setCurrentIndex(1);
     }
 
+    ui->pushButton_2->setEnabled(false);
+
     connect(ui->pushButton_2, &QPushButton::clicked, this, &Nastroiki::apply_action);
     connect(ui->pushButton, &QPushButton::clicked, this, &Nastroiki::enter_action);
     connect(ui->pushButton_3, &QPushButton::clicked, this, &Nastroiki::close_action);
+}
+
+void Nastroiki::enabled_button()
+{
+    ui->pushButton_2->setEnabled(true);
+}
+
+void Nastroiki::enabled_button_2()
+{
+    ui->pushButton_2->setEnabled(true);
 }
 
 Nastroiki::~Nastroiki()

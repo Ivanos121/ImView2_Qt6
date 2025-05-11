@@ -21,9 +21,9 @@
                 <coeff_4 value="0"/>
                 <coeff_5 value="0"/>
                 <coeff_6 value="0"/>
-                <combobox_10 value="Режим S2"/>
+                <combobox_10 value="Режим S1"/>
                 <time_cikle value="6"/>
-                <time_work value="20"/>
+                <time_work value="5"/>
                 <combobox_11 value="Фиксированное время"/>
                 <combobox_12 value="Прямой пуск"/>
                 <napragenie value="220"/>
@@ -36,7 +36,7 @@
                 <combobox_16 value="Выберите конструкцию"/>
                 <combobox_17 value="Выберите конструкцию"/>
                 <pressure value="102"/>
-                <selected_row value="3"/>
+                <selected_row value="0"/>
                 <sopr_R1 value="2.132"/>
                 <sopr_R2 value="2.343"/>
                 <ind_L1 value="0.225"/>
@@ -48,7 +48,7 @@
                 <koeff_kpsi value="0.02"/>
                 <koeff_gp value="0.01"/>
                 <koeff_gpsi value="0.0001"/>
-                <time_work value="20"/>
+                <time_work value="2"/>
             </general_settings>
         </general_settings>
     </project>

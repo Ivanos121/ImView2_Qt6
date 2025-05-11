@@ -11,10 +11,12 @@
 #include <QSettings>
 #include <QRect>
 
+
+
 int main(int argc, char *argv[])
 {
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-
+    qputenv("QT_QUICK_BACKEND", "software");
 
     QApplication a(argc, argv);
 
@@ -82,6 +84,7 @@ int main(int argc, char *argv[])
         QString filename(argv[1]);
         w.LoadProject(filename);
     }
+
 
 
 

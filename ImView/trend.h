@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <QTimer>
 #include <QElapsedTimer>
-#include "plot.h"
+//#include "plot.h"
 #include "mainwindow.h"
 
 namespace Ui {

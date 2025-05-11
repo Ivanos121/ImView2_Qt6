@@ -2,6 +2,7 @@
 #include "customhelpdelegate.h"
 #include "ui_tepl_dannie.h"
 
+
 Tepl_dannie::Tepl_dannie(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Tepl_dannie)

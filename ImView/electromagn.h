@@ -33,8 +33,8 @@ public:
 public slots:
     void realtimeDataSlot();
     void raschet_el();
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
+    // void on_pushButton_clicked();
+    // void on_pushButton_2_clicked();
     void bvasFailureSlot();
     void setcolorincell(int row, int column);
 private:

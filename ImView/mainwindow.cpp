@@ -36,6 +36,7 @@
 #include "intens_star_izol.h"
 #include "pushbuttondelegate.h"
 #include "start_app.h"
+#include "base_tepl.h"
 
 
 #include <QStyle>
@@ -74,6 +75,11 @@
 #include <QFileDialog>
 #include <QSvgRenderer>
 #include <QPainter>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusVariant>
+#include <QDBusReply>
+#include <QDBusInterface>
 
 Base base;
 Base_tepl base_tepl;
@@ -3405,17 +3411,17 @@ void MainWindow::titleChanged(const QString &title)
 
 void MainWindow::save_dannie()
 {
-    ui->widget->on_saveDannie_clicked();
+    ui->widget->saveDannieS();
 }
 
 void MainWindow::enter_dannie()
 {
-    ui->widget->on_enterDannie_clicked();
+    ui->widget->enterDannieS();
 }
 
 void MainWindow::delete_dannie()
 {
-    ui->widget->on_deleteDannie_clicked();
+    ui->widget->deleteDannieS();
 }
 
 void MainWindow::identf_pusk()
@@ -12336,7 +12342,23 @@ void MainWindow::on_electromagn_tick()
 
         statusbar_label_9->setVisible(false);
         statusbar_progres->setVisible(false);
-        QMessageBox::information(this, "Ахтунг", "Электромагнитный расчет закончен");
+
+        QSettings settings( "BRU", "IM View");
+        settings.beginGroup( "System_messages" );
+        QString lokal = settings.value( "Messages", "").toString();
+        settings.endGroup();
+
+        //Вывод сообщения об окончании электромагнитного расчета
+        if(lokal == "fix")
+        {
+            QMessageBox::information(this, tr("Сообщение"), tr("Электромагнитный расчет закончен"));
+        }
+        else if(lokal == "nonfix")
+        {
+            QString summary_s = "Сообщение";
+            QString body_s = "Электромагнитный расчет закончен";
+            message_action(summary_s, body_s);
+        }
     }
 }
 
@@ -12429,4 +12451,47 @@ void MainWindow::updateWindowSize()
         this->move((screenSize.width() - width) / 2, (screenSize.height() - height) / 2);
     }
 
+}
+
+void MainWindow::message_action(QString summary_s, QString body_s)
+{
+    QDBusInterface notifyInterface("org.freedesktop.Notifications",
+                                   "/org/freedesktop/Notifications",
+                                   "org.freedesktop.Notifications",
+                                   QDBusConnection::sessionBus());
+
+    if (!notifyInterface.isValid())
+    {
+        qWarning() << "Failed to connect to notifications service";
+        return;
+    }
+
+    // Parameters for Notify method:
+    // app_name, replaces_id, app_icon, summary, body, actions, hints, expire_timeout
+    QString appName = QCoreApplication::applicationName();
+    uint replacesId = 0; // 0 means no existing notification to replace
+    QString appIcon = "/home/elf/undoredo/data/IM_96x96.png"; // icon name or path
+    QString summary = summary_s;
+    QString body = body_s;
+    QStringList actions; // empty list means no actions
+    QVariantMap hints;   // additional hints (empty here)
+    int expireTimeout = 5000; // milliseconds
+
+    QDBusReply<uint> reply = notifyInterface.call("Notify",
+                                                  appName,
+                                                  replacesId,
+                                                  appIcon,
+                                                  summary,
+                                                  body,
+                                                  actions,
+                                                  hints,
+                                                  expireTimeout);
+
+    if (reply.isValid()) {
+        uint notificationId = reply.value();
+        qDebug() << "Notification sent with ID:" << notificationId;
+    } else {
+        qWarning() << "Failed to send notification:" << reply.error().message();
+        return;
+    }
 }

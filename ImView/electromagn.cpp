@@ -1430,34 +1430,34 @@ void electromagn::stop()
     }
 }
 
-void electromagn::on_pushButton_clicked()
-{
-    base.i_a=wf->ui->tableWidget_2->item(0,1)->text().toDouble();
-    base.u_a=wf->ui->tableWidget_2->item(1,1)->text().toDouble();
-    base.p_akt_a=wf->ui->tableWidget_2->item(2,1)->text().toDouble();
-    base.p_react_a=wf->ui->tableWidget_2->item(3,1)->text().toDouble();
-    base.p_poln_a=wf->ui->tableWidget_2->item(4,1)->text().toDouble();
-    base.cosf_a=wf->ui->tableWidget_2->item(5,1)->text().toDouble();
+// void electromagn::on_pushButton_clicked()
+// {
+//     base.i_a=wf->ui->tableWidget_2->item(0,1)->text().toDouble();
+//     base.u_a=wf->ui->tableWidget_2->item(1,1)->text().toDouble();
+//     base.p_akt_a=wf->ui->tableWidget_2->item(2,1)->text().toDouble();
+//     base.p_react_a=wf->ui->tableWidget_2->item(3,1)->text().toDouble();
+//     base.p_poln_a=wf->ui->tableWidget_2->item(4,1)->text().toDouble();
+//     base.cosf_a=wf->ui->tableWidget_2->item(5,1)->text().toDouble();
 
-    base.i_b=wf->ui->tableWidget_2->item(6,1)->text().toDouble();
-    base.u_b=wf->ui->tableWidget_2->item(7,1)->text().toDouble();
-    base.p_akt_b=wf->ui->tableWidget_2->item(8,1)->text().toDouble();
-    base.p_react_b=wf->ui->tableWidget_2->item(9,1)->text().toDouble();
-    base.p_poln_b=wf->ui->tableWidget_2->item(10,1)->text().toDouble();
-    base.cosf_b=wf->ui->tableWidget_2->item(11,1)->text().toDouble();
+//     base.i_b=wf->ui->tableWidget_2->item(6,1)->text().toDouble();
+//     base.u_b=wf->ui->tableWidget_2->item(7,1)->text().toDouble();
+//     base.p_akt_b=wf->ui->tableWidget_2->item(8,1)->text().toDouble();
+//     base.p_react_b=wf->ui->tableWidget_2->item(9,1)->text().toDouble();
+//     base.p_poln_b=wf->ui->tableWidget_2->item(10,1)->text().toDouble();
+//     base.cosf_b=wf->ui->tableWidget_2->item(11,1)->text().toDouble();
 
-    base.i_c=wf->ui->tableWidget_2->item(12,1)->text().toDouble();
-    base.u_c=wf->ui->tableWidget_2->item(13,1)->text().toDouble();
-    base.p_akt_c=wf->ui->tableWidget_2->item(14,1)->text().toDouble();
-    base.p_react_c=wf->ui->tableWidget_2->item(15,1)->text().toDouble();
-    base.p_poln_c=wf->ui->tableWidget_2->item(16,1)->text().toDouble();
-    base.cosf_c=wf->ui->tableWidget_2->item(17,1)->text().toDouble();
+//     base.i_c=wf->ui->tableWidget_2->item(12,1)->text().toDouble();
+//     base.u_c=wf->ui->tableWidget_2->item(13,1)->text().toDouble();
+//     base.p_akt_c=wf->ui->tableWidget_2->item(14,1)->text().toDouble();
+//     base.p_react_c=wf->ui->tableWidget_2->item(15,1)->text().toDouble();
+//     base.p_poln_c=wf->ui->tableWidget_2->item(16,1)->text().toDouble();
+//     base.cosf_c=wf->ui->tableWidget_2->item(17,1)->text().toDouble();
 
-    base.p_akt=wf->ui->tableWidget_2->item(18,1)->text().toDouble();
-    base.p_react=wf->ui->tableWidget_2->item(19,1)->text().toDouble();
-    base.p_poln=wf->ui->tableWidget_2->item(20,1)->text().toDouble();
-    base.cosf=wf->ui->tableWidget_2->item(21,1)->text().toDouble();
-}
+//     base.p_akt=wf->ui->tableWidget_2->item(18,1)->text().toDouble();
+//     base.p_react=wf->ui->tableWidget_2->item(19,1)->text().toDouble();
+//     base.p_poln=wf->ui->tableWidget_2->item(20,1)->text().toDouble();
+//     base.cosf=wf->ui->tableWidget_2->item(21,1)->text().toDouble();
+// }
 
 void electromagn::addDataLines()
 {
@@ -1465,15 +1465,15 @@ void electromagn::addDataLines()
 }
 
 
-void electromagn::on_pushButton_2_clicked()
-{
-    QSettings settings;
-    base.dataSourceFilename = QFileDialog::getOpenFileName(this,
-                                                           QString::fromUtf8("Открыть файл"),
+// void electromagn::on_pushButton_2_clicked()
+// {
+//     QSettings settings;
+//     base.dataSourceFilename = QFileDialog::getOpenFileName(this,
+//                                                            QString::fromUtf8("Открыть файл"),
 
-                                                           settings.value("dataSource/LastPath", "").toString(),
-                                                           "txt files (*.txt);;All files (*.*)");
-}
+//                                                            settings.value("dataSource/LastPath", "").toString(),
+//                                                            "txt files (*.txt);;All files (*.*)");
+// }
 
 void electromagn::bvasFailureSlot()
 {

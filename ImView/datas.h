@@ -24,12 +24,12 @@ public:
     ~datas();
 
 public slots:
-    void on_enterDannie_clicked();
-    void on_deleteDannie_clicked();
-    void on_saveDannie_clicked();
+    void enterDannieS();
+    void deleteDannieS();
+    void saveDannieS();
 
     void zapis_from_cell_tableview();
-    void on_sectionClicked(int index);
+    void onsectionClicked(int index);
 private slots:
 
 

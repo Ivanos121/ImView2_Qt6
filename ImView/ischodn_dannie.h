@@ -20,9 +20,9 @@ public:
     datas *wf;
 
 private slots:
-    void on_pushButton_2_clicked();
+    void close_dialog();
 
-    void on_pushButton_clicked();
+    void apply_dannie();
 
 private:
     Ui::ischodn_dannie *ui;

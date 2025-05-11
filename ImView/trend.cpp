@@ -875,7 +875,7 @@ void Trend::on_timerTimeout()
 
    // Расчет значений цветов
 
-   int color_0 = 225 - (y_0 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+   //int color_0 = 225 - (y_0 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_0));
 
     int color_1 = 225 - (y_1 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
@@ -890,7 +890,7 @@ void Trend::on_timerTimeout()
     int color_4 = 225 - (y_4 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_7->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_4));
 
-    int color_5 = 225 - (y_5 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+//    int color_5 = 225 - (y_5 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
 //    ui->label_8->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_5));
 
     int color_6 = 225 - (y_6 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
@@ -1261,6 +1261,18 @@ void Trend::edit_graf()
 
     ui->plot->setDataLineOffset(0, R1_offset);
     ui->plot->setDataLineScale(0, R1_scale);
+
+    ui->plot->setDataLineOffset(1, R2_offset);
+    ui->plot->setDataLineScale(1, R2_scale);
+
+    ui->plot->setDataLineOffset(2, L1_offset);
+    ui->plot->setDataLineScale(2, L1_scale);
+
+    ui->plot->setDataLineOffset(3, L2_offset);
+    ui->plot->setDataLineScale(3, L2_scale);
+
+    ui->plot->setDataLineOffset(4, Lm_offset);
+    ui->plot->setDataLineScale(4, Lm_scale);
 
     ui->plot->repaint();
 }

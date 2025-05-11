@@ -61,6 +61,10 @@ ischodn_dannie::ischodn_dannie(QWidget *parent) :
     p_17.setColor(QPalette::Base, QColor(255, 255, 191));
     p_17.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
     ui->tableWidget->setPalette(p_17);
+
+    connect(ui->pushButton, &QPushButton::clicked, this, &ischodn_dannie::apply_dannie);
+    connect(ui->pushButton_2, &QPushButton::clicked, this, &ischodn_dannie::close_dialog);
+
 }
 
 ischodn_dannie::~ischodn_dannie()
@@ -68,13 +72,13 @@ ischodn_dannie::~ischodn_dannie()
     delete ui;
 }
 
-void ischodn_dannie::on_pushButton_2_clicked()
+void ischodn_dannie::close_dialog()
 {
     close();
 }
 
 
-void ischodn_dannie::on_pushButton_clicked()
+void ischodn_dannie::apply_dannie()
 {
     base.name = ui->tableWidget->item(0,1)->text();
     base.P_nom = ui->tableWidget->item(1,1)->text().toDouble();

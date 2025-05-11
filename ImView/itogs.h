@@ -2,7 +2,7 @@
 #define ITOGS_H
 
 #include <QWidget>
-#include "base.h"
+//#include "base.h"
 #include <QPrinter>
 
 class MainWindow;
@@ -20,13 +20,13 @@ public:
     ~Itogs();
 
 public slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
+    void report();
+    void print_report();
+    void clear_report();
     void print(QPrinter *printer);
 
 private slots:
-    void on_pushButton_4_clicked();
+    void preview_report();
 
 private:
     Ui::Itogs *ui;    

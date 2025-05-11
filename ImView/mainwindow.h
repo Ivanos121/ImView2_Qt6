@@ -255,6 +255,7 @@ public:
     void changeEvent(QEvent *event) override;
 public slots:
     void saveDataSQL();
+    void message_action(QString summary, QString body);
 };
 
 #endif // MAINWINDOW_H

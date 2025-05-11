@@ -220,7 +220,7 @@ void datas::zapis_from_cell_tableview()
     }
 }
 
-void datas::on_deleteDannie_clicked()
+void datas::deleteDannieS()
 {
     QItemSelectionModel *selectModel = ui->tableView->selectionModel();
     if(selectModel->selectedRows().isEmpty())
@@ -238,7 +238,7 @@ void datas::on_deleteDannie_clicked()
     }
 }
 
-void datas::on_saveDannie_clicked()
+void datas::saveDannieS()
 {
     model->database().transaction();
         if(model->submitAll())
@@ -247,7 +247,7 @@ void datas::on_saveDannie_clicked()
             model->database().rollback();
 }
 
-void datas::on_enterDannie_clicked()
+void datas::enterDannieS()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
     isdn=new ischodn_dannie(this);
@@ -261,7 +261,7 @@ void datas::on_enterDannie_clicked()
     screen->geometry()));
 }
 
-void datas::on_sectionClicked(int index)
+void datas::onsectionClicked(int index)
 {
     modd->sort(index,Qt::AscendingOrder);
 }

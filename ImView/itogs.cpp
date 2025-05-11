@@ -8,9 +8,9 @@
 #include <QPrintPreviewDialog>
 
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+//#include "ui_mainwindow.h"
 #include "datas.h"
-#include "ui_datas.h"
+//#include "ui_datas.h"
 
 
 int nn;
@@ -26,7 +26,10 @@ Itogs::Itogs(QWidget *parent) :
     font.setBold(false);
     font.setUnderline(false);
     font.setItalic(false);
-
+    connect(ui->pushButton, &QPushButton::clicked, this, &Itogs::report);
+    connect(ui->pushButton_2, &QPushButton::clicked, this, &Itogs::print_report);
+    connect(ui->pushButton_3, &QPushButton::clicked, this, &Itogs::clear_report);
+    connect(ui->pushButton_4, &QPushButton::clicked, this, &Itogs::preview_report);
 }
 
 Itogs::~Itogs()
@@ -34,7 +37,7 @@ Itogs::~Itogs()
     delete ui;
 }
 
-void Itogs::on_pushButton_clicked()
+void Itogs::report()
 {
     int nn=40;
     QDate cd = QDate::currentDate();
@@ -267,7 +270,7 @@ void Itogs::on_pushButton_clicked()
     table3->cellAt(21, 1).firstCursorPosition().insertText(QString::number((double)base.cosf, 'f', 3));
 }
 
-void Itogs::on_pushButton_2_clicked()
+void Itogs::print_report()
 {
     nn=100;
     QPrinter printer(QPrinter::HighResolution);
@@ -281,12 +284,12 @@ void Itogs::on_pushButton_2_clicked()
       doc->print(&printer);
 }
 
-void Itogs::on_pushButton_3_clicked()
+void Itogs::clear_report()
 {
     ui->textEdit->clear();
 }
 
-void Itogs::on_pushButton_4_clicked()
+void Itogs::preview_report()
 {
     QPrinter *printer = new QPrinter(QPrinter::HighResolution);
     printer->setPageSize(QPageSize(QPageSize::A4));
@@ -294,7 +297,7 @@ void Itogs::on_pushButton_4_clicked()
     printer->setFullPage(true);
 
     QPrintPreviewDialog *printPreview = new QPrintPreviewDialog(printer);
-    connect(printPreview, SIGNAL(paintRequested(QPrinter*)), this, SLOT(print(QPrinter *)));
+    connect(printPreview, SIGNAL(paintRequested(QPrinter*)), this, SLOT(print(QPrinter*)));
     printPreview->setWindowTitle("Preview Dialog");
     Qt::WindowFlags flags(Qt::WindowTitleHint);
     printPreview->setWindowFlags(flags);
