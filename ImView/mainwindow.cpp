@@ -104,7 +104,7 @@ QString currentTabText;
 QString klass;
 double G,B;
 int rowNumber;
-//v
+
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
 
@@ -4947,7 +4947,7 @@ void MainWindow::LoadProject(QString str)
             }
             xmlReader.readNext(); // Переходим к следующему элементу файла
         }
-        file.close(); // Закрываем файл
+        // file.close(); // Закрываем файл
 
         if(item68->text() == "Сохранить")
         {
@@ -12282,14 +12282,18 @@ double temp_prev = 0.0;
 
 void MainWindow::electromagn_tick()
 {
-    double t = ui->widget_3->key;
+    statusbar_progres->setRange(0, 100);
+    statusbar_progres->reset();
+    double tt = tcpp;
+    qDebug() << tt;
     int maxTime = item174->text().toInt();
 
-    statusbar_label_9->setText("T = " + QString::number(t,'f',5) + " " + "c");
+    statusbar_label_9->setText("T = " + QString::number(tt,'f',5) + " " + "c");
     statusbar_label_9->setAlignment(Qt::AlignTop);
     statusbar_progres->setAlignment(Qt::AlignTop);
-    statusbar_progres->setValue(t / maxTime * 100);
-   // qDebug() << t / maxTime * 100;
+
+    statusbar_progres->setValue(tt / maxTime * 100);
+    //qDebug() << tt / maxTime * 100;
 
     if (tepl_start)
     {
@@ -12301,8 +12305,8 @@ void MainWindow::electromagn_tick()
 
     //ui->widget_10->ui->plot->addPoint(0, t, y);
 
-    double Temp = 80.0 *( 1.0 - exp(-t / 1800.0)) + item28->text().toDouble();
-    tepl_ident_t.append(t);
+    double Temp = 80.0 *( 1.0 - exp(-tt / 1800.0)) + item28->text().toDouble();
+    tepl_ident_t.append(tt);
     tepl_ident_StatorTemp.append(Temp);
 
     double k = 1;
@@ -12316,7 +12320,7 @@ void MainWindow::electromagn_tick()
         tepl_start = true;
 
     double temp = temp_prev*((2*C-A*k*Ts)/(2*C+A*k*Ts))+(k*Ts*dP+k*Ts*dPprev)/(2*C+A*k*Ts);
-    ui->widget_10->ui->plot->addPoint(0, t, temp);
+    ui->widget_10->ui->plot->addPoint(0, tt, temp);
 
     temp_prev = temp;
     dPprev = dP;
@@ -12340,7 +12344,7 @@ void MainWindow::electromagn_tick()
         //double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
         //double t1 = tepl_ident_StatorTemp
 
-        statusbar_label_9->setVisible(false);
+        statusbar_label_9->setVisible(true);
         statusbar_progres->setVisible(false);
 
         QSettings settings( "BRU", "IM View");

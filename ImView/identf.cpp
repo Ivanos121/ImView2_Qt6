@@ -162,10 +162,24 @@ identf::~identf()
 
 void identf::realtimeDataSlot()
 {
+    wf->statusbar_label_9->setVisible(true);
+    wf->statusbar_progres->setVisible(true);
+    wf->statusbar_progres->setRange(0, 0);
+    wf->statusbar_progres->reset();
     // calculate two new data points:
     key = time->elapsed()/1000.0; // time elapsed since start of demo, in seconds
 
+    qDebug() << key;
     model.rasch(dataSource);
+
+    // int t = wf->ui->widget_3->key;
+    // int maxTime = wf->item174->text().toInt();
+
+    wf->statusbar_label_9->setText("T = " + QString::number(key,'f',5) + " " + "c");
+    wf->statusbar_label_9->setAlignment(Qt::AlignTop);
+    wf->statusbar_progres->setAlignment(Qt::AlignTop);
+
+    //wf->statusbar_progres->setValue(t / maxTime * 100);
 
     if (model.R2 > maxR2)
            {
@@ -191,6 +205,9 @@ void identf::realtimeDataSlot()
             dataSource->stop();
             wf->ui->identf_stop->setEnabled(false);
             wf->ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
+
+          //  wf->statusbar_label_9->setVisible(false);
+            wf->statusbar_progres->setVisible(false);
 
             QSettings settings( "BRU", "IM View");
             settings.beginGroup( "System_messages" );

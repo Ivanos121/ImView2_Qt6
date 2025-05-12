@@ -4,6 +4,7 @@
 #include "tepl_struct.h"
 #include "mainwindow.h"
 
+double tcpp;
 
 Model_el::Model_el()
 {
@@ -58,7 +59,9 @@ void Model_el::rasch()
 
     double Ts=0.000032;
     t=t+Ts;
+
     double tt=t;
+    tcpp =t;
 
     double Um = base.U_fnom;
     double w0 = Um / 220.0 * 314.0;

@@ -3,10 +3,13 @@
 
 #include <QTimer>
 
+extern double tcpp;
+
 class Model_el : public QObject
 {
     Q_OBJECT
 public:
+
 
     enum ElDriveSystems
     {
@@ -48,6 +51,7 @@ public slots:
 
 signals:
     void ready();
+
 };
 
 #endif // MODEL_EL_H

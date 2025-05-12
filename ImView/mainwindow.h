@@ -192,6 +192,7 @@ private slots:
     void action_gruph();
 public:
     Ui::MainWindow *ui;
+    QTimer *timer;
     Model_el *wf;
     AboutDialog *rsc;
     Kalibr *kalibr;
