@@ -113,7 +113,7 @@ void datas::zapis()
     QSqlQuery query=QSqlQuery(sdb);
     query.prepare("INSERT INTO dvigatels (id, name, pn, n, un, cosf, kpd, mk, n0, ki) "
                   "VALUES (:id, :name, :pn, :n, :un, :cosf, :kpd, :mk, :n0, :ki)");
-    query.bindValue(":id", QVariant(QVariant::String));
+    query.bindValue(":id", QVariant(QString()));
     query.bindValue(":name", QString(base.name));
     query.bindValue(":pn",QString::number(base.P_nom, 'f', 3));
     query.bindValue(":n",QString("%1").arg(base.n_nom, 0, 'f', 3));

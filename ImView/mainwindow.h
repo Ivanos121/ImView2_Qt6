@@ -186,7 +186,7 @@ private slots:
     void color_treview(const QModelIndex &index, const QStandardItemModel *model);
     void treview_changed();
     void save_identf_in_file();
-    void on_electromagn_tick();
+    void electromagn_tick();
 
     void actionaction_graph();
     void action_gruph();

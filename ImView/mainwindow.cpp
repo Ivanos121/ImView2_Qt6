@@ -3287,7 +3287,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->lineEdit_18,&QLineEdit::textEdited, this, &MainWindow::edit_6);
     connect(model2,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
 
-    connect(ui->widget_3, &electromagn::tick, this, &MainWindow::on_electromagn_tick);
+    connect(ui->widget_3, &electromagn::tick, this, &MainWindow::electromagn_tick);
 
     updateRecentFileActions();
 
@@ -12280,7 +12280,7 @@ void MainWindow::saveDataSQL()
 double dPprev = 0.0;
 double temp_prev = 0.0;
 
-void MainWindow::on_electromagn_tick()
+void MainWindow::electromagn_tick()
 {
     double t = ui->widget_3->key;
     int maxTime = item174->text().toInt();
