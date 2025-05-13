@@ -39,6 +39,7 @@
 #include "base_tepl.h"
 
 
+#include <QPropertyAnimation>
 #include <QStyle>
 //#include <QDesktopWidget>
 #include <QClipboard>
@@ -12282,18 +12283,55 @@ double temp_prev = 0.0;
 
 void MainWindow::electromagn_tick()
 {
+
+    // // Инициализация прогрессбара
+    // statusbar_progres->setRange(0, 100);
+    // statusbar_progres->setValue(0);
+    // statusbar_progres->setVisible(true);
+
+    // // Ваши параметры времени
+    // double tt = 50; // например, текущее время
+    // int maxTime = 100; // максимум
+
+    // // Вычисление конечного значения
+    // int endVal = static_cast<int>((tt / maxTime) * 100);
+
+    // qDebug() << "Анимация от" << statusbar_progres->value() << "до" << endVal;
+
+    // QPropertyAnimation *animation = new QPropertyAnimation(statusbar_progres, "value");
+    // animation->setDuration(500);
+    // animation->setStartValue(statusbar_progres->value());
+    // animation->setEndValue(endVal);
+    // animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+    // Инициализация диапазона
+    statusbar_progres->setVisible(true);
+    //statusbar_progres->reset();
     statusbar_progres->setRange(0, 100);
-    statusbar_progres->reset();
+
+    // Установка начального значения
+    //statusbar_progres->setValue(0);
+
     double tt = tcpp;
     qDebug() << tt;
     int maxTime = item174->text().toInt();
 
+    double endValDouble = (maxTime > 0) ? (tt / maxTime * 100) : 0;
+    double endVal = static_cast<double>(endValDouble);
+
+    qDebug() << "Запуск анимации: от" << statusbar_progres->value() << "до" << endVal;
+
+    // Запуск анимации
+    QPropertyAnimation *animation = new QPropertyAnimation(statusbar_progres, "value");
+    animation->setDuration(500);
+    animation->setStartValue(statusbar_progres->value());
+    animation->setEndValue(endVal);
+    animation->start(QAbstractAnimation::DeleteWhenStopped);
+
+    // Обновление текста
     statusbar_label_9->setText("T = " + QString::number(tt,'f',5) + " " + "c");
     statusbar_label_9->setAlignment(Qt::AlignTop);
     statusbar_progres->setAlignment(Qt::AlignTop);
-
-    statusbar_progres->setValue(tt / maxTime * 100);
-    //qDebug() << tt / maxTime * 100;
 
     if (tepl_start)
     {
@@ -12325,7 +12363,7 @@ void MainWindow::electromagn_tick()
     temp_prev = temp;
     dPprev = dP;
 
-    if (ui->widget_3->key > maxTime)
+    if (tt > maxTime)
     {
         electromagn_stop();
 
