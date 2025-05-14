@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1499</width>
+    <width>1000</width>
     <height>1019</height>
    </rect>
   </property>
@@ -14,11 +14,185 @@
    <string>IM View</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_25">
-    <item row="1" column="2">
-     <widget class="QLabel" name="label_34">
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex">
+       <number>8</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Исходные данные</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="datas" name="widget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <attribute name="title">
+        <string>Предварительная и текущая идентификация параметров схемы замещения</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="identf" name="widget_2" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_14">
+       <attribute name="title">
+        <string>Предварительная и текущая идентификация параметров тепловой модели</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="Tepl_identf" name="widget_10" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_18">
+       <attribute name="title">
+        <string>Предварительная и текущая идентификация параметров вентиляционной сети и вентилятора</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_23">
+        <item row="0" column="0">
+         <widget class="Vent_identf" name="widget_7" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Энергетические показатели</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_20">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget_3">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="tab_12">
+           <attribute name="title">
+            <string>Электромагнитные процессы</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_21">
+            <item row="0" column="0">
+             <widget class="electromagn" name="widget_3" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_13">
+           <attribute name="title">
+            <string>Энергетическая диаграмма двигателя</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_22">
+            <item row="0" column="0">
+             <widget class="QWebEngineView" name="webEngineView">
+              <property name="url">
+               <url>
+                <string>about:blank</string>
+               </url>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Тепловая модель</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="teplovent" name="widget_5" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Вентиляционная модель</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="vent_model" name="widget_6" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Прогноз температур</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>Оценка остаточного ресурса обмотки статора</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_26">
+        <item row="1" column="0">
+         <widget class="Ostat_resurs" name="widget_13" native="true"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QWidget" name="widget_11" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Выходные данные</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="Itogs" name="widget_4" native="true">
+          <layout class="QGridLayout" name="gridLayout_2"/>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="switch_regim_upr">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>15</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="Images.qrc">
+        <normaloff>:/system_icons/data/img/system_icons/go-next.svg</normaloff>:/system_icons/data/img/system_icons/go-next.svg</iconset>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -1772,49 +1946,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </widget>
      </widget>
     </item>
-    <item row="0" column="1" rowspan="2">
-     <widget class="QPushButton" name="switch_regim_upr">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>15</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset resource="Images.qrc">
-        <normaloff>:/system_icons/data/img/system_icons/go-next.svg</normaloff>:/system_icons/data/img/system_icons/go-next.svg</iconset>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0" colspan="3">
-     <widget class="poisk" name="widget_12" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>86</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="3">
+    <item row="1" column="0" colspan="3">
      <widget class="Start_app" name="widget_15" native="true">
       <property name="minimumSize">
        <size>
@@ -1854,177 +1986,38 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
      </widget>
     </item>
-    <item row="0" column="0" rowspan="2">
-     <widget class="QTabWidget" name="tabWidget">
+    <item row="2" column="0" colspan="3">
+     <widget class="poisk" name="widget_12" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="currentIndex">
-       <number>4</number>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>86</height>
+       </size>
       </property>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Исходные данные</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="datas" name="widget" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <attribute name="title">
-        <string>Предварительная и текущая идентификация параметров схемы замещения</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="identf" name="widget_2" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_14">
-       <attribute name="title">
-        <string>Предварительная и текущая идентификация параметров тепловой модели</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_10">
-        <item row="0" column="0">
-         <widget class="Tepl_identf" name="widget_10" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_18">
-       <attribute name="title">
-        <string>Предварительная и текущая идентификация параметров вентиляционной сети и вентилятора</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_23">
-        <item row="0" column="0">
-         <widget class="Vent_identf" name="widget_7" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Энергетические показатели</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_20">
-        <item row="0" column="0">
-         <widget class="QTabWidget" name="tabWidget_3">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab_12">
-           <attribute name="title">
-            <string>Электромагнитные процессы</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_21">
-            <item row="0" column="0">
-             <widget class="electromagn" name="widget_3" native="true"/>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_13">
-           <attribute name="title">
-            <string>Энергетическая диаграмма двигателя</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_22">
-            <item row="0" column="0">
-             <widget class="QWebEngineView" name="webEngineView">
-              <property name="url">
-               <url>
-                <string>about:blank</string>
-               </url>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_4">
-       <attribute name="title">
-        <string>Тепловая модель</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="teplovent" name="widget_5" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_5">
-       <attribute name="title">
-        <string>Вентиляционная модель</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="vent_model" name="widget_6" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_7">
-       <attribute name="title">
-        <string>Прогноз температур</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="tab_8">
-       <attribute name="title">
-        <string>Оценка остаточного ресурса обмотки статора</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_26">
-        <item row="0" column="0">
-         <widget class="Ostat_resurs" name="widget_13" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_6">
-       <attribute name="title">
-        <string>Выходные данные</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="Itogs" name="widget_4" native="true">
-          <layout class="QGridLayout" name="gridLayout_2"/>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLabel" name="label_34">
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </item>
    </layout>
-   <widget class="QWidget" name="widget_11" native="true">
-    <property name="geometry">
-     <rect>
-      <x>6</x>
-      <y>6</y>
-      <width>457</width>
-      <height>722</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1499</width>
-     <height>26</height>
+     <width>1000</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">
