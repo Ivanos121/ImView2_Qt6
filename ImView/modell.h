@@ -5,7 +5,6 @@
 #include <QSqlError>
 #include <QSqlTableModel>
 
-
 class Modell : public QSqlTableModel
 {
 public:
@@ -19,6 +18,6 @@ public:
 
 signals:
     //void dataChanged(const QModelIndex &, const QModelIndex &, const QVector <int> &);
-
 };
+
 #endif // MODELL_H

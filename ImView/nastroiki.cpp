@@ -30,7 +30,7 @@ Nastroiki::Nastroiki(QWidget *parent)
 
     ui->listWidget->setFocus();
 
-    connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Nastroiki::on_listWidget_itemSelectionChanged);
+    connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Nastroiki::onlistWidget_itemSelectionChanged);
 
 
     ui->stackedWidget->setCurrentIndex(0);
@@ -189,7 +189,7 @@ void Nastroiki::close_action()
     close();
 }
 
-void Nastroiki::on_listWidget_itemSelectionChanged()
+void Nastroiki::onlistWidget_itemSelectionChanged()
 {
     ui->stackedWidget->setCurrentIndex(ui->listWidget->currentRow());
 }

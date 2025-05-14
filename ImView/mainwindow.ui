@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1252</width>
     <height>1019</height>
    </rect>
   </property>
@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>8</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -217,7 +217,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>15</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_33">
@@ -2016,8 +2016,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>30</height>
+     <width>1252</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menufile">

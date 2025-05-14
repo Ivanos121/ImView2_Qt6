@@ -19,23 +19,20 @@ public:
     ~Nastroiki();
     MainWindow *wf;
 
-
 public slots:
     void switch_language();
-private slots:
 
+private slots:
     void enter_action();
     void apply_action();
     void close_action();
-    void on_listWidget_itemSelectionChanged();
-
+    void onlistWidget_itemSelectionChanged();
     void enabled_button();
     void enabled_button_2();
+
 private:
     Ui::Nastroiki *ui;
     QTranslator qtLanguageTranslator;
-
-
 };
 
 #endif // NASTROIKI_H

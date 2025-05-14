@@ -6,18 +6,17 @@
 class MySvgWidget:public QSvgWidget
 {
     Q_OBJECT
+
 public:
     MySvgWidget(QWidget *parent = nullptr);
     void loadFile();
-    void loadSelectedFile();
-
+    void loadSelectedFile();    
     QString svgFileName;
     QString svgSelectedFileName;
 
 protected:
     void enterEvent(QEnterEvent *event) override;
-    void leaveEvent(QEvent *event) override;
-
+    void leaveEvent(QEvent *event) override;    
 };
 
 #endif // MYSVGWIDGET_H

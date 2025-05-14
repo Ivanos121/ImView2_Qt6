@@ -1,5 +1,5 @@
 #include "settings.h"
-#include "qtranslator.h"
+//#include "qtranslator.h"
 #include "ui_settings.h"
 
 Ksettings::Ksettings(QWidget *parent) :
@@ -36,7 +36,7 @@ Ksettings::Ksettings(QWidget *parent) :
 
     ui->listWidget->setFocus();
 
-    connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Ksettings::on_listWidget_itemSelectionChanged);
+    connect(ui->listWidget, &QListWidget::itemSelectionChanged, this, &Ksettings::onlistWidget_itemSelectionChanged);
 
     //QTranslator *qtLanguageTranslator = nullptr ;
     ui->stackedWidget->setCurrentIndex(0);
@@ -67,7 +67,7 @@ void Ksettings::on_pushButton_clicked()
 
 }
 
-void Ksettings::on_listWidget_itemSelectionChanged()
+void Ksettings::onlistWidget_itemSelectionChanged()
 {
     ui->stackedWidget->setCurrentIndex(ui->listWidget->currentRow());
 }

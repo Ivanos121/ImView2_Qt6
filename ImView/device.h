@@ -12,8 +12,7 @@ public:
     Device();
     int init();
     void readData();
-    void stop();
-
+    void stop();    
     uint16_t buf[BUF_SIZE][6];
 
 signals:

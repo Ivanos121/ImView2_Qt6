@@ -87,7 +87,7 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *e);
     virtual void mouseMoveEvent(QMouseEvent *event);
 
-//    void timerEvent(QTimerEvent *event);
+    //    void timerEvent(QTimerEvent *event);
 };
 
 #endif // CANVAS_H

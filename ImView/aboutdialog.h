@@ -18,9 +18,9 @@ public:
     ~AboutDialog();
     MainWindow *wf;
 
-private slots:
-
+private slots:    
     void actionclose();
+
 private:
     Ui::AboutDialog *ui;
 };

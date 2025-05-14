@@ -1,7 +1,6 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-
 #include <QDialog>
 
 class MainWindow;
@@ -27,8 +26,7 @@ private:
     Ui::Ksettings *ui;
     Ksettings *set;
 
-
-    void on_listWidget_itemSelectionChanged();
+    void onlistWidget_itemSelectionChanged();
 };
 
 #endif // SETTINGS_H

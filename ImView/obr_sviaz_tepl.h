@@ -23,7 +23,6 @@ struct tepl_obr_sviaz
     double y_14;//Станина слева
     double y_15;//Вал
     double y_16;//Клеммная коробка
-
 };
 
 #endif // OBR_SVIAZ_TEPL_H

@@ -3434,7 +3434,23 @@ void MainWindow::identf_pusk()
     }
     else
     {
-        QMessageBox::warning(this, "Внимание!", "Выберите в таблице строку \n с данными нужного двигателя");
+        QSettings settings( "BRU", "IM View");
+        settings.beginGroup( "System_messages" );
+        QString lokal = settings.value( "Messages", "").toString();
+        settings.endGroup();
+
+        //Вывод сообщения об окончании электромагнитного расчета
+        if(lokal == "fix")
+        {
+            QMessageBox::information(this, tr("Сообщение"), tr("Электромагнитный расчет закончен"));
+        }
+        else if(lokal == "nonfix")
+        {
+            QString summary_s = "Сообщение";
+            QString body_s = "Электромагнитный расчет закончен";
+            message_action(summary_s, body_s);
+        }
+        //QMessageBox::warning(this, "Внимание!", "Выберите в таблице строку \n с данными нужного двигателя");
         return;
     }
 
@@ -11459,8 +11475,6 @@ if ((number == 2) && (number < 3))    {
         }
     }
 
-
-
     if ((number == 14) && (number < 15))
     {
         QSettings settings( "BRU", "IM View");
@@ -11482,7 +11496,6 @@ if ((number == 2) && (number < 3))    {
     if(number == 15)
     {
         QMessageBox::information(this, tr("IM View"), tr("Поиск закончен"));
-
     }
 }
 
@@ -12324,7 +12337,7 @@ void MainWindow::electromagn_tick()
     // Запуск анимации
     QPropertyAnimation *animation = new QPropertyAnimation(statusbar_progres, "value");
     animation->setDuration(500);
-    animation->setStartValue(statusbar_progres->value());
+    animation->setStartValue(endValDouble);
     animation->setEndValue(endVal);
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 

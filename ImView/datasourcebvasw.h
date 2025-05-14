@@ -13,6 +13,7 @@ class BVASThread;
 class DataSourceBVASw: public DataSource
 {
     Q_OBJECT
+
 public:
     DataSourceBVASw();
     void init();

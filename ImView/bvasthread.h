@@ -10,14 +10,12 @@ class BVASThread : public QThread
 public:
     BVASThread() : QThread() { }
     virtual void run();
-    void stopWorking();
-
+    void stopWorking();    
     void setDevice(Device *);
 
 protected:
     bool stopping;
-    Device *bvasDevice;
-
+    Device *bvasDevice;    
     int counter;
 
 signals:

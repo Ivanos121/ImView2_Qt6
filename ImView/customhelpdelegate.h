@@ -12,7 +12,7 @@ public:
 
 public slots:
     bool helpEvent( QHelpEvent* e, QAbstractItemView* view, const QStyleOptionViewItem& option,
-        const QModelIndex& index );
+                   const QModelIndex& index );
 };
 
 #endif // CUSTOMHELPDELEGATE_H

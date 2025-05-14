@@ -7,7 +7,6 @@
 #include "modelidentf.h"
 #include "mainwindow.h"
 
-
 class DataSource_el : public DataSource
 {
     Q_OBJECT
@@ -41,7 +40,6 @@ private:
 
 public slots:
     void read();
-
 };
 
 #endif // DATASOURCE_EL_H

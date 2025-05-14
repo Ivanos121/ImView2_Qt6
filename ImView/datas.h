@@ -26,15 +26,9 @@ public:
 public slots:
     void enterDannieS();
     void deleteDannieS();
-    void saveDannieS();
-
+    void saveDannieS();    
     void zapis_from_cell_tableview();
     void onsectionClicked(int index);
-private slots:
-
-
-
-
 
 public:
     Ui::datas *ui;
@@ -42,12 +36,12 @@ public:
     void table();
     MainWindow *wf;
     QStandardItemModel *modd;
+
 private:
     QSqlDatabase sdb;
     QString dataSourceFilename;
     ischodn_dannie *isdn;
     QSqlTableModel *model;
-
 };
 
 #endif // DATAS_H

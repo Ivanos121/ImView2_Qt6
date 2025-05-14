@@ -1,7 +1,6 @@
 #ifndef PUSHBUTTONDELEGATE_H
 #define PUSHBUTTONDELEGATE_H
 
-
 #include "qdialog.h"
 #include <QStyledItemDelegate>
 #include <QWidget>
@@ -21,13 +20,11 @@ public:
     //void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
-public slots:
-
+public slots:    
     bool helpEvent( QHelpEvent* e, QAbstractItemView* view, const QStyleOptionViewItem& option,
-        const QModelIndex& index );
+                   const QModelIndex& index );
 
-private slots:
-
+private slots:    
     void btn_clicked_4();
     void btn_clicked_5();
     void btn_clicked_6();

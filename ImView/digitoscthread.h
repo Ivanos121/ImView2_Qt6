@@ -9,17 +9,16 @@
 class DigitOscThread : public QThread
 {
     Q_OBJECT
+
 public:
     DigitOscThread() : QThread() { }
     virtual void run();
     void stopWorking();
-
     void setDevice(DeviceDigitOsc *);
 
 protected:
     bool stopping;
     DeviceDigitOsc *deviceDigitOsc;
-
     int counter;
 
 signals:

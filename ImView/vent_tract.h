@@ -17,8 +17,8 @@ public:
 
 public:
     Ui::Vent_tract *ui;
-    void on_speed(int value);
-    void on_moment(int value);
+    void onspeed(int value);
+    void onmoment(int value);
 
     double speed;
     double moment;

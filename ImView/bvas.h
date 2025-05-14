@@ -7,8 +7,8 @@ extern uint16_t data_buffer[6400][6];
 
 typedef struct
 {
-  int size;
-  uint8_t * data;
+    int size;
+    uint8_t * data;
 }t_pack;
 
 int init_bvas(void);

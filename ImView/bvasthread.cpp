@@ -6,29 +6,29 @@
 
 void BVASThread::run()
 {
-  stopping = true;
-  if (bvasDevice->init() == 1)
-  {
-      return;
-  }
-  counter = 0;
+    stopping = true;
+    if (bvasDevice->init() == 1)
+    {
+        return;
+    }
+    counter = 0;
 
-  while (stopping)
-  {
-    counter++;
-    bvasDevice->readData();
-    //QApplication::postEvent(receiver, new QEvent(QEvent::User));
-    emit dataReady();
-  }
-  bvasDevice->stop();
+    while (stopping)
+    {
+        counter++;
+        bvasDevice->readData();
+        //QApplication::postEvent(receiver, new QEvent(QEvent::User));
+        emit dataReady();
+    }
+    bvasDevice->stop();
 }
 
 void BVASThread::stopWorking()
 {
-  stopping = false;
+    stopping = false;
 }
 
 void BVASThread::setDevice(Device *dev)
 {
-  bvasDevice = dev;
+    bvasDevice = dev;
 }

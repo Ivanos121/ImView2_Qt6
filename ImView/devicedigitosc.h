@@ -9,12 +9,12 @@
 class DeviceDigitOsc : public QObject
 {
     Q_OBJECT
+
 public:
     explicit DeviceDigitOsc(QObject *parent = nullptr);
     int init();
     void readData();
-    void stop();
-
+    void stop();    
     uint16_t buf[BUF_SIZE][7];
 
 private:

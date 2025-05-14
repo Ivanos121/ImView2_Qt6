@@ -10,8 +10,8 @@ Vent_tract::Vent_tract(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->verticalSlider, &QSlider::valueChanged, this, &Vent_tract::on_speed);
-    connect(ui->verticalSlider_2, &QSlider::valueChanged, this, &Vent_tract::on_moment);
+    connect(ui->verticalSlider, &QSlider::valueChanged, this, &Vent_tract::onspeed);
+    connect(ui->verticalSlider_2, &QSlider::valueChanged, this, &Vent_tract::onmoment);
 
 //    ui->webEngineView_2->hide();
     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_var/vent_var.html").absoluteFilePath()));
@@ -121,7 +121,7 @@ Vent_tract::~Vent_tract()
     delete ui;
 }
 
-void Vent_tract::on_speed(int value)
+void Vent_tract::onspeed(int value)
 {
    // ui->label_3->setText(QString::number(0));
     //ui->verticalSlider->setRange(0, 99);
@@ -133,7 +133,7 @@ void Vent_tract::on_speed(int value)
 
 }
 
-void Vent_tract::on_moment(int value)
+void Vent_tract::onmoment(int value)
 {
    // ui->label_3->setText(QString::number(0));
     //ui->verticalSlider->setRange(0, 99);

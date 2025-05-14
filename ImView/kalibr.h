@@ -159,18 +159,18 @@ private:
     void printPreview(QPrinter *printer);
     void printTable(QPrinter *printer, bool isPreview);
 };
-    struct CurrentChannelParams
-    {
-        uint16_t diapazon;
-        uint16_t filter;
-        float minimum;
-        float maximum;
-    };
+struct CurrentChannelParams
+{
+    uint16_t diapazon;
+    uint16_t filter;
+    float minimum;
+    float maximum;
+};
 
-    inline uint qHash (const QPoint & key)
-    {
-        return qHash (QPair<int,int>(key.x(), key.y()) );
-    }
+inline uint qHash (const QPoint & key)
+{
+    return qHash (QPair<int,int>(key.x(), key.y()) );
+}
 
 
 #endif // KALIBR_H

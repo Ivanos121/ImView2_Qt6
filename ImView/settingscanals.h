@@ -1,7 +1,7 @@
 #ifndef SETTINGSCANALS_H
 #define SETTINGSCANALS_H
 
-#include "mainwindow.h"
+//#include "mainwindow.h"
 #include <QDialog>
 
 #include "QSqlTableModel"
@@ -20,13 +20,10 @@ public:
     ~SettingsCanals();
 
 private slots:
-    void on_pushButton_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_2_clicked();
+    void dialog_close();
+    void move_right();
+    void move_left();
+    void dialog_apply();
 
 private:
     Ui::SettingsCanals *ui;

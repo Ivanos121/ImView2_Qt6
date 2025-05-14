@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "mainwindow.h"
-#include "plot.h"
+
 
 namespace Ui {
 class vent_model;

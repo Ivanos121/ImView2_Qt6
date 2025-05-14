@@ -7,8 +7,7 @@ class DoubleDelegate : public QStyledItemDelegate
 {    
 
 public:
-    DoubleDelegate(QObject *parent = nullptr);
-
+    DoubleDelegate(QObject *parent = nullptr);    
     virtual QString displayText(const QVariant &value, const QLocale &locale) const;
     QString textFromValue(double value) const;
 };

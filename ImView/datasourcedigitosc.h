@@ -15,8 +15,7 @@ class DataSourceDigitOsc : public DataSource
 {
     Q_OBJECT
 public:
-    DataSourceDigitOsc();
-
+    DataSourceDigitOsc();    
     void init();
     void stop();
 

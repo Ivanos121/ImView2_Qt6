@@ -241,10 +241,10 @@ void datas::deleteDannieS()
 void datas::saveDannieS()
 {
     model->database().transaction();
-        if(model->submitAll())
-            model->database().commit();
-        else
-            model->database().rollback();
+    if(model->submitAll())
+        model->database().commit();
+    else
+        model->database().rollback();
 }
 
 void datas::enterDannieS()

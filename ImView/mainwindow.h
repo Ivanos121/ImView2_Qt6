@@ -36,7 +36,7 @@ public:
     explicit SettinsKanals(QWidget *parent = nullptr);
 
 private slots:
-    //void on_pushButton_clicked();
+               //void on_pushButton_clicked();
 
 private:
     Ui::settinsKanals *ui;
@@ -221,8 +221,8 @@ public:
     QProgressBar *progress, *statusbar_progres;
     QWebEngineView * view;
     QLabel *statusbar_label, *statusbar_label_2, *statusbar_label_3, *statusbar_label_4,
-           *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8,
-           *statusbar_label_9;
+        *statusbar_label_5, *statusbar_label_6, *statusbar_label_7, *statusbar_label_8,
+        *statusbar_label_9;
 
 
     QTreeWidgetItem *treeItem, *child3, *child, *child2;

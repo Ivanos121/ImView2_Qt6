@@ -2,8 +2,6 @@
 #include "qfileinfo.h"
 #include "qsqlquery.h"
 #include "ui_settingscanals.h"
-#include "kalibr.h"
-#include "ui_kalibr.h"
 #include <QSettings>
 
 int j=0;
@@ -183,6 +181,11 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     }
     ui->tableWidget->resizeColumnsToContents();
     sdb.close();
+
+    connect(ui->pushButton, &QPushButton::clicked,this, &SettingsCanals::dialog_close);
+    connect(ui->pushButton_2, &QPushButton::clicked,this, &SettingsCanals::dialog_apply);
+    connect(ui->pushButton_3, &QPushButton::clicked,this, &SettingsCanals::move_right);
+    connect(ui->pushButton_4, &QPushButton::clicked,this, &SettingsCanals::move_left);
 }
 
 
@@ -191,12 +194,12 @@ SettingsCanals::~SettingsCanals()
     delete ui;
 }
 
-void SettingsCanals::on_pushButton_clicked()
+void SettingsCanals::dialog_close()
 {
     close();
 }
 
-void SettingsCanals::on_pushButton_3_clicked()
+void SettingsCanals::move_right()
 {
     int i = ui->tableWidget->currentRow();
     ui->tableWidget_2->setItem(j,1, ui->tableWidget->item(i, 0)->clone());
@@ -204,7 +207,7 @@ void SettingsCanals::on_pushButton_3_clicked()
     j++;
 }
 
-void SettingsCanals::on_pushButton_4_clicked()
+void SettingsCanals::move_left()
 {
     int g = ui->tableWidget_2->currentRow();
     for (int i = g; i < ui->tableWidget_2->rowCount() - 1; i++)
@@ -216,7 +219,7 @@ void SettingsCanals::on_pushButton_4_clicked()
 }
 
 
-void SettingsCanals::on_pushButton_2_clicked()
+void SettingsCanals::dialog_apply()
 {
     QSettings settings;
     for (int i = 0; i < 11; i++)

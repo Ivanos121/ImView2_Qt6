@@ -7,6 +7,7 @@
 
 class MyTableWidget_2: public QTableWidget {
     Q_OBJECT
+
 public:
     explicit MyTableWidget_2(QWidget *parent = nullptr);
 
