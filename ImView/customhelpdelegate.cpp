@@ -9,7 +9,7 @@ CustomHelpDelegate::CustomHelpDelegate(QObject *parent) :QStyledItemDelegate(par
 
 }
 bool CustomHelpDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
-                                      const QStyleOptionViewItem& option, const QModelIndex& index )
+                                   const QStyleOptionViewItem& option, const QModelIndex& index )
 {
     if (!e || !view)
         return false;

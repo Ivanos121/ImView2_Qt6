@@ -15,7 +15,7 @@ ComboBoxErrorArchiveDelegate::ComboBoxErrorArchiveDelegate(QObject *parent) : QS
 }
 
 QWidget* ComboBoxErrorArchiveDelegate::createEditor(QWidget* parent,
-    const QStyleOptionViewItem& option, const QModelIndex& index) const
+                                                    const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     if (kalibr->disabledCells.contains(QPoint(index.row(), index.column())))
     {
@@ -43,7 +43,7 @@ void ComboBoxErrorArchiveDelegate::setEditorData(QWidget* editor, const QModelIn
             comboBox->setCurrentIndex(0);
         else if(value == "вкл")
             comboBox->setCurrentIndex(1);
-          int width=comboBox->minimumSizeHint().width();
+        int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
 
     }else
@@ -53,7 +53,7 @@ void ComboBoxErrorArchiveDelegate::setEditorData(QWidget* editor, const QModelIn
 }
 
 void ComboBoxErrorArchiveDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
-                                    const QModelIndex& index) const
+                                                const QModelIndex& index) const
 {
     if(index.column() == 9)
     {
@@ -67,7 +67,7 @@ void ComboBoxErrorArchiveDelegate::setModelData(QWidget* editor, QAbstractItemMo
 }
 
 void ComboBoxErrorArchiveDelegate::updateEditorGeometry(QWidget* editor,
-    const QStyleOptionViewItem& option, const QModelIndex&) const
+                                                        const QStyleOptionViewItem& option, const QModelIndex&) const
 {
     editor->setGeometry(option.rect);
 }
@@ -83,8 +83,8 @@ void ComboBoxErrorArchiveDelegate::paint(QPainter *painter, const QStyleOptionVi
         }
         else if (kalibr->changedRows.contains(index.row()))
         {
-           QColor background = kalibr->changedColumnBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
-           painter->fillRect(option.rect, background);
+            QColor background = kalibr->changedColumnBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
+            painter->fillRect(option.rect, background);
         }
         else if (kalibr->disabledCells.contains(QPoint(index.row(), index.column())))
         {

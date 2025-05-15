@@ -30,7 +30,7 @@ datas::datas(QWidget *parent) :
     table();
 
     ui->widget_2->setVisible(false);
-   // QHeaderView *tableHeader = ui->tableView->horizontalHeader();
+    // QHeaderView *tableHeader = ui->tableView->horizontalHeader();
     //connect(tableHeader, &QHeaderView::sectionClicked, this, &datas::on_sectionClicked);
 }
 
@@ -86,7 +86,7 @@ void datas::table()
 
     for(int i=1;i<10;i++)
     {
-      header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
+        header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
     }
 
     for(int i=1;i<10;i++)
@@ -229,12 +229,12 @@ void datas::deleteDannieS()
     }
     else
     {
-    QSqlQuery query=QSqlQuery(sdb);
-    int rowNumber = ui->tableView->selectionModel()->selection().indexes()[0].row();
-    query.prepare("DELETE FROM dvigatels WHERE id=:id");
-    query.bindValue(":id", ui->tableView->model()->index(rowNumber, 0).data().toString());
-    query.exec();
-    table();
+        QSqlQuery query=QSqlQuery(sdb);
+        int rowNumber = ui->tableView->selectionModel()->selection().indexes()[0].row();
+        query.prepare("DELETE FROM dvigatels WHERE id=:id");
+        query.bindValue(":id", ui->tableView->model()->index(rowNumber, 0).data().toString());
+        query.exec();
+        table();
     }
 }
 
@@ -254,11 +254,11 @@ void datas::enterDannieS()
     isdn->wf = this;
     isdn->exec();
     isdn->setGeometry(
-    QStyle::alignedRect(
-    Qt::LeftToRight,
-    Qt::AlignCenter,
-    isdn->size(),
-    screen->geometry()));
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            isdn->size(),
+            screen->geometry()));
 }
 
 void datas::onsectionClicked(int index)

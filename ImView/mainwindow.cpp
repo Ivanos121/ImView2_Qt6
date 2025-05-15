@@ -3232,9 +3232,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusbar->addPermanentWidget(widget2);
 
     statusbar_progres = new QProgressBar(ui->statusbar);
-    statusbar_progres->setMaximumSize(300,19);
+    statusbar_progres->setMaximumSize(200,19);
+    statusbar_progres->setMinimumSize(200,19);
     ui->statusbar->addPermanentWidget(statusbar_progres);
-    setStyleSheet("QProgressBar {border: 2px solid grey;height: 5px; text-align: center;} QProgressBar::chunk {background-color: #55FF55;width: 20px}");
+    setStyleSheet("QProgressBar {border: 2px solid grey;height: 5px; text-align: center;} QProgressBar::chunk {background-color: #55FF55;}");
     statusbar_progres->setVisible(false);
 
     widget = new QWidget(ui->statusbar);
@@ -12296,27 +12297,6 @@ double temp_prev = 0.0;
 
 void MainWindow::electromagn_tick()
 {
-
-    // // Инициализация прогрессбара
-    // statusbar_progres->setRange(0, 100);
-    // statusbar_progres->setValue(0);
-    // statusbar_progres->setVisible(true);
-
-    // // Ваши параметры времени
-    // double tt = 50; // например, текущее время
-    // int maxTime = 100; // максимум
-
-    // // Вычисление конечного значения
-    // int endVal = static_cast<int>((tt / maxTime) * 100);
-
-    // qDebug() << "Анимация от" << statusbar_progres->value() << "до" << endVal;
-
-    // QPropertyAnimation *animation = new QPropertyAnimation(statusbar_progres, "value");
-    // animation->setDuration(500);
-    // animation->setStartValue(statusbar_progres->value());
-    // animation->setEndValue(endVal);
-    // animation->start(QAbstractAnimation::DeleteWhenStopped);
-
     // Инициализация диапазона
     statusbar_progres->setVisible(true);
     //statusbar_progres->reset();
@@ -12326,20 +12306,12 @@ void MainWindow::electromagn_tick()
     //statusbar_progres->setValue(0);
 
     double tt = tcpp;
-    qDebug() << tt;
+    //qDebug() << tt;
     int maxTime = item174->text().toInt();
 
-    double endValDouble = (maxTime > 0) ? (tt / maxTime * 100) : 0;
-    double endVal = static_cast<double>(endValDouble);
+    statusbar_progres->setValue((double)tt / (double)maxTime * 100.0);
 
-    qDebug() << "Запуск анимации: от" << statusbar_progres->value() << "до" << endVal;
-
-    // Запуск анимации
-    QPropertyAnimation *animation = new QPropertyAnimation(statusbar_progres, "value");
-    animation->setDuration(500);
-    animation->setStartValue(endValDouble);
-    animation->setEndValue(endVal);
-    animation->start(QAbstractAnimation::DeleteWhenStopped);
+    //double endValDouble = (maxTime > 0) ? (tt / maxTime * 100) : 0;
 
     // Обновление текста
     statusbar_label_9->setText("T = " + QString::number(tt,'f',5) + " " + "c");

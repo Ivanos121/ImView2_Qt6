@@ -15,7 +15,7 @@ ComboBoxBitDelegate::ComboBoxBitDelegate(QObject *parent) : QStyledItemDelegate(
 }
 
 QWidget* ComboBoxBitDelegate::createEditor(QWidget* parent,
-    const QStyleOptionViewItem& option, const QModelIndex& index) const
+                                           const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     if (kalibr->disabledCells.contains(QPoint(index.row(), index.column())))
     {
@@ -54,7 +54,7 @@ void ComboBoxBitDelegate::setEditorData(QWidget* editor, const QModelIndex& inde
 }
 
 void ComboBoxBitDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
-                                    const QModelIndex& index) const
+                                       const QModelIndex& index) const
 {
     if(index.column() == 14)
     {
@@ -68,7 +68,7 @@ void ComboBoxBitDelegate::setModelData(QWidget* editor, QAbstractItemModel* mode
 }
 
 void ComboBoxBitDelegate::updateEditorGeometry(QWidget* editor,
-    const QStyleOptionViewItem& option, const QModelIndex&) const
+                                               const QStyleOptionViewItem& option, const QModelIndex&) const
 {
     editor->setGeometry(option.rect);
 }
@@ -84,8 +84,8 @@ void ComboBoxBitDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
         }
         else if (kalibr->changedRows.contains(index.row()))
         {
-           QColor background = kalibr->changedColumnBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
-           painter->fillRect(option.rect, background);
+            QColor background = kalibr->changedColumnBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
+            painter->fillRect(option.rect, background);
         }
         else if (kalibr->disabledCells.contains(QPoint(index.row(), index.column())))
         {

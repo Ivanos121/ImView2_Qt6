@@ -209,7 +209,7 @@ electromagn::electromagn(QWidget *parent) :
 
     for (int i = 0; i < dataLineColors_electromagn.size(); i++)
     {
-         ui->tableWidget->item(i, 1)->setBackground(dataLineColors_electromagn[i]);
+        ui->tableWidget->item(i, 1)->setBackground(dataLineColors_electromagn[i]);
     }
 
     connect(ui->tableWidget, &QTableWidget::cellClicked,this, &electromagn::setcolorincell);
@@ -1471,11 +1471,11 @@ void electromagn::addDataLines()
 //     base.dataSourceFilename = QFileDialog::getOpenFileName(this,
 //                                                            QString::fromUtf8("Открыть файл"),
 
-//                                                            settings.value("dataSource/LastPath", "").toString(),
-//                                                            "txt files (*.txt);;All files (*.*)");
-// }
+    //                                                            settings.value("dataSource/LastPath", "").toString(),
+    //                                                            "txt files (*.txt);;All files (*.*)");
+    // }
 
-void electromagn::bvasFailureSlot()
+    void electromagn::bvasFailureSlot()
 {
     wf->ui->electromagn_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start.svg"));
     wf->ui->electromagn_stop->setEnabled(false);
@@ -1499,8 +1499,8 @@ void electromagn::setcolorincell(int row, int column)
 void electromagn::edit_graf()
 {
     double Ua_scale, Ua_offset, Ub_scale, Ub_offset, Uc_scale, Uc_offset,
-           Ia_scale, Ia_offset, Ib_scale, Ib_offset, Ic_scale, Ic_offset,
-           w_scale,  w_offset,  M_scale,  M_offset,  Mc_scale, Mc_offset;
+        Ia_scale, Ia_offset, Ib_scale, Ib_offset, Ic_scale, Ic_offset,
+        w_scale,  w_offset,  M_scale,  M_offset,  Mc_scale, Mc_offset;
 
     Ua_scale = ui->tableWidget->item(0,4)->text().toDouble();
     Ua_offset = ui->tableWidget->item(0,3)->text().toDouble();

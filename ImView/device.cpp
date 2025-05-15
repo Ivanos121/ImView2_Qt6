@@ -10,13 +10,13 @@ Device::Device()
 
 int Device::init()
 {
-  if(init_bvas())
-  {
-      emit bvasFailure();
-      return 1;
-  }
+    if(init_bvas())
+    {
+        emit bvasFailure();
+        return 1;
+    }
 
-  return 0;
+    return 0;
 }
 
 void Device::readData()
