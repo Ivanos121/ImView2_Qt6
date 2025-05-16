@@ -1,7 +1,5 @@
 #include <QEvent>
 
-#include <stdio.h>
-
 #include "bvasthread.h"
 
 void BVASThread::run()

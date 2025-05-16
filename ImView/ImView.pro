@@ -71,6 +71,7 @@ SOURCES += \
     pushbuttondelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
+    spandelegate.cpp \
     spinboxdelegate.cpp \
     start_app.cpp \
     tepl_dannie.cpp \
@@ -148,6 +149,7 @@ HEADERS += \
     save_progect.h \
     settings.h \
     settingscanals.h \
+    spandelegate.h \
     spinboxdelegate.h \
     start_app.h \
     tepl_dannie.h \

@@ -7,8 +7,8 @@ class NabludatelBase
 {
 public:
     NabludatelBase() {};
-    virtual void init(double _R1, double _R2, double _L1, double _L2, double _Lm) {};    
-    virtual void rasch(DataSource *dataSourceBVAS) {};    
+    virtual void init(double, double, double, double, double) {};
+    virtual void rasch(DataSource *) {};
     virtual double get_p_akt_a() {return 0.0;};
     virtual double get_p_akt_b() {return 0.0;};
     virtual double get_p_akt_c() {return 0.0;};

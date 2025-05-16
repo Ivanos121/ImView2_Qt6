@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QTimer>
 #include "datasource.h"
-#include "mainwindow.h"
+#include "device.h"
 
 class DataSource_file : public DataSource
 {

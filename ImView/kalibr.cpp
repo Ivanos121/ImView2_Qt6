@@ -5,10 +5,12 @@
 #include <fstream>
 #include <QFileDialog>
 #include <QStatusBar>
+#include <QSerialPortInfo>
+#include <QTextCodec>
 
 #include "kalibr.h"
-#include "qserialportinfo.h"
-#include <QTextCodec>
+#include "base.h"
+#include "datasourcebvas.h"
 #include "ui_kalibr.h"
 #include "checkboxdelegate.h"
 #include "comboboxdelegate.h"
@@ -53,8 +55,40 @@ Kalibr::Kalibr(QWidget *parent) :
 
     ui->progress->setVisible(false);
 
-
     connect(&timer, &QTimer::timeout, this, &Kalibr::timerTimeout);
+    connect(ui->kalibrStartButton, &QPushButton::clicked, this, &Kalibr::bvas_start);
+    connect(ui->pushButtonZeroApplyIa, &QPushButton::clicked, this, &Kalibr::ZeroApplyIa);
+    connect(ui->pushButtonValueApplyIa, &QPushButton::clicked, this, &Kalibr::ValueApplyIa);
+    connect(ui->pushButtonZeroApplyUa, &QPushButton::clicked, this, &Kalibr::ZeroApplyUa);
+    connect(ui->pushButtonValueApplyUa, &QPushButton::clicked, this, &Kalibr::ValueApplyUa);
+    connect(ui->pushButtonZeroApplyIb, &QPushButton::clicked, this, &Kalibr::ZeroApplyIb);
+    connect(ui->pushButtonValueApplyIb, &QPushButton::clicked, this, &Kalibr::ValueApplyIb);
+    connect(ui->pushButtonZeroApplyUb, &QPushButton::clicked, this, &Kalibr::ZeroApplyUb);
+    connect(ui->pushButtonValueApplyUb, &QPushButton::clicked, this, &Kalibr::ValueApplyUb);
+    connect(ui->pushButtonZeroApplyIc, &QPushButton::clicked, this, &Kalibr::ZeroApplyIc);
+    connect(ui->pushButtonValueApplyIc, &QPushButton::clicked, this, &Kalibr::ValueApplyIc);
+    connect(ui->pushButtonZeroApplyUc, &QPushButton::clicked, this, &Kalibr::ZeroApplyUc);
+    connect(ui->pushButtonValueApplyUc, &QPushButton::clicked, this, &Kalibr::ValueApplyUc);
+    connect(ui->SearchPort, &QPushButton::clicked, this, &Kalibr::SearchPort);
+    connect(ui->EnterPort, &QPushButton::clicked, this, &Kalibr::EnterPort);
+    connect(ui->EnterPort_2, &QPushButton::clicked, this, &Kalibr::EnterPort_2);
+    connect(ui->SearchPort_2, &QPushButton::clicked, this, &Kalibr::SearchPort_2);
+    connect(ui->SearchPort_3, &QPushButton::clicked, this, &Kalibr::SearchPort_3);
+    connect(ui->EnterPort_3, &QPushButton::clicked, this, &Kalibr::EnterPort_3);
+    connect(ui->EnterPort_4, &QPushButton::clicked, this, &Kalibr::EnterPort_4);
+    connect(ui->CreateFile, &QPushButton::clicked, this, &Kalibr::CreateFile);
+    connect(ui->OpenFile, &QPushButton::clicked, this, &Kalibr::OpenFile);
+    connect(ui->SaveFile, &QPushButton::clicked, this, &Kalibr::SaveFile);
+    connect(ui->CloseFile, &QPushButton::clicked, this, &Kalibr::CloseFile);
+    connect(ui->ReadPribor, &QPushButton::clicked, this, &Kalibr::ReadPribor);
+    connect(ui->WritePribor, &QPushButton::clicked, this, &Kalibr::WritePribor);
+    connect(ui->testPribor, &QPushButton::clicked, this, &Kalibr::testPribor);
+    connect(ui->AddRow, &QPushButton::clicked, this, &Kalibr::AddRow);
+    connect(ui->RemoveRow, &QPushButton::clicked, this, &Kalibr::RemoveRow);
+    connect(ui->printSetup, &QPushButton::clicked, this, &Kalibr::printSetup);
+    connect(ui->Print, &QPushButton::clicked, this, &Kalibr::Print);
+    connect(ui->Help, &QPushButton::clicked, this, &Kalibr::Help);
+    connect(ui->acceptButton, &QPushButton::clicked, this, &Kalibr::acceptButton);
 }
 
 Kalibr::~Kalibr()
@@ -487,7 +521,7 @@ void Kalibr::timerTimeout()
             answer.append(ansBuf);
         }
     } while (answerLength != 0);
-    uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+    //uint16_t answer_crc = (answer[answer.length() - 1] << 8) + answer[answer.length() - 2];
     answer.remove(240, answer.length() - 1);
 
     port->flush();
@@ -532,7 +566,7 @@ void Kalibr::timerTimeout()
             answer.append(ansBuf);
         }
     } while (answerLength != 0);
-    answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+    //answer_crc = (answer[answer.length() - 1] << 8) + answer[answer.length() - 2];
     answer.remove(384, answer.length() - 1);
 
     //qDebug() << "reseived bytes: " << answer.length();
@@ -891,83 +925,83 @@ void Kalibr::bvasSlot()
     ui->labelValueUc->setText(QString("%1").arg(u_dev_c));
 }
 
-void Kalibr::on_pushButtonZeroApplyIa_clicked()
+void Kalibr::ZeroApplyIa()
 {
     ui->lineEditZeroIa->setText(QString("%1").arg(i_zero_a + dataSource->getIaZeroLevel()));
     dataSource->setIaZeroLevel(dataSource->getIaZeroLevel() + i_zero_a);
 }
 
-void Kalibr::on_pushButtonZeroApplyIb_clicked()
+void Kalibr::ZeroApplyIb()
 {
     ui->lineEditZeroIb->setText(QString("%1").arg(i_zero_b + dataSource->getIbZeroLevel()));
     dataSource->setIbZeroLevel(dataSource->getIbZeroLevel() + i_zero_b);
 }
 
-void Kalibr::on_pushButtonZeroApplyIc_clicked()
+void Kalibr::ZeroApplyIc()
 {
     ui->lineEditZeroIc->setText(QString("%1").arg(i_zero_c + dataSource->getIcZeroLevel()));
     dataSource->setIcZeroLevel(dataSource->getIcZeroLevel() + i_zero_c);
 }
 
-void Kalibr::on_pushButtonZeroApplyUa_clicked()
+void Kalibr::ZeroApplyUa()
 {
     ui->lineEditZeroUa->setText(QString("%1").arg(u_zero_a + dataSource->getUaZeroLevel()));
     dataSource->setUaZeroLevel(dataSource->getUaZeroLevel() + u_zero_a);
 }
 
-void Kalibr::on_pushButtonZeroApplyUb_clicked()
+void Kalibr::ZeroApplyUb()
 {
     ui->lineEditZeroUb->setText(QString("%1").arg(u_zero_b + dataSource->getUbZeroLevel()));
     dataSource->setUbZeroLevel(dataSource->getUbZeroLevel() + u_zero_b);
 }
 
-void Kalibr::on_pushButtonZeroApplyUc_clicked()
+void Kalibr::ZeroApplyUc()
 {
     ui->lineEditZeroUc->setText(QString("%1").arg(u_zero_c + dataSource->getUcZeroLevel()));
     dataSource->setUcZeroLevel(dataSource->getUcZeroLevel() + u_zero_c);
 }
 
-void Kalibr::on_pushButtonValueApplyIa_clicked()
+void Kalibr::ValueApplyIa()
 {
     dataSource->setIaCalibrationCoeff(dataSource->getIaCalibrationCoeff() * ui->lineEditValueIa->text().toDouble() / i_dev_a);
 }
 
-void Kalibr::on_pushButtonValueApplyIb_clicked()
+void Kalibr::ValueApplyIb()
 {
     dataSource->setIbCalibrationCoeff(dataSource->getIbCalibrationCoeff() * ui->lineEditValueIb->text().toDouble() / i_dev_b);
 }
 
-void Kalibr::on_pushButtonValueApplyIc_clicked()
+void Kalibr::ValueApplyIc()
 {
     dataSource->setIcCalibrationCoeff(dataSource->getIcCalibrationCoeff() * ui->lineEditValueIc->text().toDouble() / i_dev_c);
 }
 
-void Kalibr::on_pushButtonValueApplyUa_clicked()
+void Kalibr::ValueApplyUa()
 {
     dataSource->setUaCalibrationCoeff(dataSource->getUaCalibrationCoeff() * ui->lineEditValueUa->text().toDouble() / u_dev_a);
 }
 
-void Kalibr::on_pushButtonValueApplyUb_clicked()
+void Kalibr::ValueApplyUb()
 {
     dataSource->setUbCalibrationCoeff(dataSource->getUbCalibrationCoeff() * ui->lineEditValueUb->text().toDouble() / u_dev_b);
 }
 
-void Kalibr::on_pushButtonValueApplyUc_clicked()
+void Kalibr::ValueApplyUc()
 {
     dataSource->setUcCalibrationCoeff(dataSource->getUcCalibrationCoeff() * ui->lineEditValueUc->text().toDouble() / u_dev_c);
 }
 
-void Kalibr::on_pushButtonClose_clicked()
-{
-    close();
-}
+// void Kalibr::on_pushButtonClose_clicked()
+// {
+//     close();
+// }
 
 void Kalibr::closeEvent(QCloseEvent *event)
 {
     if (ui->kalibrStartButton->isChecked())
     {
         ui->kalibrStartButton->setChecked(false);
-        on_kalibrStartButton_clicked();
+        bvas_start();
     }
     if(isChanged)
     {
@@ -992,7 +1026,7 @@ void Kalibr::closeEvent(QCloseEvent *event)
     }
 }
 
-void Kalibr::on_OpenFile_clicked()
+void Kalibr::OpenFile()
 {
     fileName = QFileDialog::getOpenFileName(this);
     if (!fileName.isEmpty())
@@ -1010,7 +1044,7 @@ void Kalibr::loadFile(const QString &fileName)
     QString currentTabText = ui->tabWidget->tabText(index);
     setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
 
-    connect(ui->tableView->model(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataChanged(const QModelIndex&, const QModelIndex&)));
+    connect(ui->tableView->model(), SIGNAL(dataChanged(QModelIndex&, QModelIndex&)), this, SLOT(onDataChanged(QModelIndex&, QModelIndex&)));
 }
 
 void Kalibr::setCurrentFile(const QString &fileName)
@@ -1054,7 +1088,7 @@ void Kalibr::updateRecentFileActions()
 }
 
 
-void Kalibr::on_CreateFile_clicked()
+void Kalibr::CreateFile()
 {
     QString first="netdb_base.db";
     QString filter = "Файл конфигурации прибора (*.db);;Все файлы (*.*)";
@@ -1104,7 +1138,7 @@ void Kalibr::onDataChanged(const QModelIndex&, const QModelIndex&)
 }
 
 
-void Kalibr::on_SaveFile_clicked()
+void Kalibr::SaveFile()
 {
     modell->database().transaction();
     if(modell->submitAll())
@@ -1173,7 +1207,7 @@ void Kalibr::Save()
 }
 
 
-void Kalibr::on_CloseFile_clicked()
+void Kalibr::CloseFile()
 {
     if(isChanged)
     {
@@ -1214,7 +1248,7 @@ void Kalibr::on_CloseFile_clicked()
 }
 
 
-void Kalibr::on_AddRow_clicked()
+void Kalibr::AddRow()
 {
     modell->insertRow(modell->rowCount());
 
@@ -1233,7 +1267,7 @@ void Kalibr::on_AddRow_clicked()
 }
 
 
-void Kalibr::on_RemoveRow_clicked()
+void Kalibr::RemoveRow()
 {
     int selectRow = ui->tableView->currentIndex().row();
     if (selectRow >=0)
@@ -1243,7 +1277,7 @@ void Kalibr::on_RemoveRow_clicked()
     }
 }
 
-void Kalibr::on_printSetup_clicked()
+void Kalibr::printSetup()
 {
     QPrinter *printer = new QPrinter(QPrinter::HighResolution);
     printer->setPageSize(QPageSize(QPageSize::A4));
@@ -1326,7 +1360,7 @@ void Kalibr::printTable(QPrinter *printer, bool isPreview)
     }
 }
 
-void Kalibr::on_Help_clicked()
+void Kalibr::Help()
 {
     view = new QWebEngineView;
     connect(view, &QWebEngineView::titleChanged, this, &Kalibr::titleChanged);
@@ -1335,7 +1369,7 @@ void Kalibr::on_Help_clicked()
     view->showMaximized();
 }
 
-void Kalibr::on_Print_clicked()
+void Kalibr::Print()
 {
     QPrinter printer;
     printTable(&printer, false);
@@ -1346,7 +1380,7 @@ void Kalibr::titleChanged(const QString &title)
     view->setWindowTitle(title);
 }
 
-void Kalibr::on_SearchPort_clicked()
+void Kalibr::SearchPort()
 {
     ui->comboBox->clear();
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
@@ -1360,7 +1394,7 @@ void Kalibr::on_SearchPort_clicked()
 }
 
 
-void Kalibr::on_EnterPort_clicked()
+void Kalibr::EnterPort()
 {
     base.archieverParams.portName = ui->comboBox->currentText();
     base.archieverParams.speed = ui->comboBox_2->currentText().toInt();
@@ -1379,7 +1413,7 @@ void Kalibr::on_EnterPort_clicked()
 }
 
 
-void Kalibr::on_ReadPribor_clicked()
+void Kalibr::ReadPribor()
 {
     QSerialPort* port = openArchiverPort();
 
@@ -1444,7 +1478,7 @@ void Kalibr::on_ReadPribor_clicked()
             answer.append(ansBuf);
         }
     } while (answerLength != 0);
-    uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+    //uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
 
     answer.remove(0,3);
     CurrentChannelParams currentChannelParams[4];
@@ -1514,7 +1548,7 @@ void Kalibr::on_ReadPribor_clicked()
                 answer.append(ansBuf);
             }
         } while (answerLength != 0);
-        uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+        //uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
 
         ui->tableView->model()->setData(ui->tableView->model()->index(i, 2), answer[8] & 0x01);
 
@@ -1710,7 +1744,7 @@ void Kalibr::on_ReadPribor_clicked()
 }
 
 
-void Kalibr::on_WritePribor_clicked()
+void Kalibr::WritePribor()
 {
     QSerialPort* port = openArchiverPort();
 
@@ -2045,7 +2079,7 @@ void Kalibr::on_WritePribor_clicked()
 }
 
 
-void Kalibr::on_SearchPort_2_clicked()
+void Kalibr::SearchPort_2()
 {
     ui->comboBox_10->clear();
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
@@ -2060,7 +2094,7 @@ void Kalibr::on_SearchPort_2_clicked()
 }
 
 
-void Kalibr::on_EnterPort_2_clicked()
+void Kalibr::EnterPort_2()
 {
     base.digitOscParams.portName = ui->comboBox_10->currentText();
     base.digitOscParams.speed = ui->comboBox_9->currentText().toInt();
@@ -2078,7 +2112,7 @@ void Kalibr::on_EnterPort_2_clicked()
     settings.setValue("BVASv2port/flowControl", base.digitOscParams.flowControl);
 }
 
-void Kalibr::on_SearchPort_3_clicked()
+void Kalibr::SearchPort_3()
 {
     ui->comboBox_10->clear();
     foreach (const QSerialPortInfo &info, QSerialPortInfo::availablePorts())
@@ -2091,7 +2125,7 @@ void Kalibr::on_SearchPort_3_clicked()
     }
 }
 
-void Kalibr::on_EnterPort_3_clicked()
+void Kalibr::EnterPort_3()
 {
     base.digitMomentParams.portName = ui->comboBox_16->currentText();
     base.digitMomentParams.speed = ui->comboBox_15->currentText().toInt();
@@ -2109,7 +2143,7 @@ void Kalibr::on_EnterPort_3_clicked()
     settings.setValue("MomentPort/flowControl", base.digitMomentParams.flowControl);
 }
 
-void Kalibr::on_EnterPort_4_clicked()
+void Kalibr::EnterPort_4()
 {
     base.plcParams.ipAddr = ui->lineEdit_3->text();
     base.plcParams.port = ui->lineEdit->text().toInt();
@@ -2119,7 +2153,7 @@ void Kalibr::on_EnterPort_4_clicked()
     settings.setValue("plcPort/port", base.plcParams.port);
 }
 
-void Kalibr::on_kalibrStartButton_clicked()
+void Kalibr::bvas_start()
 {
     if (ui->kalibrStartButton->isChecked())
     {
@@ -2185,7 +2219,7 @@ void Kalibr::dataSourceFailure()
     ui->label_56->setPixmap(QPixmap(":/icons/data/img/icons/IM_24_red"));
 }
 
-void Kalibr::on_acceptButton_clicked()
+void Kalibr::acceptButton()
 {
     QSettings settings;
     settings.setValue("calibration/IaZero", dataSource->getIaZeroLevel());
@@ -2206,7 +2240,7 @@ void Kalibr::on_acceptButton_clicked()
 }
 
 
-void Kalibr::on_testPribor_clicked()
+void Kalibr::testPribor()
 {
     if (ui->testPribor->isChecked())
     {

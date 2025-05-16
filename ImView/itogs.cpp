@@ -10,7 +10,7 @@
 #include "mainwindow.h"
 //#include "ui_mainwindow.h"
 #include "datas.h"
-//#include "ui_datas.h"
+#include "base.h"
 
 
 int nn;

@@ -1,4 +1,6 @@
 #include "electromagn.h"
+#include "datasourcebvas.h"
+#include "datasourcebvasw.h"
 #include "ui_electromagn.h"
 #include "base.h"
 #include "model_el.h"

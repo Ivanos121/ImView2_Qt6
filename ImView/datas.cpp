@@ -2,7 +2,6 @@
 #include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
-#include "MySortFilterProxyModel.h"
 #include "doubledelegate.h"
 
 #include <QMessageBox>
@@ -17,6 +16,7 @@
 #include <QIntValidator>
 #include <QFileDialog>
 #include <QScreen>
+#include <QSortFilterProxyModel>
 
 datas::datas(QWidget *parent) :
     QWidget(parent),

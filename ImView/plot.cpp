@@ -7,10 +7,6 @@
 #include <QRegularExpression>
 #include <QFile>
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
 #include "plot.h"
 
 Plot::Plot(QWidget *parent) :
@@ -519,7 +515,7 @@ void Plot::save()
     }
     fout << "\n";
 
-    for (int i=0; i < dataLines[0].data.size(); i++)
+    for (size_t i=0; i < dataLines[0].data.size(); i++)
     {
         double t = dataLines[0].data[i].t;
         fout << t;

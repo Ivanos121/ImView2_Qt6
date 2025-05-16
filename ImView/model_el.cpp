@@ -1,4 +1,4 @@
-    #include "model_el.h"
+#include "model_el.h"
 #include "base.h"
 #include <cmath>
 #include "tepl_struct.h"
@@ -66,7 +66,7 @@ void Model_el::rasch()
     double Um = base.U_fnom;
     double w0 = Um / 220.0 * 314.0;
 
-    double McReakt = base.Mc_n;
+    double McReakt;
 
     //progress->setValue(t);
 

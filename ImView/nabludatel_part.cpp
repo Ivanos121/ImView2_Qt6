@@ -112,13 +112,13 @@ void NabludatelPart::rasch(DataSource *dataSource)
     M_sr = 0;
     w_sr = 0;
 
-    double Ua_zero = 0.0;
-    double Ub_zero = 0.0;
-    double Uc_zero = 0.0;
+    double Ua_zero;
+    double Ub_zero;
+    double Uc_zero;
 
-    double Ia_zero = 0.0;
-    double Ib_zero = 0.0;
-    double Ic_zero = 0.0;
+    double Ia_zero;
+    double Ib_zero;
+    double Ic_zero;
 
     for (int i = 0; i < BUF_SIZE; i++)
     {
@@ -236,7 +236,7 @@ void NabludatelPart::rasch(DataSource *dataSource)
     M_sr /= BUF_SIZE;
     w_sr /= BUF_SIZE;
 
-    double deltaR2 = (R2p - R20)/(1-snom);
+    //double deltaR2 = (R2p - R20)/(1-snom);
     double w0 = 2.0*M_PI*50.0/pn;
     double s = (w0 - w_sr)/w0;
 

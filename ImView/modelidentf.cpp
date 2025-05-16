@@ -1,9 +1,5 @@
-#include "modelidentf.h"
-#include "model.h"
-#include "base.h"
-#include <QDebug>
-#include <fstream>
 #include <cmath>
+#include "modelidentf.h"
 
 ModelIdentf::ModelIdentf()
 {

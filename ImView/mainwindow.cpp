@@ -37,6 +37,7 @@
 #include "pushbuttondelegate.h"
 #include "start_app.h"
 #include "base_tepl.h"
+#include "spandelegate.h"
 
 
 #include <QPropertyAnimation>
@@ -365,35 +366,33 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
 
-
-
     //настройка итемов QTreeView
     QList<QStandardItem*> items1;
-    item1 = new QStandardItem(tr("Общее настройки сессии"));
-    QString w0=item1->text();
-    item1->setToolTip(w0);
-    item2 = new QStandardItem();
-    items1.append(item1);
-    items1.append(item2);
+    all_sesion_name_parametr = new QStandardItem(tr("Общее настройки сессии"));
+    QString w0=all_sesion_name_parametr->text();
+    all_sesion_name_parametr->setToolTip(w0);
+    all_sesion_name_value = new QStandardItem();
+    items1.append(all_sesion_name_parametr);
+    items1.append(all_sesion_name_value);
     model2->appendRow(items1);
-    item1->setSelectable(false);
-    item1->setEditable(false);
-    item2->setSelectable(false);
-    item2->setEditable(false);
+    all_sesion_name_parametr->setSelectable(false);
+    all_sesion_name_parametr->setEditable(false);
+    all_sesion_name_value->setSelectable(false);
+    all_sesion_name_value->setEditable(false);
     QFont newFont("DroidSans", 10, QFont::Bold,false);
-    item1->setFont(newFont);
+    all_sesion_name_parametr->setFont(newFont);
 
     QList<QStandardItem*> items2;
-    item3 = new QStandardItem(tr("Название сессии"));
-    item3->setEditable(false);
-    QString w1=item3->text();
-    item3->setToolTip(w1);
-    item4 = new QStandardItem(tr("Имя сеанса"));
-    QString w2=item4->text();
-    item4->setToolTip(w2);
-    items2.append(item3);
-    items2.append(item4);
-    item1->appendRow(items2);
+    sesion_name_parametr1 = new QStandardItem(tr("Название сессии"));
+    sesion_name_parametr1->setEditable(false);
+    QString w1=sesion_name_parametr1->text();
+    sesion_name_parametr1->setToolTip(w1);
+    sesion_name_value1 = new QStandardItem(tr("Имя сеанса"));
+    QString w2=sesion_name_value1->text();
+    sesion_name_value1->setToolTip(w2);
+    items2.append(sesion_name_parametr1);
+    items2.append(sesion_name_value1);
+    all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
     item7 = new QStandardItem(tr("Тип эксперимента"));
@@ -406,7 +405,7 @@ MainWindow::MainWindow(QWidget *parent)
     item8->setEditable(false);
     items2.append(item7);
     items2.append(item8);
-    item1->appendRow(items2);
+    all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
     item87 = new QStandardItem(tr("Идентификация данных схемы замещения"));
@@ -481,7 +480,7 @@ MainWindow::MainWindow(QWidget *parent)
     item66->setEditable(false);
     items2.append(item65);
     items2.append(item66);
-    item1->appendRow(items2);
+    all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
     item67 = new QStandardItem(tr("Данные идентификации"));
@@ -1135,6 +1134,9 @@ MainWindow::MainWindow(QWidget *parent)
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
+    SpanDelegate* delegate = new SpanDelegate(ui->treeView);
+    ui->treeView->setItemDelegateForRow(1,delegate);
+
     ui->treeView->setStyleSheet(
                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
                     "background-color: #FFFFFF; width: 18px;}"
@@ -1216,7 +1218,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(selectionModel, &QItemSelectionModel::currentChanged,
                      this, [this]() {   int index = 0;
         QString currentTabText = ui->tabWidget->tabText(index);
-        setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView*"));
+        setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView*"));
         isNablLaunched = true;
     });
 
@@ -1266,10 +1268,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tabWidget->setCurrentIndex(0);
     currentTabText = ui->tabWidget->tabText(0);
 
-    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView"));
     if(ui->LoadProgect->isChecked() && ui->SaveProgectToFile->isChecked())
     {
-        setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+        setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView"));
     }
    // setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
 
@@ -3021,7 +3023,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(selectionModel3, &QItemSelectionModel::currentChanged,
                      this, [this]() {  int index = 0;
         QString currentTabText = ui->tabWidget->tabText(index);
-        setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView*"));
+        setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView*"));
         isNablLaunched = true;
     });
 
@@ -3226,7 +3228,7 @@ MainWindow::MainWindow(QWidget *parent)
     statusbar_label_9->setVisible(false);
 
     widget2 = new QWidget(ui->statusbar);
-    widget2->setFixedWidth(50);
+    widget2->setFixedWidth(0);
     widget2->setHidden(1);
     widget2->setVisible(1);
     ui->statusbar->addPermanentWidget(widget2);
@@ -3700,7 +3702,7 @@ void MainWindow::electromagn_stop()
 void MainWindow::currentChanged(int index)
 {
     QString currentTabText = ui->tabWidget->tabText(index);
-    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView"));
 }
 
 void MainWindow::kalibr_osc()
@@ -4175,7 +4177,7 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeStartElement("general_settings");
 
     xmlWriter.writeStartElement("project_name");
-    xmlWriter.writeAttribute("value", (item4->text()));
+    xmlWriter.writeAttribute("value", (sesion_name_value1->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_1");
@@ -4414,7 +4416,7 @@ void MainWindow::SaveProgectToFile()
 
     sessionFileName = QFileInfo(str).baseName();
 
-    item4->setText(sessionFileName);
+    sesion_name_value1->setText(sessionFileName);
 }
 
 void MainWindow::LoadProject(QString str)
@@ -4461,7 +4463,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item4->setText(attribute_value);
+                            sesion_name_value1->setText(attribute_value);
                         }
                     }
                 }
@@ -5038,9 +5040,9 @@ void MainWindow::LoadProject(QString str)
 
     sessionFileName = QFileInfo(str).baseName();
 
-    item4->setText(sessionFileName);
+    sesion_name_value1->setText(sessionFileName);
     //setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
-    setWindowTitle(currentTabText + "@" + QString(item4->text()) + QString(" - ImView"));
+    setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView"));
     ui->save_file->setEnabled(true);
     ui->save_as_file->setEnabled(true);
     setCurrentFile(str);
@@ -9705,7 +9707,7 @@ void MainWindow::open_file()
 
 void MainWindow::save_file()
 {
-    sessionFileName = QFileInfo(item4->text()).fileName();
+    sessionFileName = QFileInfo(sesion_name_value1->text()).fileName();
 
     if (sessionFileName.isEmpty())
     {
@@ -9727,7 +9729,7 @@ void MainWindow::save_file()
     xmlWriter.writeStartElement("general_settings");
 
     xmlWriter.writeStartElement("project_name");
-    xmlWriter.writeAttribute("value", (item4->text()));
+    xmlWriter.writeAttribute("value", (sesion_name_value1->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_1");
@@ -10260,17 +10262,17 @@ void MainWindow::actioncopy()
             undoStack->push(copyCommand);
         }
     }
-    if(item4->text().isEmpty())
+    if(sesion_name_value1->text().isEmpty())
     {
     return;
     }
     else
     {
-        if(item4->isSelectable())
+        if(sesion_name_value1->isSelectable())
         {
             QUndoCommand *copyCommand = new QUndoCommand();
             QClipboard *clipboard = QApplication::clipboard();
-            QString s1 = item4->text();
+            QString s1 = sesion_name_value1->text();
             clipboard->setText(s1);
             copyCommand->setText("lineEdit_18");
             //item4->paste();
@@ -10365,7 +10367,7 @@ void MainWindow::actionpaste()
     }
     else
     {
-        if(item4->isSelectable())
+        if(sesion_name_value1->isSelectable())
         {
             QUndoCommand *addCommand = new QUndoCommand();
             addCommand->setText("item4");
@@ -10373,7 +10375,7 @@ void MainWindow::actionpaste()
             undoStack->push(addCommand);
         }
     }
-    if(item4->text().isEmpty())
+    if(sesion_name_value1->text().isEmpty())
     {
     return;
     }
@@ -10690,7 +10692,7 @@ void MainWindow::loadFile(const QString &fileName)
 
 void::MainWindow::close_progect()
 {
-    item4->setText(tr("Имя сеанса"));
+    sesion_name_value1->setText(tr("Имя сеанса"));
     item88->setText(tr("Выбрать тип эксперимента"));
     item106->setText(tr("Указать каталог"));
     item80->setText(tr("Выбрать тип эксперимента"));
@@ -12148,8 +12150,8 @@ bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * mod
 
 void MainWindow::changeTreeViewRowColor()
 {
-    item1->setData(QColor(5, 50, 255));
-    item2->setBackground(QColor(5, 50, 255));
+    all_sesion_name_parametr->setData(QColor(5, 50, 255));
+    all_sesion_name_value->setBackground(QColor(5, 50, 255));
 }
 
 void::MainWindow::tab_open()

@@ -16,12 +16,12 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QHostAddress>
+#include <QTimer>
 
-#include "datasourcebvas.h"
-#include "modell.h"
 #include <QSqlTableModel>
-#include "QSqlDatabase"
-#include "base.h"
+#include <QSqlDatabase>
+
+#include "datasource.h"
 
 class MainWindow;
 
@@ -50,60 +50,53 @@ signals:
     void doubleClicked(QModelIndex);
     void cellclicked(int row , int column );
 
-private slots:
+protected slots:
     void bvasSlot();
-    void on_pushButtonZeroApplyIa_clicked();
-    void on_pushButtonZeroApplyIb_clicked();
-    void on_pushButtonZeroApplyIc_clicked();
-    void on_pushButtonZeroApplyUa_clicked();
-    void on_pushButtonZeroApplyUb_clicked();
-    void on_pushButtonZeroApplyUc_clicked();
-    void on_pushButtonValueApplyIa_clicked();
-    void on_pushButtonValueApplyIb_clicked();
-    void on_pushButtonValueApplyIc_clicked();
-    void on_pushButtonValueApplyUa_clicked();
-    void on_pushButtonValueApplyUb_clicked();
-    void on_pushButtonValueApplyUc_clicked();
-    void on_pushButtonClose_clicked();
-
+    void ZeroApplyIa();
+    void ZeroApplyIb();
+    void ZeroApplyIc();
+    void ZeroApplyUa();
+    void ZeroApplyUb();
+    void ZeroApplyUc();
+    void ValueApplyIa();
+    void ValueApplyIb();
+    void ValueApplyIc();
+    void ValueApplyUa();
+    void ValueApplyUb();
+    void ValueApplyUc();
+    //void on_pushButtonClose_clicked();
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
     void selectRows();
     void copyChannelNamesToTableWidget();
     void timerTimeout();
     void loadFile(const QString &fileName);
-    void on_OpenFile_clicked();
+    void OpenFile();
     void setCurrentFile(const QString &fileName);
     void updateRecentFileActions();
-
-    void on_CreateFile_clicked();
+    void CreateFile();
     void onDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
-    void on_SaveFile_clicked();
+    void SaveFile();
     void Save();
-    void on_CloseFile_clicked();
-    void on_AddRow_clicked();
-    void on_RemoveRow_clicked();
-    void on_printSetup_clicked();
-    void on_Print_clicked();
-    void on_Help_clicked();
-    void on_SearchPort_clicked();
-    void on_EnterPort_clicked();
-    void on_ReadPribor_clicked();
-    void on_WritePribor_clicked();
-
-    void on_SearchPort_2_clicked();
-    void on_EnterPort_2_clicked();
-    void on_SearchPort_3_clicked();
-    void on_EnterPort_3_clicked();
-
-    void on_EnterPort_4_clicked();
-
-    void on_kalibrStartButton_clicked();
+    void CloseFile();
+    void AddRow();
+    void RemoveRow();
+    void printSetup();
+    void Print();
+    void Help();
+    void SearchPort();
+    void EnterPort();
+    void ReadPribor();
+    void WritePribor();
+    void SearchPort_2();
+    void EnterPort_2();
+    void SearchPort_3();
+    void EnterPort_3();
+    void EnterPort_4();
+    void bvas_start();
     void dataSourceFailure();
-
-    void on_acceptButton_clicked();
-
-    void on_testPribor_clicked();
+    void acceptButton();
+    void testPribor();
 
 protected:
     void showEvent(QShowEvent *event);
@@ -159,6 +152,7 @@ private:
     void printPreview(QPrinter *printer);
     void printTable(QPrinter *printer, bool isPreview);
 };
+
 struct CurrentChannelParams
 {
     uint16_t diapazon;

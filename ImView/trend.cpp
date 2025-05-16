@@ -15,6 +15,7 @@
 #include "ui_draw_poper.h"
 #include "ui_draw_line.h"
 #include "ui_teplovent.h"
+#include "base.h"
 
 int position_2;
 double t_max;

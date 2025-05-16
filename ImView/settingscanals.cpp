@@ -1,6 +1,6 @@
 #include "settingscanals.h"
-#include "qfileinfo.h"
-#include "qsqlquery.h"
+#include <QFileInfo>
+#include <QSqlQuery>
 #include "ui_settingscanals.h"
 #include <QSettings>
 

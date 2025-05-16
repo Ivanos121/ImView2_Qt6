@@ -4,14 +4,15 @@
 #include <QWidget>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <QSerialPort>
+#include <QTcpSocket>
+
 #include "nabludatel.h"
 #include "nabludatel_part.h"
-#include "datasource_file.h"
-#include "datasourcebvas.h"
-#include "datasourcebvasw.h"
 #include "datasource.h"
-#include "plot.h"
 #include "qcombobox.h"
+
+class MainWindow;
 
 namespace Ui {
 class electromagn;

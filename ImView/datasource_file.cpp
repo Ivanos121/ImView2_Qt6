@@ -1,11 +1,7 @@
-#include "ui_mainwindow.h"
 #include "datasource_file.h"
-#include "ui_datas.h"
-#include "mainwindow.h"
 #include "base.h"
 #include <fstream>
 #include <QMessageBox>
-#include <stdio.h>
 
 std::ifstream fin;
 

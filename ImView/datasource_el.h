@@ -5,7 +5,7 @@
 #include <QTimer>
 #include "datasource.h"
 #include "modelidentf.h"
-#include "mainwindow.h"
+#include "device.h"
 
 class DataSource_el : public DataSource
 {

@@ -1,14 +1,14 @@
-#include "model.h"
 #include <QDebug>
 #include <QSettings>
 #include <cmath>
-#include "device.h"
-
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <base.h>
 #include <QDir>
+
+#include "model.h"
+#include "device.h"
 
 double X1,X2,X3,X4,b,d,psia_nev,g,k,l,m,n,o,p,q,t,u,sigma,alfa;
 double R2_1,L_1,Lm_1;
@@ -24,7 +24,7 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
                  double _ki, double _kpsi, double _gpsi)
 {
     double dP_mxnom,dP_dob,dP_nom,dP_per2nom,dP_pernom,dP_post,dP_per1nom;
-    double I_1nom,s_nom,w_0,w_nom,M_nom,M_0,M_elmnom,M_elmax,K_z,R10,bb,Z,R20,X_k,s_k, M_snom, aa,dm;
+    double I_1nom,s_nom,w_0,w_nom,M_nom,M_0,M_elmnom,M_elmax,K_z,R10,bb,Z,R20,X_k;
     double I_0,X10,dP_ct,L10,Rm,sinf_0,Xm,Lm0;
     gb=_gb;
     gd=_gd;
@@ -63,10 +63,10 @@ void Model::init(double P_nom, double n_nom, double U_fnom,
    Z=((3*U_fnom*U_fnom)/(2*w_0*M_elmax))-R10; //Сопротивление z
    R20=0.5*s_nom*(bb+sqrt(pow(bb,2)-4*pow(Z,2))); //приведенное активное сопротивление ротора
    X_k=sqrt(Z*Z-R10*R10); //Индуктивное сопротивление короткого замыкания
-   s_k=R20/Z; //критическое скольжение
-   aa=R10/R20; //коэффициент а
-   M_snom=(2*M_elmax*(1+aa*s_k))/((s_nom/s_k)+(s_k/s_nom)+2*aa*s_k); //Электомагнитный момент при номинальном скольжении
-   dm=(M_snom-M_elmnom)/M_snom;
+   //s_k=R20/Z; //критическое скольжение
+   //aa=R10/R20; //коэффициент а
+   //M_snom=(2*M_elmax*(1+aa*s_k))/((s_nom/s_k)+(s_k/s_nom)+2*aa*s_k); //Электомагнитный момент при номинальном скольжении
+   //dm=(M_snom-M_elmnom)/M_snom;
    /*if(dm<0.005)
    {
        QSettings settings( "BRU", "IM View");

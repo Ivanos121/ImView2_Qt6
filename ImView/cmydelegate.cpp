@@ -1,6 +1,6 @@
 #include "cmydelegate.h"
-#include "qapplication.h"
-#include "qpainter.h"
+
+#include <QPainter>
 
 CMyDelegate::CMyDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

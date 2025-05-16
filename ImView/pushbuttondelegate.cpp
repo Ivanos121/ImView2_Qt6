@@ -1149,7 +1149,7 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
     }
 }
 
-void ButtonColumnDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void ButtonColumnDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     editor->setGeometry(option.rect);
 }
