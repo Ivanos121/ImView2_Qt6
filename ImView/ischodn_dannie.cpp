@@ -1,11 +1,11 @@
+#include <QSqlQuery>
+#include <QDebug>
+#include <QMessageBox>
+
 #include "ischodn_dannie.h"
 #include "ui_ischodn_dannie.h"
 #include "base.h"
 #include "datas.h"
-
-#include <QSqlQuery>
-#include <QDebug>
-#include <QMessageBox>
 
 ischodn_dannie::ischodn_dannie(QWidget *parent) :
     QDialog(parent),

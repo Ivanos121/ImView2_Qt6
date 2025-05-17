@@ -1,5 +1,3 @@
-#include "comboboxbitdelegate.h"
-
 #include <QString>
 #include <QMouseEvent>
 #include <QApplication>
@@ -8,6 +6,7 @@
 #include <QPainter>
 
 #include "kalibr.h"
+#include "comboboxbitdelegate.h"
 
 ComboBoxBitDelegate::ComboBoxBitDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

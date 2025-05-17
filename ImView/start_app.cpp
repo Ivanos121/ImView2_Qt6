@@ -1,16 +1,15 @@
-#include "start_app.h"
-#include "mainwindow.h"
-#include "save_progect.h"
-#include "ui_start_app.h"
-#include "ui_mainwindow.h"
-
-
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QScreen>
 #include <QSettings>
 #include <QSvgWidget>
 #include <QUrl>
+
+#include "start_app.h"
+#include "mainwindow.h"
+#include "save_progect.h"
+#include "ui_start_app.h"
+#include "ui_mainwindow.h"
 
 Save_progect save_progect;
 

@@ -1,6 +1,6 @@
-#include "spinboxdelegate.h"
-
 #include <QSpinBox>
+
+#include "spinboxdelegate.h"
 
 SpinBoxDelegate::SpinBoxDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

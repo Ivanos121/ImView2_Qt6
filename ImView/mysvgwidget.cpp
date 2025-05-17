@@ -1,9 +1,9 @@
-#include "mysvgwidget.h"
 #include <QHBoxLayout>
+
+#include "mysvgwidget.h"
 
 MySvgWidget::MySvgWidget(QWidget *parent) : QSvgWidget(parent)
 {
-
 
 }
 

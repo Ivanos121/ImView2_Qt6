@@ -1,6 +1,7 @@
-#include "spandelegate.h"
 #include <QPainter>
 #include <QTreeView>
+
+#include "spandelegate.h"
 
 SpanDelegate::SpanDelegate(QTreeView *view,QObject *parent): QStyledItemDelegate(parent), m_view(view)
 {

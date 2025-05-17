@@ -2,7 +2,6 @@
 #define START_APP_H
 
 #include "qabstractitemmodel.h"
-//#include "qsvgwidget.h"
 #include "qtablewidget.h"
 #include "qwebengineview.h"
 #include "mysvgwidget.h"

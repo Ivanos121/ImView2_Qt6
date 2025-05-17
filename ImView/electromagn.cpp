@@ -1,3 +1,12 @@
+#include <iostream>
+#include <fstream>
+#include <QLinearGradient>
+#include <QMessageBox>
+#include <QColorDialog>
+#include <QFileDialog>
+#include <QScrollArea>
+#include <QSettings>
+
 #include "electromagn.h"
 #include "datasourcebvas.h"
 #include "datasourcebvasw.h"
@@ -10,15 +19,6 @@
 #include "ui_mainwindow.h"
 #include "tepl_struct.h"
 #include "plot.h"
-
-#include <iostream>
-#include <fstream>
-#include <QLinearGradient>
-#include <QMessageBox>
-#include <QColorDialog>
-#include <QFileDialog>
-#include <QScrollArea>
-#include <QSettings>
 
 DataSource_file dataSource_file;
 Model_el model_el;

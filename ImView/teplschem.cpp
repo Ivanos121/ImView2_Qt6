@@ -1,9 +1,9 @@
-#include "teplschem.h"
-#include "ui_teplschem.h"
-
 #include <QtSvg>
 #include <QSvgWidget>
 #include <QGraphicsPixmapItem>
+
+#include "teplschem.h"
+#include "ui_teplschem.h"
 
 teplschem::teplschem(QWidget *parent) :
     QWidget(parent),

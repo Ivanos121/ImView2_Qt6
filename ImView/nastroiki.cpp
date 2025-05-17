@@ -1,6 +1,6 @@
 #include "nastroiki.h"
 #include "ui_nastroiki.h"
-#include "QSettings"
+#include <QSettings>
 #include "mainwindow.h"
 
 

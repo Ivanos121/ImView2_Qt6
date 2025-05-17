@@ -1,7 +1,8 @@
-#include "mytablewidget_2.h"
 #include <QMouseEvent>
 #include <QSvgWidget>
 #include <QHBoxLayout>
+
+#include "mytablewidget_2.h"
 
 MyTableWidget_2::MyTableWidget_2(QWidget *parent) : QTableWidget(parent)
 {

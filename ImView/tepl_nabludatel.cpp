@@ -1,6 +1,5 @@
 #include "tepl_nabludatel.h"
 #include "ui_tepl_nabludatel.h"
-
 #include "plot.h"
 
 tepl_nabludatel::tepl_nabludatel(QWidget *parent) :

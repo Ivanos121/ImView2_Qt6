@@ -1,12 +1,3 @@
-#include "datasourcebvas.h"
-#include "ui_mainwindow.h"
-#include "identf.h"
-#include "ui_identf.h"
-#include "model.h"
-#include "plot.h"
-#include "base.h"
-#include "spinboxdelegate.h"
-
 #include <iostream>
 #include <fstream>
 #include <cfloat>
@@ -20,6 +11,15 @@
 #include <QDBusVariant>
 #include <QDBusReply>
 #include <QDBusInterface>
+
+#include "datasourcebvas.h"
+#include "ui_mainwindow.h"
+#include "identf.h"
+#include "ui_identf.h"
+#include "model.h"
+#include "plot.h"
+#include "base.h"
+#include "spinboxdelegate.h"
 
 double key;
 Model model;

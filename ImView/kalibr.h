@@ -17,7 +17,6 @@
 #include <QTcpSocket>
 #include <QHostAddress>
 #include <QTimer>
-
 #include <QSqlTableModel>
 #include <QSqlDatabase>
 

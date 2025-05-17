@@ -1,4 +1,5 @@
 #include <cmath>
+
 #include "modelidentf.h"
 
 ModelIdentf::ModelIdentf()

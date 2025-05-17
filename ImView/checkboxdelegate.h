@@ -6,8 +6,8 @@
 #include <QTableWidgetItem>
 #include <QMainWindow>
 #include <QSerialPort>
-#include "QSqlTableModel"
-#include "QSqlDatabase"
+#include <QSqlTableModel>
+#include <QAbstractTableModel>
 #include <QSqlError>
 #include <QStandardItemModel>
 #include <QStandardItem>

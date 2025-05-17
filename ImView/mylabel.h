@@ -1,10 +1,9 @@
 #ifndef MYLABEL_H
 #define MYLABEL_H
 
-#include "qevent.h"
+#include <QEvent>
 #include <QLabel>
 #include <QCursor>
-
 
 class MyLabel : public QLabel {
     Q_OBJECT

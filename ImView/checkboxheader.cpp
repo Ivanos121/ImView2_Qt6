@@ -1,6 +1,7 @@
-#include "checkboxheader.h"
 #include <QPainter>
 #include <QMouseEvent>
+
+#include "checkboxheader.h"
 
 CheckBoxHeader::CheckBoxHeader(Qt::Orientation orientation, QWidget* parent /*= 0*/)
     : QHeaderView(orientation, parent)

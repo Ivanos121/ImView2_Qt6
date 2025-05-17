@@ -1,4 +1,4 @@
-#include "checkboxdelegate.h"
+
 
 #include <QString>
 #include <QMouseEvent>
@@ -7,6 +7,7 @@
 #include <QPainter>
 
 #include "kalibr.h"
+#include "checkboxdelegate.h"
 
 CheckBoxDelegate::CheckBoxDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

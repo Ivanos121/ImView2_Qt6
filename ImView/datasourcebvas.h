@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <QWidget>
 #include <QThread>
+
 #include "datasource.h"
 #include "device.h"
 

@@ -1,8 +1,7 @@
-#include "doubledelegate.h"
-#include "qobject.h"
-
 #include <bits/locale_classes.h>
 
+#include "doubledelegate.h"
+#include "qobject.h"
 
 DoubleDelegate::DoubleDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

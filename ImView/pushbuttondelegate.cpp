@@ -1,5 +1,3 @@
-#include "pushbuttondelegate.h"
-
 #include <QPainter>
 #include <QPushButton>
 #include <QStylePainter>
@@ -10,7 +8,9 @@
 #include <QDoubleSpinBox>
 #include <QHelpEvent>
 #include <QToolTip>
-#include "qabstractitemview.h"
+#include <QAbstractItemView>
+
+#include "pushbuttondelegate.h"
 #include "qcombobox.h"
 #include "settingscanals.h"
 #include "vent_settings.h"

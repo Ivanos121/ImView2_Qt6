@@ -1,11 +1,10 @@
 #ifndef SETTINGSCANALS_H
 #define SETTINGSCANALS_H
 
-//#include "mainwindow.h"
 #include <QDialog>
 
-#include "QSqlTableModel"
-#include "QSqlDatabase"
+#include <QSqlTableModel>
+#include <QSqlDatabase>
 
 namespace Ui {
 class SettingsCanals;

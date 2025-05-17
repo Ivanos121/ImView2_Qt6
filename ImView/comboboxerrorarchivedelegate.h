@@ -6,8 +6,8 @@
 #include <QTableWidgetItem>
 #include <QMainWindow>
 #include <QSerialPort>
-#include "QSqlTableModel"
-#include "QSqlDatabase"
+#include <QSqlTableModel>
+#include <QSqlDatabase>
 #include <QSqlError>
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -29,7 +29,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option,const QModelIndex &index) const;
     void changedComboBox(int /*index*/);
 
- private:
+private:
     Kalibr *kalibr;
 };
 

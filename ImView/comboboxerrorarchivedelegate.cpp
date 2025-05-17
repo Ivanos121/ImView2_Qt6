@@ -1,5 +1,3 @@
-#include "comboboxerrorarchivedelegate.h"
-
 #include <QString>
 #include <QMouseEvent>
 #include <QApplication>
@@ -8,6 +6,7 @@
 #include <QPainter>
 
 #include "kalibr.h"
+#include "comboboxerrorarchivedelegate.h"
 
 ComboBoxErrorArchiveDelegate::ComboBoxErrorArchiveDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

@@ -1,5 +1,3 @@
-#include "comboboxmodbusdelegate.h"
-
 #include <QString>
 #include <QMouseEvent>
 #include <QApplication>
@@ -8,7 +6,7 @@
 #include <QPainter>
 
 #include "kalibr.h"
-
+#include "comboboxmodbusdelegate.h"
 ComboBoxModbusDelegate::ComboBoxModbusDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
     kalibr = (Kalibr*)parent;

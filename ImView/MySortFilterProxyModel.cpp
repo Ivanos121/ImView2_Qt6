@@ -1,5 +1,6 @@
-#include "MySortFilterProxyModel.h"
 #include <QDateTime>
+
+#include "MySortFilterProxyModel.h"
 
 MySortFilterProxyModel::MySortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 {

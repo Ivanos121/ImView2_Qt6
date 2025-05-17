@@ -1,22 +1,21 @@
-#include "datas.h"
-#include "qsqlquery.h"
-#include "ui_datas.h"
-#include "base.h"
-#include "doubledelegate.h"
-
 #include <QMessageBox>
 #include <QDebug>
 #include <QSqlError>
-#include "QStandardItemModel"
-#include "QStandardItem"
+#include <QStandardItemModel>
+#include <QStandardItem>
 #include <QTableView>
 #include <QStyle>
-//#include <QDesktopWidget>
 #include <QPainter>
 #include <QIntValidator>
 #include <QFileDialog>
 #include <QScreen>
 #include <QSortFilterProxyModel>
+
+#include "datas.h"
+#include "qsqlquery.h"
+#include "ui_datas.h"
+#include "base.h"
+#include "doubledelegate.h"
 
 datas::datas(QWidget *parent) :
     QWidget(parent),

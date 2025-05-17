@@ -1,4 +1,5 @@
 #include <QSerialPort>
+
 #include "devicedigitosc.h"
 #include "base.h"
 

@@ -2,6 +2,7 @@
 #define NASTROIKI_H
 
 #include <QDialog>
+
 #include "QTranslator"
 
 class MainWindow;

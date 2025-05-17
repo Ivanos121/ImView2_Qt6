@@ -2,6 +2,7 @@
 #define CMYDELEGATE_H
 
 #include "qstyleditemdelegate.h"
+
 class CMyDelegate : public QStyledItemDelegate
 {
 public:

@@ -3,7 +3,6 @@
 
 #include <QStyledItemDelegate>
 
-
 class SpinBoxDelegate: public QStyledItemDelegate
 {
 public:

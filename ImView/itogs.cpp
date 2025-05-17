@@ -1,5 +1,3 @@
-#include "itogs.h"
-#include "ui_itogs.h"
 #include <QPainter>
 #include <QPrintDialog>
 #include <QTimer>
@@ -8,10 +6,10 @@
 #include <QPrintPreviewDialog>
 
 #include "mainwindow.h"
-//#include "ui_mainwindow.h"
 #include "datas.h"
 #include "base.h"
-
+#include "itogs.h"
+#include "ui_itogs.h"
 
 int nn;
 

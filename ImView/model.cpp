@@ -4,11 +4,11 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include <base.h>
 #include <QDir>
 
 #include "model.h"
 #include "device.h"
+#include "base.h"
 
 double X1,X2,X3,X4,b,d,psia_nev,g,k,l,m,n,o,p,q,t,u,sigma,alfa;
 double R2_1,L_1,Lm_1;

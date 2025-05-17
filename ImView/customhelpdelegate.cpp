@@ -1,8 +1,8 @@
-#include "customhelpdelegate.h"
-#include "qabstractitemview.h"
 #include <QHelpEvent>
 #include <QToolTip>
 
+#include "customhelpdelegate.h"
+#include "qabstractitemview.h"
 
 CustomHelpDelegate::CustomHelpDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {

@@ -2,12 +2,13 @@
 #define DATAS_H
 
 #include <QWidget>
-#include "QSqlTableModel"
-#include "QSqlDatabase"
-#include "ischodn_dannie.h"
+#include <QSqlTableModel>
+#include <QSqlDatabase>
 #include <QButtonGroup>
 #include <QDialog>
 #include <QStandardItem>
+
+#include "ischodn_dannie.h"
 
 class MainWindow;
 

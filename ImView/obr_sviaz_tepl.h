@@ -3,7 +3,6 @@
 
 #include <QString>
 
-
 struct tepl_obr_sviaz
 {
     double y_0;//станина

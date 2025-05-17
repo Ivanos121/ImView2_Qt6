@@ -2,7 +2,6 @@
 #define ITOGS_H
 
 #include <QWidget>
-//#include "base.h"
 #include <QPrinter>
 
 class MainWindow;

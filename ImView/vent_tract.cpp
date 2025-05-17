@@ -1,8 +1,8 @@
-#include "vent_tract.h"
-#include "ui_vent_tract.h"
-
 #include <QFileInfo>
 #include <QIcon>
+
+#include "vent_tract.h"
+#include "ui_vent_tract.h"
 
 Vent_tract::Vent_tract(QWidget *parent) :
     QWidget(parent),

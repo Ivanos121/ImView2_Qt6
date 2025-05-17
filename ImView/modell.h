@@ -1,7 +1,7 @@
 #ifndef MODELL_H
 #define MODELL_H
 
-#include "QSqlDatabase"
+#include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlTableModel>
 

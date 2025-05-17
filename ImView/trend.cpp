@@ -1,21 +1,21 @@
-#include "trend.h"
-#include "ui_teplschem.h"
-#include "ui_trend.h"
-
-#include <iostream>
-#include <fstream>
-#include "cmath"
-#include "plot.h"
 #include <math.h>
 #include <QtSvg>
 #include <QSvgWidget>
 #include <QGraphicsPixmapItem>
 #include <QColorDialog>
+#include <iostream>
+#include <fstream>
+
+#include "cmath"
+#include "trend.h"
+#include "ui_teplschem.h"
+#include "ui_trend.h"
+#include "plot.h"
+#include "base.h"
 #include "ui_mainwindow.h"
 #include "ui_draw_poper.h"
 #include "ui_draw_line.h"
 #include "ui_teplovent.h"
-#include "base.h"
 
 int position_2;
 double t_max;

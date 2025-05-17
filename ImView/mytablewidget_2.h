@@ -4,7 +4,6 @@
 #include <QEvent>
 #include <QTableWidget>
 
-
 class MyTableWidget_2: public QTableWidget {
     Q_OBJECT
 

@@ -2,6 +2,7 @@
 #define BVASTHREAD_H
 
 #include <QThread>
+
 #include "device.h"
 
 class BVASThread : public QThread

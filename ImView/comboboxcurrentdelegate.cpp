@@ -1,5 +1,3 @@
-#include "comboboxcurrentdelegate.h"
-
 #include <QString>
 #include <QMouseEvent>
 #include <QApplication>
@@ -8,6 +6,7 @@
 #include <QPainter>
 
 #include "kalibr.h"
+#include "comboboxcurrentdelegate.h"
 
 ComboBoxCurrentDelegate::ComboBoxCurrentDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {

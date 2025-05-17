@@ -1,6 +1,7 @@
+#include <cmath>
+
 #include "model_el.h"
 #include "base.h"
-#include <cmath>
 #include "tepl_struct.h"
 #include "mainwindow.h"
 

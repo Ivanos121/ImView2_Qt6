@@ -2,8 +2,8 @@
 #define VENT_MODEL_H
 
 #include <QWidget>
-#include "mainwindow.h"
 
+#include "mainwindow.h"
 
 namespace Ui {
 class vent_model;
@@ -17,7 +17,6 @@ public:
     explicit vent_model(QWidget *parent = nullptr);
     ~vent_model();
     MainWindow *wf;
-
 
 public:
     Ui::vent_model *ui;

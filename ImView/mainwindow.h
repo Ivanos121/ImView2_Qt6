@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "kalibr.h"
+
 #include <QMainWindow>
 #include <QTimer>
 #include <QElapsedTimer>
@@ -10,7 +10,7 @@
 #include <QStandardItem>
 
 #include <QSvgWidget>
-//#include "qsvgwidget.h"
+#include "kalibr.h"
 #include "settings.h"
 #include "datas.h"
 #include "nastroiki.h"

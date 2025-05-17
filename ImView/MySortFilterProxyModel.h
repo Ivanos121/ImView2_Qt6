@@ -1,11 +1,11 @@
 #ifndef MYSORTFILTERPROXYMODEL_H
 #define MYSORTFILTERPROXYMODEL_H
 
-#include "qnamespace.h"
-#include "qvariant.h"
-
 #include <QSortFilterProxyModel>
 #include <QMap>
+
+#include "qnamespace.h"
+#include "qvariant.h"
 
 class MySortFilterProxyModel: public QSortFilterProxyModel
 {

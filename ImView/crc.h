@@ -1,4 +1,5 @@
 #include <cstdint>
+
 #include <sys/types.h>
 
 #if (_tCRC_MRTU == 0)

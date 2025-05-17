@@ -1,5 +1,4 @@
 #include "settings.h"
-//#include "qtranslator.h"
 #include "ui_settings.h"
 
 Ksettings::Ksettings(QWidget *parent) :

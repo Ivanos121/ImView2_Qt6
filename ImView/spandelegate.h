@@ -4,7 +4,6 @@
 #include <QStyledItemDelegate>
 #include <QTreeView>
 
-
 class SpanDelegate : public QStyledItemDelegate
 {
 public:

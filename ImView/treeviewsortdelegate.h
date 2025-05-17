@@ -3,7 +3,6 @@
 
 #include "qsortfilterproxymodel.h"
 
-
 class TreeviewSortDelegate: public QSortFilterProxyModel
 {
     Q_OBJECT

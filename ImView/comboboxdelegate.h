@@ -7,7 +7,7 @@
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
-#include "QSqlDatabase"
+#include <QSqlDatabase>
 #include <QSqlError>
 #include <QStandardItemModel>
 #include <QStandardItem>

@@ -1,5 +1,6 @@
-#include "datasource_el.h"
 #include <cmath>
+
+#include "datasource_el.h"
 
 DataSource_el::DataSource_el(double P_nom, double n_nom, double U_fnom,
                              double cosf_nom, double kpd_nom, double muk, double n_0)

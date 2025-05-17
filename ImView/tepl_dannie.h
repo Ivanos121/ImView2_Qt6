@@ -2,7 +2,6 @@
 #define TEPL_DANNIE_H
 
 #include <QWidget>
-//#include "base_tepl.h"
 
 namespace Ui {
 class Tepl_dannie;

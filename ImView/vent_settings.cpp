@@ -1,7 +1,7 @@
+#include <QMessageBox>
+
 #include "vent_settings.h"
 #include "ui_vent_settings.h"
-
-#include <QMessageBox>
 
 Vent_settings::Vent_settings(QWidget *parent)
     : QWidget(parent)

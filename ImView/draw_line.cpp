@@ -1,9 +1,9 @@
-#include "draw_line.h"
-#include "ui_draw_line.h"
-
 #include <QFileInfo>
 #include <QIcon>
 #include <QString>
+
+#include "draw_line.h"
+#include "ui_draw_line.h"
 
 draw_line::draw_line(QWidget *parent) :
     QWidget(parent),

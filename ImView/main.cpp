@@ -1,7 +1,3 @@
-#include "mainwindow.h"
-#include "qscreen.h"
-#include "settings.h"
-
 #include <QApplication>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -11,7 +7,9 @@
 #include <QSettings>
 #include <QRect>
 
-
+#include "mainwindow.h"
+#include "qscreen.h"
+#include "settings.h"
 
 int main(int argc, char *argv[])
 {

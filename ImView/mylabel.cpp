@@ -1,6 +1,6 @@
-#include "mylabel.h"
-
 #include <QDesktopServices>
+
+#include "mylabel.h"
 
 MyLabel::MyLabel(QWidget *parent) : QLabel(parent)
 {

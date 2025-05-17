@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTimer>
+
 #include "datasource.h"
 #include "device.h"
 
