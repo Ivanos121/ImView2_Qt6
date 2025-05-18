@@ -190,6 +190,7 @@ private slots:
 
     void actionaction_graph();
     void action_gruph();
+
 public:
     Ui::MainWindow *ui;
     QTimer *timer;

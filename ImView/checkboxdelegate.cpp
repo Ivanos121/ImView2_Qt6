@@ -1,5 +1,3 @@
-
-
 #include <QString>
 #include <QMouseEvent>
 #include <QApplication>
@@ -12,6 +10,11 @@
 CheckBoxDelegate::CheckBoxDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
     kalibr = (Kalibr*)parent;
+}
+
+CheckBoxDelegate::~CheckBoxDelegate()
+{
+
 }
 
 void CheckBoxDelegate::paint (QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const

@@ -40,7 +40,7 @@ public:
     Ui::Start_app *ui;
     MySvgWidget *svgwidget,  *svgwidget2, *svgwidget3, *svgwidget4,
                 *svgwidget5, *svgwidget6, *svgwidget7, *svgwidget8,
-                *svgwidget9, *svgwidget10, *svgwidget11, *svgwidget12;
+                *svgwidget9, *svgwidget10, *svgwidget11, *svgwidget12, *svgwidget13;
 
 protected:
     virtual void resizeEvent(QResizeEvent *) override;

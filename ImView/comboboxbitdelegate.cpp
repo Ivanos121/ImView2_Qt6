@@ -13,6 +13,11 @@ ComboBoxBitDelegate::ComboBoxBitDelegate(QObject *parent) : QStyledItemDelegate(
     kalibr = (Kalibr*)parent;
 }
 
+ComboBoxBitDelegate::~ComboBoxBitDelegate()
+{
+
+}
+
 QWidget* ComboBoxBitDelegate::createEditor(QWidget* parent,
                                            const QStyleOptionViewItem& option, const QModelIndex& index) const
 {

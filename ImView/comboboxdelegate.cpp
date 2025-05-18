@@ -14,6 +14,11 @@ ComboBoxDelegate::ComboBoxDelegate(QObject *parent) : QStyledItemDelegate(parent
     kalibr = (Kalibr*)parent;
 }
 
+ComboBoxDelegate::~ComboBoxDelegate()
+{
+
+}
+
 QWidget* ComboBoxDelegate::createEditor(QWidget* parent,
                                         const QStyleOptionViewItem& option, const QModelIndex& index) const
 {

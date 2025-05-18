@@ -5,8 +5,11 @@
 
 class CMyDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
-    CMyDelegate(QObject* parent= nullptr);    
+    explicit CMyDelegate(QObject* parent= nullptr);
+    ~CMyDelegate() override;
     void paint(QPainter* painter, const QStyleOptionViewItem & option, const QModelIndex & index) const override;
 };
 

@@ -15,10 +15,10 @@ class AboutDialog : public QDialog
 
 public:
     explicit AboutDialog(QWidget *parent = nullptr);
-    ~AboutDialog();
+    ~AboutDialog() override;
     MainWindow *wf;
 
-private slots:    
+protected slots:
     void actionclose();
 
 private:

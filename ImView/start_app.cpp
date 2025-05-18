@@ -687,14 +687,42 @@ void Start_app::updateRecentFileActions()
         w2 = QString("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
                       currentDate.toString("dd.MM.yyyy").toUtf8().data());
 
-        svgwidget = new MySvgWidget();
-        svgwidget->load(QString("/home/elf/ImView2/data/img/system_icons/IM_96x96.svg"));
-        svgwidget->setMaximumSize(100,100);
-        ui->tableWidget->setCellWidget(i, 0, svgwidget);
-        ui->tableWidget->resizeRowToContents(i);
-        ui->tableWidget->resizeColumnToContents(i);
+        // svgwidget13 = new MySvgWidget();
+        // svgwidget13->load(QString(":/system_icons/data/img/system_icons/IM_96x96.svg"));
+        // svgwidget13->setMaximumSize(100,100);
+        // ui->tableWidget->setCellWidget(i, 0, svgwidget13);
+        // ui->tableWidget->resizeRowToContents(i);
+        // ui->tableWidget->resizeColumnToContents(i);
+        // ui->tableWidget->item(i, 1)->setText(QString("%1 \n %2").arg(w1, w2));
+        // ui->tableWidget->item(i, 1)->setData(Qt::UserRole, text);
+
+        svgwidget13 = new MySvgWidget();
+        QWidget *widget13 = new QWidget();
+        svgwidget13->svgFileName = "/home/elf/ImView2_Qt6/data/img/system_icons/IM_96x96.svg";
+        svgwidget13->svgSelectedFileName = "/home/elf/ImView2_Qt6/data/img/system_icons/IM_96x96.svg";
+        svgwidget13->loadFile();
+        QHBoxLayout *layout = new QHBoxLayout(widget13);
+
+        layout->addWidget(svgwidget13);
+        layout->setAlignment(Qt::AlignCenter);
+        layout->setContentsMargins(0,0,0,0);
+
+        ui->tableWidget->setRowHeight(i,100);
+        ui->tableWidget->setCellWidget(i, 0, svgwidget13);
         ui->tableWidget->item(i, 1)->setText(QString("%1 \n %2").arg(w1, w2));
         ui->tableWidget->item(i, 1)->setData(Qt::UserRole, text);
+
+        // svgwidget4 = new MySvgWidget();
+        // QWidget *widget3 = new QWidget();
+        // svgwidget4->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg";
+        // svgwidget4->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm_select.svg";
+        // svgwidget4->loadFile();
+        // QHBoxLayout *layout3 = new QHBoxLayout(widget3);
+        // layout3->addWidget(svgwidget4);
+        // layout3->setAlignment(Qt::AlignCenter);
+        // layout3->setContentsMargins(0,0,0,0);
+        // ui->tableWidget_2->setCellWidget(0, 4, widget3);
+        // ui->tableWidget_2->item(1, 4)->setTextAlignment(Qt::AlignCenter);
     }
 }
 

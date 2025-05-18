@@ -7,6 +7,11 @@ CMyDelegate::CMyDelegate(QObject *parent) : QStyledItemDelegate(parent)
 
 }
 
+CMyDelegate::~CMyDelegate()
+{
+
+}
+
 //void CMyDelegate::paint(QPainter* painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 void CMyDelegate:: paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {

@@ -20,10 +20,15 @@ class Kalibr;
 
 class CheckBoxDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
-    CheckBoxDelegate(QObject *parent = nullptr);
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option,const QModelIndex &index);
+    explicit CheckBoxDelegate(QObject *parent = nullptr);
+    ~CheckBoxDelegate() override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
+               const QModelIndex &index) const override;
+    bool editorEvent(QEvent *event, QAbstractItemModel *model,
+                     const QStyleOptionViewItem &option,const QModelIndex &index) override;
 
 private:
     Kalibr *kalibr;

@@ -10,6 +10,11 @@ CheckBoxHeader::CheckBoxHeader(Qt::Orientation orientation, QWidget* parent /*= 
     isChecked_2 = false;
 }
 
+CheckBoxHeader::~CheckBoxHeader()
+{
+
+}
+
 void CheckBoxHeader::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const
 {
     painter->save();

@@ -6,7 +6,7 @@
 class ArchiverChannel
 {
 public:
-    ArchiverChannel();
+    explicit ArchiverChannel();
 
     uint16_t rawStatus;
     uint32_t rawValue;

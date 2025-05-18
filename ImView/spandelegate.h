@@ -10,9 +10,11 @@ public:
     SpanDelegate(QTreeView *view, QObject *parent = nullptr);
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const override;
+    QSize sizeHint(const QStyleOptionViewItem &option,const QModelIndex &index) const override;
 
 private:
     bool shouldSpan(const QModelIndex &index) const;
+    bool isPartOfSpan(const QModelIndex &index) const;
     QTreeView *m_view;
 };
 

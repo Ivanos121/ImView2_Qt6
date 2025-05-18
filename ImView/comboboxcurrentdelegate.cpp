@@ -13,6 +13,11 @@ ComboBoxCurrentDelegate::ComboBoxCurrentDelegate(QObject *parent) : QStyledItemD
     kalibr = (Kalibr*)parent;
 }
 
+ComboBoxCurrentDelegate::~ComboBoxCurrentDelegate()
+{
+
+}
+
 QWidget* ComboBoxCurrentDelegate::createEditor(QWidget* parent,
                                                const QStyleOptionViewItem& option, const QModelIndex& index) const
 {

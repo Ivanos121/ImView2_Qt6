@@ -1133,7 +1133,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
     SpanDelegate* delegate = new SpanDelegate(ui->treeView);
-    ui->treeView->setItemDelegateForRow(1,delegate);
+    ui->treeView->setItemDelegate(delegate);
 
     ui->treeView->setStyleSheet(
                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
@@ -12522,3 +12522,5 @@ void MainWindow::message_action(QString summary_s, QString body_s)
         return;
     }
 }
+
+
