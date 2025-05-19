@@ -4,7 +4,7 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include <QMainWindow>
+//#include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
 #include <QSqlDatabase>
@@ -15,6 +15,8 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
+
+class MainWindow;
 
 class Kalibr;
 

@@ -4,7 +4,7 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include <QMainWindow>
+//#include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
 #include <QAbstractTableModel>
@@ -16,6 +16,7 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
 class Kalibr;
 
 class CheckBoxDelegate : public QStyledItemDelegate

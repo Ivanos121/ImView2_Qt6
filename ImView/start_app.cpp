@@ -698,8 +698,8 @@ void Start_app::updateRecentFileActions()
 
         svgwidget13 = new MySvgWidget();
         QWidget *widget13 = new QWidget();
-        svgwidget13->svgFileName = "/home/elf/ImView2_Qt6/data/img/system_icons/IM_96x96.svg";
-        svgwidget13->svgSelectedFileName = "/home/elf/ImView2_Qt6/data/img/system_icons/IM_96x96.svg";
+        svgwidget13->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96.svg";
+        svgwidget13->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96.svg";
         svgwidget13->loadFile();
         QHBoxLayout *layout = new QHBoxLayout(widget13);
 

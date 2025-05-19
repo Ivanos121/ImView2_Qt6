@@ -13,6 +13,11 @@ ComboBoxErrorArchiveDelegate::ComboBoxErrorArchiveDelegate(QObject *parent) : QS
     kalibr = (Kalibr*)parent;
 }
 
+ComboBoxErrorArchiveDelegate::~ComboBoxErrorArchiveDelegate()
+{
+
+}
+
 QWidget* ComboBoxErrorArchiveDelegate::createEditor(QWidget* parent,
                                                     const QStyleOptionViewItem& option, const QModelIndex& index) const
 {

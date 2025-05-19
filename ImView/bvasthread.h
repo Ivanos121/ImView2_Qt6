@@ -8,8 +8,9 @@
 class BVASThread : public QThread
 {
     Q_OBJECT
+
 public:
-    BVASThread() : QThread() { }
+    explicit BVASThread() : QThread() { }
     virtual void run();
     void stopWorking();    
     void setDevice(Device *);

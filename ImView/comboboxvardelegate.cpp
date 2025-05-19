@@ -13,6 +13,11 @@ ComboBoxVarDelegate::ComboBoxVarDelegate(QObject *parent) : QStyledItemDelegate(
     kalibr = (Kalibr*)parent;
 }
 
+ComboBoxVarDelegate::~ComboBoxVarDelegate()
+{
+
+}
+
 QWidget* ComboBoxVarDelegate::createEditor(QWidget* parent,
                                            const QStyleOptionViewItem& option, const QModelIndex& index) const
 {

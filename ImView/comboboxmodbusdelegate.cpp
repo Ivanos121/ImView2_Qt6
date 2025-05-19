@@ -12,6 +12,11 @@ ComboBoxModbusDelegate::ComboBoxModbusDelegate(QObject *parent) : QStyledItemDel
     kalibr = (Kalibr*)parent;
 }
 
+ComboBoxModbusDelegate::~ComboBoxModbusDelegate()
+{
+
+}
+
 QWidget* ComboBoxModbusDelegate::createEditor(QWidget* parent,
                                               const QStyleOptionViewItem& option, const QModelIndex& index) const
 {

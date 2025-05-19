@@ -88,7 +88,6 @@ SOURCES += \
     zerocorrector.cpp
 
 HEADERS += \
-    CatalogueSortFilterProxy.h \
     MySortFilterProxyModel.h \
     aboutdialog.h \
     archiverchannel.h \
