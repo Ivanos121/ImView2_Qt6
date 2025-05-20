@@ -11,6 +11,7 @@
 #include "nabludatel.h"
 #include "nabludatel_part.h"
 #include "datasource.h"
+//#include "mainwindow.h"
 
 class MainWindow;
 
@@ -28,7 +29,6 @@ public:
     double key;
     MainWindow *wf;
     Ui::electromagn *ui;
-
     void stop();
 
 public slots:
@@ -38,6 +38,7 @@ public slots:
     // void on_pushButton_2_clicked();
     void bvasFailureSlot();
     void setcolorincell(int row, int column);
+
 private:
     QElapsedTimer *time;
     NabludatelBase *nabludatel;

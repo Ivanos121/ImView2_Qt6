@@ -15,6 +15,7 @@
 #include "datasource_el.h"
 #include "datasource_file.h"
 #include "datasourcebvas.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "identf.h"
 #include "ui_identf.h"
@@ -274,22 +275,22 @@ void identf::raschet_f()
    // auto uiDatasWindow = wf->ui->widget->ui;
 
     //Режим Осциллограф
-    if(wf->item88->text() == "Осциллограф")
+    if(wf->identification_switch_value->text() == "Осциллограф")
     {
         dataSource = new DataSourceBVAS();
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
     }
 
     //Режим Внутренний источник данных
-    if (wf->item88->text() == "Внутренний источник данных")
+    if (wf->identification_switch_value->text() == "Внутренний источник данных")
     {
         dataSource = new DataSource_el(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0);
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);
     }
 
-    if(wf->item88->text() == "Чтение данных из файла для идентификации параметров схемы замещения")
+    if(wf->identification_switch_value->text() == "Чтение данных из файла для идентификации параметров схемы замещения")
     {
-        QString dataSourceFileName = wf->item106->text();
+        QString dataSourceFileName = wf->load_data_ruchn_identf_value->text();
         base.dataSourceFilename = dataSourceFileName;
         dataSource = new DataSource_file();
         connect(dataSource, &DataSource::ready, this, &identf::realtimeDataSlot);

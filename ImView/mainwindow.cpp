@@ -121,33 +121,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-   // updateWindowSize();
-    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-
-
-    // QScreen *screen = QGuiApplication::primaryScreen();
-    // if (screen)
-    // {
-    //     // Получаем размеры экрана
-    //     QSize screenSize = screen->size();
-    //     // Устанавливаем размеры окна на 80% от размеров экрана
-    //     int width = static_cast<int>(screenSize.width() * 0.8);
-    //     int height = static_cast<int>(screenSize.height() * 0.8);
-
-    //     this->resize(width, height);
-
-    //     // Центрируем окно
-    //     int posX = (screenSize.width() - width) / 2;
-    //     int posY = (screenSize.height() - height) / 2;
-    //     this->move(posX, posY);
-    // }
-
-    // connect(screen, &QScreen::geometryChanged, this, [=]() {
-    //     // Обновите размеры и позицию окна
-    //     QSize newSize = screen->size();
-    //     this->resize(newSize);
-    // });
-
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);
     ui->widget_2->ui->widget->hide();
@@ -393,152 +366,152 @@ MainWindow::MainWindow(QWidget *parent)
     all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
-    item7 = new QStandardItem(tr("Тип эксперимента"));
-    item7->setEditable(false);
-    QString w9=item7->text();
-    item7->setToolTip(w9);
+    kind_experiment_parametr = new QStandardItem(tr("Тип эксперимента"));
+    kind_experiment_parametr->setEditable(false);
+    QString w9=kind_experiment_parametr->text();
+    kind_experiment_parametr->setToolTip(w9);
     QFont newFont10("DroidSans", 10, QFont::Bold,false);
-    item7->setFont(newFont10);
-    item8 = new QStandardItem();
-    item8->setEditable(false);
-    items2.append(item7);
-    items2.append(item8);
+    kind_experiment_parametr->setFont(newFont10);
+    kind_experiment_value = new QStandardItem();
+    kind_experiment_value->setEditable(false);
+    items2.append(kind_experiment_parametr);
+    items2.append(kind_experiment_value);
     all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
-    item87 = new QStandardItem(tr("Идентификация данных схемы замещения"));
-    item87->setEditable(false);
-    QString w10=item87->text();
-    item87->setToolTip(w10);
-    item88 = new QStandardItem(tr("Выбрать тип эксперимента"));
-    QString w11=item88->text();
-    item88->setToolTip(w11);
-    items2.append(item87);
-    items2.append(item88);
-    item7->appendRow(items2);
+    identification_switch_parametr = new QStandardItem(tr("Идентификация данных схемы замещения"));
+    identification_switch_parametr->setEditable(false);
+    QString w10=identification_switch_parametr->text();
+    identification_switch_parametr->setToolTip(w10);
+    identification_switch_value = new QStandardItem(tr("Выбрать тип эксперимента"));
+    QString w11=identification_switch_value->text();
+    identification_switch_value->setToolTip(w11);
+    items2.append(identification_switch_parametr);
+    items2.append(identification_switch_value);
+    kind_experiment_parametr->appendRow(items2);
     items2.clear();
 
-    item105 = new QStandardItem(tr("Загрузка данных ручной идентификации"));
-    item105->setEditable(false);
-    item105->setEnabled(false);
-    QString w12=item105->text();
-    item105->setToolTip(w12);
-    item106 = new QStandardItem(tr("Указать каталог"));
-    item106->setEnabled(false);
-    QString w13=item106->text();
-    item106->setToolTip(w13);
-    items2.append(item105);
-    items2.append(item106);
-    item7->appendRow(items2);
+    load_data_ruchn_identf_parametr = new QStandardItem(tr("Загрузка данных ручной идентификации"));
+    load_data_ruchn_identf_parametr->setEditable(false);
+    load_data_ruchn_identf_parametr->setEnabled(false);
+    QString w12=load_data_ruchn_identf_parametr->text();
+    load_data_ruchn_identf_parametr->setToolTip(w12);
+    load_data_ruchn_identf_value = new QStandardItem(tr("Указать каталог"));
+    load_data_ruchn_identf_value->setEnabled(false);
+    QString w13=load_data_ruchn_identf_value->text();
+    load_data_ruchn_identf_value->setToolTip(w13);
+    items2.append(load_data_ruchn_identf_parametr);
+    items2.append(load_data_ruchn_identf_value);
+    kind_experiment_parametr->appendRow(items2);
     items2.clear();
 
-    item79 = new QStandardItem(tr("Наблюдатель состояния"));
-    item79->setEditable(false);
-    QString w14=item79->text();
-    item79->setToolTip(w14);
-    item80 = new QStandardItem(tr("Выбрать тип эксперимента"));
-    QString w15=item80->text();
-    item80->setToolTip(w15);
-    items2.append(item79);
-    items2.append(item80);
-    item7->appendRow(items2);
+    identufication_observer_parametr = new QStandardItem(tr("Наблюдатель состояния"));
+    identufication_observer_parametr->setEditable(false);
+    QString w14=identufication_observer_parametr->text();
+    identufication_observer_parametr->setToolTip(w14);
+    enter_type_experiment_value = new QStandardItem(tr("Выбрать тип эксперимента"));
+    QString w15=enter_type_experiment_value->text();
+    enter_type_experiment_value->setToolTip(w15);
+    items2.append(identufication_observer_parametr);
+    items2.append(enter_type_experiment_value);
+    kind_experiment_parametr->appendRow(items2);
     items2.clear();
 
-    item81 = new QStandardItem(tr("Чтение данных для наблюдателя скорости"));
-    item81->setEditable(false);
-    item81->setEnabled(false);
-    QString w16=item81->text();
-    item81->setToolTip(w16);
-    item82 = new QStandardItem(tr("Указать каталог"));
-    item82->setEnabled(false);
-    QString w17=item82->text();
-    item82->setToolTip(w17);
-    items2.append(item81);
-    items2.append(item82);
-    item7->appendRow(items2);
+    read_data_identf_observer_parametr = new QStandardItem(tr("Чтение данных для наблюдателя скорости"));
+    read_data_identf_observer_parametr->setEditable(false);
+    read_data_identf_observer_parametr->setEnabled(false);
+    QString w16=read_data_identf_observer_parametr->text();
+    read_data_identf_observer_parametr->setToolTip(w16);
+    read_data_identf_observer_value = new QStandardItem(tr("Указать каталог"));
+    read_data_identf_observer_value->setEnabled(false);
+    QString w17=read_data_identf_observer_value->text();
+    read_data_identf_observer_value->setToolTip(w17);
+    items2.append(read_data_identf_observer_parametr);
+    items2.append(read_data_identf_observer_value);
+    kind_experiment_parametr->appendRow(items2);
     items2.clear();
 
-    item116 = new QStandardItem(tr("Настройка каналов"));
-    item116->setEditable(false);
-    item117 = new QStandardItem(tr("Выбрать каналы"));
-    QString w447=item117->text();
-    item117->setToolTip(w447);
-    items2.append(item116);
-    items2.append(item117);
-    item7->appendRow(items2);
+    search_kanals_parametr = new QStandardItem(tr("Настройка каналов"));
+    search_kanals_parametr->setEditable(false);
+    search_kanals_value = new QStandardItem(tr("Выбрать каналы"));
+    QString w447=search_kanals_value->text();
+    search_kanals_value->setToolTip(w447);
+    items2.append(search_kanals_parametr);
+    items2.append(search_kanals_value);
+    kind_experiment_parametr->appendRow(items2);
     items2.clear();
 
-    item65 = new QStandardItem(tr("Сохранение данных"));
-    item65->setEditable(false);
+    save_data_parametr = new QStandardItem(tr("Сохранение данных"));
+    save_data_parametr->setEditable(false);
     QFont newFont11("DroidSans", 10, QFont::Bold,false);
-    item65->setFont(newFont11);
-    QString w18=item65->text();
-    item65->setToolTip(w18);
-    item66 = new QStandardItem();
-    item66->setEditable(false);
-    items2.append(item65);
-    items2.append(item66);
+    save_data_parametr->setFont(newFont11);
+    QString w18=save_data_parametr->text();
+    save_data_parametr->setToolTip(w18);
+    save_data_value = new QStandardItem();
+    save_data_value->setEditable(false);
+    items2.append(save_data_parametr);
+    items2.append(save_data_value);
     all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
-    item67 = new QStandardItem(tr("Данные идентификации"));
-    item67->setEditable(false);
-    QString w19=item67->text();
-    item67->setToolTip(w19);
-    item68 = new QStandardItem(tr("Выбрать режим"));
-    items2.append(item67);
-    items2.append(item68);
-    item65->appendRow(items2);
+    data_identification_parametr = new QStandardItem(tr("Данные идентификации"));
+    data_identification_parametr->setEditable(false);
+    QString w19=data_identification_parametr->text();
+    data_identification_parametr->setToolTip(w19);
+    data_identification_value = new QStandardItem(tr("Выбрать режим"));
+    items2.append(data_identification_parametr);
+    items2.append(data_identification_value);
+    save_data_parametr->appendRow(items2);
     items2.clear();
 
-    item69 = new QStandardItem(tr("Данные электромагнитных процессов"));
-    item69->setEditable(false);
-    QString w21=item69->text();
-    item69->setToolTip(w21);
-    item70 = new QStandardItem(tr("Выбрать режим"));
-    items2.append(item69);
-    items2.append(item70);
-    item65->appendRow(items2);
+    data_electomagn_process_parametr = new QStandardItem(tr("Данные электромагнитных процессов"));
+    data_electomagn_process_parametr->setEditable(false);
+    QString w21=data_electomagn_process_parametr->text();
+    data_electomagn_process_parametr->setToolTip(w21);
+    data_electomagn_process_value = new QStandardItem(tr("Выбрать режим"));
+    items2.append(data_electomagn_process_parametr);
+    items2.append(data_electomagn_process_value);
+    save_data_parametr->appendRow(items2);
     items2.clear();
 
-    item71 = new QStandardItem(tr("Данные тепловых процессов"));
-    item71->setEditable(false);
-    QString w23=item71->text();
-    item71->setToolTip(w23);
-    item72 = new QStandardItem(tr("Выбрать режим"));
-    items2.append(item71);
-    items2.append(item72);
-    item65->appendRow(items2);
+    data_tepl_process_parametr = new QStandardItem(tr("Данные тепловых процессов"));
+    data_tepl_process_parametr->setEditable(false);
+    QString w23=data_tepl_process_parametr->text();
+    data_tepl_process_parametr->setToolTip(w23);
+    data_tepl_process_value = new QStandardItem(tr("Выбрать режим"));
+    items2.append(data_tepl_process_parametr);
+    items2.append(data_tepl_process_value);
+    save_data_parametr->appendRow(items2);
     items2.clear();
 
-    item73 = new QStandardItem(tr("Данные вентиляционных процессов"));
-    item73->setEditable(false);
-    QString w25=item73->text();
-    item73->setToolTip(w25);
-    item74 = new QStandardItem(tr("Выбрать режим"));
-    items2.append(item73);
-    items2.append(item74);
-    item65->appendRow(items2);
+    data_vent_process_parametr = new QStandardItem(tr("Данные вентиляционных процессов"));
+    data_vent_process_parametr->setEditable(false);
+    QString w25=data_vent_process_parametr->text();
+    data_vent_process_parametr->setToolTip(w25);
+    data_vent_process_value = new QStandardItem(tr("Выбрать режим"));
+    items2.append(data_vent_process_parametr);
+    items2.append(data_vent_process_value);
+    save_data_parametr->appendRow(items2);
     items2.clear();
 
-    item75 = new QStandardItem(tr("Данные прогноза температур"));
-    item75->setEditable(false);
-    QString w27=item75->text();
-    item75->setToolTip(w27);
-    item76 = new QStandardItem(tr("Выбрать режим"));
-    items2.append(item75);
-    items2.append(item76);
-    item65->appendRow(items2);
+    data_tepl_prognose_parametr = new QStandardItem(tr("Данные прогноза температур"));
+    data_tepl_prognose_parametr->setEditable(false);
+    QString w27=data_tepl_prognose_parametr->text();
+    data_tepl_prognose_parametr->setToolTip(w27);
+    data_tepl_prognose_value = new QStandardItem(tr("Выбрать режим"));
+    items2.append(data_tepl_prognose_parametr);
+    items2.append(data_tepl_prognose_value);
+    save_data_parametr->appendRow(items2);
     items2.clear();
 
-    item77 = new QStandardItem(tr("Данные остаточного теплового ресурса"));
-    item77->setEditable(false);
-    QString w29=item77->text();
-    item77->setToolTip(w29);
-    item78 = new QStandardItem(tr("Выбрать режим"));
-    items2.append(item77);
-    items2.append(item78);
-    item65->appendRow(items2);
+    data_ostat_tepl_resurs_parametr = new QStandardItem(tr("Данные остаточного теплового ресурса"));
+    data_ostat_tepl_resurs_parametr->setEditable(false);
+    QString w29=data_ostat_tepl_resurs_parametr->text();
+    data_ostat_tepl_resurs_parametr->setToolTip(w29);
+    data_ostat_tepl_resurs_value = new QStandardItem(tr("Выбрать режим"));
+    items2.append(data_ostat_tepl_resurs_parametr);
+    items2.append(data_ostat_tepl_resurs_value);
+    save_data_parametr->appendRow(items2);
     items2.clear();
 
     QList<QStandardItem*> items3;
@@ -1130,11 +1103,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->expandAll();
 
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
-    ui->treeView->setItemDelegateForColumn(0, buttonColumnDelegate);
+    ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
     //SpanDelegate* delegate = new SpanDelegate(ui->treeView);
     //ui->treeView->setItemDelegate(delegate);
-    SpanDelegate* delegate = new SpanDelegate(ui->treeView);
+    //SpanDelegate* delegate = new SpanDelegate(ui->treeView);
     //ui->treeView->setItemDelegateForRow(1, delegate);
 
     ui->treeView->setStyleSheet(
@@ -3260,9 +3233,9 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
 
     connect(item14->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
-    connect(item88->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
-    connect(item80->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
-    connect(item68->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
+    connect(identification_switch_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
+    connect(enter_type_experiment_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
+    connect(data_identification_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
     connect(item158->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
     connect(item174->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
     connect(item22->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
@@ -3458,7 +3431,7 @@ void MainWindow::identf_pusk()
     }
 
     ui->widget_15->setVisible(false);
-    if (item88->text() == "Выбрать тип эксперимента")
+    if (identification_switch_value->text() == "Выбрать тип эксперимента")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
@@ -3490,7 +3463,7 @@ void MainWindow::identf_pusk()
         dir.mkdir(dirName);
 
         //if(item68->checkState() == Qt::Checked)
-        if(item68->text() == "Сохранить")
+        if(data_identification_value->text() == "Сохранить")
         {
             QString filename = "result_identf.csv";
             //создание файла сохранений идентификации параметров схемы замещения
@@ -3562,7 +3535,7 @@ void MainWindow::electromagn_start()
     //statusbar_progres->setRange(0, 1000);
     statusbar_progres->reset();
 
-    if(item70->text() == "Сохранить")
+    if(data_electomagn_process_value->text() == "Сохранить")
     {
         //создание файла сохранений идентификации параметров схемы замещения
         std::ofstream fout;
@@ -3603,7 +3576,7 @@ void MainWindow::electromagn_start()
         fout.close();
     }
 
-    if(item70->checkState() == Qt::Checked)
+    if(data_electomagn_process_value->checkState() == Qt::Checked)
     {
         QDateTime currentDateTime = QDateTime::currentDateTime();
         QTime currentTime = currentDateTime.time();
@@ -3876,121 +3849,121 @@ void MainWindow::projectFileSelectedSlot_4(QString projectFile_4)
 
 void MainWindow::projectFileSelectedSlot_5(QString projectFile_5)
 {
-    item106->setData(projectFile_5, Qt::DisplayRole);
-    item106->setData(projectFile_5, Qt::UserRole);
+    load_data_ruchn_identf_value->setData(projectFile_5, Qt::DisplayRole);
+    load_data_ruchn_identf_value->setData(projectFile_5, Qt::UserRole);
 }
 
 void MainWindow::projectFileSelectedSlot_6(QString projectFile_6)
 {
-    item82->setData(projectFile_6, Qt::DisplayRole);
-    item82->setData(projectFile_6, Qt::UserRole);
+    read_data_identf_observer_value->setData(projectFile_6, Qt::DisplayRole);
+    read_data_identf_observer_value->setData(projectFile_6, Qt::UserRole);
 }
 
 void MainWindow::modelItemChangedSlot_2(QStandardItem *item)
 {
-    if (item == item88)
+    if (item == identification_switch_value)
     {
         if (item->text() == "Чтение данных из файла для идентификации параметров схемы замещения")
         {
-            item105->setEnabled(true);
-            item106->setEnabled(true);
+            load_data_ruchn_identf_parametr->setEnabled(true);
+            load_data_ruchn_identf_value->setEnabled(true);
         }
         else
         {
-            item105->setEnabled(false);
-            item106->setEnabled(false);
+            load_data_ruchn_identf_parametr->setEnabled(false);
+            load_data_ruchn_identf_value->setEnabled(false);
         }
     }
 }
 
 void MainWindow::modelItemChangedSlot_3(QStandardItem *item)
 {
-    if (item == item80)
+    if (item == enter_type_experiment_value)
     {
         if (item->text() == "Чтение данных из файла для наблюдателя скорости")
         {
-            item81->setEnabled(true);
-            item82->setEnabled(true);
+            read_data_identf_observer_parametr->setEnabled(true);
+            read_data_identf_observer_value->setEnabled(true);
         }
         else
         {
-            item81->setEnabled(false);
-            item82->setEnabled(false);
+            read_data_identf_observer_parametr->setEnabled(false);
+            read_data_identf_observer_value->setEnabled(false);
         }
     }
 }
 
 void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 {
-    if (item == item68)
+    if (item == data_identification_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item68->setToolTip(tr ("Вкл"));
+            data_identification_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item68->setToolTip(tr ("Выкл"));
+            data_identification_value->setToolTip(tr ("Выкл"));
         }
     }
     else
-    if (item == item70)
+    if (item == data_electomagn_process_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item70->setToolTip(tr ("Вкл"));
+            data_electomagn_process_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item70->setToolTip(tr ("Выкл"));
+            data_electomagn_process_value->setToolTip(tr ("Выкл"));
         }
     }
     else
-    if (item == item72)
+    if (item == data_tepl_process_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item72->setToolTip(tr ("Вкл"));
+            data_tepl_process_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item72->setToolTip(tr ("Выкл"));
+            data_tepl_process_value->setToolTip(tr ("Выкл"));
         }
     }
     else
-    if (item == item74)
+    if (item == data_vent_process_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item74->setToolTip(tr ("Вкл"));
+            data_vent_process_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item74->setToolTip(tr ("Выкл"));
+            data_vent_process_value->setToolTip(tr ("Выкл"));
         }
     }
     else
-    if (item == item76)
+    if (item == data_tepl_prognose_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item76->setToolTip(tr ("Вкл"));
+            data_tepl_prognose_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item76->setToolTip(tr ("Выкл"));
+            data_tepl_prognose_value->setToolTip(tr ("Выкл"));
         }
     }
     else
-    if (item == item78)
+    if (item == data_ostat_tepl_resurs_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item78->setToolTip(tr ("Вкл"));
+            data_ostat_tepl_resurs_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item78->setToolTip(tr ("Выкл"));
+            data_ostat_tepl_resurs_value->setToolTip(tr ("Выкл"));
         }
     }
     else
@@ -4181,43 +4154,43 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_1");
-    xmlWriter.writeAttribute("value", (item88->text()));
+    xmlWriter.writeAttribute("value", (identification_switch_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("project_path");
-    xmlWriter.writeAttribute("value", (item106->text()));
+    xmlWriter.writeAttribute("value", (load_data_ruchn_identf_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_2");
-    xmlWriter.writeAttribute("value", (item80->text()));
+    xmlWriter.writeAttribute("value", (enter_type_experiment_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("project_path_2");
-    xmlWriter.writeAttribute("value", (item82->text()));
+    xmlWriter.writeAttribute("value", (read_data_identf_observer_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_3");
-    xmlWriter.writeAttribute("value", (item68->text()));
+    xmlWriter.writeAttribute("value", (data_identification_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_4");
-    xmlWriter.writeAttribute("value", (item70->text()));
+    xmlWriter.writeAttribute("value", (data_electomagn_process_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_5");
-    xmlWriter.writeAttribute("value", (item72->text()));
+    xmlWriter.writeAttribute("value", (data_tepl_process_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_6");
-    xmlWriter.writeAttribute("value", (item74->text()));
+    xmlWriter.writeAttribute("value", (data_vent_process_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_7");
-    xmlWriter.writeAttribute("value", (item76->text()));
+    xmlWriter.writeAttribute("value", (data_tepl_prognose_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_8");
-    xmlWriter.writeAttribute("value", (item78->text()));
+    xmlWriter.writeAttribute("value", (data_ostat_tepl_resurs_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_9");
@@ -4312,7 +4285,7 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", QString("%1").arg(QString::number(rowNumber,'f',1)));
     xmlWriter.writeEndElement();
 
-    if(item68->text() == "Сохранить")
+    if(data_identification_value->text() == "Сохранить")
     {
         xmlWriter.writeStartElement("sopr_R1");
         xmlWriter.writeAttribute("value", (ui->lineEdit_12->text()));
@@ -4373,7 +4346,7 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    if(item68->text() == "Сохранить")
+    if(data_identification_value->text() == "Сохранить")
     {
         QFile file2(QString("/home/elf/Видео/ImView2/save/identification.xml"));
         file2.open(QIODevice::WriteOnly);
@@ -4474,7 +4447,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item88->setText(attribute_value);
+                            identification_switch_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4485,7 +4458,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item106->setText(attribute_value);
+                            load_data_ruchn_identf_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4496,7 +4469,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item80->setText(attribute_value);
+                            enter_type_experiment_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4507,7 +4480,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item82->setText(attribute_value);
+                            read_data_identf_observer_value->setText(attribute_value);
                         }
                     }
                 }                
@@ -4518,7 +4491,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item68->setText(attribute_value);
+                            data_identification_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4529,7 +4502,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item70->setText(attribute_value);
+                            data_electomagn_process_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4540,7 +4513,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item72->setText(attribute_value);
+                            data_tepl_process_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4551,7 +4524,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item74->setText(attribute_value);
+                            data_vent_process_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4562,7 +4535,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item76->setText(attribute_value);
+                            data_tepl_prognose_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4573,7 +4546,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item78->setText(attribute_value);
+                            data_ostat_tepl_resurs_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4969,7 +4942,7 @@ void MainWindow::LoadProject(QString str)
         }
         // file.close(); // Закрываем файл
 
-        if(item68->text() == "Сохранить")
+        if(data_identification_value->text() == "Сохранить")
         {
             QXmlStreamReader xmlReader2;
             xmlReader2.setDevice(&file);
@@ -9733,43 +9706,43 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_1");
-    xmlWriter.writeAttribute("value", (item88->text()));
+    xmlWriter.writeAttribute("value", (identification_switch_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("project_path");
-    xmlWriter.writeAttribute("value", (item106->text()));
+    xmlWriter.writeAttribute("value", (load_data_ruchn_identf_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_2");
-    xmlWriter.writeAttribute("value", (item80->text()));
+    xmlWriter.writeAttribute("value", (enter_type_experiment_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("project_path_2");
-    xmlWriter.writeAttribute("value", (item82->text()));
+    xmlWriter.writeAttribute("value", (read_data_identf_observer_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_3");
-    xmlWriter.writeAttribute("value", (item68->text()));
+    xmlWriter.writeAttribute("value", (data_identification_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_4");
-    xmlWriter.writeAttribute("value", (item70->text()));
+    xmlWriter.writeAttribute("value", (data_electomagn_process_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_5");
-    xmlWriter.writeAttribute("value", (item72->text()));
+    xmlWriter.writeAttribute("value", (data_tepl_process_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_6");
-    xmlWriter.writeAttribute("value", (item74->text()));
+    xmlWriter.writeAttribute("value", (data_vent_process_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_7");
-    xmlWriter.writeAttribute("value", (item76->text()));
+    xmlWriter.writeAttribute("value", (data_tepl_prognose_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_8");
-    xmlWriter.writeAttribute("value", (item78->text()));
+    xmlWriter.writeAttribute("value", (data_ostat_tepl_resurs_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_9");
@@ -9864,7 +9837,7 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", QString::number(rowNumber));
     xmlWriter.writeEndElement();
 
-    if(item68->text() == "Сохранить")
+    if(data_identification_value->text() == "Сохранить")
     {
         xmlWriter.writeStartElement("sopr_R1");
         xmlWriter.writeAttribute("value", (ui->lineEdit_12->text()));
@@ -9925,7 +9898,7 @@ void MainWindow::save_file()
     xmlWriter.writeEndDocument();
     file.close();   // Закрываем файл
 
-    if(item68->text() == "Сохранить")
+    if(data_identification_value->text() == "Сохранить")
     {
         QFile file2(QString("/home/elf/Видео/ImView2/save/identification.xml"));
         file2.open(QIODevice::WriteOnly);
@@ -10693,11 +10666,11 @@ void MainWindow::loadFile(const QString &fileName)
 void::MainWindow::close_progect()
 {
     sesion_name_value1->setText(tr("Имя сеанса"));
-    item88->setText(tr("Выбрать тип эксперимента"));
-    item106->setText(tr("Указать каталог"));
-    item80->setText(tr("Выбрать тип эксперимента"));
-    item82->setText(tr("Указать каталог"));
-    item117->setText(tr("Выбрать каналы"));
+    identification_switch_value->setText(tr("Выбрать тип эксперимента"));
+    load_data_ruchn_identf_value->setText(tr("Указать каталог"));
+    enter_type_experiment_value->setText(tr("Выбрать тип эксперимента"));
+    read_data_identf_observer_value->setText(tr("Указать каталог"));
+    search_kanals_value->setText(tr("Выбрать каналы"));
     item14->setText(tr("Выберите режим"));
     item20->setText(tr("Выбрать режим"));
     item22->setText(tr("0"));
@@ -10712,12 +10685,12 @@ void::MainWindow::close_progect()
     item34->setText(tr("Выберите режим"));
     item36->setText(tr("Выберите конструкцию"));
     item38->setText(tr("0"));
-    item68->setText(tr("Выбрать режим"));
-    item70->setText(tr("Выбрать режим"));
-    item72->setText(tr("Выбрать режим"));
-    item74->setText(tr("Выбрать режим"));
-    item76->setText(tr("Выбрать режим"));
-    item78->setText(tr("Выбрать режим"));
+    data_identification_value->setText(tr("Выбрать режим"));
+    data_electomagn_process_value->setText(tr("Выбрать режим"));
+    data_tepl_process_value->setText(tr("Выбрать режим"));
+    data_vent_process_value->setText(tr("Выбрать режим"));
+    data_tepl_prognose_value->setText(tr("Выбрать режим"));
+    data_ostat_tepl_resurs_value->setText(tr("Выбрать режим"));
 
     ui->lineEdit_12->clear();
     ui->lineEdit_11->clear();

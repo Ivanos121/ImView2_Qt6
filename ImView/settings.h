@@ -19,8 +19,8 @@ public:
 
     MainWindow *wf;
 
-private slots:
-    void on_pushButton_clicked();
+protected slots:
+    void applying_dialog();
 
 private:
     Ui::Ksettings *ui;

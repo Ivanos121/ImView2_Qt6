@@ -2,7 +2,7 @@
 #include <QToolTip>
 
 #include "customhelpdelegate.h"
-#include "qabstractitemview.h"
+#include <QAbstractItemView>
 
 CustomHelpDelegate::CustomHelpDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {

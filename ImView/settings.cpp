@@ -53,6 +53,7 @@ Ksettings::Ksettings(QWidget *parent) :
 
     // connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
     //         [=](int index){ ui->pushButton_2->setEnabled(true); });
+    connect(ui->pushButton,&QPushButton::clicked, this, &Ksettings::applying_dialog);
 
 }
 
@@ -61,7 +62,7 @@ Ksettings::~Ksettings()
     delete ui;
 }
 
-void Ksettings::on_pushButton_clicked()
+void Ksettings::applying_dialog()
 {
 
 }

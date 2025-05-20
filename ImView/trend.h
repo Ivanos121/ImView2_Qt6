@@ -7,7 +7,8 @@
 #include <QTimer>
 #include <QTimer>
 #include <QElapsedTimer>
-#include "mainwindow.h"
+
+class MainWindow;
 
 namespace Ui {
 class Trend;

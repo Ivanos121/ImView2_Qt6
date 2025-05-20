@@ -9,6 +9,7 @@
 #include <QStandardItem>
 
 #include "ischodn_dannie.h"
+//#include "mainwindow.h"
 
 class MainWindow;
 

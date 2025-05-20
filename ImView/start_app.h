@@ -1,12 +1,13 @@
 #ifndef START_APP_H
 #define START_APP_H
 
-#include "qabstractitemmodel.h"
-#include "qtablewidget.h"
-#include "qwebengineview.h"
+#include <QAbstractItemModel>
+#include <QTableWidget>
+#include <QWebEngineView>
+#include <QWidget>
+
 #include "mysvgwidget.h"
 #include "mylabel.h"
-#include <QWidget>
 
 class MainWindow;
 
@@ -46,7 +47,7 @@ protected:
     virtual void resizeEvent(QResizeEvent *) override;
     virtual void showEvent(QShowEvent *) override;
 
-private slots:
+protected slots:
     void openRecentFile(int row, int column);
     //void setCurrentFile(const QString &fileName);
     void updateRecentFileActions();

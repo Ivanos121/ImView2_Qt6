@@ -9,8 +9,8 @@
 #include "datasource.h"
 #include "model.h"
 #include "modell.h"
-#include "mainwindow.h"
 #include "spinboxdelegate.h"
+#include "mainwindow.h"
 
 class MainWindow;
 

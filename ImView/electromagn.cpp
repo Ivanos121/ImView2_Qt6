@@ -16,9 +16,11 @@
 #include "plot.h"
 #include "datasource_file.h"
 #include "datasourcedigitosc.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "tepl_struct.h"
 #include "plot.h"
+#include "spinboxdelegate.h"
 
 DataSource_file dataSource_file;
 Model_el model_el;
@@ -234,7 +236,7 @@ void electromagn::realtimeDataSlot()
 
     //Внутренний источник данных
 
-    if(wf->item80->text() == "Внутренний источник данных")
+    if(wf->enter_type_experiment_value->text() == "Внутренний источник данных")
     {
         base.Mc_n = wf->ui->horizontalSlider->value();
         base.Um = wf->ui->horizontalSlider_2->value();
@@ -1129,7 +1131,7 @@ void electromagn::raschet_el()
     base.plcParams.ipAddr = settings.value("plcPort/ipAddr", "10.0.6.10").toString();
     base.plcParams.port = settings.value("plcPort/port", 502).toInt();
 
-    if(wf->item80->text() == tr("БВАСv1 + наблюдатель скорости (без датчика скорости)"))
+    if(wf->enter_type_experiment_value->text() == tr("БВАСv1 + наблюдатель скорости (без датчика скорости)"))
     {
         //БВАС без датчика скорости + наблюдатель скорости
         connectTcpPort();
@@ -1169,7 +1171,7 @@ void electromagn::raschet_el()
         connect(dataSourceBVAS, &DataSourceBVAS::failure, this, &electromagn::bvasFailureSlot);
     }
 
-    if(wf->item80->text() == tr("БВАСv1 + наблюдатель скорости (с датчиком скорости)"))
+    if(wf->enter_type_experiment_value->text() == tr("БВАСv1 + наблюдатель скорости (с датчиком скорости)"))
     {
         connectTcpPort();
         if (connectMomentPort() == 1)
@@ -1210,7 +1212,7 @@ void electromagn::raschet_el()
         connect(dataSourceBVAS, &DataSourceBVASw::failure, this, &electromagn::bvasFailureSlot);
     }
 
-    if(wf->item80->text() == tr("БВАСv2 + наблюдатель скорости (без датчика скорости)"))
+    if(wf->enter_type_experiment_value->text() == tr("БВАСv2 + наблюдатель скорости (без датчика скорости)"))
     {
         connectTcpPort();
         if (connectMomentPort() == 1)
@@ -1258,7 +1260,7 @@ void electromagn::raschet_el()
         wf->statusbar_label_3->setPixmap(QPixmap(":/icons/data/img/icons/osc_blue_24.svg"));
     }
 
-    if(wf->item80->text() == tr("БВАСv2 + наблюдатель скорости (с датчиком скорости)"))
+    if(wf->enter_type_experiment_value->text() == tr("БВАСv2 + наблюдатель скорости (с датчиком скорости)"))
     {
         connectTcpPort();
         if (connectMomentPort() == 1)
@@ -1307,7 +1309,7 @@ void electromagn::raschet_el()
     }
 
     //Внутренний источник данных
-    if (wf->item80->text() == tr("Внутренний источник данных"))
+    if (wf->enter_type_experiment_value->text() == tr("Внутренний источник данных"))
     {
         base.Mc_n = wf->item132->text().toDouble();
         base.Um = wf->item130->text().toDouble();
@@ -1363,9 +1365,9 @@ void electromagn::raschet_el()
         connect(&model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
     }
 
-    if (wf->item80->text() == tr("Чтение данных из файла для наблюдателя скорости"))
+    if (wf->enter_type_experiment_value->text() == tr("Чтение данных из файла для наблюдателя скорости"))
     {
-        QString dataSourceFileName = wf->item82->text();
+        QString dataSourceFileName = wf->read_data_identf_observer_value->text();
         base.dataSourceFilename = dataSourceFileName;
         dataSource = new DataSource_file();
         nabludatel = &nabludatel_full;
@@ -1385,7 +1387,7 @@ void electromagn::raschet_el()
 
 void electromagn::stop()
 {
-    if (wf->item80->text() == tr("Внутренний источник данных"))
+    if (wf->enter_type_experiment_value->text() == tr("Внутренний источник данных"))
     {
         model_el.stop();
         disconnect(&model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
