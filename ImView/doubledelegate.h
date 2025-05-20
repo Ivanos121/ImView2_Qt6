@@ -4,11 +4,15 @@
 #include "qstyleditemdelegate.h"
 
 class DoubleDelegate : public QStyledItemDelegate
-{    
+{
+    Q_OBJECT
 
 public:
-    DoubleDelegate(QObject *parent = nullptr);    
-    virtual QString displayText(const QVariant &value, const QLocale &locale) const;
+    explicit DoubleDelegate(QObject *parent = nullptr);
+    ~DoubleDelegate() override;
+
+    virtual QString displayText(const QVariant &value,
+                                const QLocale &locale) const override;
     QString textFromValue(double value) const;
 };
 

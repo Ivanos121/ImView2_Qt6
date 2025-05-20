@@ -12118,7 +12118,8 @@ bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * mod
         // Do action here
     }
 
-    QString itemText = model->itemData(index)[0].toString();
+    //QString itemText = model->itemData(index)[0].toString();
+    QString itemText = model->data(index, Qt::DisplayRole).toString();
 
     int pos = itemText.indexOf(str, 0);
     if (pos != -1)

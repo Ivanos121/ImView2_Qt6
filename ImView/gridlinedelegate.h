@@ -8,9 +8,14 @@ QT_FORWARD_DECLARE_CLASS(QPainter)
 
 class GridLineDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
-    GridLineDelegate(QObject *parent);
-    void paint(QPainter *painter, const QStyleOptionViewItem &option,const QModelIndex &index) const;
+    explicit GridLineDelegate(QObject *parent= nullptr);
+    ~GridLineDelegate() override;
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
+               const QModelIndex &index) const override;
 };
 
 #endif

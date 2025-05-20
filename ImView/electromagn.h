@@ -6,11 +6,11 @@
 #include <QElapsedTimer>
 #include <QSerialPort>
 #include <QTcpSocket>
+#include <QComboBox>
 
 #include "nabludatel.h"
 #include "nabludatel_part.h"
 #include "datasource.h"
-#include "qcombobox.h"
 
 class MainWindow;
 

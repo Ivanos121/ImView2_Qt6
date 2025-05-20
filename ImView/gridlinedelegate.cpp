@@ -4,6 +4,12 @@
 GridLineDelegate::GridLineDelegate(QObject* parent)
     : QStyledItemDelegate(parent)
 {
+
+}
+
+GridLineDelegate::~GridLineDelegate()
+{
+
 }
 
 void GridLineDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const

@@ -8,9 +8,15 @@ DoubleDelegate::DoubleDelegate(QObject *parent) : QStyledItemDelegate(parent)
 
 }
 
+DoubleDelegate::~DoubleDelegate()
+{
+
+}
+
 QString DoubleDelegate::displayText(const QVariant &value, const QLocale &locale) const
 {
-    if (value.typeId() == QMetaType::Double) {
+    if (value.typeId() == QMetaType::Double)
+    {
         return QString().asprintf("%.6g", value.toDouble()).replace(',','.');
     }
     return QStyledItemDelegate::displayText(value, locale);

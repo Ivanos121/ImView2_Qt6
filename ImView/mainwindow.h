@@ -1,24 +1,23 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-
 #include <QMainWindow>
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebEngineView>
 #include <QTreeWidgetItem>
 #include <QStandardItem>
-
 #include <QSvgWidget>
+#include <QUndoStack>
+#include <QProgressBar>
+#include <QUndoView>
+
 #include "kalibr.h"
 #include "settings.h"
 #include "datas.h"
 #include "nastroiki.h"
-#include "qundostack.h"
-#include "qundoview.h"
 #include "ui_settinsKanals.h"
 #include "aboutdialog.h"
-#include <QProgressBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

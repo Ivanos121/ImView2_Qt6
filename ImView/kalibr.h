@@ -34,7 +34,7 @@ class Kalibr : public QDialog
 
 public:
     explicit Kalibr(QWidget *parent = nullptr);
-    ~Kalibr();
+    ~Kalibr() override;
     void open_sdb();
 
     QSet<int> changedRows;
@@ -98,8 +98,8 @@ protected slots:
     void testPribor();
 
 protected:
-    void showEvent(QShowEvent *event);
-    void closeEvent(QCloseEvent *e);
+    void showEvent(QShowEvent *event) override;
+    void closeEvent(QCloseEvent *e) override;
 
 private:
     Ui::Kalibr *ui;

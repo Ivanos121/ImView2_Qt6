@@ -22,7 +22,7 @@ class datas : public QWidget
 
 public:
     explicit datas(QWidget *parent = nullptr);
-    ~datas();
+    ~datas() override;
 
 public slots:
     void enterDannieS();

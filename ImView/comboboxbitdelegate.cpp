@@ -19,7 +19,7 @@ ComboBoxBitDelegate::~ComboBoxBitDelegate()
 }
 
 QWidget* ComboBoxBitDelegate::createEditor(QWidget* parent,
-                                           const QStyleOptionViewItem& option, const QModelIndex& index) const
+                        const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     if (kalibr->disabledCells.contains(QPoint(index.row(), index.column())))
     {

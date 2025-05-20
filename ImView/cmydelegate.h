@@ -10,7 +10,9 @@ class CMyDelegate : public QStyledItemDelegate
 public:
     explicit CMyDelegate(QObject* parent= nullptr);
     ~CMyDelegate() override;
-    void paint(QPainter* painter, const QStyleOptionViewItem & option, const QModelIndex & index) const override;
+
+    void paint(QPainter* painter, const QStyleOptionViewItem & option,
+               const QModelIndex & index) const override;
 };
 
 #endif // CMYDELEGATE_H

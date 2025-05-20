@@ -12,8 +12,8 @@ CMyDelegate::~CMyDelegate()
 
 }
 
-//void CMyDelegate::paint(QPainter* painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
-void CMyDelegate:: paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void CMyDelegate:: paint(QPainter *painter, const QStyleOptionViewItem &option,
+                        const QModelIndex &index) const
 {
     QString item_color;
     if (index.column() == 1 && index.row()==1)

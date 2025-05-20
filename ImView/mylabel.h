@@ -5,8 +5,10 @@
 #include <QLabel>
 #include <QCursor>
 
-class MyLabel : public QLabel {
+class MyLabel : public QLabel
+{
     Q_OBJECT
+
 public:
     MyLabel(QWidget *parent = nullptr);
 

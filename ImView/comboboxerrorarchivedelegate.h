@@ -4,7 +4,6 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
 #include <QSqlDatabase>
@@ -16,6 +15,7 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
 class Kalibr;
 
 class ComboBoxErrorArchiveDelegate : public QStyledItemDelegate

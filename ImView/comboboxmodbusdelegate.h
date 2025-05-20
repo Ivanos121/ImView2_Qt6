@@ -4,7 +4,6 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
 #include <QSqlDatabase>
@@ -16,10 +15,13 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
 class Kalibr;
 
 class ComboBoxModbusDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
     explicit ComboBoxModbusDelegate(QObject *parent = nullptr);
     ~ComboBoxModbusDelegate() override;

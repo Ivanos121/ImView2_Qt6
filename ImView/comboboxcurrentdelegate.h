@@ -4,7 +4,6 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
 #include <QSqlDatabase>
@@ -16,6 +15,7 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
 class Kalibr;
 
 class ComboBoxCurrentDelegate : public QStyledItemDelegate
@@ -25,6 +25,7 @@ class ComboBoxCurrentDelegate : public QStyledItemDelegate
 public:
     explicit ComboBoxCurrentDelegate(QObject *parent = nullptr);
     ~ComboBoxCurrentDelegate() override;
+
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
                           const QModelIndex& index) const override;
     void setEditorData(QWidget* editor, const QModelIndex& index) const override;

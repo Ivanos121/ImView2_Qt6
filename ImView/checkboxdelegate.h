@@ -4,7 +4,6 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-//#include <QMainWindow>
 #include <QSerialPort>
 #include <QSqlTableModel>
 #include <QAbstractTableModel>
@@ -26,6 +25,7 @@ class CheckBoxDelegate : public QStyledItemDelegate
 public:
     explicit CheckBoxDelegate(QObject *parent = nullptr);
     ~CheckBoxDelegate() override;
+
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const override;
     bool editorEvent(QEvent *event, QAbstractItemModel *model,

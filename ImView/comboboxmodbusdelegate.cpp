@@ -7,6 +7,7 @@
 
 #include "kalibr.h"
 #include "comboboxmodbusdelegate.h"
+
 ComboBoxModbusDelegate::ComboBoxModbusDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
     kalibr = (Kalibr*)parent;

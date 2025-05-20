@@ -8,6 +8,12 @@ CustomHelpDelegate::CustomHelpDelegate(QObject *parent) :QStyledItemDelegate(par
 {
 
 }
+
+CustomHelpDelegate::~CustomHelpDelegate()
+{
+
+}
+
 bool CustomHelpDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
                                    const QStyleOptionViewItem& option, const QModelIndex& index )
 {

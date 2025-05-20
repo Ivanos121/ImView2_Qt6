@@ -15,7 +15,7 @@ class ischodn_dannie : public QDialog
 
 public:
     explicit ischodn_dannie(QWidget *parent = nullptr);
-    ~ischodn_dannie();
+    ~ischodn_dannie() override;
 
     datas *wf;
 
