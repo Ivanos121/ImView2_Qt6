@@ -7,8 +7,6 @@
 #include <QButtonGroup>
 
 #include "datasource.h"
-#include "datasource_file.h"
-#include "datasource_el.h"
 #include "model.h"
 #include "modell.h"
 #include "mainwindow.h"

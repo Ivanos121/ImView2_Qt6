@@ -12,6 +12,8 @@
 #include <QDBusReply>
 #include <QDBusInterface>
 
+#include "datasource_el.h"
+#include "datasource_file.h"
 #include "datasourcebvas.h"
 #include "ui_mainwindow.h"
 #include "identf.h"

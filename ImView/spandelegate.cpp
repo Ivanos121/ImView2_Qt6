@@ -12,7 +12,7 @@ bool SpanDelegate::shouldSpan(const QModelIndex &index) const
 {
     // Здесь логика определения необходимости объединения
     // Например: объединять колонки 0 и 1 в первой строке
-    if (index.column() == 0 && index.row() == 0)
+    if ((index.column() == 0) && (index.row() == 1))
     {
         return true;
     }
@@ -71,7 +71,7 @@ bool SpanDelegate::isPartOfSpan(const QModelIndex &index) const
     // Реализуйте по вашей логике.
     if (index.row() == 0 && index.column() == 0)
     {
-        return true; // например
+        return false; // например
     }
     return false;
 }

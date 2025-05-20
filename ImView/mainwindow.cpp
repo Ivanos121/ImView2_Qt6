@@ -1130,10 +1130,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->expandAll();
 
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
-    ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+    ui->treeView->setItemDelegateForColumn(0, buttonColumnDelegate);
 
+    //SpanDelegate* delegate = new SpanDelegate(ui->treeView);
+    //ui->treeView->setItemDelegate(delegate);
     SpanDelegate* delegate = new SpanDelegate(ui->treeView);
-    ui->treeView->setItemDelegate(delegate);
+    //ui->treeView->setItemDelegateForRow(1, delegate);
 
     ui->treeView->setStyleSheet(
                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
