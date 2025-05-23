@@ -18,6 +18,9 @@ private:
     mutable QVector<QModelIndex> m_rootIndices;
 
     void populateRootIndices() const;
+
+    int getItemLevel(const QModelIndex &index) const;
+    bool isItemLast(const QModelIndex &index, int level) const;
 };
 
 #endif // BRANCHDRAWINGDELEGATE_H
