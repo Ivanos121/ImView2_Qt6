@@ -10,9 +10,9 @@
 #include <QFileDialog>
 #include <QScreen>
 #include <QSortFilterProxyModel>
+#include <QSqlQuery>
 
 #include "datas.h"
-#include "qsqlquery.h"
 #include "ui_datas.h"
 #include "base.h"
 #include "doubledelegate.h"

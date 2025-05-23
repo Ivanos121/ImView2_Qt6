@@ -10,7 +10,8 @@ class MyLabel : public QLabel
     Q_OBJECT
 
 public:
-    MyLabel(QWidget *parent = nullptr);
+    explicit MyLabel(QWidget *parent = nullptr);
+    ~MyLabel() override;
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

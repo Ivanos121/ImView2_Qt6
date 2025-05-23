@@ -19,6 +19,7 @@ SOURCES += \
     aboutdialog.cpp \
     archiverchannel.cpp \
     base.cpp \
+    branchdrawingdelegate.cpp \
     bvasthread.cpp \
     bvas.cpp \
     checkboxdelegate.cpp \
@@ -93,6 +94,7 @@ HEADERS += \
     archiverchannel.h \
     base.h \
     base_tepl.h \
+    branchdrawingdelegate.h \
     bvasthread.h \
     bvas.h \
     checkboxdelegate.h \

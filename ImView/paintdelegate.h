@@ -20,10 +20,16 @@ class Kalibr;
 
 class PaintDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
-    PaintDelegate(QObject *parent = nullptr);
-    void paint(QPainter *painter, const QStyleOptionViewItem &option,const QModelIndex &index) const;
-    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    explicit PaintDelegate(QObject *parent = nullptr);
+    ~PaintDelegate() override;
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
+               const QModelIndex &index) const override;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
+                          const QModelIndex& index) const override;
 
 private:
     Kalibr* kalibr;

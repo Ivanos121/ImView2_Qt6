@@ -5,6 +5,11 @@ Modell::Modell()
 
 }
 
+Modell::~Modell()
+{
+
+}
+
 Qt::ItemFlags  Modell::flags(const QModelIndex & index) const{
   // Column 0 always records the mark variable (our boolean).
   if (index.column() == 1 || index.column() == 2) {

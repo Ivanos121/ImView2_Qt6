@@ -5,8 +5,9 @@
 #include <QColorDialog>
 #include <iostream>
 #include <fstream>
+#include <QtMath>
+//#include "cmath"
 
-#include "cmath"
 #include "trend.h"
 #include "ui_teplschem.h"
 #include "ui_trend.h"

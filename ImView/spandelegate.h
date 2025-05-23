@@ -6,8 +6,12 @@
 
 class SpanDelegate : public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
-    SpanDelegate(QTreeView *view, QObject *parent = nullptr);
+    explicit SpanDelegate(QTreeView *view, QObject *parent = nullptr);
+    ~SpanDelegate() override;
+
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const override;
     QSize sizeHint(const QStyleOptionViewItem &option,const QModelIndex &index) const override;

@@ -5,12 +5,19 @@
 
 class SpinBoxDelegate: public QStyledItemDelegate
 {
+    Q_OBJECT
+
 public:
-    SpinBoxDelegate(QObject *parent = nullptr);
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &) const;
+    explicit SpinBoxDelegate(QObject *parent = nullptr);
+    ~SpinBoxDelegate() override;
+
+    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
+    void setModelData(QWidget *editor, QAbstractItemModel *model,
+                      const QModelIndex &index) const override;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
+                              const QModelIndex &) const override;
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &,
+                          const QModelIndex &) const override;
 };
 
 #endif // SPINBOXDELEGATE_H

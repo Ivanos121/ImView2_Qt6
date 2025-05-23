@@ -5,6 +5,12 @@ TreeviewSortDelegate::TreeviewSortDelegate(QObject *parent): QSortFilterProxyMod
 
 }
 
+TreeviewSortDelegate::~TreeviewSortDelegate()
+{
+
+}
+
+
 bool TreeviewSortDelegate::filterAcceptsRow(int source_row, const QModelIndex & source_parent) const
 {
     // check the current item

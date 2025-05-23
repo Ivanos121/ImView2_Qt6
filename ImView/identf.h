@@ -42,7 +42,7 @@ public:
     QVector<QColor> dataLineColors_identf;
     SpinBoxDelegate *spin;
 
-private slots:
+protected slots:
     void setcolorincell(int row, int column);
     void edit_graf();
 };

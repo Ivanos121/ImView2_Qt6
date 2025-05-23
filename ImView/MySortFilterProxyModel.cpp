@@ -7,6 +7,11 @@ MySortFilterProxyModel::MySortFilterProxyModel(QObject *parent) : QSortFilterPro
 
 }
 
+MySortFilterProxyModel::~MySortFilterProxyModel()
+{
+
+}
+
 bool MySortFilterProxyModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     QVariant leftData = sourceModel()->data(left);

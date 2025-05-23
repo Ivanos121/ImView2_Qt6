@@ -7,6 +7,11 @@ SpinBoxDelegate::SpinBoxDelegate(QObject *parent) : QStyledItemDelegate(parent)
 
 }
 
+SpinBoxDelegate::~SpinBoxDelegate()
+{
+
+}
+
 QWidget* SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &) const
 {
     QDoubleSpinBox* editor = new QDoubleSpinBox(parent);

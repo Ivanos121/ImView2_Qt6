@@ -15,7 +15,9 @@ class MySortFilterProxyModel: public QSortFilterProxyModel
     QMap<int,Qt::ItemFlags> flagMap;
 
 public:
-    MySortFilterProxyModel(QObject *parent = nullptr);
+    explicit MySortFilterProxyModel(QObject *parent = nullptr);
+    ~MySortFilterProxyModel() override;
+
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;    
     void setAlignment(unsigned int, Qt::Alignment);

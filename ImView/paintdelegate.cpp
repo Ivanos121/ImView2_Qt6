@@ -15,6 +15,11 @@ PaintDelegate::PaintDelegate(QObject *parent) : QStyledItemDelegate(parent)
     kalibr = (Kalibr*)parent;
 }
 
+PaintDelegate::~PaintDelegate()
+{
+
+}
+
 void PaintDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
                                          const QModelIndex &index) const
 {

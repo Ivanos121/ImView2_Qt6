@@ -39,8 +39,8 @@
 #include <QDBusVariant>
 #include <QDBusReply>
 #include <QDBusInterface>
+#include <QImageWriter>
 
-#include "qimagewriter.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "base.h"
@@ -80,6 +80,7 @@
 #include "start_app.h"
 #include "base_tepl.h"
 #include "spandelegate.h"
+#include "branchdrawingdelegate.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -258,6 +259,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //connect(ui->widget->ui->tableView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onTableClicked(const QModelIndex &)));
 
+    connect(ui->treeView, &QTreeView::expanded, this, &MainWindow::onNodeExpanded);
+    connect(ui->treeView, &QTreeView::collapsed, this, &MainWindow::onNodeCollapsed);
 
     //Настройка связи форм
     ui->widget_2->wf=this;
@@ -315,7 +318,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setAlternatingRowColors(true); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
     ui->treeView->setFocusPolicy(Qt :: NoFocus);
     ui->treeView->setExpandsOnDoubleClick(true);
-    //ui->treeView->setRootIsDecorated(true);
+    // ui->treeView->setRootIsDecorated(true);
+    // ui->treeView->setItemsExpandable(true);
+    // ui->treeView->setExpandsOnDoubleClick(true);
+    // ui->treeView->setLineWidth(1);
+
     QFont newFontt("DroidSans", 10, QFont::Normal, false);
     ui->treeView->setFont(newFontt);
     ui->treeView->setBackgroundRole(QPalette :: Dark);
@@ -1105,10 +1112,14 @@ MainWindow::MainWindow(QWidget *parent)
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
-    //SpanDelegate* delegate = new SpanDelegate(ui->treeView);
-    //ui->treeView->setItemDelegate(delegate);
-    //SpanDelegate* delegate = new SpanDelegate(ui->treeView);
-    //ui->treeView->setItemDelegateForRow(1, delegate);
+
+
+    BranchDrawingDelegate *branchDrawingDelegate = new BranchDrawingDelegate(ui->treeView);
+    ui->treeView->setItemDelegate(branchDrawingDelegate);
+    ui->treeView->setRootIsDecorated(true);
+
+    // SpanDelegate* delegate = new SpanDelegate(ui->treeView);
+    // ui->treeView->setItemDelegate(delegate);
 
     ui->treeView->setStyleSheet(
                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
@@ -1149,12 +1160,12 @@ MainWindow::MainWindow(QWidget *parent)
                                     "::branch:has-children:!has-siblings:closed,"
                                     "::branch:closed:has-children:has-siblings {"
                                     "        border-image: none;"
-                                    "        image: url(:/image/data/img/icons/branch-closed.png);"
+                                    //"        image: url(:/image/data/img/icons/branch-closed.png);"
                                     "}"
                                     "::branch:open:has-children:!has-siblings,"
                                     "::branch:open:has-children:has-siblings  {"
                                    "        border-image: none;"
-                                    "        image: url(:/image/data/img/icons/branch-open.png);"
+                                   // "        image: url(:/image/data/img/icons/branch-open.png);"
                                     "}"
                 "::branch:has-siblings:!adjoins-item {"
                 "    border-image: url(:/data/img/icons/vline.png) 0;"
@@ -9467,15 +9478,13 @@ void MainWindow::on_save_tepl_graph_file_clicked()
 
 
 
-void MainWindow::on_horizontalSlider_valueChanged(int value)
+void MainWindow::horizontalSlider_valueChanged(int value)
 {
-    //ui->lineEdit->setText(QString("%1").arg(value / 99.0 * 30));
     ui->lineEdit->setText(QString("%1").arg(value));
 }
 
-void MainWindow::on_horizontalSlider_2_valueChanged(int value)
+void MainWindow::horizontalSlider_2_valueChanged(int value)
 {
-    //ui->lineEdit_2->setText(QString("%1").arg(value / 99.0 * 311.0));
     ui->lineEdit_2->setText(QString("%1").arg(value));
 }
 
@@ -12499,4 +12508,12 @@ void MainWindow::message_action(QString summary_s, QString body_s)
     }
 }
 
+void MainWindow::onNodeExpanded(const QModelIndex &index)
+{
+    ui->treeView->viewport()->update();
+}
 
+void MainWindow::onNodeCollapsed(const QModelIndex &index)
+{
+    ui->treeView->viewport()->update();
+}

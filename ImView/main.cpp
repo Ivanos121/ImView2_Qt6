@@ -6,9 +6,9 @@
 #include <QTranslator>
 #include <QSettings>
 #include <QRect>
+#include <QScreen>
 
 #include "mainwindow.h"
-#include "qscreen.h"
 #include "settings.h"
 
 int main(int argc, char *argv[])
@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
     {
         QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
     }
-
 
     QFont font = QApplication::font();
     font.setPointSize(10); // Устанавливаем размер шрифта в логических пикселях

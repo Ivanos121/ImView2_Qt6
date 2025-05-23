@@ -9,14 +9,20 @@
 #include <QHelpEvent>
 #include <QToolTip>
 #include <QAbstractItemView>
+#include <QComboBox>
 
 #include "pushbuttondelegate.h"
-#include "qcombobox.h"
 #include "settingscanals.h"
 #include "vent_settings.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
 {
+
+}
+
+ButtonColumnDelegate::~ButtonColumnDelegate()
+{
+
 }
 
 QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const

@@ -8,7 +8,8 @@ class TreeviewSortDelegate: public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    TreeviewSortDelegate(QObject *parent = nullptr);
+    explicit TreeviewSortDelegate(QObject *parent = nullptr);
+    ~TreeviewSortDelegate() override;
 
 protected:
     virtual bool filterAcceptsRow(int source_row, const QModelIndex & source_parent) const override;

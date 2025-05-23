@@ -8,6 +8,11 @@ MyLabel::MyLabel(QWidget *parent) : QLabel(parent)
 
 }
 
+MyLabel::~MyLabel()
+{
+
+}
+
 void MyLabel::mousePressEvent(QMouseEvent *event)
 {
     emit clicked();

@@ -1,5 +1,6 @@
+#include <QPainter>
+
 #include "gridlinedelegate.h"
-#include "qpainter.h"
 
 GridLineDelegate::GridLineDelegate(QObject* parent)
     : QStyledItemDelegate(parent)

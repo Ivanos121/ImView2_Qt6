@@ -162,8 +162,8 @@ private slots:
     void save_electromagn_graph_file();
     void on_save_electromagn2_file_clicked();
     void on_save_tepl_graph_file_clicked();
-    void on_horizontalSlider_valueChanged(int value);
-    void on_horizontalSlider_2_valueChanged(int value);
+    void horizontalSlider_valueChanged(int value);
+    void horizontalSlider_2_valueChanged(int value);
     void on_radioButton_11_toggled(bool checked);
     void on_radioButton_12_toggled(bool checked);
     void on_radioButton_13_toggled(bool checked);
@@ -257,6 +257,9 @@ public:
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);
+protected slots:
+    void onNodeExpanded(const QModelIndex &index);
+    void onNodeCollapsed(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H

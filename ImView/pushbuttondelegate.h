@@ -13,18 +13,22 @@ class ButtonColumnDelegate : public QStyledItemDelegate
 
 public:
 
-    ButtonColumnDelegate(QObject *parent = 0);
-    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const;
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-    //void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    explicit ButtonColumnDelegate(QObject *parent = 0);
+    ~ButtonColumnDelegate() override;
+
+    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option,
+                          const QModelIndex &index) const override;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
+    void setModelData(QWidget *editor, QAbstractItemModel *model,
+                      const QModelIndex &index) const override;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
+                              const QModelIndex &index) const override;
 
 public slots:    
-    bool helpEvent( QHelpEvent* e, QAbstractItemView* view, const QStyleOptionViewItem& option,
-                   const QModelIndex& index );
+    bool helpEvent( QHelpEvent* e, QAbstractItemView* view,
+                   const QStyleOptionViewItem& option, const QModelIndex& index) override;
 
-private slots:    
+protected slots:
     void btn_clicked_4();
     void btn_clicked_5();
     void btn_clicked_6();

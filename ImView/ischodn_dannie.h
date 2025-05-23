@@ -19,7 +19,7 @@ public:
 
     datas *wf;
 
-private slots:
+protected slots:
     void close_dialog();    
     void apply_dannie();
 

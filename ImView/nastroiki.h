@@ -3,7 +3,7 @@
 
 #include <QDialog>
 
-#include "QTranslator"
+#include <QTranslator>
 
 class MainWindow;
 
