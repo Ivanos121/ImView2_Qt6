@@ -217,7 +217,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>15</number>
+       <number>14</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_33">
@@ -1014,7 +1014,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget">
+            <widget class="QTableWidget" name="graph_settings">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
@@ -1097,7 +1097,7 @@
            </attribute>
            <layout class="QGridLayout" name="gridLayout_13">
             <item row="0" column="0">
-             <widget class="QTableWidget" name="tableWidget_2">
+             <widget class="QTableWidget" name="electromagn_result">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -1123,7 +1123,7 @@
            </attribute>
            <layout class="QGridLayout" name="gridLayout_12">
             <item row="0" column="0">
-             <widget class="QTableWidget" name="tableWidget_4">
+             <widget class="QTableWidget" name="energy_results">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -1481,7 +1481,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget_3">
+         <widget class="QTableWidget" name="tepl_results">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1588,7 +1588,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="tableWidget_5">
+         <widget class="QTableWidget" name="temp_draw_line">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>

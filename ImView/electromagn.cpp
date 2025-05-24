@@ -248,365 +248,365 @@ void electromagn::realtimeDataSlot()
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
-        if(wf->ui->tableWidget->item(4,4)!=0)
+        if(wf->ui->graph_settings->item(4,4)!=0)
         {
-            b1=wf->ui->tableWidget->item(4,4)->text().toDouble();
+            b1=wf->ui->graph_settings->item(4,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы В
 
-        if(wf->ui->tableWidget->item(5,4)!=0)
+        if(wf->ui->graph_settings->item(5,4)!=0)
         {
-            b2=wf->ui->tableWidget->item(5,4)->text().toDouble();
+            b2=wf->ui->graph_settings->item(5,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы С
 
-        if(wf->ui->tableWidget->item(6,4)!=0)
+        if(wf->ui->graph_settings->item(6,4)!=0)
         {
-            b3=wf->ui->tableWidget->item(6,4)->text().toDouble();
+            b3=wf->ui->graph_settings->item(6,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы А
 
-        if(wf->ui->tableWidget->item(4,3)!=0)
+        if(wf->ui->graph_settings->item(4,3)!=0)
         {
-            b4=wf->ui->tableWidget->item(4,3)->text().toDouble();
+            b4=wf->ui->graph_settings->item(4,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы В
 
-        if(wf->ui->tableWidget->item(5,3)!=0)
+        if(wf->ui->graph_settings->item(5,3)!=0)
         {
-            b5=wf->ui->tableWidget->item(5,3)->text().toDouble();
+            b5=wf->ui->graph_settings->item(5,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы С
 
-        if(wf->ui->tableWidget->item(6,3)!=0)
+        if(wf->ui->graph_settings->item(6,3)!=0)
         {
-            b6=wf->ui->tableWidget->item(6,3)->text().toDouble();
+            b6=wf->ui->graph_settings->item(6,3)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы А
 
-        if(wf->ui->tableWidget->item(7,4)!=0)
+        if(wf->ui->graph_settings->item(7,4)!=0)
         {
-            b7=wf->ui->tableWidget->item(7,4)->text().toDouble();
+            b7=wf->ui->graph_settings->item(7,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы В
 
-        if(wf->ui->tableWidget->item(8,4)!=0)
+        if(wf->ui->graph_settings->item(8,4)!=0)
         {
-            b8=wf->ui->tableWidget->item(8,4)->text().toDouble();
+            b8=wf->ui->graph_settings->item(8,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы С
 
-        if(wf->ui->tableWidget->item(9,4)!=0)
+        if(wf->ui->graph_settings->item(9,4)!=0)
         {
-            b9=wf->ui->tableWidget->item(9,4)->text().toDouble();
+            b9=wf->ui->graph_settings->item(9,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы А
 
-        if(wf->ui->tableWidget->item(7,3)!=0)
+        if(wf->ui->graph_settings->item(7,3)!=0)
         {
-            b10=wf->ui->tableWidget->item(7,3)->text().toDouble();
+            b10=wf->ui->graph_settings->item(7,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы В
 
-        if(wf->ui->tableWidget->item(8,3)!=0)
+        if(wf->ui->graph_settings->item(8,3)!=0)
         {
-            b11=wf->ui->tableWidget->item(8,3)->text().toDouble();
+            b11=wf->ui->graph_settings->item(8,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы С
 
-        if(wf->ui->tableWidget->item(9,3)!=0)
+        if(wf->ui->graph_settings->item(9,3)!=0)
         {
-            b12=wf->ui->tableWidget->item(9,3)->text().toDouble();
+            b12=wf->ui->graph_settings->item(9,3)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды скорости вращения
 
-        if(wf->ui->tableWidget->item(10,4)!=0)
+        if(wf->ui->graph_settings->item(10,4)!=0)
         {
-            b13=wf->ui->tableWidget->item(10,4)->text().toDouble();
+            b13=wf->ui->graph_settings->item(10,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды момента на валу
 
-        if(wf->ui->tableWidget->item(11,4)!=0)
+        if(wf->ui->graph_settings->item(11,4)!=0)
         {
-            b14=wf->ui->tableWidget->item(11,4)->text().toDouble();
+            b14=wf->ui->graph_settings->item(11,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды момента Mc
 
-        if(wf->ui->tableWidget->item(12,4)!=0)
+        if(wf->ui->graph_settings->item(12,4)!=0)
         {
-            b17=wf->ui->tableWidget->item(12,4)->text().toDouble();
+            b17=wf->ui->graph_settings->item(12,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения скорости вращения
 
-        if(wf->ui->tableWidget->item(10,3)!=0)
+        if(wf->ui->graph_settings->item(10,3)!=0)
         {
-            b15=wf->ui->tableWidget->item(10,3)->text().toDouble();
+            b15=wf->ui->graph_settings->item(10,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения момента на валу
 
-        if(wf->ui->tableWidget->item(11,3)!=0)
+        if(wf->ui->graph_settings->item(11,3)!=0)
         {
-            b16=wf->ui->tableWidget->item(11,3)->text().toDouble();
+            b16=wf->ui->graph_settings->item(11,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения момента Mc
 
-        if(wf->ui->tableWidget->item(12,3)!=0)
+        if(wf->ui->graph_settings->item(12,3)!=0)
         {
-            b18=wf->ui->tableWidget->item(12,3)->text().toDouble();
+            b18=wf->ui->graph_settings->item(12,3)->text().toDouble();
         }
 
         key = model_el.t;
 
         //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
 
-        if(wf->ui->tableWidget->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(0, key, b4+b1*(model_el.u_dev_a));
         }
 
         //вывод на qcustomPlot графика напряжения Ub после преобразования 2 в 3
 
-        if(wf->ui->tableWidget->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(1, key, b5+b2*(model_el.u_dev_b));
         }
 
         //вывод на qcustomPlot графика напряжения Uc после преобразования 2 в 3
 
-        if(wf->ui->tableWidget->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(2, key, b6+b3*(model_el.u_dev_c));
         }
 
         //вывод на qcustomPlot графика напряжения Ia после преобразования 2 в 3
 
-        if(wf->ui->tableWidget->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(3, key, b10+b7*(model_el.i_dev_a));
         }
 
         //вывод на qcustomPlot графика напряжения Ib после преобразования 2 в 3
 
-        if(wf->ui->tableWidget->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(4, key, b11+b8*(model_el.i_dev_b));
         }
 
         //вывод на qcustomPlot графика напряжения Ic после преобразования 2 в 3
 
-        if(wf->ui->tableWidget->model()->index(9,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(9,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(5, key, b12+b9*(model_el.i_dev_c));
         }
 
         //вывод на qcustomPlot графика скорости omega
 
-        if(wf->ui->tableWidget->model()->index(10,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(10,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(6, key, b15+b13*model_el.omega);
         }
 
         //вывод на qcustomPlot момента на валу M
 
-        if(wf->ui->tableWidget->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(7, key, b16+b14*model_el.M);
         }
 
         //вывод на qcustomPlot момента Mс
 
-        if(wf->ui->tableWidget->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(8, key, b17+b18*model_el.Mc);
         }
 
         //Занесение итоговых данных в таблицу
-        if (wf->ui->tableWidget_2->item(0, 2) != 0)
+        if (wf->ui->electromagn_result->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(0, 2)->setText(QString::number(model_el.i_dev_a,'f',3));
+            wf->ui->electromagn_result->item(0, 2)->setText(QString::number(model_el.i_dev_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(1, 2) != 0)
+        if (wf->ui->electromagn_result->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(1, 2)->setText(QString::number(model_el.u_dev_a,'f',3));
+            wf->ui->electromagn_result->item(1, 2)->setText(QString::number(model_el.u_dev_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(2, 2) != 0)
+        if (wf->ui->electromagn_result->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(2, 2)->setText(QString::number(model_el.p_akt_a,'f',3));
+            wf->ui->electromagn_result->item(2, 2)->setText(QString::number(model_el.p_akt_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(3, 2) != 0)
+        if (wf->ui->electromagn_result->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(3, 2)->setText(QString::number(model_el.p_reakt_a,'f',3));
+            wf->ui->electromagn_result->item(3, 2)->setText(QString::number(model_el.p_reakt_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(4, 2) != 0)
+        if (wf->ui->electromagn_result->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(4, 2)->setText(QString::number(model_el.p_poln_a,'f',3));
+            wf->ui->electromagn_result->item(4, 2)->setText(QString::number(model_el.p_poln_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(5, 2) != 0)
+        if (wf->ui->electromagn_result->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(5, 2)->setText(QString::number(model_el.cos_f_a,'f',3));
+            wf->ui->electromagn_result->item(5, 2)->setText(QString::number(model_el.cos_f_a,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(6, 2) != 0)
+        if (wf->ui->electromagn_result->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(6, 2)->setText(QString::number(model_el.i_dev_b,'f',3));
+            wf->ui->electromagn_result->item(6, 2)->setText(QString::number(model_el.i_dev_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(7, 2) != 0)
+        if (wf->ui->electromagn_result->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(7, 2)->setText(QString::number(model_el.u_dev_b,'f',3));
+            wf->ui->electromagn_result->item(7, 2)->setText(QString::number(model_el.u_dev_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(8, 2) != 0)
+        if (wf->ui->electromagn_result->item(8, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(8, 2)->setText(QString::number(model_el.p_akt_b,'f',3));
+            wf->ui->electromagn_result->item(8, 2)->setText(QString::number(model_el.p_akt_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(9, 2) != 0)
+        if (wf->ui->electromagn_result->item(9, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(9, 2)->setText(QString::number(model_el.p_reakt_b,'f',3));
+            wf->ui->electromagn_result->item(9, 2)->setText(QString::number(model_el.p_reakt_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(10, 2) != 0)
+        if (wf->ui->electromagn_result->item(10, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(10, 2)->setText(QString::number(model_el.p_poln_b,'f',3));
+            wf->ui->electromagn_result->item(10, 2)->setText(QString::number(model_el.p_poln_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(11, 2) != 0)
+        if (wf->ui->electromagn_result->item(11, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(11, 2)->setText(QString::number(model_el.cos_f_b,'f',3));
+            wf->ui->electromagn_result->item(11, 2)->setText(QString::number(model_el.cos_f_b,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(12, 2) != 0)
+        if (wf->ui->electromagn_result->item(12, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(12, 2)->setText(QString::number(model_el.i_dev_c,'f',3));
+            wf->ui->electromagn_result->item(12, 2)->setText(QString::number(model_el.i_dev_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(13, 2) != 0)
+        if (wf->ui->electromagn_result->item(13, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(13, 2)->setText(QString::number(model_el.u_dev_c,'f',3));
+            wf->ui->electromagn_result->item(13, 2)->setText(QString::number(model_el.u_dev_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(14, 2) != 0)
+        if (wf->ui->electromagn_result->item(14, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(14, 2)->setText(QString::number(model_el.p_akt_c,'f',3));
+            wf->ui->electromagn_result->item(14, 2)->setText(QString::number(model_el.p_akt_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(15, 2) != 0)
+        if (wf->ui->electromagn_result->item(15, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(15, 2)->setText(QString::number(model_el.p_reakt_c,'f',3));
+            wf->ui->electromagn_result->item(15, 2)->setText(QString::number(model_el.p_reakt_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(16, 2) != 0)
+        if (wf->ui->electromagn_result->item(16, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(16, 2)->setText(QString::number(model_el.p_poln_c,'f',3));
+            wf->ui->electromagn_result->item(16, 2)->setText(QString::number(model_el.p_poln_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(17, 2) != 0)
+        if (wf->ui->electromagn_result->item(17, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(17, 2)->setText(QString::number(model_el.cos_f_c,'f',3));
+            wf->ui->electromagn_result->item(17, 2)->setText(QString::number(model_el.cos_f_c,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(18, 2) != 0)
+        if (wf->ui->electromagn_result->item(18, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(18, 2)->setText(QString::number(model_el.p_akt,'f',3));
+            wf->ui->electromagn_result->item(18, 2)->setText(QString::number(model_el.p_akt,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(19, 2) != 0)
+        if (wf->ui->electromagn_result->item(19, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(19, 2)->setText(QString::number(model_el.p_reakt,'f',3));
+            wf->ui->electromagn_result->item(19, 2)->setText(QString::number(model_el.p_reakt,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(20, 2) != 0)
+        if (wf->ui->electromagn_result->item(20, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(20, 2)->setText(QString::number(model_el.p_poln,'f',3));
+            wf->ui->electromagn_result->item(20, 2)->setText(QString::number(model_el.p_poln,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(21, 2) != 0)
+        if (wf->ui->electromagn_result->item(21, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(21, 2)->setText(QString::number(model_el.cos_f,'f',3));
+            wf->ui->electromagn_result->item(21, 2)->setText(QString::number(model_el.cos_f,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(22, 2) != 0)
+        if (wf->ui->electromagn_result->item(22, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(22, 2)->setText(QString::number(model_el.omega,'f',3));
+            wf->ui->electromagn_result->item(22, 2)->setText(QString::number(model_el.omega,'f',3));
         }
-        if (wf->ui->tableWidget_2->item(23, 2) != 0)
+        if (wf->ui->electromagn_result->item(23, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(23, 2)->setText(QString::number(model_el.M,'f',3));
+            wf->ui->electromagn_result->item(23, 2)->setText(QString::number(model_el.M,'f',3));
         }
 
-        if (wf->ui->tableWidget_2->item(24, 2) != 0)
+        if (wf->ui->electromagn_result->item(24, 2) != 0)
         {
-            wf->ui->tableWidget_2->item(24, 2)->setText(QString::number(model_el.Mc,'f',3));
+            wf->ui->electromagn_result->item(24, 2)->setText(QString::number(model_el.Mc,'f',3));
         }
 
         //Запись в таблицу энергетических показателей
 
-        if (wf->ui->tableWidget_4->item(0, 2) != 0)
+        if (wf->ui->energy_results->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(0, 2)->setText(QString::number(tepl_struct.P1,'f',3));
+            wf->ui->energy_results->item(0, 2)->setText(QString::number(tepl_struct.P1,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(1, 2) != 0)
+        if (wf->ui->energy_results->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(1, 2)->setText(QString::number(tepl_struct.dPel1,'f',3));
+            wf->ui->energy_results->item(1, 2)->setText(QString::number(tepl_struct.dPel1,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(2, 2) != 0)
+        if (wf->ui->energy_results->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(2, 2)->setText(QString::number(tepl_struct.dPct,'f',3));
+            wf->ui->energy_results->item(2, 2)->setText(QString::number(tepl_struct.dPct,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(3, 2) != 0)
+        if (wf->ui->energy_results->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(3, 2)->setText(QString::number(tepl_struct.dPel2,'f',3));
+            wf->ui->energy_results->item(3, 2)->setText(QString::number(tepl_struct.dPel2,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(4, 2) != 0)
+        if (wf->ui->energy_results->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(4, 2)->setText(QString::number(tepl_struct.dPdob,'f',3));
+            wf->ui->energy_results->item(4, 2)->setText(QString::number(tepl_struct.dPdob,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(5, 2) != 0)
+        if (wf->ui->energy_results->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(5, 2)->setText(QString::number(tepl_struct.dPmech,'f',3));
+            wf->ui->energy_results->item(5, 2)->setText(QString::number(tepl_struct.dPmech,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(6, 2) != 0)
+        if (wf->ui->energy_results->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(6, 2)->setText(QString::number(tepl_struct.P2,'f',3));
+            wf->ui->energy_results->item(6, 2)->setText(QString::number(tepl_struct.P2,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(7, 2) != 0)
+        if (wf->ui->energy_results->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(7, 2)->setText(QString::number(tepl_struct.kpd,'f',3));
+            wf->ui->energy_results->item(7, 2)->setText(QString::number(tepl_struct.kpd,'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(8, 2) != 0)
+        if (wf->ui->energy_results->item(8, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(model_el.cos_f,'f',3));
+            wf->ui->energy_results->item(8, 2)->setText(QString::number(model_el.cos_f,'f',3));
         }
 
 
@@ -739,331 +739,331 @@ void electromagn::realtimeDataSlot()
 
         //Считывание коэффициента изменения амплитуды напряжения фазы А
 
-        if(wf->ui->tableWidget->item(4,4)!=0)
+        if(wf->ui->graph_settings->item(4,4)!=0)
         {
-            b1=wf->ui->tableWidget->item(4,4)->text().toDouble();
+            b1=wf->ui->graph_settings->item(4,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы В
 
-        if(wf->ui->tableWidget->item(5,4)!=0)
+        if(wf->ui->graph_settings->item(5,4)!=0)
         {
-            b2=wf->ui->tableWidget->item(5,4)->text().toDouble();
+            b2=wf->ui->graph_settings->item(5,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды напряжения фазы С
 
-        if(wf->ui->tableWidget->item(6,4)!=0)
+        if(wf->ui->graph_settings->item(6,4)!=0)
         {
-            b3=wf->ui->tableWidget->item(6,4)->text().toDouble();
+            b3=wf->ui->graph_settings->item(6,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы А
 
-        if(wf->ui->tableWidget->item(4,3)!=0)
+        if(wf->ui->graph_settings->item(4,3)!=0)
         {
-            b4=wf->ui->tableWidget->item(4,3)->text().toDouble();
+            b4=wf->ui->graph_settings->item(4,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы В
 
-        if(wf->ui->tableWidget->item(5,3)!=0)
+        if(wf->ui->graph_settings->item(5,3)!=0)
         {
-            b5=wf->ui->tableWidget->item(5,3)->text().toDouble();
+            b5=wf->ui->graph_settings->item(5,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения напряжения фазы С
 
-        if(wf->ui->tableWidget->item(6,3)!=0)
+        if(wf->ui->graph_settings->item(6,3)!=0)
         {
-            b6=wf->ui->tableWidget->item(6,3)->text().toDouble();
+            b6=wf->ui->graph_settings->item(6,3)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы А
 
-        if(wf->ui->tableWidget->item(7,4)!=0)
+        if(wf->ui->graph_settings->item(7,4)!=0)
         {
-            b7=wf->ui->tableWidget->item(7,4)->text().toDouble();
+            b7=wf->ui->graph_settings->item(7,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы В
 
-        if(wf->ui->tableWidget->item(8,4)!=0)
+        if(wf->ui->graph_settings->item(8,4)!=0)
         {
-            b8=wf->ui->tableWidget->item(8,4)->text().toDouble();
+            b8=wf->ui->graph_settings->item(8,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды тока фазы С
 
-        if(wf->ui->tableWidget->item(9,4)!=0)
+        if(wf->ui->graph_settings->item(9,4)!=0)
         {
-            b9=wf->ui->tableWidget->item(9,4)->text().toDouble();
+            b9=wf->ui->graph_settings->item(9,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы А
 
-        if(wf->ui->tableWidget->item(7,3)!=0)
+        if(wf->ui->graph_settings->item(7,3)!=0)
         {
-            b10=wf->ui->tableWidget->item(7,3)->text().toDouble();
+            b10=wf->ui->graph_settings->item(7,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы В
 
-        if(wf->ui->tableWidget->item(8,3)!=0)
+        if(wf->ui->graph_settings->item(8,3)!=0)
         {
-            b11=wf->ui->tableWidget->item(8,3)->text().toDouble();
+            b11=wf->ui->graph_settings->item(8,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения тока фазы С
 
-        if(wf->ui->tableWidget->item(9,3)!=0)
+        if(wf->ui->graph_settings->item(9,3)!=0)
         {
-            b12=wf->ui->tableWidget->item(9,3)->text().toDouble();
+            b12=wf->ui->graph_settings->item(9,3)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды скорости вращения
 
-        if(wf->ui->tableWidget->item(10,4)!=0)
+        if(wf->ui->graph_settings->item(10,4)!=0)
         {
-            b13=wf->ui->tableWidget->item(10,4)->text().toDouble();
+            b13=wf->ui->graph_settings->item(10,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды момента на валу
 
-        if(wf->ui->tableWidget->item(11,4)!=0)
+        if(wf->ui->graph_settings->item(11,4)!=0)
         {
-            b14=wf->ui->tableWidget->item(11,4)->text().toDouble();
+            b14=wf->ui->graph_settings->item(11,4)->text().toDouble();
         }
 
         //Считывание коэффициента изменения амплитуды момента Mc
 
-        if(wf->ui->tableWidget->item(12,4)!=0)
+        if(wf->ui->graph_settings->item(12,4)!=0)
         {
-            b17=wf->ui->tableWidget->item(12,4)->text().toDouble();
+            b17=wf->ui->graph_settings->item(12,4)->text().toDouble();
         }
 
         //Считывание коэффициента смещения скорости вращения
 
-        if(wf->ui->tableWidget->item(10,3)!=0)
+        if(wf->ui->graph_settings->item(10,3)!=0)
         {
-            b15=wf->ui->tableWidget->item(10,3)->text().toDouble();
+            b15=wf->ui->graph_settings->item(10,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения момента на валу
 
-        if(wf->ui->tableWidget->item(11,3)!=0)
+        if(wf->ui->graph_settings->item(11,3)!=0)
         {
-            b16=wf->ui->tableWidget->item(11,3)->text().toDouble();
+            b16=wf->ui->graph_settings->item(11,3)->text().toDouble();
         }
 
         //Считывание коэффициента смещения момента Mc
 
-        if(wf->ui->tableWidget->item(12,3)!=0)
+        if(wf->ui->graph_settings->item(12,3)!=0)
         {
-            b18=wf->ui->tableWidget->item(12,3)->text().toDouble();
+            b18=wf->ui->graph_settings->item(12,3)->text().toDouble();
         }
 
 
-        if(wf->ui->tableWidget->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(0, key, b4+b1*nabludatel->get_u_dev_a());
         }
 
-        if(wf->ui->tableWidget->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(5,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(1, key, b5+b2*nabludatel->get_u_dev_b());
         }
 
-        if(wf->ui->tableWidget->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(6,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(2, key, b6+b3*nabludatel->get_u_dev_c());
         }
 
-        if(wf->ui->tableWidget->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(7,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(3, key, b10+b7*nabludatel->get_i_dev_a());
         }
 
-        if(wf->ui->tableWidget->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(8,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(4, key, b11+b8*nabludatel->get_i_dev_b());
         }
 
-        if(wf->ui->tableWidget->model()->index(9,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(9,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(5, key, b12+b9*nabludatel->get_i_dev_c());
         }
 
-        if(wf->ui->tableWidget->model()->index(10,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(10,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(6, key, nabludatel->get_w_sr());
         }
 
-        if(wf->ui->tableWidget->model()->index(11,2).data(Qt::CheckStateRole)==Qt::Checked)
+        if(wf->ui->graph_settings->model()->index(11,2).data(Qt::CheckStateRole)==Qt::Checked)
         {
             ui->plot->addPoint(7, key, nabludatel->get_M_sr());
         }
 
         //Занесение итоговых данных в таблицу
-        if (wf->ui->tableWidget_2->item(0, 1) != 0)
+        if (wf->ui->electromagn_result->item(0, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
+            wf->ui->electromagn_result->item(0, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_a()));
         }
 
-        if (wf->ui->tableWidget_2->item(1, 1) != 0)
+        if (wf->ui->electromagn_result->item(1, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
+            wf->ui->electromagn_result->item(1, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_a()));
         }
 
-        if (wf->ui->tableWidget_2->item(2, 1) != 0)
+        if (wf->ui->electromagn_result->item(2, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
+            wf->ui->electromagn_result->item(2, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_a()));
         }
 
-        if (wf->ui->tableWidget_2->item(3, 1) != 0)
+        if (wf->ui->electromagn_result->item(3, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
+            wf->ui->electromagn_result->item(3, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_a()));
         }
 
-        if (wf->ui->tableWidget_2->item(4, 1) != 0)
+        if (wf->ui->electromagn_result->item(4, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
+            wf->ui->electromagn_result->item(4, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_a()));
         }
 
-        if (wf->ui->tableWidget_2->item(5, 1) != 0)
+        if (wf->ui->electromagn_result->item(5, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
+            wf->ui->electromagn_result->item(5, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_a()));
         }
 
-        if (wf->ui->tableWidget_2->item(6, 1) != 0)
+        if (wf->ui->electromagn_result->item(6, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
+            wf->ui->electromagn_result->item(6, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_b()));
         }
 
-        if (wf->ui->tableWidget_2->item(7, 1) != 0)
+        if (wf->ui->electromagn_result->item(7, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
+            wf->ui->electromagn_result->item(7, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_b()));
         }
 
-        if (wf->ui->tableWidget_2->item(8, 1) != 0)
+        if (wf->ui->electromagn_result->item(8, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
+            wf->ui->electromagn_result->item(8, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_b()));
         }
 
-        if (wf->ui->tableWidget_2->item(9, 1) != 0)
+        if (wf->ui->electromagn_result->item(9, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
+            wf->ui->electromagn_result->item(9, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_b()));
         }
 
-        if (wf->ui->tableWidget_2->item(10, 1) != 0)
+        if (wf->ui->electromagn_result->item(10, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
+            wf->ui->electromagn_result->item(10, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_b()));
         }
 
-        if (wf->ui->tableWidget_2->item(11, 1) != 0)
+        if (wf->ui->electromagn_result->item(11, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
+            wf->ui->electromagn_result->item(11, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_b()));
         }
 
-        if (wf->ui->tableWidget_2->item(12, 1) != 0)
+        if (wf->ui->electromagn_result->item(12, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
+            wf->ui->electromagn_result->item(12, 1)->setText(QString("%1").arg(nabludatel->get_i_dev_c()));
         }
 
-        if (wf->ui->tableWidget_2->item(13, 1) != 0)
+        if (wf->ui->electromagn_result->item(13, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
+            wf->ui->electromagn_result->item(13, 1)->setText(QString("%1").arg(nabludatel->get_u_dev_c()));
         }
 
-        if (wf->ui->tableWidget_2->item(14, 1) != 0)
+        if (wf->ui->electromagn_result->item(14, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
+            wf->ui->electromagn_result->item(14, 1)->setText(QString("%1").arg(nabludatel->get_p_akt_c()));
         }
 
-        if (wf->ui->tableWidget_2->item(15, 1) != 0)
+        if (wf->ui->electromagn_result->item(15, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
+            wf->ui->electromagn_result->item(15, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt_c()));
         }
 
-        if (wf->ui->tableWidget_2->item(16, 1) != 0)
+        if (wf->ui->electromagn_result->item(16, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
+            wf->ui->electromagn_result->item(16, 1)->setText(QString("%1").arg(nabludatel->get_p_poln_c()));
         }
 
-        if (wf->ui->tableWidget_2->item(17, 1) != 0)
+        if (wf->ui->electromagn_result->item(17, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
+            wf->ui->electromagn_result->item(17, 1)->setText(QString("%1").arg(nabludatel->get_cos_f_c()));
         }
 
-        if (wf->ui->tableWidget_2->item(18, 1) != 0)
+        if (wf->ui->electromagn_result->item(18, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
+            wf->ui->electromagn_result->item(18, 1)->setText(QString("%1").arg(nabludatel->get_p_akt()));
         }
 
-        if (wf->ui->tableWidget_2->item(19, 1) != 0)
+        if (wf->ui->electromagn_result->item(19, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
+            wf->ui->electromagn_result->item(19, 1)->setText(QString("%1").arg(nabludatel->get_p_reakt()));
         }
-        if (wf->ui->tableWidget_2->item(20, 1) != 0)
+        if (wf->ui->electromagn_result->item(20, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
+            wf->ui->electromagn_result->item(20, 1)->setText(QString("%1").arg(nabludatel->get_p_poln()));
         }
-        if (wf->ui->tableWidget_2->item(21, 1) != 0)
+        if (wf->ui->electromagn_result->item(21, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
+            wf->ui->electromagn_result->item(21, 1)->setText(QString("%1").arg(nabludatel->get_cos_f()));
         }
-        if (wf->ui->tableWidget_2->item(22, 1) != 0)
+        if (wf->ui->electromagn_result->item(22, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
+            wf->ui->electromagn_result->item(22, 1)->setText(QString("%1").arg(nabludatel->get_w_sr()));
         }
-        if (wf->ui->tableWidget_2->item(23, 1) != 0)
+        if (wf->ui->electromagn_result->item(23, 1) != 0)
         {
-            wf->ui->tableWidget_2->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
-        }
-
-        if (wf->ui->tableWidget_4->item(0, 2) != 0)
-        {
-            wf->ui->tableWidget_4->item(0, 2)->setText(QString::number(nabludatel->get_P1(),'f',3));
+            wf->ui->electromagn_result->item(23, 1)->setText(QString("%1").arg(nabludatel->get_M_sr()));
         }
 
-        if (wf->ui->tableWidget_4->item(1, 2) != 0)
+        if (wf->ui->energy_results->item(0, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(1, 2)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
+            wf->ui->energy_results->item(0, 2)->setText(QString::number(nabludatel->get_P1(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(2, 2) != 0)
+        if (wf->ui->energy_results->item(1, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(2, 2)->setText(QString::number(nabludatel->get_dPct(),'f',3));
+            wf->ui->energy_results->item(1, 2)->setText(QString::number(nabludatel->get_dPel1(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(3, 2) != 0)
+        if (wf->ui->energy_results->item(2, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(3, 2)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
+            wf->ui->energy_results->item(2, 2)->setText(QString::number(nabludatel->get_dPct(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(4, 2) != 0)
+        if (wf->ui->energy_results->item(3, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(4, 2)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
+            wf->ui->energy_results->item(3, 2)->setText(QString::number(nabludatel->get_dPel2(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(5, 2) != 0)
+        if (wf->ui->energy_results->item(4, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(5, 2)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
+            wf->ui->energy_results->item(4, 2)->setText(QString::number(nabludatel->get_dPdob(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(6, 2) != 0)
+        if (wf->ui->energy_results->item(5, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(6, 2)->setText(QString::number(nabludatel->get_P2(),'f',3));
+            wf->ui->energy_results->item(5, 2)->setText(QString::number(nabludatel->get_dPmech(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(7, 2) != 0)
+        if (wf->ui->energy_results->item(6, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(7, 2)->setText(QString::number(nabludatel->get_kpd(),'f',3));
+            wf->ui->energy_results->item(6, 2)->setText(QString::number(nabludatel->get_P2(),'f',3));
         }
 
-        if (wf->ui->tableWidget_4->item(8, 2) != 0)
+        if (wf->ui->energy_results->item(7, 2) != 0)
         {
-            wf->ui->tableWidget_4->item(8, 2)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
+            wf->ui->energy_results->item(7, 2)->setText(QString::number(nabludatel->get_kpd(),'f',3));
+        }
+
+        if (wf->ui->energy_results->item(8, 2) != 0)
+        {
+            wf->ui->energy_results->item(8, 2)->setText(QString::number(nabludatel->get_cos_f(),'f',3));
         }
     }
     emit tick();

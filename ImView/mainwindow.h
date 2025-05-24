@@ -16,7 +16,6 @@
 #include "settings.h"
 #include "datas.h"
 #include "nastroiki.h"
-#include "ui_settinsKanals.h"
 #include "aboutdialog.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,20 +25,6 @@ QT_END_NAMESPACE
 class Model_el;
 
 class MainWindow;
-
-class SettinsKanals : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit SettinsKanals(QWidget *parent = nullptr);
-
-private slots:
-               //void on_pushButton_clicked();
-
-private:
-    Ui::settinsKanals *ui;
-};
 
 class MainWindow : public QMainWindow
 {
@@ -283,9 +268,6 @@ public:
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);
-protected slots:
-    void onNodeExpanded(const QModelIndex &index);
-    void onNodeCollapsed(const QModelIndex &index);
 };
 
 #endif // MAINWINDOW_H

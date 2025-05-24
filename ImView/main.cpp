@@ -13,7 +13,7 @@
 
 int main(int argc, char *argv[])
 {
-    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+    //qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
     qputenv("QT_QUICK_BACKEND", "software");
 
     QApplication a(argc, argv);
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     QString lokal = settings.value( "QtLanguage_", "").toString();
     settings.endGroup();
 
-    QString language = QString("QtLanguage_") + lokal;
+    //QString language = QString("QtLanguage_") + lokal;
     QTranslator *qtLanguageTranslator = new QTranslator();
 
     if(lokal == "ru_RU")
