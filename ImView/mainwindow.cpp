@@ -643,121 +643,121 @@ MainWindow::MainWindow(QWidget *parent)
     items4.clear();
 
     QList<QStandardItem*> items17;
-    item145 = new QStandardItem(tr("Тепловая идентификация"));
-    item146 = new QStandardItem();
-    items17.append(item145);
-    items17.append(item146);
+    thermal_identification_parametr = new QStandardItem(tr("Тепловая идентификация"));
+    thermal_identification_value = new QStandardItem();
+    items17.append(thermal_identification_parametr);
+    items17.append(thermal_identification_value);
     model2->appendRow(items17);
     items17.clear();
-    item145->setSelectable(false);
-    item145->setEditable(false);
-    QString w64=item145->text();
-    item145->setToolTip(w64);
-    item146->setSelectable(false);
-    item146->setEditable(false);
+    thermal_identification_parametr->setSelectable(false);
+    thermal_identification_parametr->setEditable(false);
+    QString w64=thermal_identification_parametr->text();
+    thermal_identification_parametr->setToolTip(w64);
+    thermal_identification_value->setSelectable(false);
+    thermal_identification_value->setEditable(false);
     QFont newFont17("SansSerif", 10, QFont::Bold,false);
-    item145->setFont(newFont17);
+    thermal_identification_parametr->setFont(newFont17);
 
-    item147 = new QStandardItem(tr("Вид тепловой модели"));
-    item147->setEditable(false);
-    QString w65=item147->text();
-    item147->setToolTip(w65);
-    item148 = new QStandardItem(tr("Выберите вид"));
-    QString w66=item148->text();
-    item148->setToolTip(w66);
-    items17.append(item147);
-    items17.append(item148);
-    item145->appendRow(items17);
+    kind_thermal_model_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_parametr->setEditable(false);
+    QString w65=kind_thermal_model_parametr->text();
+    kind_thermal_model_parametr->setToolTip(w65);
+    kind_thermal_model_value = new QStandardItem(tr("Выберите вид"));
+    QString w66=kind_thermal_model_value->text();
+    kind_thermal_model_value->setToolTip(w66);
+    items17.append(kind_thermal_model_parametr);
+    items17.append(kind_thermal_model_value);
+    thermal_identification_parametr->appendRow(items17);
     items17.clear();
 
-    item149 = new QStandardItem(tr("Вид тепловой модели"));
-    item149->setEditable(false);
-    QString w67=item149->text();
-    item149->setToolTip(w67);
-    item150 = new QStandardItem(tr("Выберите вид"));
-    QString w68=item150->text();
-    item150->setToolTip(w68);
-    items17.append(item149);
-    items17.append(item150);
-    item145->appendRow(items17);
+    kind_thermal_model_2_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_2_parametr->setEditable(false);
+    QString w67=kind_thermal_model_2_parametr->text();
+    kind_thermal_model_2_parametr->setToolTip(w67);
+    kind_thermal_model_3_value = new QStandardItem(tr("Выберите вид"));
+    QString w68=kind_thermal_model_3_value->text();
+    kind_thermal_model_3_value->setToolTip(w68);
+    items17.append(kind_thermal_model_2_parametr);
+    items17.append(kind_thermal_model_3_value);
+    thermal_identification_parametr->appendRow(items17);
     items17.clear();
 
-    item151 = new QStandardItem(tr("Вид тепловой модели"));
-    item151->setEditable(false);
-    QString w69=item151->text();
-    item151->setToolTip(w69);
-    item152 = new QStandardItem(tr("Выберите вид"));
-    QString w70=item152->text();
-    item152->setToolTip(w70);
-    items17.append(item151);
-    items17.append(item152);
-    item145->appendRow(items17);
+    kind_thermal_model_3_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_3_parametr->setEditable(false);
+    QString w69=kind_thermal_model_3_parametr->text();
+    kind_thermal_model_3_parametr->setToolTip(w69);
+    kind_thermal_model_3_value = new QStandardItem(tr("Выберите вид"));
+    QString w70=kind_thermal_model_3_value->text();
+    kind_thermal_model_3_value->setToolTip(w70);
+    items17.append(kind_thermal_model_3_parametr);
+    items17.append(kind_thermal_model_3_value);
+    thermal_identification_parametr->appendRow(items17);
     items17.clear();
 
     QList<QStandardItem*> items18;
-    item153 = new QStandardItem(tr("Вентиляционная идентификация"));
-    item154 = new QStandardItem();
-    items18.append(item153);
-    items18.append(item154);
+    ventilation_identification_parametr = new QStandardItem(tr("Вентиляционная идентификация"));
+    ventilation_identification_value = new QStandardItem();
+    items18.append(ventilation_identification_parametr);
+    items18.append(ventilation_identification_value);
     model2->appendRow(items18);
     items18.clear();
-    item153->setSelectable(false);
-    item153->setEditable(false);
-    QString w71=item153->text();
-    item153->setToolTip(w71);
-    item154->setSelectable(false);
-    item154->setEditable(false);
+    ventilation_identification_parametr->setSelectable(false);
+    ventilation_identification_parametr->setEditable(false);
+    QString w71=ventilation_identification_parametr->text();
+    ventilation_identification_parametr->setToolTip(w71);
+    ventilation_identification_value->setSelectable(false);
+    ventilation_identification_value->setEditable(false);
     QFont newFont18("SansSerif", 10, QFont::Bold,false);
-    item153->setFont(newFont18);
+    ventilation_identification_parametr->setFont(newFont18);
 
-    item155 = new QStandardItem(tr("Вид вентиляции"));
-    item155->setEditable(false);
-    QString w72=item155->text();
-    item155->setToolTip(w72);
-    item156 = new QStandardItem(tr("Выберите вид"));
-    QString w74=item156->text();
-    item156->setToolTip(w74);
-    items18.append(item155);
-    items18.append(item156);
-    item153->appendRow(items18);
+    kind_ventilation_parametr = new QStandardItem(tr("Вид вентиляции"));
+    kind_ventilation_parametr->setEditable(false);
+    QString w72=kind_ventilation_parametr->text();
+    kind_ventilation_parametr->setToolTip(w72);
+    kind_ventilation_value = new QStandardItem(tr("Выберите вид"));
+    QString w74=kind_ventilation_value->text();
+    kind_ventilation_value->setToolTip(w74);
+    items18.append(kind_ventilation_parametr);
+    items18.append(kind_ventilation_value);
+    ventilation_identification_parametr->appendRow(items18);
     items18.clear();
 
-    item157 = new QStandardItem(tr("Режим расчета"));
-    item157->setEditable(false);
-    QString w75=item155->text();
-    item157->setToolTip(w75);
-    item158 = new QStandardItem(tr("Выберите вид"));
-    QString w76=item156->text();
-    item158->setToolTip(w76);
-    items18.append(item157);
-    items18.append(item158);
-    item153->appendRow(items18);
+    calculation_modes_parametr = new QStandardItem(tr("Режим расчета"));
+    calculation_modes_parametr->setEditable(false);
+    QString w75=kind_ventilation_parametr->text();
+    calculation_modes_parametr->setToolTip(w75);
+    calculation_modes_value = new QStandardItem(tr("Выберите вид"));
+    QString w76=kind_ventilation_value->text();
+    calculation_modes_value->setToolTip(w76);
+    items18.append(calculation_modes_parametr);
+    items18.append(calculation_modes_value);
+    ventilation_identification_parametr->appendRow(items18);
     items18.clear();
 
-    item159 = new QStandardItem(tr("Геометрические параметры"));
-    item159->setEditable(false);
-    item159->setEnabled(false);
-    QString w77=item159->text();
-    item159->setToolTip(w77);
-    item160 = new QStandardItem(tr("Введите данные"));
-    item160->setEnabled(false);
-    QString w78=item160->text();
-    item160->setToolTip(w78);
-    items18.append(item159);
-    items18.append(item160);
-    item153->appendRow(items18);
+    geometry_parameters_parametr = new QStandardItem(tr("Геометрические параметры"));
+    geometry_parameters_parametr->setEditable(false);
+    geometry_parameters_parametr->setEnabled(false);
+    QString w77=geometry_parameters_parametr->text();
+    geometry_parameters_parametr->setToolTip(w77);
+    geometry_parameters_value = new QStandardItem(tr("Введите данные"));
+    geometry_parameters_value->setEnabled(false);
+    QString w78=geometry_parameters_value->text();
+    geometry_parameters_value->setToolTip(w78);
+    items18.append(geometry_parameters_parametr);
+    items18.append(geometry_parameters_value);
+    ventilation_identification_parametr->appendRow(items18);
     items18.clear();
 
-    item161 = new QStandardItem(tr("Учет тепловых процессов"));
-    item161->setEditable(false);
-    QString w79=item161->text();
-    item161->setToolTip(w79);
-    item162 = new QStandardItem(tr("Введите данные"));
-    QString w80=item162->text();
-    item162->setToolTip(w80);
-    items18.append(item161);
-    items18.append(item162);
-    item153->appendRow(items18);
+    Heat_processes_accounting_parameter = new QStandardItem(tr("Учет тепловых процессов"));
+    Heat_processes_accounting_parameter->setEditable(false);
+    QString w79=Heat_processes_accounting_parameter->text();
+    Heat_processes_accounting_parameter->setToolTip(w79);
+    Heat_processes_accounting_value = new QStandardItem(tr("Введите данные"));
+    QString w80=Heat_processes_accounting_value->text();
+    Heat_processes_accounting_value->setToolTip(w80);
+    items18.append(Heat_processes_accounting_parameter);
+    items18.append(Heat_processes_accounting_value);
+    ventilation_identification_parametr->appendRow(items18);
     items18.clear();
 
     QList<QStandardItem*> items5;
@@ -3247,7 +3247,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(identification_switch_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(enter_type_experiment_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(data_identification_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
-    connect(item158->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
+    connect(calculation_modes_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
     connect(item174->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
     connect(item22->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
     connect(item178->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
@@ -4059,17 +4059,17 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
 
 void MainWindow::modelItemChangedSlot_5(QStandardItem *item)
 {
-    if (item == item158)
+    if (item == calculation_modes_value)
     {
         if (item->text() == "Ручной")
         {
-            item159->setEnabled(true);
-            item160->setEnabled(true);
+            geometry_parameters_parametr->setEnabled(true);
+            geometry_parameters_value->setEnabled(true);
         }
         else
         {
-            item159->setEnabled(false);
-            item160->setEnabled(false);
+            geometry_parameters_parametr->setEnabled(false);
+            geometry_parameters_value->setEnabled(false);
         }
     }
 }
