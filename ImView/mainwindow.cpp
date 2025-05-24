@@ -522,124 +522,124 @@ MainWindow::MainWindow(QWidget *parent)
     items2.clear();
 
     QList<QStandardItem*> items3;
-    item9 = new QStandardItem(tr("Идентификация параметров схемы замещения"));
-    item10 = new QStandardItem();
-    items3.append(item9);
-    items3.append(item10);
+    identf_scheme_zam_parametr = new QStandardItem(tr("Идентификация параметров схемы замещения"));
+    identf_scheme_zam_value = new QStandardItem();
+    items3.append(identf_scheme_zam_parametr);
+    items3.append(identf_scheme_zam_value);
     model2->appendRow(items3);
     items3.clear();
-    item9->setSelectable(false);
-    item9->setEditable(false);
-    QString w31=item9->text();
-    item9->setToolTip(w31);
-    item10->setSelectable(false);
-    item10->setEditable(false);
-    QString w32=item10->text();
-    item10->setToolTip(w32);
+    identf_scheme_zam_parametr->setSelectable(false);
+    identf_scheme_zam_parametr->setEditable(false);
+    QString w31=identf_scheme_zam_parametr->text();
+    identf_scheme_zam_parametr->setToolTip(w31);
+    identf_scheme_zam_value->setSelectable(false);
+    identf_scheme_zam_value->setEditable(false);
+    QString w32=identf_scheme_zam_value->text();
+    identf_scheme_zam_value->setToolTip(w32);
     QFont newFont2("SansSerif", 10, QFont::Bold,false);
-    item9->setFont(newFont2);
+    identf_scheme_zam_parametr->setFont(newFont2);
 
     QList<QStandardItem*> items4;
-    item13 = new QStandardItem(tr("Режим расчета"));
-    item13->setEditable(false);
-    QString w35=item13->text();
-    item13->setToolTip(w35);
-    item14 = new QStandardItem(tr("Выберите режим"));
-    QString w73=item14->text();
-    item14->setToolTip(w73);
-    items4.append(item13);
-    items4.append(item14);
-    item9->appendRow(items4);
+    calculation_mode_parametr = new QStandardItem(tr("Режим расчета"));
+    calculation_mode_parametr->setEditable(false);
+    QString w35=calculation_mode_parametr->text();
+    calculation_mode_parametr->setToolTip(w35);
+    calculation_mode_value = new QStandardItem(tr("Выберите режим"));
+    QString w73=calculation_mode_value->text();
+    calculation_mode_value->setToolTip(w73);
+    items4.append(calculation_mode_parametr);
+    items4.append(calculation_mode_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
-    item93 = new QStandardItem(tr("Настроечный коэффициент gd="));
-    item93->setEditable(false);
-    item93->setEnabled(false);
-    QString w37=item93->text();
-    item93->setToolTip(w37);
-    item94 = new QStandardItem(tr("0"));
-    item94->setEnabled(false);
-    item94->setCheckable(false);
-    QString w38=item94->text();
-    item94->setToolTip(w38);
-    items4.append(item93);
-    items4.append(item94);
-    item9->appendRow(items4);
+    tuning_coefficient_ki_parametr = new QStandardItem(tr("Настроечный коэффициент gd="));
+    tuning_coefficient_ki_parametr->setEditable(false);
+    tuning_coefficient_ki_parametr->setEnabled(false);
+    QString w37=tuning_coefficient_ki_parametr->text();
+    tuning_coefficient_ki_parametr->setToolTip(w37);
+    tuning_coefficient_gd_value = new QStandardItem(tr("0"));
+    tuning_coefficient_gd_value->setEnabled(false);
+    tuning_coefficient_gd_value->setCheckable(false);
+    QString w38=tuning_coefficient_gd_value->text();
+    tuning_coefficient_gd_value->setToolTip(w38);
+    items4.append(tuning_coefficient_ki_parametr);
+    items4.append(tuning_coefficient_gd_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
-    item95 = new QStandardItem(tr("Настроечный коэффициент ki="));
-    item95->setEditable(false);
-    item95->setEnabled(false);
-    QString w39=item95->text();
-    item95->setToolTip(w39);
-    item96 = new QStandardItem(tr("0"));
-    item96->setEnabled(false);
-    item96->setCheckable(false);
-    QString w40=item96->text();
-    item96->setToolTip(w40);
-    items4.append(item95);
-    items4.append(item96);
-    item9->appendRow(items4);
+    tuning_coefficient_ki_parametr = new QStandardItem(tr("Настроечный коэффициент ki="));
+    tuning_coefficient_ki_parametr->setEditable(false);
+    tuning_coefficient_ki_parametr->setEnabled(false);
+    QString w39=tuning_coefficient_ki_parametr->text();
+    tuning_coefficient_ki_parametr->setToolTip(w39);
+    tuning_coefficient_ki_value = new QStandardItem(tr("0"));
+    tuning_coefficient_ki_value->setEnabled(false);
+    tuning_coefficient_ki_value->setCheckable(false);
+    QString w40=tuning_coefficient_ki_value->text();
+    tuning_coefficient_ki_value->setToolTip(w40);
+    items4.append(tuning_coefficient_ki_parametr);
+    items4.append(tuning_coefficient_ki_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
-    item97 = new QStandardItem(tr("Настроечный коэффициент gb="));
-    item97->setEditable(false);
-    item97->setEnabled(false);
-    QString w41=item97->text();
-    item97->setToolTip(w41);
-    item98 = new QStandardItem(tr("0"));
-    item98->setEnabled(false);
-    item98->setCheckable(false);
-    QString w42=item98->text();
-    item98->setToolTip(w42);
-    items4.append(item97);
-    items4.append(item98);
-    item9->appendRow(items4);
+    tuning_coefficient_gb_parametr = new QStandardItem(tr("Настроечный коэффициент gb="));
+    tuning_coefficient_gb_parametr->setEditable(false);
+    tuning_coefficient_gb_parametr->setEnabled(false);
+    QString w41=tuning_coefficient_gb_parametr->text();
+    tuning_coefficient_gb_parametr->setToolTip(w41);
+    tuning_coefficient_gb_value = new QStandardItem(tr("0"));
+    tuning_coefficient_gb_value->setEnabled(false);
+    tuning_coefficient_gb_value->setCheckable(false);
+    QString w42=tuning_coefficient_gb_value->text();
+    tuning_coefficient_gb_value->setToolTip(w42);
+    items4.append(tuning_coefficient_gb_parametr);
+    items4.append(tuning_coefficient_gb_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
-    item99 = new QStandardItem(tr("Настроечный коэффициент kpsi="));
-    item99->setEditable(false);
-    item99->setEnabled(false);
-    QString w43=item99->text();
-    item99->setToolTip(w43);
-    item100 = new QStandardItem(tr("0"));
-    item100->setEnabled(false);
-    item100->setCheckable(false);
-    QString w44=item100->text();
-    item100->setToolTip(w44);
-    items4.append(item99);
-    items4.append(item100);
-    item9->appendRow(items4);
+    tuning_coefficient_kpsi_parametr = new QStandardItem(tr("Настроечный коэффициент kpsi="));
+    tuning_coefficient_kpsi_parametr->setEditable(false);
+    tuning_coefficient_kpsi_parametr->setEnabled(false);
+    QString w43=tuning_coefficient_kpsi_parametr->text();
+    tuning_coefficient_kpsi_parametr->setToolTip(w43);
+    tuning_coefficient_kpsi_value = new QStandardItem(tr("0"));
+    tuning_coefficient_kpsi_value->setEnabled(false);
+    tuning_coefficient_kpsi_value->setCheckable(false);
+    QString w44=tuning_coefficient_kpsi_value->text();
+    tuning_coefficient_kpsi_value->setToolTip(w44);
+    items4.append(tuning_coefficient_kpsi_parametr);
+    items4.append(tuning_coefficient_kpsi_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
-    item101 = new QStandardItem(tr("Настроечный коэффициент gp="));
-    item101->setEditable(false);
-    item101->setEnabled(false);
-    QString w45=item101->text();
-    item101->setToolTip(w45);
-    item102 = new QStandardItem(tr("0"));
-    item102->setEnabled(false);
-    item102->setCheckable(false);
-    QString w46=item102->text();
-    item102->setToolTip(w46);
-    items4.append(item101);
-    items4.append(item102);
-    item9->appendRow(items4);
+    tuning_coefficient_gp_parametr = new QStandardItem(tr("Настроечный коэффициент gp="));
+    tuning_coefficient_gp_parametr->setEditable(false);
+    tuning_coefficient_gp_parametr->setEnabled(false);
+    QString w45=tuning_coefficient_gp_parametr->text();
+    tuning_coefficient_gp_parametr->setToolTip(w45);
+    tuning_coefficient_gp_value = new QStandardItem(tr("0"));
+    tuning_coefficient_gp_value->setEnabled(false);
+    tuning_coefficient_gp_value->setCheckable(false);
+    QString w46=tuning_coefficient_gp_value->text();
+    tuning_coefficient_gp_value->setToolTip(w46);
+    items4.append(tuning_coefficient_gp_parametr);
+    items4.append(tuning_coefficient_gp_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
-    item103 = new QStandardItem(tr("Настроечный коэффициент gpsi="));
-    item103->setEditable(false);
-    item103->setEnabled(false);
-    QString w47=item103->text();
-    item103->setToolTip(w47);
-    item104 = new QStandardItem(tr("0"));
-    item104->setEnabled(false);
-    item104->setCheckable(false);
-    QString w48=item104->text();
-    item104->setToolTip(w48);
-    items4.append(item103);
-    items4.append(item104);
-    item9->appendRow(items4);
+    tuning_coefficient_gpsi_parametr = new QStandardItem(tr("Настроечный коэффициент gpsi="));
+    tuning_coefficient_gpsi_parametr->setEditable(false);
+    tuning_coefficient_gpsi_parametr->setEnabled(false);
+    QString w47=tuning_coefficient_gpsi_parametr->text();
+    tuning_coefficient_gpsi_parametr->setToolTip(w47);
+    tuning_coefficient_gpsi_value = new QStandardItem(tr("0"));
+    tuning_coefficient_gpsi_value->setEnabled(false);
+    tuning_coefficient_gpsi_value->setCheckable(false);
+    QString w48=tuning_coefficient_gpsi_value->text();
+    tuning_coefficient_gpsi_value->setToolTip(w48);
+    items4.append(tuning_coefficient_gpsi_parametr);
+    items4.append(tuning_coefficient_gpsi_value);
+    identf_scheme_zam_parametr->appendRow(items4);
     items4.clear();
 
     QList<QStandardItem*> items17;
@@ -3243,7 +3243,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QObject::connect(ui->treeView, &QAbstractItemView::activated,this, &MainWindow::itemEdit);
 
-    connect(item14->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
+    connect(calculation_mode_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot);
     connect(identification_switch_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_2);
     connect(enter_type_experiment_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(data_identification_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
@@ -3800,37 +3800,37 @@ void MainWindow::nastroiki()
 
 void MainWindow::modelItemChangedSlot(QStandardItem *item)
 {
-    if (item == item14)
+    if (item == calculation_mode_value)
     {
         if (item->text() == "Ручной")
         {
-            item93->setEnabled(true);
-            item94->setEnabled(true);
-            item95->setEnabled(true);
-            item96->setEnabled(true);
-            item97->setEnabled(true);
-            item98->setEnabled(true);
-            item99->setEnabled(true);
-            item100->setEnabled(true);
-            item101->setEnabled(true);
-            item102->setEnabled(true);
-            item103->setEnabled(true);
-            item104->setEnabled(true);
+            tuning_coefficient_ki_parametr->setEnabled(true);
+            tuning_coefficient_gd_value->setEnabled(true);
+            tuning_coefficient_ki_parametr->setEnabled(true);
+            tuning_coefficient_ki_value->setEnabled(true);
+            tuning_coefficient_gb_parametr->setEnabled(true);
+            tuning_coefficient_gb_value->setEnabled(true);
+            tuning_coefficient_kpsi_parametr->setEnabled(true);
+            tuning_coefficient_kpsi_value->setEnabled(true);
+            tuning_coefficient_gp_parametr->setEnabled(true);
+            tuning_coefficient_gp_value->setEnabled(true);
+            tuning_coefficient_gpsi_parametr->setEnabled(true);
+            tuning_coefficient_gpsi_value->setEnabled(true);
         }
         else
         {
-            item93->setEnabled(false);
-            item94->setEnabled(false);
-            item95->setEnabled(false);
-            item96->setEnabled(false);
-            item97->setEnabled(false);
-            item98->setEnabled(false);
-            item99->setEnabled(false);
-            item100->setEnabled(false);
-            item101->setEnabled(false);
-            item102->setEnabled(false);
-            item103->setEnabled(false);
-            item104->setEnabled(false);
+            tuning_coefficient_ki_parametr->setEnabled(false);
+            tuning_coefficient_gd_value->setEnabled(false);
+            tuning_coefficient_ki_parametr->setEnabled(false);
+            tuning_coefficient_ki_value->setEnabled(false);
+            tuning_coefficient_gb_parametr->setEnabled(false);
+            tuning_coefficient_gb_value->setEnabled(false);
+            tuning_coefficient_kpsi_parametr->setEnabled(false);
+            tuning_coefficient_kpsi_value->setEnabled(false);
+            tuning_coefficient_gp_parametr->setEnabled(false);
+            tuning_coefficient_gp_value->setEnabled(false);
+            tuning_coefficient_gpsi_parametr->setEnabled(false);
+            tuning_coefficient_gpsi_value->setEnabled(false);
         }
     }
 }
@@ -3978,52 +3978,52 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         }
     }
     else
-    if (item == item14)
+    if (item == calculation_mode_value)
     {
         if (item->checkState() == Qt::Checked)
         {
-            item14->setToolTip(tr ("Вкл"));
+            calculation_mode_value->setToolTip(tr ("Вкл"));
         }
         else
         {
-            item14->setToolTip(tr ("Выкл"));
+            calculation_mode_value->setToolTip(tr ("Выкл"));
         }
     }
     else
-    if (item == item94)
+    if (item == tuning_coefficient_gd_value)
     {
-        QString w101=item94->text();
-        item94->setToolTip(w101);
+        QString w101=tuning_coefficient_gd_value->text();
+        tuning_coefficient_gd_value->setToolTip(w101);
     }
     else
-    if (item == item96)
+    if (item == tuning_coefficient_ki_value)
     {
-        QString w102=item96->text();
-        item96->setToolTip(w102);
+        QString w102=tuning_coefficient_ki_value->text();
+        tuning_coefficient_ki_value->setToolTip(w102);
     }
     else
-    if (item == item98)
+    if (item == tuning_coefficient_gb_value)
     {
-        QString w103=item98->text();
-        item98->setToolTip(w103);
+        QString w103=tuning_coefficient_gb_value->text();
+        tuning_coefficient_gb_value->setToolTip(w103);
     }
     else
-    if (item == item100)
+    if (item == tuning_coefficient_kpsi_value)
     {
-        QString w104=item100->text();
-        item100->setToolTip(w104);
+        QString w104=tuning_coefficient_kpsi_value->text();
+        tuning_coefficient_kpsi_value->setToolTip(w104);
     }
     else
-    if (item == item102)
+    if (item == tuning_coefficient_gp_value)
     {
-        QString w105=item102->text();
-        item102->setToolTip(w105);
+        QString w105=tuning_coefficient_gp_value->text();
+        tuning_coefficient_gp_value->setToolTip(w105);
     }
     else
-    if (item == item104)
+    if (item == tuning_coefficient_gpsi_value)
     {
-        QString w106=item104->text();
-        item104->setToolTip(w106);
+        QString w106=tuning_coefficient_gpsi_value->text();
+        tuning_coefficient_gpsi_value->setToolTip(w106);
     }
     else
     if (item == item20)
@@ -4205,31 +4205,31 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_9");
-    xmlWriter.writeAttribute("value", (item14->text()));
+    xmlWriter.writeAttribute("value", (calculation_mode_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_1");
-    xmlWriter.writeAttribute("value", (item94->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gd_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_2");
-    xmlWriter.writeAttribute("value", (item96->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_ki_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_3");
-    xmlWriter.writeAttribute("value", (item98->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gb_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_4");
-    xmlWriter.writeAttribute("value", (item100->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_kpsi_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_5");
-    xmlWriter.writeAttribute("value", (item102->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gp_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_6");
-    xmlWriter.writeAttribute("value", (item104->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gpsi_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_10");
@@ -4318,7 +4318,7 @@ void MainWindow::SaveProgectToFile()
         xmlWriter.writeAttribute("value", (ui->lineEdit_8->text()));
         xmlWriter.writeEndElement();
     }
-    if(item14->text() == "Автоматический")
+    if(calculation_mode_value->text() == "Автоматический")
     {
         xmlWriter.writeStartElement("koeff_gd");
         xmlWriter.writeAttribute("value", (ui->lineEdit_13->text()));
@@ -4568,7 +4568,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item14->setText(attribute_value);
+                            calculation_mode_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4579,7 +4579,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item94->setText(attribute_value);
+                            tuning_coefficient_gd_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4590,7 +4590,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item96->setText(attribute_value);
+                            tuning_coefficient_ki_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4601,7 +4601,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item98->setText(attribute_value);
+                            tuning_coefficient_gb_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4612,7 +4612,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item100->setText(attribute_value);
+                            tuning_coefficient_kpsi_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4623,7 +4623,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item102->setText(attribute_value);
+                            tuning_coefficient_gp_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4634,7 +4634,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item104->setText(attribute_value);
+                            tuning_coefficient_gpsi_value->setText(attribute_value);
                         }
                     }
                 }
@@ -9755,31 +9755,31 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_9");
-    xmlWriter.writeAttribute("value", (item14->text()));
+    xmlWriter.writeAttribute("value", (calculation_mode_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_1");
-    xmlWriter.writeAttribute("value", (item94->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gd_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_2");
-    xmlWriter.writeAttribute("value", (item96->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_ki_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_3");
-    xmlWriter.writeAttribute("value", (item98->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gb_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_4");
-    xmlWriter.writeAttribute("value", (item100->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_kpsi_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_5");
-    xmlWriter.writeAttribute("value", (item102->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gp_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("coeff_6");
-    xmlWriter.writeAttribute("value", (item104->text()));
+    xmlWriter.writeAttribute("value", (tuning_coefficient_gpsi_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_10");
@@ -9868,7 +9868,7 @@ void MainWindow::save_file()
         xmlWriter.writeAttribute("value", (ui->lineEdit_8->text()));
         xmlWriter.writeEndElement();
     }
-    if(item14->text() == "Автоматический")
+    if(calculation_mode_value->text() == "Автоматический")
     {
         xmlWriter.writeStartElement("koeff_gd");
         xmlWriter.writeAttribute("value", (ui->lineEdit_13->text()));
@@ -10680,7 +10680,7 @@ void::MainWindow::close_progect()
     enter_type_experiment_value->setText(tr("Выбрать тип эксперимента"));
     read_data_identf_observer_value->setText(tr("Указать каталог"));
     search_kanals_value->setText(tr("Выбрать каналы"));
-    item14->setText(tr("Выберите режим"));
+    calculation_mode_value->setText(tr("Выберите режим"));
     item20->setText(tr("Выбрать режим"));
     item22->setText(tr("0"));
     item24->setText(tr("0"));

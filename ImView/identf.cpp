@@ -313,7 +313,7 @@ void identf::raschet_f()
     ui->plot->addPoint(3, 0, model.Lm);
 
 
-    if(wf->item14->text() == "Автоматический")
+    if(wf->calculation_mode_value->text() == "Автоматический")
     {
         wf->ui->lineEdit_13->setText("0.01");
         wf->ui->lineEdit_16->setText("0.1");
