@@ -16,13 +16,14 @@ public:
                const QModelIndex &index) const override;
 private:
     QTreeView *m_view;
-    PaintFunction m_paintFunc1;
-    PaintFunction m_paintFunc2;
+    void m_paintFunc2(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void m_paintFunc1(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     bool shouldSpan(const QModelIndex &index) const;
     bool isPartOfSpan(const QModelIndex &index) const;
     int getItemLevel(const QModelIndex &index) const;
     bool isItemLast(const QModelIndex &index, int level) const;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
 };
 
 #endif // LINEDELEGATE_H

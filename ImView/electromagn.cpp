@@ -652,7 +652,7 @@ void electromagn::realtimeDataSlot()
         //Считывание значения времени работы tp
         double tp = wf->item176->text().toDouble();
 
-        QString S = wf->item20->text();
+        QString S = wf->engine_duty_cycle_value->text();
 
         double Mc = 0;
         double tt = key;
@@ -1319,7 +1319,7 @@ void electromagn::raschet_el()
 
         if (wf->item92->text() == "Прямой пуск")
         {
-            model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
+            model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->engine_duty_cycle_value->text(),
                              model_el.Tc=wf->item22->text().toDouble(),
                              model_el.tp=wf->item176->text().toDouble(),
                              Model_el::DIRECT_START);
@@ -1330,7 +1330,7 @@ void electromagn::raschet_el()
 
         if (wf->item92->text() == "Система ТРН-АД")
         {
-            model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
+            model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->engine_duty_cycle_value->text(),
                              model_el.Tc=wf->item22->text().toDouble(),
                              model_el.tp=wf->item176->text().toDouble(),
                              Model_el::VOLTAGE_REGULATION);
@@ -1344,7 +1344,7 @@ void electromagn::raschet_el()
 
         if (wf->item92->text() == "Система ПЧ-АД")
         {
-            model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
+            model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->engine_duty_cycle_value->text(),
                              model_el.Tc=wf->item22->text().toDouble(),
                              model_el.tp=wf->item176->text().toDouble(),
                              Model_el::FREQUENCY_REGULATION);

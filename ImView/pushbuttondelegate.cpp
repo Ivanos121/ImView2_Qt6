@@ -1219,3 +1219,4 @@ bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
 
     return QStyledItemDelegate::helpEvent( e, view, option, index);
 }
+

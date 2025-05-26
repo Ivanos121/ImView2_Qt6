@@ -315,7 +315,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Настройка свойств QTreeView
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
-    ui->treeView->setAlternatingRowColors(true); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
+    ui->treeView->setAlternatingRowColors(false); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
     ui->treeView->setFocusPolicy(Qt :: NoFocus);
     ui->treeView->setExpandsOnDoubleClick(true);
 
@@ -767,32 +767,32 @@ MainWindow::MainWindow(QWidget *parent)
     items18.clear();
 
     QList<QStandardItem*> items5;
-    item17 = new QStandardItem(tr("Электромагнитная модель"));
-    item18 = new QStandardItem();
-    items5.append(item17);
-    items5.append(item18);
+    electromagnetic_model_parametr = new QStandardItem(tr("Электромагнитная модель"));
+    electromagnetic_model_value = new QStandardItem();
+    items5.append(electromagnetic_model_parametr);
+    items5.append(electromagnetic_model_value);
     model2->appendRow(items5);
     items5.clear();
-    item17->setSelectable(false);
-    item17->setEditable(false);
-    QString w49=item17->text();
-    item17->setToolTip(w49);
-    item18->setSelectable(false);
-    item18->setEditable(false);
+    electromagnetic_model_parametr->setSelectable(false);
+    electromagnetic_model_parametr->setEditable(false);
+    QString w49=electromagnetic_model_parametr->text();
+    electromagnetic_model_parametr->setToolTip(w49);
+    electromagnetic_model_value->setSelectable(false);
+    electromagnetic_model_value->setEditable(false);
     QFont newFont3("SansSerif", 10, QFont::Bold,false);
-    item17->setFont(newFont3);
+    electromagnetic_model_parametr->setFont(newFont3);
 
     QList<QStandardItem*> items6;
-    item19 = new QStandardItem(tr("Pежим работы двигателя"));
-    item19->setEditable(false);
-    QString w50=item19->text();
-    item19->setToolTip(w50);
-    item20 = new QStandardItem(tr("Выбрать режим"));
-    QString w51=item20->text();
-    item20->setToolTip(w51);
-    items6.append(item19);
-    items6.append(item20);
-    item17->appendRow(items6);
+    engine_duty_cycle_parametr = new QStandardItem(tr("Pежим работы двигателя"));
+    engine_duty_cycle_parametr->setEditable(false);
+    QString w50=engine_duty_cycle_parametr->text();
+    engine_duty_cycle_parametr->setToolTip(w50);
+    engine_duty_cycle_value = new QStandardItem(tr("Выбрать режим"));
+    QString w51=engine_duty_cycle_value->text();
+    engine_duty_cycle_value->setToolTip(w51);
+    items6.append(engine_duty_cycle_parametr);
+    items6.append(engine_duty_cycle_value);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item21 = new QStandardItem(tr("Время цикла, с:"));
@@ -806,7 +806,7 @@ MainWindow::MainWindow(QWidget *parent)
     item22->setToolTip(w53);
     items6.append(item21);
     items6.append(item22);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item175 = new QStandardItem(tr("Время работы в цикле, с:"));
@@ -820,7 +820,7 @@ MainWindow::MainWindow(QWidget *parent)
     item176->setToolTip(w84);
     items6.append(item175);
     items6.append(item176);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item177 = new QStandardItem(tr("Время пуска в цикле, с:"));
@@ -834,7 +834,7 @@ MainWindow::MainWindow(QWidget *parent)
     item178->setToolTip(w88);
     items6.append(item177);
     items6.append(item178);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item23 = new QStandardItem(tr("Выбор системы отсчета времени"));
@@ -846,7 +846,7 @@ MainWindow::MainWindow(QWidget *parent)
     item24->setToolTip(w55);
     items6.append(item23);
     items6.append(item24);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item173 = new QStandardItem(tr("Время работы, с:"));
@@ -860,7 +860,7 @@ MainWindow::MainWindow(QWidget *parent)
     item174->setToolTip(w82);
     items6.append(item173);
     items6.append(item174);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item91 = new QStandardItem(tr("Выбор системы электропривода"));
@@ -872,7 +872,7 @@ MainWindow::MainWindow(QWidget *parent)
     item92->setToolTip(w59);
     items6.append(item91);
     items6.append(item92);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item129 = new QStandardItem(tr("Ввод напряжения питания двигателя"));
@@ -884,7 +884,7 @@ MainWindow::MainWindow(QWidget *parent)
     item130->setToolTip(w61);
     items6.append(item129);
     items6.append(item130);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     item131 = new QStandardItem(tr("Ввод значение момента нагрузки"));
@@ -896,7 +896,7 @@ MainWindow::MainWindow(QWidget *parent)
     item132->setToolTip(w63);
     items6.append(item131);
     items6.append(item132);
-    item17->appendRow(items6);
+    electromagnetic_model_parametr->appendRow(items6);
     items6.clear();
 
     QList<QStandardItem*> items7;
@@ -4033,10 +4033,10 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         tuning_coefficient_gpsi_value->setToolTip(w106);
     }
     else
-    if (item == item20)
+    if (item == engine_duty_cycle_value)
     {
-        QString w107=item20->text();
-        item20->setToolTip(w107);
+        QString w107=engine_duty_cycle_value->text();
+        engine_duty_cycle_value->setToolTip(w107);
     }
     else
     if (item == item22)
@@ -4100,7 +4100,7 @@ void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
 
 void MainWindow::modelItemChangedSlot_7(QStandardItem *item)
 {
-    if (item == item20)
+    if (item == engine_duty_cycle_value)
     {
         if (item->text() == "Режим S1")
         {
@@ -4121,7 +4121,7 @@ void MainWindow::modelItemChangedSlot_7(QStandardItem *item)
 
 void MainWindow::modelItemChangedSlot_8(QStandardItem *item)
 {
-    if (item == item20)
+    if (item == engine_duty_cycle_value)
     {
         if (item->text() == "Режим S4")
         {
@@ -4240,7 +4240,7 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_10");
-    xmlWriter.writeAttribute("value", (item20->text()));
+    xmlWriter.writeAttribute("value", (engine_duty_cycle_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_cikle");
@@ -4652,7 +4652,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item20->setText(attribute_value);
+                            engine_duty_cycle_value->setText(attribute_value);
                         }
                     }
                 }
@@ -9783,7 +9783,7 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_10");
-    xmlWriter.writeAttribute("value", (item20->text()));
+    xmlWriter.writeAttribute("value", (engine_duty_cycle_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_cikle");
@@ -10681,7 +10681,7 @@ void::MainWindow::close_progect()
     read_data_identf_observer_value->setText(tr("Указать каталог"));
     search_kanals_value->setText(tr("Выбрать каналы"));
     calculation_mode_value->setText(tr("Выберите режим"));
-    item20->setText(tr("Выбрать режим"));
+    engine_duty_cycle_value->setText(tr("Выбрать режим"));
     item22->setText(tr("0"));
     item24->setText(tr("0"));
     item28->setText(tr("0"));
