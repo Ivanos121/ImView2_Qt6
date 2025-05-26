@@ -81,6 +81,7 @@
 #include "base_tepl.h"
 #include "spandelegate.h"
 #include "branchdrawingdelegate.h"
+#include "linedelegate.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -333,6 +334,15 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
 
+    connect(ui->treeView, &QTreeView::expanded, this, [this]()
+    {
+        ui->treeView->viewport()->update();
+    });
+    connect(ui->treeView, &QTreeView::collapsed, this, [this]()
+    {
+        ui->treeView->viewport()->update();
+    });
+
     //Создание модели QTreeView
     model2=new QStandardItemModel(ui->treeView);
     model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
@@ -341,7 +351,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //настройка итемов QTreeView
     QList<QStandardItem*> items1;
-    all_sesion_name_parametr = new QStandardItem(tr("Общее настройки сессии"));
+    //all_sesion_name_parametr = new QStandardItem(tr("Общее настройки сессии"));
+    all_sesion_name_parametr = new QStandardItem();
     QString w0=all_sesion_name_parametr->text();
     all_sesion_name_parametr->setToolTip(w0);
     all_sesion_name_value = new QStandardItem();
@@ -1107,11 +1118,13 @@ MainWindow::MainWindow(QWidget *parent)
     ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
+    LineDelegate* delegate = new LineDelegate(ui->treeView);
+    ui->treeView->setItemDelegate(delegate);
 
 
-    BranchDrawingDelegate *branchDrawingDelegate = new BranchDrawingDelegate(ui->treeView);
-    ui->treeView->setItemDelegate(branchDrawingDelegate);
-    ui->treeView->setRootIsDecorated(true);
+    // BranchDrawingDelegate *branchDrawingDelegate = new BranchDrawingDelegate(ui->treeView);
+    // ui->treeView->setItemDelegate(branchDrawingDelegate);
+    // ui->treeView->setRootIsDecorated(true);
 
     // SpanDelegate* delegate = new SpanDelegate(ui->treeView);
     // ui->treeView->setItemDelegate(delegate);

@@ -52,6 +52,7 @@ SOURCES += \
     ischodn_dannie.cpp \
     itogs.cpp \
     kalibr.cpp \
+    linedelegate.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -129,6 +130,7 @@ HEADERS += \
     ischodn_dannie.h \
     itogs.h \
     kalibr.h \
+    linedelegate.h \
     mainwindow.h \
     model.h \
     model_el.h \
