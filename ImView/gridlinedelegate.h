@@ -3,7 +3,7 @@
 
 #include <QSize>
 #include <QStyledItemDelegate>
-
+/*
 QT_FORWARD_DECLARE_CLASS(QPainter)
 
 class GridLineDelegate : public QStyledItemDelegate
@@ -17,5 +17,5 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const override;
 };
-
+*/
 #endif

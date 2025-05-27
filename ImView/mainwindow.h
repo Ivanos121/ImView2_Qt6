@@ -167,7 +167,7 @@ private slots:
     void load_graphs();
     void read_klass_izol();
 
-    void color_treview(const QModelIndex &index, const QStandardItemModel *model);
+   // void color_treview(const QModelIndex &index, const QStandardItemModel *model);
     void treview_changed();
     void save_identf_in_file();
     void electromagn_tick();

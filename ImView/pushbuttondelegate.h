@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QTableView>
+#include <QTreeView>
 
 class ButtonColumnDelegate : public QStyledItemDelegate
 {
@@ -13,7 +14,7 @@ class ButtonColumnDelegate : public QStyledItemDelegate
 
 public:
 
-    explicit ButtonColumnDelegate(QObject *parent = 0);
+    explicit ButtonColumnDelegate(QTreeView *view, QObject *parent = nullptr);
     ~ButtonColumnDelegate() override;
 
     QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option,
@@ -23,6 +24,8 @@ public:
                       const QModelIndex &index) const override;
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
                               const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
+               const QModelIndex &index) const override;
 
 public slots:    
     bool helpEvent( QHelpEvent* e, QAbstractItemView* view,
@@ -38,8 +41,15 @@ protected slots:
 
 private:
     QPushButton *btn;
+    QTreeView *m_view;
     bool isOneCellInEditMode;
     QPersistentModelIndex currentEditedCellIndex;
+    bool isPartOfSpan(const QModelIndex &index) const;
+    bool shouldSpan(const QModelIndex &index) const;
+    void m_paintFunc2(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    //void m_paintFunc1(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    //void m_paintFunc3(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void m_paintFunc4(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
 signals:
     void projectFileSelected(QString projctFile);

@@ -70,174 +70,78 @@ void LineDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionViewItem& o
             QModelIndex nonRootIdx_1 = model->index(1, 0, Index_1);
             QModelIndex nonRootIdx_2 = model->index(2, 0, Index_1);
 
+            QString text;
             if(index == Index_1)
             {
-
-                QString text = "Основные настройки сесии";
-                QTextOption textOption(Qt::AlignCenter);
-
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Основные настройки сесии";
             }
 
             if(index == Index_2)
             {
-                QString text = "Идентификация параметров схемы замещения";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Идентификация параметров схемы замещения";
             }
 
             if(index == Index_3)
             {
-                QString text = "Тепловая идентификация";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Тепловая идентификация";
             }
 
             if(index == Index_4)
             {
-                QString text = "Вентиляционная идентификация";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Вентиляционная идентификация";
             }
 
             if(index == Index_5)
             {
-                QString text = "Электромагнитная модель";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Электромагнитная модель";
             }
 
             if(index == Index_6)
             {
-                QString text = "Тепловая модель";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Тепловая модель";
             }
 
             if(index == Index_7)
             {
-                QString text = "Вентиляционная модель";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Вентиляционная модель";
             }
 
             if(index == Index_8)
             {
-                QString text = "Прогнозирование температур";
-                QTextOption textOption(Qt::AlignCenter);
-
-                // Устанавливаем жирный шрифт
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Прогнозирование температур";
             }
 
             if(index == Index_9)
             {
-                QString text = "Оценка остаточного теплового ресурса";
-                QTextOption textOption(Qt::AlignCenter);
-
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Оценка остаточного теплового ресурса";
             }
 
             if(index == Index_10)
             {
-                QString text = "Выходные данные";
-                QTextOption textOption(Qt::AlignCenter);
-
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Выходные данные";
             }
 
             if(index == nonRootIdx_1)
             {
-                QString text = "Тип эксперимента";
-                QTextOption textOption(Qt::AlignCenter);
-
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Тип эксперимента";
             }
 
             if(index == nonRootIdx_2)
             {
-                QString text = "Сохранение данных";
-                QTextOption textOption(Qt::AlignCenter);
-
-                QFont boldFont = painter->font();
-                boldFont.setBold(true);
-                painter->setFont(boldFont);
-
-                painter->setPen(Qt::black);
-                painter->drawText(unionRect, text, textOption);
+                text = "Сохранение данных";
             }
-        }
 
-        else
-        {
-            // Последняя колонка в спане — ничего не рисуем (или рисуем как обычно)
+            painter->save();
+            QTextOption textOption(Qt::AlignCenter);
+
+            QFont boldFont = painter->font();
+            boldFont.setBold(true);
+            painter->setFont(boldFont);
+
+            painter->setPen(Qt::black);
+            painter->drawText(unionRect, text, textOption);
+            painter->restore();
+
         }
     }
     else
@@ -282,24 +186,70 @@ void LineDelegate::m_paintFunc3(QPainter* painter, const QStyleOptionViewItem& o
 
 void LineDelegate::m_paintFunc4(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    QStyledItemDelegate::paint(painter, option, index);
+    //QStyledItemDelegate::paint(painter, option, index);
 
-    if (index.isValid())
+    painter->save();
+    QPen pen((QColor(Qt::lightGray)));
+    pen.setStyle(Qt::SolidLine);
+    painter->setPen(pen);
+
+    QModelIndex spanIndex = index.sibling(index.row(), index.column() + 1);
+    QRect rect2 = m_view->visualRect(spanIndex);
+
+    QRect rect1 = option.rect;
+    QRect unionRect = rect1.united(rect2);
+
+    auto model = index.model();
+    QModelIndex Index_1 = model->index(0, 0, QModelIndex());
+    QModelIndex Index_2 = model->index(1, 0, QModelIndex());
+    QModelIndex Index_3 = model->index(2, 0, QModelIndex());
+    QModelIndex Index_4 = model->index(3, 0, QModelIndex());
+    QModelIndex Index_5 = model->index(4, 0, QModelIndex());
+    QModelIndex Index_6 = model->index(5, 0, QModelIndex());
+    QModelIndex Index_7 = model->index(6, 0, QModelIndex());
+    QModelIndex Index_8 = model->index(7, 0, QModelIndex());
+    QModelIndex Index_9 = model->index(8, 0, QModelIndex());
+    QModelIndex Index_10 = model->index(9, 0, QModelIndex());
+    QModelIndex nonRootIdx_1 = model->index(1, 0, Index_1);
+    QModelIndex nonRootIdx_2 = model->index(2, 0, Index_1);
+
+    if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
+        || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
+        || (index == Index_9) || (index == Index_10) || (index == nonRootIdx_1)
+        || (index == nonRootIdx_2))
     {
-        painter->setPen(Qt::SolidLine);
-        painter->setPen(QColor(Qt::lightGray));
-
-        painter->drawLine(QLine(option.rect.bottomLeft(), option.rect.bottomRight()));
-        painter->drawLine(QLine(option.rect.topRight(), option.rect.bottomRight()));
+        QRect rect = option.rect;
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
+        painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
     }
-}
+    else
+    {
+        int columnCount = index.model()->columnCount();
+        QRect rect = option.rect;
 
+        if (index.row() == index.model()->rowCount() - 1)
+        {
+            painter->drawLine(rect.bottomLeft(), rect.bottomRight());
+        }
+        if (index.column() == columnCount - 1)
+        {
+            painter->drawLine(rect.topRight(), rect.bottomRight());
+        }
+
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
+        painter->drawLine(rect.topRight(), rect.bottomRight());
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
+        painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
+    }
+    painter->restore();
+}
 
 void LineDelegate::m_paintFunc1(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     // вторая логика рисования
     // Вызов стандартной отрисовки текста и иконок
-    QStyledItemDelegate::paint(painter, option, index);
+    //QStyledItemDelegate::paint(painter, option, index);
 
     // Получаем модель и текущий индекс
     const QAbstractItemModel *model = index.model();
@@ -395,14 +345,11 @@ LineDelegate::LineDelegate(QTreeView *view, QObject *parent) :QStyledItemDelegat
 }
 
 void LineDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                                  const QModelIndex &index) const
+                         const QModelIndex &index) const
 {
-    // Вызов первой функции
-    m_paintFunc1(painter, option, index);
-    // Вызов второй функции
     m_paintFunc2(painter, option, index);
-
-    m_paintFunc3(painter, option, index);
+    m_paintFunc1(painter, option, index);
+    //m_paintFunc3(painter, option, index);
 
     m_paintFunc4(painter, option, index);
 }

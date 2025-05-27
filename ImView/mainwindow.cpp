@@ -315,7 +315,6 @@ MainWindow::MainWindow(QWidget *parent)
     //Настройка свойств QTreeView
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
-    ui->treeView->setAlternatingRowColors(false); // Цвет каждой строки интервала разный, при наличии qss этот атрибут недействителен
     ui->treeView->setFocusPolicy(Qt :: NoFocus);
     ui->treeView->setExpandsOnDoubleClick(true);
 
@@ -347,7 +346,7 @@ MainWindow::MainWindow(QWidget *parent)
     model2=new QStandardItemModel(ui->treeView);
     model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
-    ui->treeView->setAlternatingRowColors(false);
+    ui->treeView->setAlternatingRowColors(true);
 
     //настройка итемов QTreeView
     QList<QStandardItem*> items1;
@@ -1126,11 +1125,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->header()->setSectionResizeMode(1,QHeaderView::Fixed);
     ui->treeView->expandAll();
 
-    ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(this); //создание делегата для создания комбобоксов
+    ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
     LineDelegate* delegate = new LineDelegate(ui->treeView);
-    ui->treeView->setItemDelegate(delegate);
+    //ui->treeView->setItemDelegate(delegate);
+    ui->treeView->setItemDelegateForColumn(0, delegate);
 
 
     // BranchDrawingDelegate *branchDrawingDelegate = new BranchDrawingDelegate(ui->treeView);
@@ -1156,26 +1156,26 @@ MainWindow::MainWindow(QWidget *parent)
                            "*{"
                             "alternate-background-color: rgb(255, 255, 191);"
                            "}"
-                            "*::item{"
-                            "    border-top-width: 0px;"
-                            "    border-right-width: 1px;"
-                            "    border-bottom-width: 1px;"
-                            "    border-left-width: 0px;"
-                            "    border-style: solid;"
-                            "    border-color: silver;"
-                            "}"
+                            // "*::item{"
+                            // "    border-top-width: 0px;"
+                            // "    border-right-width: 1px;"
+                            // "    border-bottom-width: 1px;"
+                            // "    border-left-width: 0px;"
+                            // "    border-style: solid;"
+                            // "    border-color: silver;"
+                            // "}"
                             "*::item:selected{"
                             "    background: palette(Highlight);"
                             "}"
 //                            "*::item:has-children{"
 //                            "    background: rgb(128,128,128);"
 //                            "}"
-                            "::branch"
-                            "{"
-                            "border-bottom: 1px solid silver;"
-                            "border-image: none 0;"
-                            "image: none 0;"
-                            "}"
+                            // "::branch"
+                            // "{"
+                            // "border-bottom: 1px solid silver;"
+                            // "border-image: none 0;"
+                            // "image: none 0;"
+                            // "}"
                                     "::branch:has-children:!has-siblings:closed,"
                                     "::branch:closed:has-children:has-siblings {"
                                     "        border-image: none;"
@@ -12236,20 +12236,20 @@ void MainWindow::read_klass_izol()
     }
 }
 
-void MainWindow::color_treview(const QModelIndex & index, const QStandardItemModel * model2)
-{
-   // int rows = model2->rowCount(index);
-    int cols = model2->columnCount(index);
+// void MainWindow::color_treview(const QModelIndex & index, const QStandardItemModel * model2)
+// {
+//    // int rows = model2->rowCount(index);
+//     int cols = model2->columnCount(index);
 
-    for (int i = 0; i < cols; ++i)
-            for (int j = 0; j < 8; ++j){
-                QPalette p109=ui->treeView->palette();
-                p109.setColor(QPalette::Base, QColor(255, 255, 222));
-                p109.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
-                ui->treeView->setPalette(p109);
+//     for (int i = 0; i < cols; ++i)
+//             for (int j = 0; j < 8; ++j){
+//                 QPalette p109=ui->treeView->palette();
+//                 p109.setColor(QPalette::Base, QColor(255, 255, 222));
+//                 p109.setColor(QPalette::AlternateBase, QColor(255, 255, 191));
+//                 ui->treeView->setPalette(p109);
 
-            }
-}
+//             }
+// }
 
 void MainWindow::save_identf_in_file()
 {

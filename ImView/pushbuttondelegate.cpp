@@ -10,12 +10,13 @@
 #include <QToolTip>
 #include <QAbstractItemView>
 #include <QComboBox>
+#include <QApplication>
 
 #include "pushbuttondelegate.h"
 #include "settingscanals.h"
 #include "vent_settings.h"
 
-ButtonColumnDelegate::ButtonColumnDelegate(QObject *parent) :QStyledItemDelegate(parent)
+ButtonColumnDelegate::ButtonColumnDelegate(QTreeView *view, QObject *parent) :QStyledItemDelegate(parent), m_view(view)
 {
 
 }
@@ -868,7 +869,7 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
-        else
+    else
     {
         QStyledItemDelegate::setEditorData(editor, index);
     }
@@ -1150,7 +1151,7 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QString value = comboBox->currentText();
         model->setData(index, value);
     }
-        else {
+    else {
         QStyledItemDelegate::setModelData(editor, model, index);
     }
 }
@@ -1200,7 +1201,7 @@ void ButtonColumnDelegate::btn_clicked_8()
 }
 
 bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
-                                      const QStyleOptionViewItem& option, const QModelIndex& index )
+                                     const QStyleOptionViewItem& option, const QModelIndex& index )
 {
     if (!e || !view)
         return false;
@@ -1220,3 +1221,243 @@ bool ButtonColumnDelegate::helpEvent( QHelpEvent* e, QAbstractItemView* view,
     return QStyledItemDelegate::helpEvent( e, view, option, index);
 }
 
+void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    //auto model = index.model();
+
+    // Создаём копию опций для настройки
+    QStyleOptionViewItem opt = option;
+
+    // Отключаем рисование рамки по умолчанию
+    opt.state &= ~QStyle::State_HasFocus;
+    opt.state &= ~QStyle::State_MouseOver;
+
+    if (shouldSpan(index))
+    {
+        painter->save();
+
+        QModelIndex spanIndex = index.sibling(index.row(), index.column() - 1);
+        QRect rect2 = m_view->visualRect(spanIndex);
+
+        // Получаем геометрию обеих ячеек
+        QRect rect1 = option.rect;
+        //QRect rect2 = view->visualRect(spanIndex);
+
+        // Объединяем области
+        QRect unionRect = rect1.united(rect2);
+        painter->setClipRect(unionRect);
+
+        painter->setBrush(QBrush(Qt::green)); // ваш цвет заливки
+        painter->setPen(Qt::NoPen);
+        painter->drawRect(option.rect);
+
+        auto model = index.model();
+        QModelIndex Index_1 = model->index(0, 1, QModelIndex());
+        QModelIndex Index_2 = model->index(1, 1, QModelIndex());
+        QModelIndex Index_3 = model->index(2, 1, QModelIndex());
+        QModelIndex Index_4 = model->index(3, 1, QModelIndex());
+        QModelIndex Index_5 = model->index(4, 1, QModelIndex());
+        QModelIndex Index_6 = model->index(5, 1, QModelIndex());
+        QModelIndex Index_7 = model->index(6, 1, QModelIndex());
+        QModelIndex Index_8 = model->index(7, 1, QModelIndex());
+        QModelIndex Index_9 = model->index(8, 1, QModelIndex());
+        QModelIndex Index_10 = model->index(9, 1, QModelIndex());
+        QModelIndex nonRootIdx_1 = model->index(1, 1, model->index(0, 0, QModelIndex()));
+        QModelIndex nonRootIdx_2 = model->index(2, 1, model->index(0, 0, QModelIndex()));
+
+        QString text;
+        if(index == Index_1)
+        {
+            text = "Основные настройки сесии";
+        }
+
+        if(index == Index_2)
+        {
+            text = "Идентификация параметров схемы замещения";
+        }
+
+        if(index == Index_3)
+        {
+            text = "Тепловая идентификация";
+        }
+
+        if(index == Index_4)
+        {
+            text = "Вентиляционная идентификация";
+        }
+
+        if(index == Index_5)
+        {
+            text = "Электромагнитная модель";
+        }
+
+        if(index == Index_6)
+        {
+            text = "Тепловая модель";
+        }
+
+        if(index == Index_7)
+        {
+            text = "Вентиляционная модель";
+        }
+
+        if(index == Index_8)
+        {
+            text = "Прогнозирование температур";
+        }
+
+        if(index == Index_9)
+        {
+            text = "Оценка остаточного теплового ресурса";
+        }
+
+        if(index == Index_10)
+        {
+            text = "Выходные данные";
+        }
+
+        if(index == nonRootIdx_1)
+        {
+            text = "Тип эксперимента";
+        }
+
+        if(index == nonRootIdx_2)
+        {
+            text = "Сохранение данных";
+        }
+
+        painter->save();
+        QTextOption textOption(Qt::AlignCenter);
+
+        QFont boldFont = painter->font();
+        boldFont.setBold(true);
+        painter->setFont(boldFont);
+
+        painter->setPen(Qt::black);
+        painter->drawText(unionRect, text, textOption);
+        painter->restore();
+
+        painter->restore();
+    }
+    else
+    {
+        // Просто рисуем обычную ячейку без рамки
+        QStyleOptionViewItem opt2 = opt;
+        opt2.state &= ~QStyle::State_HasFocus; // отключить фокусные рамки
+
+        // Убираем границы у стиля по умолчанию:
+        QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem,
+                                             &opt2, painter);
+
+        // Или просто вызываем базовый метод:
+        QStyledItemDelegate::paint(painter, opt2, index);
+    }
+}
+
+bool ButtonColumnDelegate::shouldSpan(const QModelIndex &index) const
+{
+    // Здесь логика определения необходимости объединения
+    // Например: объединять колонки 0 и 1 в первой строке
+    auto model = index.model();
+    QModelIndex Index_1 = model->index(0, 1, QModelIndex());
+    QModelIndex Index_2 = model->index(1, 1, QModelIndex());
+    QModelIndex Index_3 = model->index(2, 1, QModelIndex());
+    QModelIndex Index_4 = model->index(3, 1, QModelIndex());
+    QModelIndex Index_5 = model->index(4, 1, QModelIndex());
+    QModelIndex Index_6 = model->index(5, 1, QModelIndex());
+    QModelIndex Index_7 = model->index(6, 1, QModelIndex());
+    QModelIndex Index_8 = model->index(7, 1, QModelIndex());
+    QModelIndex Index_9 = model->index(8, 1, QModelIndex());
+    QModelIndex Index_10 = model->index(9, 1, QModelIndex());
+    QModelIndex nonRootIdx_1 = model->index(1, 1, Index_1);
+    QModelIndex nonRootIdx_2 = model->index(2, 1, Index_1);
+
+    if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
+        || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
+        || (index == Index_9) || (index == Index_10) || (index == nonRootIdx_1)
+        || (index == nonRootIdx_2))
+    {
+        return true;
+    }
+    return false;
+}
+
+void ButtonColumnDelegate::m_paintFunc4(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    //QStyledItemDelegate::paint(painter, option, index);
+
+    painter->save();
+    QPen pen((QColor(Qt::lightGray)));
+    pen.setStyle(Qt::SolidLine);
+    painter->setPen(pen);
+
+    //QModelIndex spanIndex = index.sibling(index.row(), index.column() + 1);
+
+    QRect rect1 = option.rect;
+    QRect unionRect = rect1;
+
+    auto model = index.model();
+    QModelIndex Index_1 = model->index(0, 0, QModelIndex());
+    QModelIndex Index_2 = model->index(1, 0, QModelIndex());
+    QModelIndex Index_3 = model->index(2, 0, QModelIndex());
+    QModelIndex Index_4 = model->index(3, 0, QModelIndex());
+    QModelIndex Index_5 = model->index(4, 0, QModelIndex());
+    QModelIndex Index_6 = model->index(5, 0, QModelIndex());
+    QModelIndex Index_7 = model->index(6, 0, QModelIndex());
+    QModelIndex Index_8 = model->index(7, 0, QModelIndex());
+    QModelIndex Index_9 = model->index(8, 0, QModelIndex());
+    QModelIndex Index_10 = model->index(9, 0, QModelIndex());
+    QModelIndex nonRootIdx_1 = model->index(1, 0, Index_1);
+    QModelIndex nonRootIdx_2 = model->index(2, 0, Index_1);
+
+    if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
+        || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
+        || (index == Index_9) || (index == Index_10) || (index == nonRootIdx_1)
+        || (index == nonRootIdx_2))
+    {
+        QRect rect = option.rect;
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
+        painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
+    }
+    else
+    {
+        int columnCount = index.model()->columnCount();
+        QRect rect = option.rect;
+
+        if (index.row() == index.model()->rowCount() - 1)
+        {
+            painter->drawLine(rect.bottomLeft(), rect.bottomRight());
+        }
+        if (index.column() == columnCount - 1)
+        {
+            painter->drawLine(rect.topRight(), rect.bottomRight());
+        }
+
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
+        painter->drawLine(rect.topRight(), rect.bottomRight());
+        painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
+        painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
+    }
+    painter->restore();
+}
+
+void ButtonColumnDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
+                                 const QModelIndex &index) const
+{
+    m_paintFunc2(painter, option, index);
+
+    //m_paintFunc4(painter, option, index);
+}
+
+bool ButtonColumnDelegate::isPartOfSpan(const QModelIndex &index) const
+{
+    // Проверка: если индекс входит в объединённую область,
+    // то он не должен рисовать свой текст.
+    // Реализуйте по вашей логике.
+    if (index.column() == 1)
+    {
+        return true; // например
+    }
+    return false;
+}

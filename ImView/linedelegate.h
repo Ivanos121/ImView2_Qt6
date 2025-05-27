@@ -10,7 +10,7 @@ class LineDelegate : public QStyledItemDelegate
     Q_OBJECT
 
 public:
-    using PaintFunction = std::function<void(QPainter*, const QStyleOptionViewItem&, const QModelIndex&)>;
+    //using PaintFunction = std::function<void(QPainter*, const QStyleOptionViewItem&, const QModelIndex&)>;
     explicit LineDelegate(QTreeView *view,QObject *parent = nullptr);
     void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const override;
@@ -20,7 +20,6 @@ private:
     void m_paintFunc1(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void m_paintFunc3(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void m_paintFunc4(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-
 
     bool shouldSpan(const QModelIndex &index) const;
     bool isPartOfSpan(const QModelIndex &index) const;

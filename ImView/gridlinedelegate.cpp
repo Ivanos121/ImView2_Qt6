@@ -1,7 +1,7 @@
 #include <QPainter>
 
 #include "gridlinedelegate.h"
-
+/*
 GridLineDelegate::GridLineDelegate(QObject* parent)
     : QStyledItemDelegate(parent)
 {
@@ -26,3 +26,4 @@ void GridLineDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
         painter->drawLine(QLine(option.rect.topRight(), option.rect.bottomRight()));
     }
 }
+*/
