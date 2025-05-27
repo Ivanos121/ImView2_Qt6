@@ -347,7 +347,7 @@ MainWindow::MainWindow(QWidget *parent)
     model2=new QStandardItemModel(ui->treeView);
     model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
-    ui->treeView->setAlternatingRowColors(true);
+    ui->treeView->setAlternatingRowColors(false);
 
     //настройка итемов QTreeView
     QList<QStandardItem*> items1;
@@ -379,7 +379,8 @@ MainWindow::MainWindow(QWidget *parent)
     all_sesion_name_parametr->appendRow(items2);
     items2.clear();
 
-    kind_experiment_parametr = new QStandardItem(tr("Тип эксперимента"));
+    //kind_experiment_parametr = new QStandardItem(tr("Тип эксперимента"));
+    kind_experiment_parametr = new QStandardItem();
     kind_experiment_parametr->setEditable(false);
     QString w9=kind_experiment_parametr->text();
     kind_experiment_parametr->setToolTip(w9);
@@ -454,7 +455,8 @@ MainWindow::MainWindow(QWidget *parent)
     kind_experiment_parametr->appendRow(items2);
     items2.clear();
 
-    save_data_parametr = new QStandardItem(tr("Сохранение данных"));
+    //save_data_parametr = new QStandardItem(tr("Сохранение данных"));
+    save_data_parametr = new QStandardItem();
     save_data_parametr->setEditable(false);
     QFont newFont11("DroidSans", 10, QFont::Bold,false);
     save_data_parametr->setFont(newFont11);
@@ -528,7 +530,8 @@ MainWindow::MainWindow(QWidget *parent)
     items2.clear();
 
     QList<QStandardItem*> items3;
-    identf_scheme_zam_parametr = new QStandardItem(tr("Идентификация параметров схемы замещения"));
+    //identf_scheme_zam_parametr = new QStandardItem(tr("Идентификация параметров схемы замещения"));
+    identf_scheme_zam_parametr = new QStandardItem();
     identf_scheme_zam_value = new QStandardItem();
     items3.append(identf_scheme_zam_parametr);
     items3.append(identf_scheme_zam_value);
@@ -649,7 +652,8 @@ MainWindow::MainWindow(QWidget *parent)
     items4.clear();
 
     QList<QStandardItem*> items17;
-    thermal_identification_parametr = new QStandardItem(tr("Тепловая идентификация"));
+    //thermal_identification_parametr = new QStandardItem(tr("Тепловая идентификация"));
+    thermal_identification_parametr = new QStandardItem();
     thermal_identification_value = new QStandardItem();
     items17.append(thermal_identification_parametr);
     items17.append(thermal_identification_value);
@@ -701,7 +705,8 @@ MainWindow::MainWindow(QWidget *parent)
     items17.clear();
 
     QList<QStandardItem*> items18;
-    ventilation_identification_parametr = new QStandardItem(tr("Вентиляционная идентификация"));
+    //ventilation_identification_parametr = new QStandardItem(tr("Вентиляционная идентификация"));
+    ventilation_identification_parametr = new QStandardItem();
     ventilation_identification_value = new QStandardItem();
     items18.append(ventilation_identification_parametr);
     items18.append(ventilation_identification_value);
@@ -767,7 +772,8 @@ MainWindow::MainWindow(QWidget *parent)
     items18.clear();
 
     QList<QStandardItem*> items5;
-    electromagnetic_model_parametr = new QStandardItem(tr("Электромагнитная модель"));
+    //electromagnetic_model_parametr = new QStandardItem(tr("Электромагнитная модель"));
+    electromagnetic_model_parametr = new QStandardItem();
     electromagnetic_model_value = new QStandardItem();
     items5.append(electromagnetic_model_parametr);
     items5.append(electromagnetic_model_value);
@@ -900,7 +906,8 @@ MainWindow::MainWindow(QWidget *parent)
     items6.clear();
 
     QList<QStandardItem*> items7;
-    item25 = new QStandardItem(tr("Тепловая модель"));
+    //item25 = new QStandardItem(tr("Тепловая модель"));
+    item25 = new QStandardItem();
     item26 = new QStandardItem();
     items7.append(item25);
     items7.append(item26);
@@ -955,7 +962,8 @@ MainWindow::MainWindow(QWidget *parent)
     items8.clear();
 
     QList<QStandardItem*> items9;
-    item31 = new QStandardItem(tr("Вентиляционная модель"));
+    //item31 = new QStandardItem(tr("Вентиляционная модель"));
+    item31 = new QStandardItem();
     item32 = new QStandardItem();
     items9.append(item31);
     items9.append(item32);
@@ -994,7 +1002,8 @@ MainWindow::MainWindow(QWidget *parent)
     items10.clear();
 
     QList<QStandardItem*> items11;
-    item39 = new QStandardItem(tr("Прогнозирование температур"));
+    //item39 = new QStandardItem(tr("Прогнозирование температур"));
+    item39 = new QStandardItem();
     item40 = new QStandardItem();
     items11.append(item39);
     items11.append(item40);
@@ -1033,7 +1042,8 @@ MainWindow::MainWindow(QWidget *parent)
     items12.clear();
 
     QList<QStandardItem*> items13;
-    item47 = new QStandardItem(tr("Оценка остаточного теплового ресурса"));
+    //item47 = new QStandardItem(tr("Оценка остаточного теплового ресурса"));
+    item47 = new QStandardItem();
     item48 = new QStandardItem();
     items13.append(item47);
     items13.append(item48);
@@ -1072,7 +1082,8 @@ MainWindow::MainWindow(QWidget *parent)
     items14.clear();
 
     QList<QStandardItem*> items15;
-    item55 = new QStandardItem(tr ("Выходные данные"));
+    //item55 = new QStandardItem(tr ("Выходные данные"));
+    item55 = new QStandardItem();
     item56 = new QStandardItem();
     items15.append(item55);
     items15.append(item56);
