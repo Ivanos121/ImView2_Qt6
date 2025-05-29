@@ -1249,9 +1249,10 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
 
         painter->setBrush(QBrush(Qt::green)); // ваш цвет заливки
         painter->setPen(Qt::NoPen);
-        painter->drawRect(option.rect);
+        painter->drawRect(unionRect);
 
         auto model = index.model();
+        QModelIndex Index_1_left = model->index(0, 0, QModelIndex());
         QModelIndex Index_1 = model->index(0, 1, QModelIndex());
         QModelIndex Index_2 = model->index(1, 1, QModelIndex());
         QModelIndex Index_3 = model->index(2, 1, QModelIndex());
@@ -1262,8 +1263,8 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
         QModelIndex Index_8 = model->index(7, 1, QModelIndex());
         QModelIndex Index_9 = model->index(8, 1, QModelIndex());
         QModelIndex Index_10 = model->index(9, 1, QModelIndex());
-        QModelIndex nonRootIdx_1 = model->index(1, 1, model->index(0, 0, QModelIndex()));
-        QModelIndex nonRootIdx_2 = model->index(2, 1, model->index(0, 0, QModelIndex()));
+        QModelIndex nonRootIdx_1 = model->index(1, 1, Index_1_left);
+        QModelIndex nonRootIdx_2 = model->index(2, 1, Index_1_left);
 
         QString text;
         if(index == Index_1)
@@ -1369,8 +1370,8 @@ bool ButtonColumnDelegate::shouldSpan(const QModelIndex &index) const
     QModelIndex Index_8 = model->index(7, 1, QModelIndex());
     QModelIndex Index_9 = model->index(8, 1, QModelIndex());
     QModelIndex Index_10 = model->index(9, 1, QModelIndex());
-    QModelIndex nonRootIdx_1 = model->index(1, 1, Index_1);
-    QModelIndex nonRootIdx_2 = model->index(2, 1, Index_1);
+    QModelIndex nonRootIdx_1 = model->index(1, 1, model->index(0, 0, QModelIndex()));
+    QModelIndex nonRootIdx_2 = model->index(2, 1, model->index(0, 0, QModelIndex()));
 
     if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
         || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
@@ -1396,24 +1397,7 @@ void ButtonColumnDelegate::m_paintFunc4(QPainter* painter, const QStyleOptionVie
     QRect rect1 = option.rect;
     QRect unionRect = rect1;
 
-    auto model = index.model();
-    QModelIndex Index_1 = model->index(0, 0, QModelIndex());
-    QModelIndex Index_2 = model->index(1, 0, QModelIndex());
-    QModelIndex Index_3 = model->index(2, 0, QModelIndex());
-    QModelIndex Index_4 = model->index(3, 0, QModelIndex());
-    QModelIndex Index_5 = model->index(4, 0, QModelIndex());
-    QModelIndex Index_6 = model->index(5, 0, QModelIndex());
-    QModelIndex Index_7 = model->index(6, 0, QModelIndex());
-    QModelIndex Index_8 = model->index(7, 0, QModelIndex());
-    QModelIndex Index_9 = model->index(8, 0, QModelIndex());
-    QModelIndex Index_10 = model->index(9, 0, QModelIndex());
-    QModelIndex nonRootIdx_1 = model->index(1, 0, Index_1);
-    QModelIndex nonRootIdx_2 = model->index(2, 0, Index_1);
-
-    if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
-        || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
-        || (index == Index_9) || (index == Index_10) || (index == nonRootIdx_1)
-        || (index == nonRootIdx_2))
+    if (shouldSpan(index))
     {
         QRect rect = option.rect;
         painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
@@ -1435,7 +1419,7 @@ void ButtonColumnDelegate::m_paintFunc4(QPainter* painter, const QStyleOptionVie
         }
 
         painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
-        painter->drawLine(rect.topRight(), rect.bottomRight());
+        painter->drawLine(rect.topLeft(), rect.bottomLeft());
         painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
         painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
     }
@@ -1446,8 +1430,7 @@ void ButtonColumnDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
                                  const QModelIndex &index) const
 {
     m_paintFunc2(painter, option, index);
-
-    //m_paintFunc4(painter, option, index);
+    m_paintFunc4(painter, option, index);
 }
 
 bool ButtonColumnDelegate::isPartOfSpan(const QModelIndex &index) const
