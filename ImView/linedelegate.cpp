@@ -132,6 +132,20 @@ LineDelegate::LineDelegate(QTreeView *view, QObject *parent) :QStyledItemDelegat
 void LineDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
                          const QModelIndex &index) const
 {
+    bool isSelected = option.state & QStyle::State_Selected;
+    bool isSpan = shouldSpan(index);
+
+    if (isSelected && !isSpan)
+    {
+        painter->save();
+        painter->setBrush(QBrush(Qt::blue));
+        painter->setPen(Qt::NoPen);
+        QRect rect = option.rect;
+        QRect backRect(QPoint(0, rect.topLeft().y()), QPoint(rect.bottomRight().x(), rect.bottomRight().y()));
+        painter->drawRect(backRect);
+        painter->restore();
+    }
+
     m_paintFunc2(painter, option, index);
     m_paintFunc1(painter, option, index);
     //m_paintFunc3(painter, option, index);
