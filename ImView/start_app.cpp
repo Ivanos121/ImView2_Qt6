@@ -352,13 +352,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->setTabVisible(7, false);
         wf->ui->tabWidget->setTabVisible(8, false);
 
-        if (wf->model2) {
+        if (wf->model_treeView) {
             // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
+            int rootCount = wf->model_treeView->rowCount();
             for (int i = rootCount - 1; i >= 0; --i)
             {
-                QModelIndex rootIndex = wf->model2->index(i, 0);
-                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                QModelIndex rootIndex = wf->model_treeView->index(i, 0);
+                QStandardItem *rootItem = wf->model_treeView->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
                 if ((rootItem->text() == "Электромагнитная модель")
                     ||(rootItem->text() == "Тепловая модель")
@@ -366,7 +366,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                     ||(rootItem->text() == "Прогнозирование температур")
                     ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
                 {
-                    wf->model2->removeRow(i); // Удаляем узел
+                    wf->model_treeView->removeRow(i); // Удаляем узел
                 }
             }
         }
@@ -400,13 +400,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->setTabVisible(7, false);
         wf->ui->tabWidget->setTabVisible(8, false);
 
-        if (wf->model2) {
+        if (wf->model_treeView) {
             // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
+            int rootCount = wf->model_treeView->rowCount();
             for (int i = rootCount - 1; i >= 0; --i)
             {
-                QModelIndex rootIndex = wf->model2->index(i, 0);
-                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                QModelIndex rootIndex = wf->model_treeView->index(i, 0);
+                QStandardItem *rootItem = wf->model_treeView->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
                 if ((rootItem->text() == "Идентификация параметров схемы замещения")
                     ||(rootItem->text() == "Тепловая идентификация")
@@ -416,7 +416,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                     ||(rootItem->text() == "Прогнозирование температур")
                     ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
                 {
-                    wf->model2->removeRow(i); // Удаляем узел
+                    wf->model_treeView->removeRow(i); // Удаляем узел
                 }
             }
         }
@@ -449,13 +449,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->setTabVisible(7, false);
         wf->ui->tabWidget->setTabVisible(8, false);
 
-        if (wf->model2) {
+        if (wf->model_treeView) {
             // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
+            int rootCount = wf->model_treeView->rowCount();
             for (int i = rootCount - 1; i >= 0; --i)
             {
-                QModelIndex rootIndex = wf->model2->index(i, 0);
-                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                QModelIndex rootIndex = wf->model_treeView->index(i, 0);
+                QStandardItem *rootItem = wf->model_treeView->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
                 if ((rootItem->text() == "Идентификация параметров схемы замещения")
                     ||(rootItem->text() == "Тепловая идентификация")
@@ -465,7 +465,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                     ||(rootItem->text() == "Прогнозирование температур")
                     ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
                 {
-                    wf->model2->removeRow(i); // Удаляем узел
+                    wf->model_treeView->removeRow(i); // Удаляем узел
                 }
             }
         }
@@ -499,13 +499,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->setTabVisible(7, false);
         wf->ui->tabWidget->setTabVisible(8, false);
 
-        if (wf->model2) {
+        if (wf->model_treeView) {
             // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
+            int rootCount = wf->model_treeView->rowCount();
             for (int i = rootCount - 1; i >= 0; --i)
             {
-                QModelIndex rootIndex = wf->model2->index(i, 0);
-                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                QModelIndex rootIndex = wf->model_treeView->index(i, 0);
+                QStandardItem *rootItem = wf->model_treeView->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
                 if ((rootItem->text() == "Идентификация параметров схемы замещения")
                     ||(rootItem->text() == "Тепловая идентификация")
@@ -515,7 +515,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                     ||(rootItem->text() == "Прогнозирование температур")
                     ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
                 {
-                    wf->model2->removeRow(i); // Удаляем узел
+                    wf->model_treeView->removeRow(i); // Удаляем узел
                 }
             }
         }
@@ -549,13 +549,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->setTabVisible(6, false);
         wf->ui->tabWidget->setTabVisible(8, false);
 
-        if (wf->model2) {
+        if (wf->model_treeView) {
             // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
+            int rootCount = wf->model_treeView->rowCount();
             for (int i = rootCount - 1; i >= 0; --i)
             {
-                QModelIndex rootIndex = wf->model2->index(i, 0);
-                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                QModelIndex rootIndex = wf->model_treeView->index(i, 0);
+                QStandardItem *rootItem = wf->model_treeView->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
                 if ((rootItem->text() == "Идентификация параметров схемы замещения")
                     ||(rootItem->text() == "Тепловая идентификация")
@@ -565,7 +565,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                     ||(rootItem->text() == "Вентиляционная модель")
                     ||(rootItem->text() == "Оценка остаточного теплового ресурса"))
                 {
-                    wf->model2->removeRow(i); // Удаляем узел
+                    wf->model_treeView->removeRow(i); // Удаляем узел
                 }
             }
         }
@@ -599,13 +599,13 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
         wf->ui->tabWidget->setTabVisible(6, false);
         wf->ui->tabWidget->setTabVisible(7, false);
 
-        if (wf->model2) {
+        if (wf->model_treeView) {
             // Получаем количество корневых узлов
-            int rootCount = wf->model2->rowCount();
+            int rootCount = wf->model_treeView->rowCount();
             for (int i = rootCount - 1; i >= 0; --i)
             {
-                QModelIndex rootIndex = wf->model2->index(i, 0);
-                QStandardItem *rootItem = wf->model2->itemFromIndex(rootIndex);
+                QModelIndex rootIndex = wf->model_treeView->index(i, 0);
+                QStandardItem *rootItem = wf->model_treeView->itemFromIndex(rootIndex);
                 // Проверьте ваши условия для промежуточного узла (например, по типу, названиям и т.д.)
                 if ((rootItem->text() == "Идентификация параметров схемы замещения")
                     ||(rootItem->text() == "Тепловая идентификация")
@@ -615,7 +615,7 @@ void Start_app::click_open_progect_2(const QModelIndex& idx)
                     ||(rootItem->text() == "Вентиляционная модель")
                     ||(rootItem->text() == "Прогнозирование температур"))
                 {
-                    wf->model2->removeRow(i); // Удаляем узел
+                    wf->model_treeView->removeRow(i); // Удаляем узел
                 }
             }
         }

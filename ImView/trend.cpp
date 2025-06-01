@@ -1,12 +1,11 @@
-#include <math.h>
+#include <cmath>
 #include <QtSvg>
 #include <QSvgWidget>
 #include <QGraphicsPixmapItem>
 #include <QColorDialog>
 #include <iostream>
 #include <fstream>
-#include <QtMath>
-//#include "cmath"
+#include <cmath>
 
 #include "trend.h"
 #include "ui_teplschem.h"
@@ -276,23 +275,23 @@ Trend::~Trend()
 
 void Trend::startTeplo()
 {
-    y_0=20*(1-exp(-t/20)) +wf->item28->text().toDouble();//станина
-    y_1=54*(1-exp(-t/20)) +wf->item28->text().toDouble();//Подшипниковый узел справа сзади
-    y_2=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть слева спереди
-    y_3=56*(1-exp(-t/25)) +wf->item28->text().toDouble();//Подшипниковый узел слева спереди
-    y_4=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть слева сзади
-    y_5=90*(1-exp(-t/25)) +wf->item28->text().toDouble();//станина
-    y_6=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть справа спереди
-    y_7=120*(1-exp(-t/25))+wf->item28->text().toDouble();//Лобовая часть справа сзади
-    y_8=90*(1-exp(-t/25)) +wf->item28->text().toDouble();//Магнитопровод статора
-    y_9=60*(1-exp(-t/20)) +wf->item28->text().toDouble();//Подшипниковый узел справа спереди
-    y_10=56*(1-exp(-t/20))+wf->item28->text().toDouble();//Подшипниковый узел слева сзади
-    y_11=80*(1-exp(-t/20))+wf->item28->text().toDouble();//Ротор сверху
-    y_12=80*(1-exp(-t/20))+wf->item28->text().toDouble();//Ротор снизу
-    y_13=40*(1-exp(-t/20))+wf->item28->text().toDouble();//Станина слева
-    y_14=40*(1-exp(-t/20))+wf->item28->text().toDouble();//Станина слева
-    y_15=60*(1-exp(-t/20))+wf->item28->text().toDouble();//Вал
-    y_16=50*(1-exp(-t/20))+wf->item28->text().toDouble();//Клеммная коробка
+    y_0=20*(1-exp(-t/20)) +wf->start_tepl_temperature_value->text().toDouble();//станина
+    y_1=54*(1-exp(-t/20)) +wf->start_tepl_temperature_value->text().toDouble();//Подшипниковый узел справа сзади
+    y_2=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();//Лобовая часть слева спереди
+    y_3=56*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();//Подшипниковый узел слева спереди
+    y_4=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();//Лобовая часть слева сзади
+    y_5=90*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();//станина
+    y_6=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();//Лобовая часть справа спереди
+    y_7=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();//Лобовая часть справа сзади
+    y_8=90*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();//Магнитопровод статора
+    y_9=60*(1-exp(-t/20)) +wf->start_tepl_temperature_value->text().toDouble();//Подшипниковый узел справа спереди
+    y_10=56*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Подшипниковый узел слева сзади
+    y_11=80*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Ротор сверху
+    y_12=80*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Ротор снизу
+    y_13=40*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Станина слева
+    y_14=40*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Станина слева
+    y_15=60*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Вал
+    y_16=50*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Клеммная коробка
 
     ui->plot->addPoint(0, t, y_0);
     ui->plot->addPoint(1, t, y_1);
@@ -323,23 +322,23 @@ void Trend::stopTeplo()
 
 void Trend::on_timerTimeout()
 {
-    y_0=20*(1-exp(-t/20)) +wf->item28->text().toDouble();
-    y_1=54*(1-exp(-t/20)) +wf->item28->text().toDouble();
-    y_2=120*(1-exp(-t/25))+wf->item28->text().toDouble();
-    y_3=56*(1-exp(-t/25)) +wf->item28->text().toDouble();
-    y_4=120*(1-exp(-t/25))+wf->item28->text().toDouble();
-    y_5=90*(1-exp(-t/25)) +wf->item28->text().toDouble();
-    y_6=120*(1-exp(-t/25))+wf->item28->text().toDouble();
-    y_7=120*(1-exp(-t/25))+wf->item28->text().toDouble();
-    y_8=90*(1-exp(-t/25)) +wf->item28->text().toDouble();
-    y_9=60*(1-exp(-t/25)) +wf->item28->text().toDouble();
-    y_10=56*(1-exp(-t/25))+wf->item28->text().toDouble();
-    y_11=80*(1-exp(-t/20))+wf->item28->text().toDouble();
-    y_12=80*(1-exp(-t/20))+wf->item28->text().toDouble();
-    y_13=40*(1-exp(-t/20))+wf->item28->text().toDouble();
-    y_14=40*(1-exp(-t/20))+wf->item28->text().toDouble();
-    y_15=60*(1-exp(-t/20))+wf->item28->text().toDouble();
-    y_16=50*(1-exp(-t/20))+wf->item28->text().toDouble();
+    y_0=20*(1-exp(-t/20)) +wf->start_tepl_temperature_value->text().toDouble();
+    y_1=54*(1-exp(-t/20)) +wf->start_tepl_temperature_value->text().toDouble();
+    y_2=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();
+    y_3=56*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();
+    y_4=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();
+    y_5=90*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();
+    y_6=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();
+    y_7=120*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();
+    y_8=90*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();
+    y_9=60*(1-exp(-t/25)) +wf->start_tepl_temperature_value->text().toDouble();
+    y_10=56*(1-exp(-t/25))+wf->start_tepl_temperature_value->text().toDouble();
+    y_11=80*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
+    y_12=80*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
+    y_13=40*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
+    y_14=40*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
+    y_15=60*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
+    y_16=50*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
 
     w_0=314;
     w_w=147;
@@ -774,55 +773,55 @@ void Trend::on_timerTimeout()
 
 // Расчет значений цветов
 
-//int color_0 = 225 - (y_0 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+//int color_0 = 225 - (y_0 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_0));
 
-    int color_1 = 225 - (y_1 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_1 = 225 - (y_1 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_4->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_1));
 
-    int color_2 = 225 - (y_2 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_2 = 225 - (y_2 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_5->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_2));
 
-   int color_3 = 225 - (y_3 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+   int color_3 = 225 - (y_3 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_6->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_3));
 
-    int color_4 = 225 - (y_4 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_4 = 225 - (y_4 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_7->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_4));
 
-//    int color_5 = 225 - (y_5 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+//    int color_5 = 225 - (y_5 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_8->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_5));
 
-    int color_6 = 225 - (y_6 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_6 = 225 - (y_6 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_9->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_6));
 
-    int color_7 = 225 - (y_7 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_7 = 225 - (y_7 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_10->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_7));
 
-    int color_8 = 225 - (y_8 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_8 = 225 - (y_8 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_11->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_8));
 
-    int color_9 = 225 - (y_9 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_9 = 225 - (y_9 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_12->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_9));
 
-    int color_10 = 225 - (y_10 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_10 = 225 - (y_10 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_13->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_10));
 
-    int color_11 = 225 - (y_11 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_11 = 225 - (y_11 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_14->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_11));
 
-    int color_12 = 225 - (y_12 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_12 = 225 - (y_12 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_2->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_12));
 
-    int color_13 = 225 - (y_13 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_13 = 225 - (y_13 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_17->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_13));
 
-   int color_14 = 225 - (y_14 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+   int color_14 = 225 - (y_14 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_18->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_14));
 
-    int color_15 = 225 - (y_15 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_15 = 225 - (y_15 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_19->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_15));
 
-    int color_16 = 225 - (y_16 - wf->item28->text().toDouble()) / (140.0 - wf->item28->text().toDouble()) * 220.0;
+    int color_16 = 225 - (y_16 - wf->start_tepl_temperature_value->text().toDouble()) / (140.0 - wf->start_tepl_temperature_value->text().toDouble()) * 220.0;
 //    ui->label_20->setStyleSheet(QString("background-color: hsl(%1, 100%, 50%)").arg(color_16));
 
 
@@ -1062,7 +1061,7 @@ void Trend::on_timerTimeout()
                 max=y_16;
             }
 
-            double miny=wf->item28->text().toDouble();
+            double miny=wf->start_tepl_temperature_value->text().toDouble();
            //double miny=20.0;
             double h=(max-miny)/9;
             double shag1=miny+h;

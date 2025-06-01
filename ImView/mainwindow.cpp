@@ -68,7 +68,6 @@
 #include "vent_model.h"
 #include "ui_vent_model.h"
 #include "customhelpdelegate.h"
-#include "math.h"
 #include "plot.h"
 #include "model_el.h"
 #include "tepl_struct.h"
@@ -82,6 +81,7 @@
 #include "spandelegate.h"
 #include "branchdrawingdelegate.h"
 #include "linedelegate.h"
+#include "fillicondelegate.h"
 
 Base base;
 Base_tepl base_tepl;
@@ -123,13 +123,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);
     ui->widget_2->ui->widget->hide();
 
-     //настройка стартового экрана
+    //настройка стартового экрана
     ui->tabWidget->hide();
     ui->stackedWidget->hide();
     ui->switch_regim_upr->hide();
@@ -196,7 +194,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_12->ui->pushButton_3, &QPushButton::clicked, this, &MainWindow::tab_open);
 
     //инструментальное меню
+
     //файловые операции
+
     connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
@@ -261,7 +261,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //connect(ui->widget->ui->tableView, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onTableClicked(const QModelIndex &)));
 
-
     //Настройка связи форм
     ui->widget_2->wf=this;
     ui->widget_3->wf=this;
@@ -312,6 +311,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->stackedWidget->setCurrentIndex(0);
 
+    /* НАСТРОЙКИ QTREEVIEW  */
+
     //Настройка свойств QTreeView
     ui->treeView->setSelectionBehavior(QTreeView :: SelectRows); // Выбираем всю строку за раз
     ui->treeView->setSelectionMode(QTreeView :: SingleSelection); // Одиночный выбор, при этом вся строка над ним является одной строкой меню
@@ -343,802 +344,861 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     //Создание модели QTreeView
-    model2=new QStandardItemModel(ui->treeView);
-    model2->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
+    model_treeView=new QStandardItemModel(ui->treeView);
+    model_treeView->setHorizontalHeaderLabels (QStringList () << tr("Наименование") << tr("Свойство")); // Установить заголовок столбца
     ui->treeView->header()->setDefaultAlignment(Qt::AlignCenter);
     ui->treeView->setAlternatingRowColors(true);
 
     //настройка итемов QTreeView
-    QList<QStandardItem*> items1;
-    //all_sesion_name_parametr = new QStandardItem(tr("Общее настройки сессии"));
+
+    /* секция "Общие настройки сессии" */
+
+    QList<QStandardItem*> all_sesion_name;
     all_sesion_name_parametr = new QStandardItem();
-    QString w0=all_sesion_name_parametr->text();
-    all_sesion_name_parametr->setToolTip(w0);
+    QString all_sesion_name_tooltip=all_sesion_name_parametr->text();
+    all_sesion_name_parametr->setToolTip(all_sesion_name_tooltip);
     all_sesion_name_value = new QStandardItem();
-    items1.append(all_sesion_name_parametr);
-    items1.append(all_sesion_name_value);
-    model2->appendRow(items1);
+    all_sesion_name.append(all_sesion_name_parametr);
+    all_sesion_name.append(all_sesion_name_value);
+    model_treeView->appendRow(all_sesion_name);
     all_sesion_name_parametr->setSelectable(false);
     all_sesion_name_parametr->setEditable(false);
     all_sesion_name_value->setSelectable(false);
     all_sesion_name_value->setEditable(false);
-    QFont newFont("DroidSans", 10, QFont::Bold,false);
-    all_sesion_name_parametr->setFont(newFont);
 
-    QList<QStandardItem*> items2;
+    QList<QStandardItem*> sesion_name;
     sesion_name_parametr1 = new QStandardItem(tr("Название сессии"));
     sesion_name_parametr1->setEditable(false);
-    QString w1=sesion_name_parametr1->text();
-    sesion_name_parametr1->setToolTip(w1);
+    QString wsesion_name_parametr1_tooltip1 = sesion_name_parametr1->text();
+    sesion_name_parametr1->setToolTip(wsesion_name_parametr1_tooltip1);
     sesion_name_value1 = new QStandardItem(tr("Имя сеанса"));
-    QString w2=sesion_name_value1->text();
-    sesion_name_value1->setToolTip(w2);
-    items2.append(sesion_name_parametr1);
-    items2.append(sesion_name_value1);
-    all_sesion_name_parametr->appendRow(items2);
-    items2.clear();
+    QString sesion_name_value1_tooltip = sesion_name_value1->text();
+    sesion_name_value1->setToolTip(sesion_name_value1_tooltip);
+    sesion_name.append(sesion_name_parametr1);
+    sesion_name.append(sesion_name_value1);
+    all_sesion_name_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
-    //kind_experiment_parametr = new QStandardItem(tr("Тип эксперимента"));
+    /* секция "Тип эксперимента" */
+
     kind_experiment_parametr = new QStandardItem();
     kind_experiment_parametr->setEditable(false);
-    QString w9=kind_experiment_parametr->text();
-    kind_experiment_parametr->setToolTip(w9);
-    QFont newFont10("DroidSans", 10, QFont::Bold,false);
-    kind_experiment_parametr->setFont(newFont10);
+    QString kind_experiment_parametr_tooltip = kind_experiment_parametr->text();
+    kind_experiment_parametr->setToolTip(kind_experiment_parametr_tooltip);
     kind_experiment_value = new QStandardItem();
     kind_experiment_value->setEditable(false);
-    items2.append(kind_experiment_parametr);
-    items2.append(kind_experiment_value);
-    all_sesion_name_parametr->appendRow(items2);
-    items2.clear();
+    QString kind_experiment_value_tooltip = kind_experiment_value->text();
+    kind_experiment_value->setToolTip(kind_experiment_value_tooltip);
+    sesion_name.append(kind_experiment_parametr);
+    sesion_name.append(kind_experiment_value);
+    all_sesion_name_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     identification_switch_parametr = new QStandardItem(tr("Идентификация данных схемы замещения"));
     identification_switch_parametr->setEditable(false);
-    QString w10=identification_switch_parametr->text();
-    identification_switch_parametr->setToolTip(w10);
+    QString identification_switch_parametr_tooltip = identification_switch_parametr->text();
+    identification_switch_parametr->setToolTip(identification_switch_parametr_tooltip);
     identification_switch_value = new QStandardItem(tr("Выбрать тип эксперимента"));
-    QString w11=identification_switch_value->text();
-    identification_switch_value->setToolTip(w11);
-    items2.append(identification_switch_parametr);
-    items2.append(identification_switch_value);
-    kind_experiment_parametr->appendRow(items2);
-    items2.clear();
+    QString identification_switch_value_tooltip = identification_switch_value->text();
+    identification_switch_value->setToolTip(identification_switch_value_tooltip);
+    sesion_name.append(identification_switch_parametr);
+    sesion_name.append(identification_switch_value);
+    kind_experiment_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     load_data_ruchn_identf_parametr = new QStandardItem(tr("Загрузка данных ручной идентификации"));
     load_data_ruchn_identf_parametr->setEditable(false);
     load_data_ruchn_identf_parametr->setEnabled(false);
-    QString w12=load_data_ruchn_identf_parametr->text();
-    load_data_ruchn_identf_parametr->setToolTip(w12);
+    QString load_data_ruchn_identf_parametr_tooltip = load_data_ruchn_identf_parametr->text();
+    load_data_ruchn_identf_parametr->setToolTip(load_data_ruchn_identf_parametr_tooltip);
     load_data_ruchn_identf_value = new QStandardItem(tr("Указать каталог"));
     load_data_ruchn_identf_value->setEnabled(false);
-    QString w13=load_data_ruchn_identf_value->text();
-    load_data_ruchn_identf_value->setToolTip(w13);
-    items2.append(load_data_ruchn_identf_parametr);
-    items2.append(load_data_ruchn_identf_value);
-    kind_experiment_parametr->appendRow(items2);
-    items2.clear();
+    QString load_data_ruchn_identf_value_tooltip = load_data_ruchn_identf_value->text();
+    load_data_ruchn_identf_value->setToolTip(load_data_ruchn_identf_value_tooltip);
+    sesion_name.append(load_data_ruchn_identf_parametr);
+    sesion_name.append(load_data_ruchn_identf_value);
+    kind_experiment_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     identufication_observer_parametr = new QStandardItem(tr("Наблюдатель состояния"));
     identufication_observer_parametr->setEditable(false);
-    QString w14=identufication_observer_parametr->text();
-    identufication_observer_parametr->setToolTip(w14);
+    QString identufication_observer_parametr_tooltip = identufication_observer_parametr->text();
+    identufication_observer_parametr->setToolTip(identufication_observer_parametr_tooltip);
     enter_type_experiment_value = new QStandardItem(tr("Выбрать тип эксперимента"));
-    QString w15=enter_type_experiment_value->text();
-    enter_type_experiment_value->setToolTip(w15);
-    items2.append(identufication_observer_parametr);
-    items2.append(enter_type_experiment_value);
-    kind_experiment_parametr->appendRow(items2);
-    items2.clear();
+    QString enter_type_experiment_value_tooltip = enter_type_experiment_value->text();
+    enter_type_experiment_value->setToolTip(enter_type_experiment_value_tooltip);
+    sesion_name.append(identufication_observer_parametr);
+    sesion_name.append(enter_type_experiment_value);
+    kind_experiment_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     read_data_identf_observer_parametr = new QStandardItem(tr("Чтение данных для наблюдателя скорости"));
     read_data_identf_observer_parametr->setEditable(false);
     read_data_identf_observer_parametr->setEnabled(false);
-    QString w16=read_data_identf_observer_parametr->text();
-    read_data_identf_observer_parametr->setToolTip(w16);
+    QString read_data_identf_observer_parametr_tooltip = read_data_identf_observer_parametr->text();
+    read_data_identf_observer_parametr->setToolTip(read_data_identf_observer_parametr_tooltip);
     read_data_identf_observer_value = new QStandardItem(tr("Указать каталог"));
     read_data_identf_observer_value->setEnabled(false);
-    QString w17=read_data_identf_observer_value->text();
-    read_data_identf_observer_value->setToolTip(w17);
-    items2.append(read_data_identf_observer_parametr);
-    items2.append(read_data_identf_observer_value);
-    kind_experiment_parametr->appendRow(items2);
-    items2.clear();
+    QString read_data_identf_observer_value_tooltip = read_data_identf_observer_value->text();
+    read_data_identf_observer_value->setToolTip(read_data_identf_observer_value_tooltip);
+    sesion_name.append(read_data_identf_observer_parametr);
+    sesion_name.append(read_data_identf_observer_value);
+    kind_experiment_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     search_kanals_parametr = new QStandardItem(tr("Настройка каналов"));
     search_kanals_parametr->setEditable(false);
+    QString search_kanals_parametr_tooltip = search_kanals_parametr->text();
+    search_kanals_parametr->setToolTip(search_kanals_parametr_tooltip);
     search_kanals_value = new QStandardItem(tr("Выбрать каналы"));
-    QString w447=search_kanals_value->text();
-    search_kanals_value->setToolTip(w447);
-    items2.append(search_kanals_parametr);
-    items2.append(search_kanals_value);
-    kind_experiment_parametr->appendRow(items2);
-    items2.clear();
+    QString search_kanals_value_tooltip = search_kanals_value->text();
+    search_kanals_value->setToolTip(search_kanals_value_tooltip);
+    sesion_name.append(search_kanals_parametr);
+    sesion_name.append(search_kanals_value);
+    kind_experiment_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
-    //save_data_parametr = new QStandardItem(tr("Сохранение данных"));
+    /* секция "Сохранение данных" */
+
     save_data_parametr = new QStandardItem();
     save_data_parametr->setEditable(false);
-    QFont newFont11("DroidSans", 10, QFont::Bold,false);
-    save_data_parametr->setFont(newFont11);
-    QString w18=save_data_parametr->text();
-    save_data_parametr->setToolTip(w18);
+    QString save_data_parametr_tooltip = save_data_parametr->text();
+    save_data_parametr->setToolTip(save_data_parametr_tooltip);
     save_data_value = new QStandardItem();
     save_data_value->setEditable(false);
-    items2.append(save_data_parametr);
-    items2.append(save_data_value);
-    all_sesion_name_parametr->appendRow(items2);
-    items2.clear();
+    sesion_name.append(save_data_parametr);
+    sesion_name.append(save_data_value);
+    all_sesion_name_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     data_identification_parametr = new QStandardItem(tr("Данные идентификации"));
     data_identification_parametr->setEditable(false);
-    QString w19=data_identification_parametr->text();
-    data_identification_parametr->setToolTip(w19);
+    QString data_identification_parametr_tooltip = data_identification_parametr->text();
+    data_identification_parametr->setToolTip(data_identification_parametr_tooltip);
     data_identification_value = new QStandardItem(tr("Выбрать режим"));
-    items2.append(data_identification_parametr);
-    items2.append(data_identification_value);
-    save_data_parametr->appendRow(items2);
-    items2.clear();
+    QString data_identification_value_tooltip = data_identification_value->text();
+    data_identification_value->setToolTip(data_identification_value_tooltip);
+    sesion_name.append(data_identification_parametr);
+    sesion_name.append(data_identification_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     data_electomagn_process_parametr = new QStandardItem(tr("Данные электромагнитных процессов"));
     data_electomagn_process_parametr->setEditable(false);
-    QString w21=data_electomagn_process_parametr->text();
-    data_electomagn_process_parametr->setToolTip(w21);
+    QString data_electomagn_process_parametr_tooltip = data_electomagn_process_parametr->text();
+    data_electomagn_process_parametr->setToolTip(data_electomagn_process_parametr_tooltip);
     data_electomagn_process_value = new QStandardItem(tr("Выбрать режим"));
-    items2.append(data_electomagn_process_parametr);
-    items2.append(data_electomagn_process_value);
-    save_data_parametr->appendRow(items2);
-    items2.clear();
+    QString data_electomagn_process_value_tooltip = data_electomagn_process_value->text();
+    data_electomagn_process_value->setToolTip(data_electomagn_process_value_tooltip);
+    sesion_name.append(data_electomagn_process_parametr);
+    sesion_name.append(data_electomagn_process_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     data_tepl_process_parametr = new QStandardItem(tr("Данные тепловых процессов"));
     data_tepl_process_parametr->setEditable(false);
-    QString w23=data_tepl_process_parametr->text();
-    data_tepl_process_parametr->setToolTip(w23);
+    QString data_tepl_process_parametr_tooltip = data_tepl_process_parametr->text();
+    data_tepl_process_parametr->setToolTip(data_tepl_process_parametr_tooltip);
     data_tepl_process_value = new QStandardItem(tr("Выбрать режим"));
-    items2.append(data_tepl_process_parametr);
-    items2.append(data_tepl_process_value);
-    save_data_parametr->appendRow(items2);
-    items2.clear();
+    QString data_tepl_process_value_tooltip = data_tepl_process_value->text();
+    data_tepl_process_value->setToolTip(data_tepl_process_value_tooltip);
+    sesion_name.append(data_tepl_process_parametr);
+    sesion_name.append(data_tepl_process_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     data_vent_process_parametr = new QStandardItem(tr("Данные вентиляционных процессов"));
     data_vent_process_parametr->setEditable(false);
-    QString w25=data_vent_process_parametr->text();
-    data_vent_process_parametr->setToolTip(w25);
+    QString data_vent_process_parametr_tooltip = data_vent_process_parametr->text();
+    data_vent_process_parametr->setToolTip(data_vent_process_parametr_tooltip );
     data_vent_process_value = new QStandardItem(tr("Выбрать режим"));
-    items2.append(data_vent_process_parametr);
-    items2.append(data_vent_process_value);
-    save_data_parametr->appendRow(items2);
-    items2.clear();
+    QString data_vent_process_value_tooltip = data_vent_process_value->text();
+    data_vent_process_value->setToolTip(data_vent_process_value_tooltip );
+    sesion_name.append(data_vent_process_parametr);
+    sesion_name.append(data_vent_process_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     data_tepl_prognose_parametr = new QStandardItem(tr("Данные прогноза температур"));
     data_tepl_prognose_parametr->setEditable(false);
-    QString w27=data_tepl_prognose_parametr->text();
-    data_tepl_prognose_parametr->setToolTip(w27);
+    QString data_tepl_prognose_parametr_tooltip = data_tepl_prognose_parametr->text();
+    data_tepl_prognose_parametr->setToolTip(data_tepl_prognose_parametr_tooltip );
     data_tepl_prognose_value = new QStandardItem(tr("Выбрать режим"));
-    items2.append(data_tepl_prognose_parametr);
-    items2.append(data_tepl_prognose_value);
-    save_data_parametr->appendRow(items2);
-    items2.clear();
+    QString data_tepl_prognose_value_tooltip = data_tepl_prognose_value->text();
+    data_tepl_prognose_value->setToolTip(data_tepl_prognose_value_tooltip );
+    sesion_name.append(data_tepl_prognose_parametr);
+    sesion_name.append(data_tepl_prognose_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
     data_ostat_tepl_resurs_parametr = new QStandardItem(tr("Данные остаточного теплового ресурса"));
     data_ostat_tepl_resurs_parametr->setEditable(false);
-    QString w29=data_ostat_tepl_resurs_parametr->text();
-    data_ostat_tepl_resurs_parametr->setToolTip(w29);
+    QString data_ostat_tepl_resurs_parametr_tooltip = data_ostat_tepl_resurs_parametr->text();
+    data_ostat_tepl_resurs_parametr->setToolTip(data_ostat_tepl_resurs_parametr_tooltip );
     data_ostat_tepl_resurs_value = new QStandardItem(tr("Выбрать режим"));
-    items2.append(data_ostat_tepl_resurs_parametr);
-    items2.append(data_ostat_tepl_resurs_value);
-    save_data_parametr->appendRow(items2);
-    items2.clear();
+    QString data_ostat_tepl_resurs_value_tooltip = data_ostat_tepl_resurs_value->text();
+    data_ostat_tepl_resurs_value->setToolTip(data_ostat_tepl_resurs_value_tooltip );
+    sesion_name.append(data_ostat_tepl_resurs_parametr);
+    sesion_name.append(data_ostat_tepl_resurs_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
 
-    QList<QStandardItem*> items3;
-    //identf_scheme_zam_parametr = new QStandardItem(tr("Идентификация параметров схемы замещения"));
+    /* секция "Идентификация параметров схемы замещения" */
+
+    QList<QStandardItem*> identf_scheme_zam;
     identf_scheme_zam_parametr = new QStandardItem();
-    identf_scheme_zam_value = new QStandardItem();
-    items3.append(identf_scheme_zam_parametr);
-    items3.append(identf_scheme_zam_value);
-    model2->appendRow(items3);
-    items3.clear();
     identf_scheme_zam_parametr->setSelectable(false);
     identf_scheme_zam_parametr->setEditable(false);
-    QString w31=identf_scheme_zam_parametr->text();
-    identf_scheme_zam_parametr->setToolTip(w31);
+    QString identf_scheme_zam_parametr_tooltip=identf_scheme_zam_parametr->text();
+    identf_scheme_zam_parametr->setToolTip(identf_scheme_zam_parametr_tooltip);
+    identf_scheme_zam_value = new QStandardItem();
     identf_scheme_zam_value->setSelectable(false);
     identf_scheme_zam_value->setEditable(false);
-    QString w32=identf_scheme_zam_value->text();
-    identf_scheme_zam_value->setToolTip(w32);
-    QFont newFont2("SansSerif", 10, QFont::Bold,false);
-    identf_scheme_zam_parametr->setFont(newFont2);
+    QString identf_scheme_zam_value_tooltip=identf_scheme_zam_value->text();
+    identf_scheme_zam_value->setToolTip(identf_scheme_zam_value_tooltip);
+    identf_scheme_zam.append(identf_scheme_zam_parametr);
+    identf_scheme_zam.append(identf_scheme_zam_value);
+    model_treeView->appendRow(identf_scheme_zam);
+    identf_scheme_zam.clear();
 
-    QList<QStandardItem*> items4;
+    QList<QStandardItem*> iteidentf_scheme_zamms4;
     calculation_mode_parametr = new QStandardItem(tr("Режим расчета"));
     calculation_mode_parametr->setEditable(false);
-    QString w35=calculation_mode_parametr->text();
-    calculation_mode_parametr->setToolTip(w35);
+    QString calculation_mode_parametr_tooltip = calculation_mode_parametr->text();
+    calculation_mode_parametr->setToolTip(calculation_mode_parametr_tooltip );
     calculation_mode_value = new QStandardItem(tr("Выберите режим"));
-    QString w73=calculation_mode_value->text();
-    calculation_mode_value->setToolTip(w73);
-    items4.append(calculation_mode_parametr);
-    items4.append(calculation_mode_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString calculation_mode_value_tooltip = calculation_mode_value->text();
+    calculation_mode_value->setToolTip(calculation_mode_value_tooltip);
+    iteidentf_scheme_zamms4.append(calculation_mode_parametr);
+    iteidentf_scheme_zamms4.append(calculation_mode_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
-    tuning_coefficient_ki_parametr = new QStandardItem(tr("Настроечный коэффициент gd="));
-    tuning_coefficient_ki_parametr->setEditable(false);
-    tuning_coefficient_ki_parametr->setEnabled(false);
-    QString w37=tuning_coefficient_ki_parametr->text();
-    tuning_coefficient_ki_parametr->setToolTip(w37);
+    tuning_coefficient_gd_parametr = new QStandardItem(tr("Настроечный коэффициент gd="));
+    tuning_coefficient_gd_parametr->setEditable(false);
+    tuning_coefficient_gd_parametr->setEnabled(false);
+    QString tuning_coefficient_gd_parametr_tooltip = tuning_coefficient_gd_parametr->text();
+    tuning_coefficient_gd_parametr->setToolTip(tuning_coefficient_gd_parametr_tooltip);
     tuning_coefficient_gd_value = new QStandardItem(tr("0"));
     tuning_coefficient_gd_value->setEnabled(false);
     tuning_coefficient_gd_value->setCheckable(false);
-    QString w38=tuning_coefficient_gd_value->text();
-    tuning_coefficient_gd_value->setToolTip(w38);
-    items4.append(tuning_coefficient_ki_parametr);
-    items4.append(tuning_coefficient_gd_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString tuning_coefficient_gd_value_tooltip = tuning_coefficient_gd_value->text();
+    tuning_coefficient_gd_value->setToolTip(tuning_coefficient_gd_value_tooltip);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gd_parametr);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gd_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
     tuning_coefficient_ki_parametr = new QStandardItem(tr("Настроечный коэффициент ki="));
     tuning_coefficient_ki_parametr->setEditable(false);
     tuning_coefficient_ki_parametr->setEnabled(false);
-    QString w39=tuning_coefficient_ki_parametr->text();
-    tuning_coefficient_ki_parametr->setToolTip(w39);
+    QString tuning_coefficient_ki_parametr_tooltip = tuning_coefficient_ki_parametr->text();
+    tuning_coefficient_ki_parametr->setToolTip(tuning_coefficient_ki_parametr_tooltip);
     tuning_coefficient_ki_value = new QStandardItem(tr("0"));
     tuning_coefficient_ki_value->setEnabled(false);
     tuning_coefficient_ki_value->setCheckable(false);
-    QString w40=tuning_coefficient_ki_value->text();
-    tuning_coefficient_ki_value->setToolTip(w40);
-    items4.append(tuning_coefficient_ki_parametr);
-    items4.append(tuning_coefficient_ki_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString uning_coefficient_ki_value_tooltip = tuning_coefficient_ki_value->text();
+    tuning_coefficient_ki_value->setToolTip(uning_coefficient_ki_value_tooltip);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_ki_parametr);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_ki_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
     tuning_coefficient_gb_parametr = new QStandardItem(tr("Настроечный коэффициент gb="));
     tuning_coefficient_gb_parametr->setEditable(false);
     tuning_coefficient_gb_parametr->setEnabled(false);
-    QString w41=tuning_coefficient_gb_parametr->text();
-    tuning_coefficient_gb_parametr->setToolTip(w41);
+    QString tuning_coefficient_gb_parametr_tooltip = tuning_coefficient_gb_parametr->text();
+    tuning_coefficient_gb_parametr->setToolTip(tuning_coefficient_gb_parametr_tooltip);
     tuning_coefficient_gb_value = new QStandardItem(tr("0"));
     tuning_coefficient_gb_value->setEnabled(false);
     tuning_coefficient_gb_value->setCheckable(false);
-    QString w42=tuning_coefficient_gb_value->text();
-    tuning_coefficient_gb_value->setToolTip(w42);
-    items4.append(tuning_coefficient_gb_parametr);
-    items4.append(tuning_coefficient_gb_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString tuning_coefficient_gb_value_tooltip = tuning_coefficient_gb_value->text();
+    tuning_coefficient_gb_value->setToolTip(tuning_coefficient_gb_value_tooltip);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gb_parametr);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gb_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
     tuning_coefficient_kpsi_parametr = new QStandardItem(tr("Настроечный коэффициент kpsi="));
     tuning_coefficient_kpsi_parametr->setEditable(false);
     tuning_coefficient_kpsi_parametr->setEnabled(false);
-    QString w43=tuning_coefficient_kpsi_parametr->text();
-    tuning_coefficient_kpsi_parametr->setToolTip(w43);
+    QString tuning_coefficient_kpsi_parametr_tooltip = tuning_coefficient_kpsi_parametr->text();
+    tuning_coefficient_kpsi_parametr->setToolTip(tuning_coefficient_kpsi_parametr_tooltip);
     tuning_coefficient_kpsi_value = new QStandardItem(tr("0"));
     tuning_coefficient_kpsi_value->setEnabled(false);
     tuning_coefficient_kpsi_value->setCheckable(false);
-    QString w44=tuning_coefficient_kpsi_value->text();
-    tuning_coefficient_kpsi_value->setToolTip(w44);
-    items4.append(tuning_coefficient_kpsi_parametr);
-    items4.append(tuning_coefficient_kpsi_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString tuning_coefficient_kpsi_value_tooltip = tuning_coefficient_kpsi_value->text();
+    tuning_coefficient_kpsi_value->setToolTip(tuning_coefficient_kpsi_value_tooltip);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_kpsi_parametr);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_kpsi_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
     tuning_coefficient_gp_parametr = new QStandardItem(tr("Настроечный коэффициент gp="));
     tuning_coefficient_gp_parametr->setEditable(false);
     tuning_coefficient_gp_parametr->setEnabled(false);
-    QString w45=tuning_coefficient_gp_parametr->text();
-    tuning_coefficient_gp_parametr->setToolTip(w45);
+    QString tuning_coefficient_gp_parametr_tooltip = tuning_coefficient_gp_parametr->text();
+    tuning_coefficient_gp_parametr->setToolTip(tuning_coefficient_gp_parametr_tooltip );
     tuning_coefficient_gp_value = new QStandardItem(tr("0"));
     tuning_coefficient_gp_value->setEnabled(false);
     tuning_coefficient_gp_value->setCheckable(false);
-    QString w46=tuning_coefficient_gp_value->text();
-    tuning_coefficient_gp_value->setToolTip(w46);
-    items4.append(tuning_coefficient_gp_parametr);
-    items4.append(tuning_coefficient_gp_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString tuning_coefficient_gp_value_tooltip = tuning_coefficient_gp_value->text();
+    tuning_coefficient_gp_value->setToolTip(tuning_coefficient_gp_value_tooltip);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gp_parametr);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gp_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
     tuning_coefficient_gpsi_parametr = new QStandardItem(tr("Настроечный коэффициент gpsi="));
     tuning_coefficient_gpsi_parametr->setEditable(false);
     tuning_coefficient_gpsi_parametr->setEnabled(false);
-    QString w47=tuning_coefficient_gpsi_parametr->text();
-    tuning_coefficient_gpsi_parametr->setToolTip(w47);
+    QString tuning_coefficient_gpsi_parametr_tooltip = tuning_coefficient_gpsi_parametr->text();
+    tuning_coefficient_gpsi_parametr->setToolTip(tuning_coefficient_gpsi_parametr_tooltip);
     tuning_coefficient_gpsi_value = new QStandardItem(tr("0"));
     tuning_coefficient_gpsi_value->setEnabled(false);
     tuning_coefficient_gpsi_value->setCheckable(false);
-    QString w48=tuning_coefficient_gpsi_value->text();
-    tuning_coefficient_gpsi_value->setToolTip(w48);
-    items4.append(tuning_coefficient_gpsi_parametr);
-    items4.append(tuning_coefficient_gpsi_value);
-    identf_scheme_zam_parametr->appendRow(items4);
-    items4.clear();
+    QString tuning_coefficient_gpsi_value_tooltip = tuning_coefficient_gpsi_value->text();
+    tuning_coefficient_gpsi_value->setToolTip(tuning_coefficient_gpsi_value_tooltip);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gpsi_parametr);
+    iteidentf_scheme_zamms4.append(tuning_coefficient_gpsi_value);
+    identf_scheme_zam_parametr->appendRow(iteidentf_scheme_zamms4);
+    iteidentf_scheme_zamms4.clear();
 
-    QList<QStandardItem*> items17;
-    //thermal_identification_parametr = new QStandardItem(tr("Тепловая идентификация"));
+    /* секция "Тепловая идентификация" */
+
+    QList<QStandardItem*> thermal_identification;
     thermal_identification_parametr = new QStandardItem();
-    thermal_identification_value = new QStandardItem();
-    items17.append(thermal_identification_parametr);
-    items17.append(thermal_identification_value);
-    model2->appendRow(items17);
-    items17.clear();
     thermal_identification_parametr->setSelectable(false);
     thermal_identification_parametr->setEditable(false);
-    QString w64=thermal_identification_parametr->text();
-    thermal_identification_parametr->setToolTip(w64);
+    QString  thermal_identification_parametr_tooltip = thermal_identification_parametr->text();
+    thermal_identification_parametr->setToolTip( thermal_identification_parametr_tooltip);
+    thermal_identification_value = new QStandardItem();
     thermal_identification_value->setSelectable(false);
     thermal_identification_value->setEditable(false);
-    QFont newFont17("SansSerif", 10, QFont::Bold,false);
-    thermal_identification_parametr->setFont(newFont17);
+    thermal_identification.append(thermal_identification_parametr);
+    thermal_identification.append(thermal_identification_value);
+    model_treeView->appendRow(thermal_identification);
+    thermal_identification.clear();
 
     kind_thermal_model_parametr = new QStandardItem(tr("Вид тепловой модели"));
     kind_thermal_model_parametr->setEditable(false);
-    QString w65=kind_thermal_model_parametr->text();
-    kind_thermal_model_parametr->setToolTip(w65);
+    QString kind_thermal_model_parametr_tooltip = kind_thermal_model_parametr->text();
+    kind_thermal_model_parametr->setToolTip(kind_thermal_model_parametr_tooltip);
     kind_thermal_model_value = new QStandardItem(tr("Выберите вид"));
-    QString w66=kind_thermal_model_value->text();
-    kind_thermal_model_value->setToolTip(w66);
-    items17.append(kind_thermal_model_parametr);
-    items17.append(kind_thermal_model_value);
-    thermal_identification_parametr->appendRow(items17);
-    items17.clear();
+    QString kind_thermal_model_value_tooltip = kind_thermal_model_value->text();
+    kind_thermal_model_value->setToolTip(kind_thermal_model_value_tooltip);
+    thermal_identification.append(kind_thermal_model_parametr);
+    thermal_identification.append(kind_thermal_model_value);
+    thermal_identification_parametr->appendRow(thermal_identification);
+    thermal_identification.clear();
 
     kind_thermal_model_2_parametr = new QStandardItem(tr("Вид тепловой модели"));
     kind_thermal_model_2_parametr->setEditable(false);
-    QString w67=kind_thermal_model_2_parametr->text();
-    kind_thermal_model_2_parametr->setToolTip(w67);
-    kind_thermal_model_3_value = new QStandardItem(tr("Выберите вид"));
-    QString w68=kind_thermal_model_3_value->text();
-    kind_thermal_model_3_value->setToolTip(w68);
-    items17.append(kind_thermal_model_2_parametr);
-    items17.append(kind_thermal_model_3_value);
-    thermal_identification_parametr->appendRow(items17);
-    items17.clear();
+    QString kind_thermal_model_2_parametr_tooltip = kind_thermal_model_2_parametr->text();
+    kind_thermal_model_2_parametr->setToolTip(kind_thermal_model_2_parametr_tooltip);
+    kind_thermal_model_2_value = new QStandardItem(tr("Выберите вид"));
+    QString kind_thermal_model_2_value_tooltip = kind_thermal_model_2_value->text();
+    kind_thermal_model_2_value->setToolTip(kind_thermal_model_2_value_tooltip);
+    thermal_identification.append(kind_thermal_model_2_parametr);
+    thermal_identification.append(kind_thermal_model_2_value);
+    thermal_identification_parametr->appendRow(thermal_identification);
+    thermal_identification.clear();
 
-    kind_thermal_model_3_parametr = new QStandardItem(tr("Вид тепловой модели"));
-    kind_thermal_model_3_parametr->setEditable(false);
-    QString w69=kind_thermal_model_3_parametr->text();
-    kind_thermal_model_3_parametr->setToolTip(w69);
-    kind_thermal_model_3_value = new QStandardItem(tr("Выберите вид"));
-    QString w70=kind_thermal_model_3_value->text();
-    kind_thermal_model_3_value->setToolTip(w70);
-    items17.append(kind_thermal_model_3_parametr);
-    items17.append(kind_thermal_model_3_value);
-    thermal_identification_parametr->appendRow(items17);
-    items17.clear();
+    kind_thermal_model_4_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_4_parametr->setEditable(false);
+    QString kind_thermal_model_4_parametr_tooltip = kind_thermal_model_4_parametr->text();
+    kind_thermal_model_4_parametr->setToolTip(kind_thermal_model_4_parametr_tooltip);
+    kind_thermal_model_4_value = new QStandardItem(tr("Выберите вид"));
+    QString kind_thermal_model_4_value_tooltip = kind_thermal_model_4_value->text();
+    kind_thermal_model_4_value->setToolTip(kind_thermal_model_4_value_tooltip);
+    thermal_identification.append(kind_thermal_model_4_parametr);
+    thermal_identification.append(kind_thermal_model_4_value);
+    thermal_identification_parametr->appendRow(thermal_identification);
+    thermal_identification.clear();
 
-    QList<QStandardItem*> items18;
-    //ventilation_identification_parametr = new QStandardItem(tr("Вентиляционная идентификация"));
+    /* секция "Вентиляционная идентификация" */
+
+    QList<QStandardItem*> iteventilation_identificationms18;
     ventilation_identification_parametr = new QStandardItem();
-    ventilation_identification_value = new QStandardItem();
-    items18.append(ventilation_identification_parametr);
-    items18.append(ventilation_identification_value);
-    model2->appendRow(items18);
-    items18.clear();
     ventilation_identification_parametr->setSelectable(false);
     ventilation_identification_parametr->setEditable(false);
-    QString w71=ventilation_identification_parametr->text();
-    ventilation_identification_parametr->setToolTip(w71);
+    QString ventilation_identification_parametr_tooltip = ventilation_identification_parametr->text();
+    ventilation_identification_parametr->setToolTip(ventilation_identification_parametr_tooltip);
+    ventilation_identification_value = new QStandardItem();
     ventilation_identification_value->setSelectable(false);
     ventilation_identification_value->setEditable(false);
-    QFont newFont18("SansSerif", 10, QFont::Bold,false);
-    ventilation_identification_parametr->setFont(newFont18);
+    iteventilation_identificationms18.append(ventilation_identification_parametr);
+    iteventilation_identificationms18.append(ventilation_identification_value);
+    model_treeView->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
 
     kind_ventilation_parametr = new QStandardItem(tr("Вид вентиляции"));
     kind_ventilation_parametr->setEditable(false);
-    QString w72=kind_ventilation_parametr->text();
-    kind_ventilation_parametr->setToolTip(w72);
+    QString kind_ventilation_parametr_tooltip = kind_ventilation_parametr->text();
+    kind_ventilation_parametr->setToolTip(kind_ventilation_parametr_tooltip);
     kind_ventilation_value = new QStandardItem(tr("Выберите вид"));
-    QString w74=kind_ventilation_value->text();
-    kind_ventilation_value->setToolTip(w74);
-    items18.append(kind_ventilation_parametr);
-    items18.append(kind_ventilation_value);
-    ventilation_identification_parametr->appendRow(items18);
-    items18.clear();
+    QString kind_ventilation_value_tooltip = kind_ventilation_value->text();
+    kind_ventilation_value->setToolTip(kind_ventilation_value_tooltip);
+    iteventilation_identificationms18.append(kind_ventilation_parametr);
+    iteventilation_identificationms18.append(kind_ventilation_value);
+    ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
 
     calculation_modes_parametr = new QStandardItem(tr("Режим расчета"));
     calculation_modes_parametr->setEditable(false);
-    QString w75=kind_ventilation_parametr->text();
-    calculation_modes_parametr->setToolTip(w75);
+    QString calculation_modes_parametr_tooltip = kind_ventilation_parametr->text();
+    calculation_modes_parametr->setToolTip(calculation_modes_parametr_tooltip);
     calculation_modes_value = new QStandardItem(tr("Выберите вид"));
-    QString w76=kind_ventilation_value->text();
-    calculation_modes_value->setToolTip(w76);
-    items18.append(calculation_modes_parametr);
-    items18.append(calculation_modes_value);
-    ventilation_identification_parametr->appendRow(items18);
-    items18.clear();
+    QString calculation_modes_value_tooltip = kind_ventilation_value->text();
+    calculation_modes_value->setToolTip(calculation_modes_value_tooltip);
+    iteventilation_identificationms18.append(calculation_modes_parametr);
+    iteventilation_identificationms18.append(calculation_modes_value);
+    ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
 
     geometry_parameters_parametr = new QStandardItem(tr("Геометрические параметры"));
     geometry_parameters_parametr->setEditable(false);
     geometry_parameters_parametr->setEnabled(false);
-    QString w77=geometry_parameters_parametr->text();
-    geometry_parameters_parametr->setToolTip(w77);
+    QString geometry_parameters_parametr_tooltip = geometry_parameters_parametr->text();
+    geometry_parameters_parametr->setToolTip(geometry_parameters_parametr_tooltip);
     geometry_parameters_value = new QStandardItem(tr("Введите данные"));
     geometry_parameters_value->setEnabled(false);
-    QString w78=geometry_parameters_value->text();
-    geometry_parameters_value->setToolTip(w78);
-    items18.append(geometry_parameters_parametr);
-    items18.append(geometry_parameters_value);
-    ventilation_identification_parametr->appendRow(items18);
-    items18.clear();
+    QString geometry_parameters_value_tooltip = geometry_parameters_value->text();
+    geometry_parameters_value->setToolTip(geometry_parameters_value_tooltip);
+    iteventilation_identificationms18.append(geometry_parameters_parametr);
+    iteventilation_identificationms18.append(geometry_parameters_value);
+    ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
 
     Heat_processes_accounting_parameter = new QStandardItem(tr("Учет тепловых процессов"));
     Heat_processes_accounting_parameter->setEditable(false);
-    QString w79=Heat_processes_accounting_parameter->text();
-    Heat_processes_accounting_parameter->setToolTip(w79);
+    QString Heat_processes_accounting_parameter_tooltip = Heat_processes_accounting_parameter->text();
+    Heat_processes_accounting_parameter->setToolTip(Heat_processes_accounting_parameter_tooltip );
     Heat_processes_accounting_value = new QStandardItem(tr("Введите данные"));
-    QString w80=Heat_processes_accounting_value->text();
-    Heat_processes_accounting_value->setToolTip(w80);
-    items18.append(Heat_processes_accounting_parameter);
-    items18.append(Heat_processes_accounting_value);
-    ventilation_identification_parametr->appendRow(items18);
-    items18.clear();
+    QString Heat_processes_accounting_value_tooltip = Heat_processes_accounting_value->text();
+    Heat_processes_accounting_value->setToolTip(Heat_processes_accounting_value_tooltip);
+    iteventilation_identificationms18.append(Heat_processes_accounting_parameter);
+    iteventilation_identificationms18.append(Heat_processes_accounting_value);
+    ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
 
-    QList<QStandardItem*> items5;
-    //electromagnetic_model_parametr = new QStandardItem(tr("Электромагнитная модель"));
+    /* секция "Электромагнитная модель" */
+
+    QList<QStandardItem*> electromagnetic_model;
     electromagnetic_model_parametr = new QStandardItem();
-    electromagnetic_model_value = new QStandardItem();
-    items5.append(electromagnetic_model_parametr);
-    items5.append(electromagnetic_model_value);
-    model2->appendRow(items5);
-    items5.clear();
     electromagnetic_model_parametr->setSelectable(false);
     electromagnetic_model_parametr->setEditable(false);
-    QString w49=electromagnetic_model_parametr->text();
-    electromagnetic_model_parametr->setToolTip(w49);
+    QString electromagnetic_model_parametr_tooltip=electromagnetic_model_parametr->text();
+    electromagnetic_model_parametr->setToolTip(electromagnetic_model_parametr_tooltip);
+    electromagnetic_model_value = new QStandardItem();
     electromagnetic_model_value->setSelectable(false);
     electromagnetic_model_value->setEditable(false);
-    QFont newFont3("SansSerif", 10, QFont::Bold,false);
-    electromagnetic_model_parametr->setFont(newFont3);
+    electromagnetic_model.append(electromagnetic_model_parametr);
+    electromagnetic_model.append(electromagnetic_model_value);
+    model_treeView->appendRow(electromagnetic_model);
+    electromagnetic_model.clear();
 
-    QList<QStandardItem*> items6;
+    QList<QStandardItem*> engine_duty_cycle;
     engine_duty_cycle_parametr = new QStandardItem(tr("Pежим работы двигателя"));
     engine_duty_cycle_parametr->setEditable(false);
-    QString w50=engine_duty_cycle_parametr->text();
-    engine_duty_cycle_parametr->setToolTip(w50);
+    QString engine_duty_cycle_parametr_tooltip = engine_duty_cycle_parametr->text();
+    engine_duty_cycle_parametr->setToolTip(engine_duty_cycle_parametr_tooltip );
     engine_duty_cycle_value = new QStandardItem(tr("Выбрать режим"));
-    QString w51=engine_duty_cycle_value->text();
-    engine_duty_cycle_value->setToolTip(w51);
-    items6.append(engine_duty_cycle_parametr);
-    items6.append(engine_duty_cycle_value);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    QString engine_duty_cycle_value_tooltip = engine_duty_cycle_value->text();
+    engine_duty_cycle_value->setToolTip(engine_duty_cycle_value_tooltip);
+    engine_duty_cycle.append(engine_duty_cycle_parametr);
+    engine_duty_cycle.append(engine_duty_cycle_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item21 = new QStandardItem(tr("Время цикла, с:"));
-    item21->setEditable(false);
-    item21->setEnabled(false);
-    QString w52=item21->text();
-    item21->setToolTip(w52);
-    item22 = new QStandardItem(tr("0"));
-    item22->setEnabled(false);
-    QString w53=item22->text();
-    item22->setToolTip(w53);
-    items6.append(item21);
-    items6.append(item22);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    time_cycle_parametr = new QStandardItem(tr("Время цикла, с:"));
+    time_cycle_parametr->setEditable(false);
+    time_cycle_parametr->setEnabled(false);
+    QString time_cycle_parametr_tooltip = time_cycle_parametr->text();
+    time_cycle_parametr->setToolTip(time_cycle_parametr_tooltip);
+    time_cycle_value = new QStandardItem(tr("0"));
+    time_cycle_value->setEnabled(false);
+    QString time_cycle_value_tooltip = time_cycle_value->text();
+    time_cycle_value->setToolTip(time_cycle_value_tooltip);
+    engine_duty_cycle.append(time_cycle_parametr);
+    engine_duty_cycle.append(time_cycle_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item175 = new QStandardItem(tr("Время работы в цикле, с:"));
-    item175->setEditable(false);
-    item175->setEnabled(false);
-    QString w83=item175->text();
-    item175->setToolTip(w83);
-    item176 = new QStandardItem(tr("0"));
-    item176->setEnabled(false);
-    QString w84=item176->text();
-    item176->setToolTip(w84);
-    items6.append(item175);
-    items6.append(item176);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    time_work_in_cycle_parametr = new QStandardItem(tr("Время работы в цикле, с:"));
+    time_work_in_cycle_parametr->setEditable(false);
+    time_work_in_cycle_parametr->setEnabled(false);
+    QString time_work_in_cycle_parametr_tooltip = time_work_in_cycle_parametr->text();
+    time_work_in_cycle_parametr->setToolTip(time_work_in_cycle_parametr_tooltip );
+    time_work_in_cycle_value = new QStandardItem(tr("0"));
+    time_work_in_cycle_value->setEnabled(false);
+    QString time_work_in_cycle_value_tooltip = time_work_in_cycle_value->text();
+    time_work_in_cycle_value->setToolTip(time_work_in_cycle_value_tooltip);
+    engine_duty_cycle.append(time_work_in_cycle_parametr);
+    engine_duty_cycle.append(time_work_in_cycle_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item177 = new QStandardItem(tr("Время пуска в цикле, с:"));
-    item177->setEditable(false);
-    item177->setEnabled(false);
-    QString w87=item177->text();
-    item177->setToolTip(w87);
-    item178 = new QStandardItem(tr("0"));
-    item178->setEnabled(false);
-    QString w88=item178->text();
-    item178->setToolTip(w88);
-    items6.append(item177);
-    items6.append(item178);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    time_start_in_cycle_parametr = new QStandardItem(tr("Время пуска в цикле, с:"));
+    time_start_in_cycle_parametr->setEditable(false);
+    time_start_in_cycle_parametr->setEnabled(false);
+    QString time_start_in_cycle_parametr_tooltip = time_start_in_cycle_parametr->text();
+    time_start_in_cycle_parametr->setToolTip(time_start_in_cycle_parametr_tooltip);
+    time_start_in_cycle_value = new QStandardItem(tr("0"));
+    time_start_in_cycle_value->setEnabled(false);
+    QString time_start_in_cycle_value_tooltip = time_start_in_cycle_value->text();
+    time_start_in_cycle_value->setToolTip(time_start_in_cycle_value_tooltip);
+    engine_duty_cycle.append(time_start_in_cycle_parametr);
+    engine_duty_cycle.append(time_start_in_cycle_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item23 = new QStandardItem(tr("Выбор системы отсчета времени"));
-    item23->setEditable(false);
-     QString w54=item23->text();
-    item23->setToolTip(w54);
-    item24 = new QStandardItem(tr("Выберите тип отсчета"));
-    QString w55=item24->text();
-    item24->setToolTip(w55);
-    items6.append(item23);
-    items6.append(item24);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    time_base_selection_parametr = new QStandardItem(tr("Выбор системы отсчета времени"));
+    time_base_selection_parametr->setEditable(false);
+    QString time_base_selection_parametr_tooltip = time_base_selection_parametr->text();
+    time_base_selection_parametr->setToolTip(time_base_selection_parametr_tooltip );
+    time_base_selection_value = new QStandardItem(tr("Выберите тип отсчета"));
+    QString time_base_selection_value_tooltip = time_base_selection_value->text();
+    time_base_selection_value->setToolTip(time_base_selection_value_tooltip);
+    engine_duty_cycle.append(time_base_selection_parametr);
+    engine_duty_cycle.append(time_base_selection_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item173 = new QStandardItem(tr("Время работы, с:"));
-    item173->setEditable(false);
-    item173->setEnabled(false);
-    QString w81=item173->text();
-    item173->setToolTip(w81);
-    item174 = new QStandardItem(tr("0"));
-    item174->setEnabled(false);
-    QString w82=item174->text();
-    item174->setToolTip(w82);
-    items6.append(item173);
-    items6.append(item174);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    time_work_parametr = new QStandardItem(tr("Время работы, с:"));
+    time_work_parametr->setEditable(false);
+    time_work_parametr->setEnabled(false);
+    QString time_work_parametr_tooltip = time_work_parametr->text();
+    time_work_parametr->setToolTip(time_work_parametr_tooltip);
+    time_work_value = new QStandardItem(tr("0"));
+    time_work_value->setEnabled(false);
+    QString time_work_value_tooltip = time_work_value->text();
+    time_work_value->setToolTip(time_work_value_tooltip);
+    engine_duty_cycle.append(time_work_parametr);
+    engine_duty_cycle.append(time_work_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item91 = new QStandardItem(tr("Выбор системы электропривода"));
-    item91->setEditable(false);
-    QString w58=item91->text();
-    item91->setToolTip(w58);
-    item92 = new QStandardItem(tr("Выбрать режим"));
-    QString w59=item92->text();
-    item92->setToolTip(w59);
-    items6.append(item91);
-    items6.append(item92);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    switch_system_electrodrive_parametr = new QStandardItem(tr("Выбор системы электропривода"));
+    switch_system_electrodrive_parametr->setEditable(false);
+    QString switch_system_electrodrive_parametr_tooltip=switch_system_electrodrive_parametr->text();
+    switch_system_electrodrive_parametr->setToolTip(switch_system_electrodrive_parametr_tooltip);
+    switch_system_electrodrive_value = new QStandardItem(tr("Выбрать режим"));
+    QString switch_system_electrodrive_value_tooltip=switch_system_electrodrive_value->text();
+    switch_system_electrodrive_value->setToolTip(switch_system_electrodrive_value_tooltip);
+    engine_duty_cycle.append(switch_system_electrodrive_parametr);
+    engine_duty_cycle.append(switch_system_electrodrive_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item129 = new QStandardItem(tr("Ввод напряжения питания двигателя"));
-    item129->setEditable(false);
-    QString w60=item129->text();
-    item129->setToolTip(w60);
-    item130 = new QStandardItem(tr("0"));
-    QString w61=item130->text();
-    item130->setToolTip(w61);
-    items6.append(item129);
-    items6.append(item130);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    enter_voltage_im_mashine_parametr = new QStandardItem(tr("Ввод напряжения питания двигателя"));
+    enter_voltage_im_mashine_parametr->setEditable(false);
+    QString enter_voltage_im_mashine_parametr_tooltip = enter_voltage_im_mashine_parametr->text();
+    enter_voltage_im_mashine_parametr->setToolTip(enter_voltage_im_mashine_parametr_tooltip );
+    enter_voltage_im_mashine_value = new QStandardItem(tr("0"));
+    QString enter_voltage_im_mashine_value_tooltip = enter_voltage_im_mashine_value->text();
+    enter_voltage_im_mashine_value->setToolTip(enter_voltage_im_mashine_value_tooltip);
+    engine_duty_cycle.append(enter_voltage_im_mashine_parametr);
+    engine_duty_cycle.append(enter_voltage_im_mashine_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    item131 = new QStandardItem(tr("Ввод значение момента нагрузки"));
-    item131->setEditable(false);
-    QString w62=item131->text();
-    item131->setToolTip(w62);
-    item132 = new QStandardItem(tr("0"));
-    QString w63=item132->text();
-    item132->setToolTip(w63);
-    items6.append(item131);
-    items6.append(item132);
-    electromagnetic_model_parametr->appendRow(items6);
-    items6.clear();
+    enter_moment_parametr = new QStandardItem(tr("Ввод значение момента нагрузки"));
+    enter_moment_parametr->setEditable(false);
+    QString enter_moment_parametr_tooltip = enter_moment_parametr->text();
+    enter_moment_parametr->setToolTip(enter_moment_parametr_tooltip );
+    enter_moment_value = new QStandardItem(tr("0"));
+    QString enter_moment_value_tooltip = enter_moment_value->text();
+    enter_moment_value->setToolTip(enter_moment_value_tooltip);
+    engine_duty_cycle.append(enter_moment_parametr);
+    engine_duty_cycle.append( enter_moment_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
 
-    QList<QStandardItem*> items7;
-    //item25 = new QStandardItem(tr("Тепловая модель"));
-    item25 = new QStandardItem();
-    item26 = new QStandardItem();
-    items7.append(item25);
-    items7.append(item26);
-    model2->appendRow(items7);
-    items7.clear();
-    item25->setSelectable(false);
-    item25->setEditable(false);
-    item26->setSelectable(false);
-    item26->setEditable(false);
-    QFont newFont4("SansSerif", 10, QFont::Bold,false);
-    item25->setFont(newFont4);
+    /* секция "Тепловая модель" */
 
-    QList<QStandardItem*> items8;
-    item27 = new QStandardItem(tr("Начальное значение температуры, °C"));
-    item27->setEditable(false);
-    item28 = new QStandardItem(tr("0"));
-    items8.append(item27);
-    items8.append(item28);
-    item25->appendRow(items8);
-    items8.clear();
+    QList<QStandardItem*> tepl_model;
+    tepl_model_parametr = new QStandardItem();
+    tepl_model_parametr->setSelectable(false);
+    tepl_model_parametr->setEditable(false);
+    QString tepl_model_parametr_tooltip = tepl_model_parametr->text();
+    tepl_model_parametr->setToolTip(tepl_model_parametr_tooltip);
+    tepl_model_value = new QStandardItem();
+    tepl_model_value->setSelectable(false);
+    tepl_model_value->setEditable(false);
+    tepl_model.append(tepl_model_parametr);
+    tepl_model.append(tepl_model_value);
+    model_treeView->appendRow(tepl_model);
+    tepl_model.clear();
 
-    item29 = new QStandardItem(tr("Температурный режим"));
-    item29->setEditable(false);
-    item30 = new QStandardItem(tr("Выберите режим"));
-    items8.append(item29);
-    items8.append(item30);
-    item25->appendRow(items8);
-    items8.clear();
+    QList<QStandardItem*> start_tepl_temperature;
+    start_tepl_temperature_parametr = new QStandardItem(tr("Начальное значение температуры, °C"));
+    start_tepl_temperature_parametr->setEditable(false);
+    QString start_tepl_temperature_parametr_tooltip = start_tepl_temperature_parametr->text();
+    start_tepl_temperature_parametr->setToolTip(start_tepl_temperature_parametr_tooltip);
+    start_tepl_temperature_value = new QStandardItem(tr("0"));
+    QString start_tepl_temperature_value_tooltip = start_tepl_temperature_value->text();
+    start_tepl_temperature_value->setToolTip(start_tepl_temperature_value_tooltip);
+    start_tepl_temperature.append(start_tepl_temperature_parametr);
+    start_tepl_temperature.append(start_tepl_temperature_value);
+    tepl_model_parametr->appendRow(start_tepl_temperature);
+    start_tepl_temperature.clear();
 
-    item140 = new QStandardItem(tr("Температурный режим Статика"));
-    item140->setEditable(false);
-    item141 = new QStandardItem(tr("Выберите режим"));
-    items8.append(item140);
-    items8.append(item141);
-    item25->appendRow(items8);
-    items8.clear();
+    temperature_regime_parametr = new QStandardItem(tr("Температурный режим"));
+    temperature_regime_parametr->setEditable(false);
+    QString temperature_regime_parametr_tooltip = temperature_regime_parametr->text();
+    temperature_regime_parametr->setToolTip(temperature_regime_parametr_tooltip);
+    temperature_regime_value = new QStandardItem(tr("Выберите режим"));
+    QString temperature_regime_value_tooltip = temperature_regime_value->text();
+    temperature_regime_value->setToolTip(temperature_regime_value_tooltip);
+    start_tepl_temperature.append(temperature_regime_parametr);
+    start_tepl_temperature.append(temperature_regime_value);
+    tepl_model_parametr->appendRow(start_tepl_temperature);
+    start_tepl_temperature.clear();
 
-    item144 = new QStandardItem(tr("Температурный режим Динамика"));
-    item144->setEditable(false);
-    item142 = new QStandardItem(tr("Выберите режим"));
-    items8.append(item144);
-    items8.append(item142);
-    item25->appendRow(items8);
-    items8.clear();
+    temperature_regime_static_parametr = new QStandardItem(tr("Температурный режим Статика"));
+    temperature_regime_static_parametr->setEditable(false);
+    QString temperature_regime_static_parametr_tooltip = temperature_regime_static_parametr->text();
+    temperature_regime_static_parametr->setToolTip(temperature_regime_static_parametr_tooltip);
+    temperature_regime_static_value = new QStandardItem(tr("Выберите режим"));
+    QString temperature_regime_static_value_tooltip = temperature_regime_static_value->text();
+    temperature_regime_static_value->setToolTip(temperature_regime_static_value_tooltip);
+    start_tepl_temperature.append(temperature_regime_static_parametr);
+    start_tepl_temperature.append(temperature_regime_static_value);
+    tepl_model_parametr->appendRow(start_tepl_temperature);
+    start_tepl_temperature.clear();
 
-    item23 = new QStandardItem(tr("Шаг выбора точек"));
-    item23->setEditable(false);
-    item107 = new QStandardItem(tr("0"));
-    items8.append(item23);
-    items8.append(item107);
-    item25->appendRow(items8);
-    items8.clear();
+    temperature_regime_dinamic_parametr = new QStandardItem(tr("Температурный режим Динамика"));
+    temperature_regime_dinamic_parametr->setEditable(false);
+    QString temperature_regime_dinamic_parametr_tooltip = temperature_regime_dinamic_parametr->text();
+    temperature_regime_dinamic_parametr->setToolTip(temperature_regime_dinamic_parametr_tooltip);
+    temperature_regime_dinamic_value = new QStandardItem(tr("Выберите режим"));
+    QString temperature_regime_dinamic_value_tooltip = temperature_regime_dinamic_value->text();
+    temperature_regime_dinamic_parametr->setToolTip(temperature_regime_dinamic_value_tooltip);
+    start_tepl_temperature.append(temperature_regime_dinamic_parametr);
+    start_tepl_temperature.append(temperature_regime_dinamic_value);
+    tepl_model_parametr->appendRow(start_tepl_temperature);
+    start_tepl_temperature.clear();
 
-    QList<QStandardItem*> items9;
-    //item31 = new QStandardItem(tr("Вентиляционная модель"));
-    item31 = new QStandardItem();
-    item32 = new QStandardItem();
-    items9.append(item31);
-    items9.append(item32);
-    model2->appendRow(items9);
-    items9.clear();
-    item31->setSelectable(false);
-    item31->setEditable(false);
-    item32->setSelectable(false);
-    item32->setEditable(false);
-    QFont newFont5("SansSerif", 10, QFont::Bold,false);
-    item31->setFont(newFont5);
+    time_base_selection_parametr = new QStandardItem(tr("Шаг выбора точек"));
+    time_base_selection_parametr->setEditable(false);
+    QString time_base_selection_parameter_tooltip = time_base_selection_parametr->text();
+    time_base_selection_parametr->setToolTip(time_base_selection_parameter_tooltip);
+    time_base_selection_value = new QStandardItem(tr("0"));
+    QString time_base_selection_valuex_tooltip = time_base_selection_value->text();
+    time_base_selection_value->setToolTip(time_base_selection_valuex_tooltip);
+    start_tepl_temperature.append(time_base_selection_parametr);
+    start_tepl_temperature.append(time_base_selection_value);
+    tepl_model_parametr->appendRow(start_tepl_temperature);
+    start_tepl_temperature.clear();
 
-    QList<QStandardItem*> items10;
-    item33 = new QStandardItem(tr("Вентиляционный режим"));
-    item33->setEditable(false);
-    item34 = new QStandardItem(tr("Выберите режим"));
-    items10.append(item33);
-    items10.append(item34);
-    item31->appendRow(items10);
-    items10.clear();
+    /* секция "Вентиляционная модель" */
 
-    item35 = new QStandardItem(tr("Конструкция вентиляционной системы электродвигателя"));
-    item35->setEditable(false);
-    item36 = new QStandardItem(QString ("Выберите конструкцию"));
-    items10.append(item35);
-    items10.append(item36);
-    item31->appendRow(items10);
-    items10.clear();
+    QList<QStandardItem*> ventilation_model;
+    ventilation_model_parametr = new QStandardItem();
+    ventilation_model_parametr->setSelectable(false);
+    ventilation_model_parametr->setEditable(false);
+    ventilation_model_value = new QStandardItem();
+    ventilation_model_value->setSelectable(false);
+    ventilation_model_value->setEditable(false);
+    ventilation_model.append(ventilation_model_parametr);
+    ventilation_model.append(ventilation_model_value);
+    model_treeView->appendRow(ventilation_model);
+    ventilation_model.clear();
 
-    item37 = new QStandardItem(tr("Барометрическое давление, Па"));
-    item37->setEditable(false);
-    item38 = new QStandardItem(tr("0"));
-    items10.append(item37);
-    items10.append(item38);
-    item31->appendRow(items10);
-    items10.clear();
+    QList<QStandardItem*> ventilation_regime;
+    ventilation_regime_parametr = new QStandardItem(tr("Вентиляционный режим"));
+    ventilation_regime_parametr->setEditable(false);
+    QString ventilation_regime_parameter_tooltip = ventilation_regime_parametr->text();
+    ventilation_regime_parametr->setToolTip(ventilation_regime_parameter_tooltip);
+    ventilation_regime_value = new QStandardItem(tr("Выберите режим"));
+    QString ventilation_regime_value_tooltip = ventilation_regime_value->text();
+    ventilation_regime_value->setToolTip(ventilation_regime_value_tooltip);
+    ventilation_regime.append(ventilation_regime_parametr);
+    ventilation_regime.append(ventilation_regime_value);
+    ventilation_model_parametr->appendRow(ventilation_regime);
+    ventilation_regime.clear();
 
-    QList<QStandardItem*> items11;
-    //item39 = new QStandardItem(tr("Прогнозирование температур"));
-    item39 = new QStandardItem();
-    item40 = new QStandardItem();
-    items11.append(item39);
-    items11.append(item40);
-    model2->appendRow(items11);
-    items11.clear();
-    item39->setSelectable(false);
-    item39->setEditable(false);
-    item40->setSelectable(false);
-    item40->setEditable(false);
-    QFont newFont6("SansSerif", 10, QFont::Bold,false);
-    item39->setFont(newFont6);
+    design_ventilation_system_parametr = new QStandardItem(tr("Конструкция вентиляционной системы электродвигателя"));
+    design_ventilation_system_parametr->setEditable(false);
+    QString design_ventilation_system_parametr_tooltip = design_ventilation_system_parametr->text();
+    design_ventilation_system_parametr->setToolTip(design_ventilation_system_parametr_tooltip);
+    design_ventilation_system_value = new QStandardItem(QString ("Выберите конструкцию"));
+    QString design_ventilation_system_value_tooltip = design_ventilation_system_value->text();
+    design_ventilation_system_value->setToolTip(design_ventilation_system_value_tooltip);
+    ventilation_regime.append(design_ventilation_system_parametr);
+    ventilation_regime.append(design_ventilation_system_value);
+    ventilation_model_parametr->appendRow(ventilation_regime);
+    ventilation_regime.clear();
 
-    QList<QStandardItem*> items12;
-    item41 = new QStandardItem(tr("Условие 13"));
-    item41->setEditable(false);
-    item42 = new QStandardItem(tr("Значение 13"));
-    items12.append(item41);
-    items12.append(item42);
-    item39->appendRow(items12);
-    items12.clear();
+    barometric_pressure_parametr = new QStandardItem(tr("Барометрическое давление, Па"));
+    barometric_pressure_parametr->setEditable(false);
+    QString barometric_pressure_parametr_tooltip = barometric_pressure_parametr->text();
+    barometric_pressure_parametr->setToolTip(barometric_pressure_parametr_tooltip);
+    barometric_pressure_value = new QStandardItem(tr("0"));
+    QString barometric_pressure_value_tooltip = barometric_pressure_value->text();
+    barometric_pressure_value->setToolTip(barometric_pressure_value_tooltip);
+    ventilation_regime.append(barometric_pressure_parametr);    
+    ventilation_regime.append(barometric_pressure_value);    
+    ventilation_model_parametr->appendRow(ventilation_regime);
+    ventilation_regime.clear();
 
-    item43 = new QStandardItem(tr("Условие 14"));
-    item43->setEditable(false);
-    item44 = new QStandardItem(tr("Значение 14"));
-    items12.append(item43);
-    items12.append(item44);
-    item39->appendRow(items12);
-    items12.clear();
+    /* секция "Прогнозирование температур" */
 
-    item45 = new QStandardItem(tr("Условие 15"));
-    item45->setEditable(false);
-    item46 = new QStandardItem(tr("Значение 15"));
-    items12.append(item45);
-    items12.append(item46);
-    item39->appendRow(items12);
-    items12.clear();
+    QList<QStandardItem*> predicting_temperature;
+    predicting_temperature_parametr = new QStandardItem();
+    predicting_temperature_parametr->setSelectable(false);
+    predicting_temperature_parametr->setEditable(false);
+    predicting_temperature_value = new QStandardItem();
+    predicting_temperature_value->setSelectable(false);
+    predicting_temperature_value->setEditable(false);
+    predicting_temperature.append(predicting_temperature_parametr);
+    predicting_temperature.append(predicting_temperature_value);
+    model_treeView->appendRow(predicting_temperature);
+    predicting_temperature.clear();
 
-    QList<QStandardItem*> items13;
-    //item47 = new QStandardItem(tr("Оценка остаточного теплового ресурса"));
-    item47 = new QStandardItem();
-    item48 = new QStandardItem();
-    items13.append(item47);
-    items13.append(item48);
-    model2->appendRow(items13);
-    items13.clear();
-    item47->setSelectable(false);
-    item47->setEditable(false);
-    item48->setSelectable(false);
-    item48->setEditable(false);
-    QFont newFont7("SansSerif", 10, QFont::Bold,false);
-    item47->setFont(newFont7);
+    QList<QStandardItem*> value_one;
+    value_one_parametr = new QStandardItem(tr("Условие 13"));
+    value_one_parametr->setEditable(false);
+    QString value_one_parametr_tooltip = value_one_parametr->text();
+    value_one_parametr->setToolTip(value_one_parametr_tooltip);
+    value_one_value = new QStandardItem(tr("Значение 13"));
+    QString  value_one_value_tooltip =  value_one_value->text();
+    value_one_value->setToolTip( value_one_value_tooltip);
+    value_one.append(value_one_parametr);
+    value_one.append(value_one_value);
+    predicting_temperature_parametr->appendRow(value_one);
+    value_one.clear();
 
-    QList<QStandardItem*> items14;
-    item49 = new QStandardItem(tr("Условие 16"));
-    item49->setEditable(false);
-    item50 = new QStandardItem(tr("Значение 16"));
-    items14.append(item49);
-    items14.append(item50);
-    item47->appendRow(items14);
-    items14.clear();
+    value_two_parametr = new QStandardItem(tr("Условие 14"));
+    value_two_parametr->setEditable(false);
+    QString value_two_parametr_tooltip = value_two_parametr->text();
+    value_two_parametr->setToolTip(value_two_parametr_tooltip);
+    value_two_value = new QStandardItem(tr("Значение 14"));
+    QString  value_two_value_tooltip =  value_two_value->text();
+     value_two_value->setToolTip( value_two_value_tooltip);
+    value_one.append(value_two_parametr);
+    value_one.append(value_two_value);
+    predicting_temperature_parametr->appendRow(value_one);
+    value_one.clear();
 
-    item51 = new QStandardItem(tr("Условие 17"));
-    item51->setEditable(false);
-    item52 = new QStandardItem(tr("Значение 17"));
-    items14.append(item51);
-    items14.append(item52);
-    item47->appendRow(items14);
-    items14.clear();
+    value_three_parametr = new QStandardItem(tr("Условие 15"));
+    QString value_three_parametr_tooltip = value_three_parametr->text();
+    value_three_parametr->setToolTip(value_three_parametr_tooltip);
+    value_three_parametr->setEditable(false);
+    value_three_value = new QStandardItem(tr("Значение 15"));
+    QString value_three_value_tooltip = value_three_value->text();
+    value_three_value->setToolTip(value_three_value_tooltip);
+    value_one.append(value_three_parametr);
+    value_one.append(value_three_value);
+    predicting_temperature_parametr->appendRow(value_one);
+    value_one.clear();
 
-    item53 = new QStandardItem(tr ("Условие 18"));
-    item53->setEditable(false);
-    item54 = new QStandardItem(tr ("Значение 18"));
-    items14.append(item53);
-    items14.append(item54);
-    item47->appendRow(items14);
-    items14.clear();
+    /* секция "Оценка остаточного теплового ресурса" */
 
-    QList<QStandardItem*> items15;
-    //item55 = new QStandardItem(tr ("Выходные данные"));
-    item55 = new QStandardItem();
-    item56 = new QStandardItem();
-    items15.append(item55);
-    items15.append(item56);
-    model2->appendRow(items15);
-    items15.clear();
-    item55->setSelectable(false);
-    item55->setEditable(false);
-    item56->setSelectable(false);
-    item56->setEditable(false);
-    QFont newFont8("SansSerif", 10, QFont::Bold,false);
-    item55->setFont(newFont8);
+    QList<QStandardItem*> estimation_residual_thermal_life;
+    estimation_residual_thermal_life_parametr = new QStandardItem();
+    estimation_residual_thermal_life_parametr->setSelectable(false);
+    estimation_residual_thermal_life_parametr->setEditable(false);
+    estimation_residual_thermal_life_value = new QStandardItem();
+    estimation_residual_thermal_life_value->setSelectable(false);
+    estimation_residual_thermal_life_value->setEditable(false);
+    estimation_residual_thermal_life.append(estimation_residual_thermal_life_parametr);
+    estimation_residual_thermal_life.append(estimation_residual_thermal_life_value);
+    model_treeView->appendRow(estimation_residual_thermal_life);
+    estimation_residual_thermal_life.clear();
 
-    QList<QStandardItem*> items16;
-    item57 = new QStandardItem(tr ("Условие 19"));
-    item57->setEditable(false);
-    item58 = new QStandardItem(tr ("Значение 19"));
-    items16.append(item57);
-    items16.append(item58);
-    item55->appendRow(items16);
-    items16.clear();
-    item59 = new QStandardItem(tr ("Условие 20"));
-    item59->setEditable(false);
-    item60 = new QStandardItem(QString ("Значение 20"));
-    items16.append(item59);
-    items16.append(item60);
-    item55->appendRow(items16);
-    items16.clear();
-    item61 = new QStandardItem(tr ("Условие 21"));
-    item61->setEditable(false);
-    item62 = new QStandardItem(tr ("Значение 21"));
-    items16.append(item61);
-    items16.append(item62);
-    item55->appendRow(items16);
-    items16.clear();
+    QList<QStandardItem*> value_four;
+    value_four_parametr = new QStandardItem(tr("Условие 16"));
+    value_four_parametr->setEditable(false);
+
+    value_four_value = new QStandardItem(tr("Значение 16"));
+
+    value_four.append(value_four_parametr);
+    value_four.append(value_four_value);
+    estimation_residual_thermal_life_parametr->appendRow(value_four);
+    value_four.clear();
+
+    value_five_parametr = new QStandardItem(tr("Условие 17"));
+    value_five_parametr->setEditable(false);
+
+    value_five_value = new QStandardItem(tr("Значение 17"));
+
+    value_four.append(value_five_parametr);
+    value_four.append(value_five_value);
+    estimation_residual_thermal_life_parametr->appendRow(value_four);
+    value_four.clear();
+
+    value_six_parametr = new QStandardItem(tr ("Условие 18"));
+    value_six_parametr->setEditable(false);
+
+    value_six_value = new QStandardItem(tr ("Значение 18"));
+
+    value_four.append(value_six_parametr);
+    value_four.append(value_six_value);
+    estimation_residual_thermal_life_parametr->appendRow(value_four);
+    value_four.clear();
+
+    /* секция "Выходные данные" */
+
+    QList<QStandardItem*> output_data;
+    output_data_parametr = new QStandardItem();
+    output_data_parametr->setSelectable(false);
+    output_data_parametr->setEditable(false);
+    output_data_value = new QStandardItem();
+    output_data_value->setSelectable(false);
+    output_data_value->setEditable(false);
+    output_data.append(output_data_parametr);
+    output_data.append(output_data_value);
+    model_treeView->appendRow(output_data);
+    output_data.clear();
+
+    QList<QStandardItem*> value_seven;
+    value_seven_parametr = new QStandardItem(tr ("Условие 19"));
+    value_seven_parametr->setEditable(false);
+
+    value_seven_value = new QStandardItem(tr ("Значение 19"));
+
+    value_seven.append(value_seven_parametr);
+    value_seven.append(value_seven_value);
+    output_data_parametr->appendRow(value_seven);
+    value_seven.clear();
+
+    value_eight_parametr = new QStandardItem(tr ("Условие 20"));
+    value_eight_parametr->setEditable(false);
+
+    value_eight_value = new QStandardItem(QString ("Значение 20"));
+
+    value_seven.append(value_eight_parametr);
+    value_seven.append(value_eight_value);
+    output_data_parametr->appendRow(value_seven);
+    value_seven.clear();
+
+    value_nine_parametr = new QStandardItem(tr ("Условие 21"));
+    value_nine_parametr->setEditable(false);
+
+    value_nine_value = new QStandardItem(tr ("Значение 21"));
+
+    value_seven.append(value_nine_parametr);
+    value_seven.append(value_nine_value);
+    output_data_parametr->appendRow(value_seven);
+    value_seven.clear();
 
     //Настройка представления модели QTreeView
-    ui->treeView->setModel(model2);
+    ui->treeView->setModel(model_treeView);
     ui->treeView->header()->resizeSection(0,270);
     ui->treeView->header()->setSectionResizeMode(0,QHeaderView::Interactive);
     ui->treeView->header()->setSectionResizeMode(1,QHeaderView::Fixed);
     ui->treeView->expandAll();
 
-    ButtonColumnDelegate* buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this); //создание делегата для создания комбобоксов
+    ButtonColumnDelegate *buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this); //создание делегата для создания комбобоксов
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
-    LineDelegate* delegate = new LineDelegate(ui->treeView);
-    //ui->treeView->setItemDelegate(delegate);
+    LineDelegate *delegate = new LineDelegate(ui->treeView);
     ui->treeView->setItemDelegateForColumn(0, delegate);
 
-
-    // BranchDrawingDelegate *branchDrawingDelegate = new BranchDrawingDelegate(ui->treeView);
-    // ui->treeView->setItemDelegate(branchDrawingDelegate);
-    // ui->treeView->setRootIsDecorated(true);
-
-    // SpanDelegate* delegate = new SpanDelegate(ui->treeView);
-    // ui->treeView->setItemDelegate(delegate);
+    FillIconDelegate *fillIconDelegate = new FillIconDelegate(ui->treeView);
+    ui->treeView->setItemDelegate(fillIconDelegate);
 
     ui->treeView->setStyleSheet(
                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
@@ -1214,10 +1274,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->treeView->setRootIsDecorated(true);
 
-    //color_treview(model2->index(0,0), model2);
-
     selectionModel = ui->treeView->selectionModel();
-    //connect(selectionModel, &QItemSelectionModel::selectionChanged, this, &MainWindow::treview_changed);
     connect(selectionModel, &QItemSelectionModel::currentChanged,
                      this, [this]() {   int index = 0;
         QString currentTabText = ui->tabWidget->tabText(index);
@@ -1232,41 +1289,50 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
 
-    connect(ui->lineEdit_13, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_13, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_14, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_14, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_15, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_15, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_16, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_16, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_17, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_17, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_18, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_18, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_8, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_8, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_9, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_9, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_10, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_10, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_11, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_11, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-    connect(ui->lineEdit_12, &QLineEdit::textChanged, this, []() {
+    connect(ui->lineEdit_12, &QLineEdit::textChanged, this, []()
+    {
       isNablLaunched = true;
     });
-
-    //createUndoView();
 
     ui->tabWidget->setCurrentIndex(0);
     currentTabText = ui->tabWidget->tabText(0);
@@ -1647,10 +1713,10 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    QPalette p2=ui->electromagn_result->palette();
-    p2.setColor(QPalette::Base, QColor(255, 255, 191));
-    p2.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->electromagn_result->setPalette(p2);
+    QPalette electromagn_result_palette=ui->electromagn_result->palette();
+    electromagn_result_palette.setColor(QPalette::Base, QColor(255, 255, 191));
+    electromagn_result_palette.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    ui->electromagn_result->setPalette(electromagn_result_palette);
 
 
     //вставка таблицы тепловые характеристики
@@ -3266,9 +3332,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(enter_type_experiment_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(data_identification_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
     connect(calculation_modes_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
-    connect(item174->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
-    connect(item22->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
-    connect(item178->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
+    connect(time_work_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
+    connect(time_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
+    connect(time_start_in_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
 
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);
@@ -3282,8 +3348,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
     connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
     //connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
-    connect(model2, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
-    connect(model2, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
+    connect(model_treeView, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
+    connect(model_treeView, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
 
     connect(ui->lineEdit_13,&QLineEdit::textEdited, this, &MainWindow::edit);
     connect(ui->lineEdit_16,&QLineEdit::textEdited, this, &MainWindow::edit_2);
@@ -3291,7 +3357,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->lineEdit_17,&QLineEdit::textEdited, this, &MainWindow::edit_4);
     connect(ui->lineEdit_15,&QLineEdit::textEdited, this, &MainWindow::edit_5);
     connect(ui->lineEdit_18,&QLineEdit::textEdited, this, &MainWindow::edit_6);
-    connect(model2,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
+    connect(model_treeView,&QStandardItemModel::itemChanged, this, &MainWindow::edit_treeview);
 
     connect(ui->widget_3, &electromagn::tick, this, &MainWindow::electromagn_tick);
 
@@ -3822,9 +3888,9 @@ void MainWindow::modelItemChangedSlot(QStandardItem *item)
     {
         if (item->text() == "Ручной")
         {
-            tuning_coefficient_ki_parametr->setEnabled(true);
+            tuning_coefficient_gd_parametr->setEnabled(true);
             tuning_coefficient_gd_value->setEnabled(true);
-            tuning_coefficient_ki_parametr->setEnabled(true);
+            tuning_coefficient_gd_parametr->setEnabled(true);
             tuning_coefficient_ki_value->setEnabled(true);
             tuning_coefficient_gb_parametr->setEnabled(true);
             tuning_coefficient_gb_value->setEnabled(true);
@@ -3837,9 +3903,9 @@ void MainWindow::modelItemChangedSlot(QStandardItem *item)
         }
         else
         {
-            tuning_coefficient_ki_parametr->setEnabled(false);
+            tuning_coefficient_gd_parametr->setEnabled(false);
             tuning_coefficient_gd_value->setEnabled(false);
-            tuning_coefficient_ki_parametr->setEnabled(false);
+            tuning_coefficient_gd_parametr->setEnabled(false);
             tuning_coefficient_ki_value->setEnabled(false);
             tuning_coefficient_gb_parametr->setEnabled(false);
             tuning_coefficient_gb_value->setEnabled(false);
@@ -4050,16 +4116,16 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         engine_duty_cycle_value->setToolTip(w107);
     }
     else
-    if (item == item22)
+    if (item == time_cycle_value)
     {
-        QString w108=item22->text();
-        item22->setToolTip(w108);
+        QString w108=time_cycle_value->text();
+        time_cycle_value->setToolTip(w108);
     }
     else
-    if (item == item24)
+    if (item == Time_base_selection_value)
     {
-        QString w109=item24->text();
-        item24->setToolTip(w109);
+        QString w109=Time_base_selection_value->text();
+        Time_base_selection_value->setToolTip(w109);
     }
     else
     if (item == item90)
@@ -4068,10 +4134,10 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         item90->setToolTip(w110);
     }
     else
-    if (item == item92)
+    if (item == switch_system_electrodrive_value)
     {
-        QString w111=item92->text();
-        item92->setToolTip(w111);
+        QString w111=switch_system_electrodrive_value->text();
+        switch_system_electrodrive_value->setToolTip(w111);
     }
 }
 
@@ -4094,17 +4160,17 @@ void MainWindow::modelItemChangedSlot_5(QStandardItem *item)
 
 void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
 {
-    if (item == item24)
+    if (item == Time_base_selection_value)
     {
         if (item->text() == "Фиксированное время")
         {
-            item173->setEnabled(true);
-            item174->setEnabled(true);
+            time_work_parametr->setEnabled(true);
+            time_work_value->setEnabled(true);
         }
         else
         {
-            item173->setEnabled(false);
-            item174->setEnabled(false);
+            time_work_parametr->setEnabled(false);
+            time_work_value->setEnabled(false);
         }
     }
 }
@@ -4115,17 +4181,17 @@ void MainWindow::modelItemChangedSlot_7(QStandardItem *item)
     {
         if (item->text() == "Режим S1")
         {
-            item21->setEnabled(false);
-            item22->setEnabled(false);
-            item175->setEnabled(false);
-            item176->setEnabled(false);
+            time_cycle_parametr->setEnabled(false);
+            time_cycle_value->setEnabled(false);
+            time_work_in_cycle_parametr->setEnabled(false);
+            time_work_in_cycle_value->setEnabled(false);
         }
         else
         {
-            item21->setEnabled(true);
-            item22->setEnabled(true);
-            item175->setEnabled(true);
-            item176->setEnabled(true);
+            time_cycle_parametr->setEnabled(true);
+            time_cycle_value->setEnabled(true);
+            time_work_in_cycle_parametr->setEnabled(true);
+            time_work_in_cycle_value->setEnabled(true);
         }
     }
 }
@@ -4136,13 +4202,13 @@ void MainWindow::modelItemChangedSlot_8(QStandardItem *item)
     {
         if (item->text() == "Режим S4")
         {
-            item177->setEnabled(true);
-            item178->setEnabled(true);
+            time_start_in_cycle_parametr->setEnabled(true);
+            time_start_in_cycle_value->setEnabled(true);
         }
         else
         {
-            item177->setEnabled(false);
-            item178->setEnabled(false);
+            time_start_in_cycle_parametr->setEnabled(false);
+            time_start_in_cycle_value->setEnabled(false);
         }
     }
 }
@@ -4255,59 +4321,59 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_cikle");
-    xmlWriter.writeAttribute("value", (item22->text()));
+    xmlWriter.writeAttribute("value", (time_cycle_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_work");
-    xmlWriter.writeAttribute("value", (item176->text()));
+    xmlWriter.writeAttribute("value", (time_work_in_cycle_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_11");
-    xmlWriter.writeAttribute("value", (item24->text()));
+    xmlWriter.writeAttribute("value", (Time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_12");
-    xmlWriter.writeAttribute("value", (item92->text()));
+    xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("napragenie");
-    xmlWriter.writeAttribute("value", (item130->text()));
+    xmlWriter.writeAttribute("value", (enter_voltage_im_mashine_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("moment");
-    xmlWriter.writeAttribute("value", (item132->text()));
+    xmlWriter.writeAttribute("value", ( enter_moment_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("start_temp");
-    xmlWriter.writeAttribute("value", (item28->text()));
+    xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_13");
-    xmlWriter.writeAttribute("value", (item30->text()));
+    xmlWriter.writeAttribute("value", (temperature_regime_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_14");
-    xmlWriter.writeAttribute("value", (item141->text()));
+    xmlWriter.writeAttribute("value", (temperature_regime_static_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_15");
-    xmlWriter.writeAttribute("value", (item142->text()));
+    xmlWriter.writeAttribute("value", (temperature_regime_dinamic_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_step");
-    xmlWriter.writeAttribute("value", (item107->text()));
+    xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_16");
-    xmlWriter.writeAttribute("value", (item34->text()));
+    xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_17");
-    xmlWriter.writeAttribute("value", (item36->text()));
+    xmlWriter.writeAttribute("value", (design_ventilation_system_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("pressure");
-    xmlWriter.writeAttribute("value", (item38->text()));
+    xmlWriter.writeAttribute("value", (barometric_pressure_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("selected_row");
@@ -4362,10 +4428,10 @@ void MainWindow::SaveProgectToFile()
         xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
         xmlWriter.writeEndElement();
     }
-    if(item24->text() == "Фиксированное время")
+    if(Time_base_selection_value->text() == "Фиксированное время")
     {
         xmlWriter.writeStartElement("time_work");
-        xmlWriter.writeAttribute("value", (item174->text()));
+        xmlWriter.writeAttribute("value", (time_work_value->text()));
         xmlWriter.writeEndElement();
     }
 
@@ -4674,7 +4740,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item22->setText(attribute_value);
+                            time_cycle_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4685,7 +4751,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item176->setText(attribute_value);
+                            time_work_in_cycle_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4696,7 +4762,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item24->setText(attribute_value);
+                            time_base_selection_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4707,7 +4773,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item92->setText(attribute_value);
+                            switch_system_electrodrive_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4718,7 +4784,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item130->setText(attribute_value);
+                            enter_voltage_im_mashine_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4729,7 +4795,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item132->setText(attribute_value);
+                             enter_moment_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4740,7 +4806,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item28->setText(attribute_value);
+                            start_tepl_temperature_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4751,7 +4817,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item30->setText(attribute_value);
+                            temperature_regime_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4762,7 +4828,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item141->setText(attribute_value);
+                            temperature_regime_static_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4773,7 +4839,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item142->setText(attribute_value);
+                            temperature_regime_dinamic_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4784,7 +4850,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item107->setText(attribute_value);
+                            time_base_selection_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4795,7 +4861,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item34->setText(attribute_value);
+                            ventilation_regime_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4806,7 +4872,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item36->setText(attribute_value);
+                            design_ventilation_system_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4817,7 +4883,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item38->setText(attribute_value);
+                            barometric_pressure_value->setText(attribute_value);
                         }
                     }
                 }
@@ -4949,7 +5015,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                            item174->setText(attribute_value);
+                            time_work_value->setText(attribute_value);
                         }
                     }
                 }
@@ -5301,13 +5367,13 @@ void MainWindow::setcolorincell(int row, int column)
 
 void MainWindow::radioButton_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5322,7 +5388,7 @@ void MainWindow::radioButton_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">4</tspan>');"));
             }
         }
-        else if (item30->text() == "Статика (упрощенный вариант)")
+        else if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5341,7 +5407,7 @@ void MainWindow::radioButton_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">р</tspan>');"));
            }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
@@ -5349,7 +5415,7 @@ void MainWindow::radioButton_toggled(bool checked)
             }
         }
 
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5364,13 +5430,13 @@ void MainWindow::radioButton_toggled(bool checked)
 
 void MainWindow::radioButton_2_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5395,7 +5461,7 @@ void MainWindow::radioButton_2_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097' ).text('%1 °C');").arg(teta_4, 0, 'f', 2));
              }
         }
-        if (item30->text() == "Статика (упрощенный вариант)")
+        if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5425,14 +5491,14 @@ void MainWindow::radioButton_2_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947' ).text('%1 °C');").arg(teta_p, 0, 'f', 2));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5449,13 +5515,13 @@ void MainWindow::radioButton_2_toggled(bool checked)
 
 void MainWindow::radioButton_3_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {               
@@ -5480,7 +5546,7 @@ void MainWindow::radioButton_3_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
             }
         }
-        if (item30->text() == "Статика (упрощенный вариант)")
+        if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
     if (checked)
     {
@@ -5510,14 +5576,14 @@ void MainWindow::radioButton_3_toggled(bool checked)
         ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Дж/К');").arg(C_v, 0, 'f', 2));
     }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5538,13 +5604,13 @@ void MainWindow::radioButton_3_toggled(bool checked)
 
 void MainWindow::radioButton_4_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5569,7 +5635,7 @@ void MainWindow::radioButton_4_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097').text('%1 Вт');").arg(P_4, 0, 'f', 2));
             }
         }
-        if (item30->text() == "Статика (упрощенный вариант)")
+        if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5590,14 +5656,14 @@ void MainWindow::radioButton_4_toggled(bool checked)
 
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5617,13 +5683,13 @@ void MainWindow::radioButton_4_toggled(bool checked)
 
 void MainWindow::radioButton_5_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5648,7 +5714,7 @@ void MainWindow::radioButton_5_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">пл2</tspan>');"));
             }
         }
-        else if (item30->text() == "Статика (упрощенный вариант)")
+        else if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5685,14 +5751,14 @@ void MainWindow::radioButton_5_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">р2</tspan>');"));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5706,13 +5772,13 @@ void MainWindow::radioButton_5_toggled(bool checked)
 
 void MainWindow::radioButton_6_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5737,7 +5803,7 @@ void MainWindow::radioButton_6_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт/°C');").arg(lambda_pl2, 0, 'f', 3));
             }
         }
-        else if (item30->text() == "Статика (упрощенный вариант)")
+        else if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5774,14 +5840,14 @@ void MainWindow::radioButton_6_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1081').text('%1 Вт/°C');").arg(lambda_p2, 0, 'f', 2));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5795,13 +5861,13 @@ void MainWindow::radioButton_6_toggled(bool checked)
 
 void MainWindow::radioButton_7_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5826,7 +5892,7 @@ void MainWindow::radioButton_7_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 Вт');").arg(dP_pl2, 0, 'f', 2));
             }
         }
-        else if (item30->text() == "Статика (упрощенный вариант)")
+        else if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5864,14 +5930,14 @@ void MainWindow::radioButton_7_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 °C');").arg(P_p2, 0, 'f', 2));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5885,13 +5951,13 @@ void MainWindow::radioButton_7_toggled(bool checked)
 
 void MainWindow::radioButton_8_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -5916,7 +5982,7 @@ void MainWindow::radioButton_8_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').text('%1 °C');").arg(d_teta_pl2, 0, 'f', 2));
             }
         }
-        if (item30->text() == "Статика (упрощенный вариант)")
+        if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -5954,14 +6020,14 @@ void MainWindow::radioButton_8_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').text('%1 Вт');").arg(d_teta_p2, 0, 'f', 2));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -5978,13 +6044,13 @@ void MainWindow::radioButton_8_toggled(bool checked)
 
 void MainWindow::radioButton_9_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -6016,7 +6082,7 @@ void MainWindow::radioButton_9_toggled(bool checked)
 
             }
         }
-        else if (item30->text() == "Статика (упрощенный вариант)")
+        else if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -6051,14 +6117,14 @@ void MainWindow::radioButton_9_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').show();"));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -6080,13 +6146,13 @@ void MainWindow::radioButton_9_toggled(bool checked)
 
 void MainWindow::radioButton_10_toggled(bool checked)
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
             {
@@ -6113,7 +6179,7 @@ void MainWindow::radioButton_10_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1029').show();"));
             }
         }
-        else if (item30->text() == "Статика (упрощенный вариант)")
+        else if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             if (checked)
             {
@@ -6154,14 +6220,14 @@ void MainWindow::radioButton_10_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1171').show();"));
             }
         }
-        else if (item30->text() == "Статика (полный вариант)")
+        else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             if (checked)
             {
                 QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
             }
         }
-        else if (item30->text() == "Двухмассовая модель (расчет)")
+        else if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             if (checked)
             {
@@ -7683,13 +7749,13 @@ void MainWindow::LoadVentDannie(QString str)
 
 void MainWindow::on_tepl_result_clicked()
 {
-    if (item30->text() == "Выберите режим")
+    if (temperature_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item30->text() == "Статика (статор)")
+        if (temperature_regime_value->text() == "Статика (статор)")
         {
             ui->widget_5->ui->tabWidget->show();
             ui->widget_5->ui->tabWidget->setCurrentIndex(11);
@@ -7992,7 +8058,7 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(7,11)->setText(QString::number(d_teta_pl1,'f',3));
             ui->widget_5->ui->tableWidget->item(8,11)->setText(QString::number(d_teta_pl2,'f',3));
         }
-        if (item30->text() == "Статика (упрощенный вариант)")
+        if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
             ui->widget_5->ui->tabWidget->show();
             ui->widget_5->ui->tabWidget->setCurrentIndex(11);
@@ -8678,11 +8744,11 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(13,11)->setText(QString::number(d_teta_p5,'f',3));
             ui->widget_5->ui->tableWidget->item(14,11)->setText(QString::number(d_teta_p2,'f',3));
         }
-        if (item30->text() == "Статика (полный вариант)")
+        if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
             QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
         }
-        if (item30->text() == "Динамика (расчет)")
+        if (temperature_regime_value->text() == "Динамика (расчет)")
         {
             ui->tepl_result->setCheckable(true);
             if(ui->tepl_result->isChecked())
@@ -8697,11 +8763,11 @@ void MainWindow::on_tepl_result_clicked()
                 ui->widget_5->ui->widget_4->stopTeplo();
             }
         }
-        if (item30->text() == "Динамика (эксперимент)")
+        if (temperature_regime_value->text() == "Динамика (эксперимент)")
         {
             QMessageBox::information(this, "вариант 3!", "Статика (полный вариант)");
         }
-        if (item30->text() == "Двухмассовая модель (расчет)")
+        if (temperature_regime_value->text() == "Двухмассовая модель (расчет)")
         {
             ui->widget_5->ui->tabWidget->show();
             ui->widget_5->ui->tabWidget->setCurrentIndex(11);
@@ -8775,7 +8841,7 @@ void MainWindow::on_tepl_result_clicked()
             //Расчет переменных состояния
 
 
-            teta0_0=item28->text().toDouble();
+            teta0_0=start_tepl_temperature_value->text().toDouble();
 
             teta0_1n=80;
             teta0_2n=70;
@@ -8877,7 +8943,7 @@ void MainWindow::on_tepl_result_clicked()
             ui->widget_5->ui->tableWidget->item(0,9)->setText(QString::number(d_teta_10,'f',3));
             ui->widget_5->ui->tableWidget->item(1,9)->setText(QString::number(d_teta_30,'f',3));
         }}
-        if (item30->text() == "Двухмассовая модель (эксперимент)")
+        if (temperature_regime_value->text() == "Двухмассовая модель (эксперимент)")
         {
             ui->widget_5->ui->tabWidget->show();
             ui->widget_5->ui->tabWidget->setCurrentIndex(11);
@@ -8963,13 +9029,13 @@ void MainWindow::on_vent_result_clicked()
     ui->stackedWidget->show();
     ui->stackedWidget->setCurrentIndex(17);
 
-    if (item34->text() == "Выберите режим")
+    if (ventilation_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if ((item34->text() == "Статика")&&(item36->text() == "Один вентилятор"))
+        if ((ventilation_regime_value->text() == "Статика")&&(design_ventilation_system_value->text() == "Один вентилятор"))
         {
             ui->widget_6->ui->tabWidget_3->show();
             ui->widget_6->ui->tabWidget_3->setCurrentIndex(0);
@@ -9228,7 +9294,7 @@ void MainWindow::on_vent_result_clicked()
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
         }
-        if ((item34->text() == "Статика")&&(item36->text() == "Независимая вентиляция"))
+        if ((ventilation_regime_value->text() == "Статика")&&(design_ventilation_system_value->text() == "Независимая вентиляция"))
         {
             ui->widget_6->ui->tabWidget_3->show();
             ui->widget_6->ui->tabWidget_3->setCurrentIndex(1);
@@ -9433,11 +9499,11 @@ void MainWindow::on_vent_result_clicked()
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text53\").text('ΔNsvp = %1 Вт');").arg(dPsvp, 0, 'f', 3));
             ui->widget_6->ui->webEngineView_4->page()->runJavaScript(QString("$(\"#text185\").text('ΔNkd = %1 Вт');").arg(dPkd, 0, 'f', 3));
         }
-        if ((item34->text() == "Динамика")&&(item36->text() == "Динамика (расчет)"))
+        if ((ventilation_regime_value->text() == "Динамика")&&(design_ventilation_system_value->text() == "Динамика (расчет)"))
         {
             QMessageBox::information(this, "Динамика", "Динамика (расчет)");
         }
-        if ((item34->text() == "Динамика")&&(item36->text() == "Динамика (эксперимент)"))
+        if ((ventilation_regime_value->text() == "Динамика")&&(design_ventilation_system_value->text() == "Динамика (эксперимент)"))
         {
             QMessageBox::information(this, "Динамика", "Динамика (эксперимент)");
         }
@@ -9510,13 +9576,13 @@ void MainWindow::horizontalSlider_2_valueChanged(int value)
 
 void MainWindow::on_radioButton_11_toggled(bool checked)
 {
-    if (item34->text() == "Выберите режим")
+    if (ventilation_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item34->text() == "Статика")
+        if (ventilation_regime_value->text() == "Статика")
         {
             if (checked)
             {
@@ -9537,13 +9603,13 @@ void MainWindow::on_radioButton_11_toggled(bool checked)
 
 void MainWindow::on_radioButton_12_toggled(bool checked)
 {
-    if (item34->text() == "Выберите режим")
+    if (ventilation_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item34->text() == "Статика")
+        if (ventilation_regime_value->text() == "Статика")
         {
             if (checked)
             {
@@ -9562,13 +9628,13 @@ void MainWindow::on_radioButton_12_toggled(bool checked)
 
 void MainWindow::on_radioButton_13_toggled(bool checked)
 {
-    if (item34->text() == "Выберите режим")
+    if (ventilation_regime_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
     }
     else
     {
-        if (item34->text() == "Статика")
+        if (ventilation_regime_value->text() == "Статика")
         {
             if (checked)
             {
@@ -9618,7 +9684,7 @@ void MainWindow::actionteplident_start()
     ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("Вт"));
 
 
-    if (item141->text() == "Выберите режим")
+    if (temperature_regime_static_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
         ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
@@ -9627,7 +9693,7 @@ void MainWindow::actionteplident_start()
     }
     else
     {
-        if (item141->text() == "Одномассовая модель")
+        if (temperature_regime_static_value->text() == "Одномассовая модель")
         {
             ui->tabWidget->show();
             ui->tabWidget->setCurrentIndex(2);
@@ -9639,7 +9705,7 @@ void MainWindow::actionteplident_start()
             base.L1 = ui->lineEdit_10->text().toDouble();
             base.L2 = ui->lineEdit_9->text().toDouble();
             base.Lm = ui->lineEdit_8->text().toDouble();
-            teta0_0=item28->text().toDouble();
+            teta0_0=start_tepl_temperature_value->text().toDouble();
 
             ui->widget_10->ui->plot->clear();
             ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
@@ -9798,59 +9864,59 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_cikle");
-    xmlWriter.writeAttribute("value", (item22->text()));
+    xmlWriter.writeAttribute("value", (time_cycle_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_work");
-    xmlWriter.writeAttribute("value", (item176->text()));
+    xmlWriter.writeAttribute("value", (time_work_in_cycle_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_11");
-    xmlWriter.writeAttribute("value", (item24->text()));
+    xmlWriter.writeAttribute("value", (Time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_12");
-    xmlWriter.writeAttribute("value", (item92->text()));
+    xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("napragenie");
-    xmlWriter.writeAttribute("value", (item130->text()));
+    xmlWriter.writeAttribute("value", (enter_voltage_im_mashine_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("moment");
-    xmlWriter.writeAttribute("value", (item132->text()));
+    xmlWriter.writeAttribute("value", ( enter_moment_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("start_temp");
-    xmlWriter.writeAttribute("value", (item28->text()));
+    xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_13");
-    xmlWriter.writeAttribute("value", (item30->text()));
+    xmlWriter.writeAttribute("value", (temperature_regime_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_14");
-    xmlWriter.writeAttribute("value", (item141->text()));
+    xmlWriter.writeAttribute("value", (temperature_regime_static_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_15");
-    xmlWriter.writeAttribute("value", (item142->text()));
+    xmlWriter.writeAttribute("value", (temperature_regime_dinamic_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("time_step");
-    xmlWriter.writeAttribute("value", (item107->text()));
+    xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_16");
-    xmlWriter.writeAttribute("value", (item34->text()));
+    xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_17");
-    xmlWriter.writeAttribute("value", (item36->text()));
+    xmlWriter.writeAttribute("value", (design_ventilation_system_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("pressure");
-    xmlWriter.writeAttribute("value", (item38->text()));
+    xmlWriter.writeAttribute("value", (barometric_pressure_value->text()));
     xmlWriter.writeEndElement();    
 
     xmlWriter.writeStartElement("selected_row");
@@ -9905,10 +9971,10 @@ void MainWindow::save_file()
         xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
         xmlWriter.writeEndElement();
     }
-    if(item24->text() == "Фиксированное время")
+    if(Time_base_selection_value->text() == "Фиксированное время")
     {
         xmlWriter.writeStartElement("time_work");
-        xmlWriter.writeAttribute("value", (item174->text()));
+        xmlWriter.writeAttribute("value", (time_work_value->text()));
         xmlWriter.writeEndElement();
     }
 
@@ -10693,18 +10759,18 @@ void::MainWindow::close_progect()
     search_kanals_value->setText(tr("Выбрать каналы"));
     calculation_mode_value->setText(tr("Выберите режим"));
     engine_duty_cycle_value->setText(tr("Выбрать режим"));
-    item22->setText(tr("0"));
-    item24->setText(tr("0"));
-    item28->setText(tr("0"));
-    item130->setText(tr("0"));
-    item132->setText(tr("0"));
-    item92->setText(tr("Выбрать режим"));
-    item28->setText(tr("0"));
-    item30->setText(tr("Выберите режим"));
-    item107->setText(tr("0"));
-    item34->setText(tr("Выберите режим"));
-    item36->setText(tr("Выберите конструкцию"));
-    item38->setText(tr("0"));
+    time_cycle_value->setText(tr("0"));
+    Time_base_selection_value->setText(tr("0"));
+    start_tepl_temperature_value->setText(tr("0"));
+    enter_voltage_im_mashine_value->setText(tr("0"));
+    enter_moment_value->setText(tr("0"));
+    switch_system_electrodrive_value->setText(tr("Выбрать режим"));
+    start_tepl_temperature_value->setText(tr("0"));
+    temperature_regime_value->setText(tr("Выберите режим"));
+    time_base_selection_value->setText(tr("0"));
+    ventilation_regime_value->setText(tr("Выберите режим"));
+    design_ventilation_system_value->setText(tr("Выберите конструкцию"));
+    barometric_pressure_value->setText(tr("0"));
     data_identification_value->setText(tr("Выбрать режим"));
     data_electomagn_process_value->setText(tr("Выбрать режим"));
     data_tepl_process_value->setText(tr("Выбрать режим"));
@@ -10822,7 +10888,7 @@ void MainWindow::poisk()
             xz = settings.value( "xz", "").toInt();
             iz = settings.value( "iz", "").toInt();
             number = settings.value( "number", "").toInt();
-            iterate(model2->index(15,0), model2, str);
+            iterate(model_treeView->index(15,0), model_treeView, str);
 
             settings.setValue( "number", 2);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
@@ -11479,7 +11545,7 @@ if ((number == 2) && (number < 3))    {
         jz = settings.value( "jz", "").toInt();
         if(ui->treeView->isEnabled()==true)
         {
-            iterate(model2->index(0,0), model2, str);
+            iterate(model_treeView->index(0,0), model_treeView, str);
 
             QSettings settings( "BRU", "IM View");
             settings.setValue( "iz", 0);
@@ -11981,7 +12047,7 @@ void MainWindow::select_all()
     }
 
     //iterate(model2->index(0,0), model2, str);
-    iterate(model2->index(15,0), model2, str);
+    iterate(model_treeView->index(15,0), model_treeView, str);
 }
 
 void MainWindow::rename()
@@ -12119,7 +12185,7 @@ bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * mod
     int pos = itemText.indexOf(str, 0);
     if (pos != -1)
     {
-        model2->itemFromIndex(index)->setBackground(Qt::yellow);
+        model_treeView->itemFromIndex(index)->setBackground(Qt::yellow);
         //return true;
     }
 
@@ -12129,13 +12195,13 @@ bool MainWindow::iterate(const QModelIndex index, const QStandardItemModel * mod
         return true;
     }
 
-    auto rows = model2->rowCount(index);
-    auto cols = model2->columnCount(index);
+    auto rows = model_treeView->rowCount(index);
+    auto cols = model_treeView->columnCount(index);
 
     for (int i = 0; i < rows; ++i)
     {
         for (int j = 0; j < cols; j++)
-            if (iterate(model2->index(i, j, index), model2, str) == false)
+            if (iterate(model_treeView->index(i, j, index), model_treeView, str) == false)
                 return false;
     }
 
@@ -12303,7 +12369,7 @@ void MainWindow::electromagn_tick()
 
     double tt = tcpp;
     //qDebug() << tt;
-    int maxTime = item174->text().toInt();
+    int maxTime = time_work_value->text().toInt();
 
     statusbar_progres->setValue((double)tt / (double)maxTime * 100.0);
 
@@ -12324,7 +12390,7 @@ void MainWindow::electromagn_tick()
 
     //ui->widget_10->ui->plot->addPoint(0, t, y);
 
-    double Temp = 80.0 *( 1.0 - exp(-tt / 1800.0)) + item28->text().toDouble();
+    double Temp = 80.0 *( 1.0 - exp(-tt / 1800.0)) + start_tepl_temperature_value->text().toDouble();
     tepl_ident_t.append(tt);
     tepl_ident_StatorTemp.append(Temp);
 

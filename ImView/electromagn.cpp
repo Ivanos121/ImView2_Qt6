@@ -647,10 +647,10 @@ void electromagn::realtimeDataSlot()
     else
     {
         //Считывание значения времени цикла Тц
-        double Tc = wf->item22->text().toDouble();
+        double Tc = wf->time_cycle_value->text().toDouble();
 
         //Считывание значения времени работы tp
-        double tp = wf->item176->text().toDouble();
+        double tp = wf->time_work_in_cycle_value->text().toDouble();
 
         QString S = wf->engine_duty_cycle_value->text();
 
@@ -1311,28 +1311,28 @@ void electromagn::raschet_el()
     //Внутренний источник данных
     if (wf->enter_type_experiment_value->text() == tr("Внутренний источник данных"))
     {
-        base.Mc_n = wf->item132->text().toDouble();
-        base.Um = wf->item130->text().toDouble();
+        base.Mc_n = wf-> enter_moment_value->text().toDouble();
+        base.Um = wf->enter_voltage_im_mashine_value->text().toDouble();
 
         wf->ui->horizontalSlider->setValue(base.Mc_n);
         wf->ui->horizontalSlider_2->setValue(base.Um);
 
-        if (wf->item92->text() == "Прямой пуск")
+        if (wf->switch_system_electrodrive_value->text() == "Прямой пуск")
         {
             model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->engine_duty_cycle_value->text(),
-                             model_el.Tc=wf->item22->text().toDouble(),
-                             model_el.tp=wf->item176->text().toDouble(),
+                             model_el.Tc=wf->time_cycle_value->text().toDouble(),
+                             model_el.tp=wf->time_work_in_cycle_value->text().toDouble(),
                              Model_el::DIRECT_START);
             wf->ui->horizontalSlider_2->setVisible(false);
             wf->ui->lineEdit_2->setVisible(false);
             wf->ui->label_25->setVisible(false);
         }
 
-        if (wf->item92->text() == "Система ТРН-АД")
+        if (wf->switch_system_electrodrive_value->text() == "Система ТРН-АД")
         {
             model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->engine_duty_cycle_value->text(),
-                             model_el.Tc=wf->item22->text().toDouble(),
-                             model_el.tp=wf->item176->text().toDouble(),
+                             model_el.Tc=wf->time_cycle_value->text().toDouble(),
+                             model_el.tp=wf->time_work_in_cycle_value->text().toDouble(),
                              Model_el::VOLTAGE_REGULATION);
             wf->ui->horizontalSlider_2->setVisible(true);
             wf->ui->lineEdit_2->setVisible(true);
@@ -1342,11 +1342,11 @@ void electromagn::raschet_el()
             wf->ui->label_25->setText(tr("Регулирование напряжения"));
         }
 
-        if (wf->item92->text() == "Система ПЧ-АД")
+        if (wf->switch_system_electrodrive_value->text() == "Система ПЧ-АД")
         {
             model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->engine_duty_cycle_value->text(),
-                             model_el.Tc=wf->item22->text().toDouble(),
-                             model_el.tp=wf->item176->text().toDouble(),
+                             model_el.Tc=wf->time_cycle_value->text().toDouble(),
+                             model_el.tp=wf->time_work_in_cycle_value->text().toDouble(),
                              Model_el::FREQUENCY_REGULATION);
             wf->ui->horizontalSlider_2->setVisible(true);
             wf->ui->lineEdit_2->setVisible(true);

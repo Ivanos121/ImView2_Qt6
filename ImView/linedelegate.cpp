@@ -138,11 +138,41 @@ void LineDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     if (isSelected && !isSpan)
     {
         painter->save();
-        painter->setBrush(QBrush(Qt::blue));
+        //painter->setBrush(QBrush(Qt::blue));
+        painter->setBrush(QBrush(QColor(61, 174, 233)));
+        //#3daee9
         painter->setPen(Qt::NoPen);
         QRect rect = option.rect;
         QRect backRect(QPoint(0, rect.topLeft().y()), QPoint(rect.bottomRight().x(), rect.bottomRight().y()));
         painter->drawRect(backRect);
+        painter->restore();
+
+        painter->save();
+
+        // Получаем стандартные параметры
+        QStyleOptionViewItem opt = option;
+        initStyleOption(&opt, index);
+
+        // Определяем области
+        QRect rect1 = opt.rect;
+
+        // Область с иконкой (обычно слева)
+        QRect decorationRect = QRect();
+        if (opt.icon.isNull() == false) {
+            decorationRect = QApplication::style()->subElementRect(QStyle::SE_ItemViewItemDecoration, &opt);
+            // Закрашиваем область с иконкой
+            painter->fillRect(decorationRect, QColor(Qt::red)); // светло-зеленый
+        }
+
+        // Область с линиями ветвей — это обычно внутри rect, но можно выделить её отдельно
+        // Например, закрасим левую часть ячейки (где могут проходить линии)
+        QRect branchLineArea = rect1;
+        branchLineArea.setWidth(20); // например, первые 20 пикселей слева
+        painter->fillRect(branchLineArea, QColor(Qt::red)); // светло-желтый
+
+        // Теперь вызываем стандартную отрисовку для остальной части
+       // QStyledItemDelegate::paint(painter, opt, index);
+
         painter->restore();
     }
 

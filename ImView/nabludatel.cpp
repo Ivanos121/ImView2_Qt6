@@ -1,6 +1,7 @@
+#include <cmath>
+
 #include "nabludatel.h"
 #include "base.h"
-#include "math.h"
 #include "device.h"
 
 Nabludatel::Nabludatel()

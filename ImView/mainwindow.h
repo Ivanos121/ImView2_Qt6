@@ -199,7 +199,7 @@ public:
     enum {MaxRecentFiles = 5};
     QAction *recentFileActs[MaxRecentFiles];
     QString curFile;
-    QStandardItemModel *model2;
+    QStandardItemModel *model_treeView;
 
     QAction *undoAction;
     QAction *redoAction;
@@ -225,11 +225,11 @@ public:
         *identf_scheme_zam_parametr,  *identf_scheme_zam_value;
     QStandardItem *item11, *item12, *calculation_mode_parametr, *calculation_mode_value,
         *item15, *item16, *electromagnetic_model_parametr, *electromagnetic_model_value, *engine_duty_cycle_parametr, *engine_duty_cycle_value;
-    QStandardItem *item21, *item22, *item23, *item24, *item25, *item26, *item27, *item28, *item29, *item30;
-    QStandardItem *item31, *item32, *item33, *item34, *item35, *item36, *item37, *item38, *item39, *item40;
-    QStandardItem *item41, *item42, *item43, *item44, *item45, *item46, *item47, *item48, *item49, *item50;
-    QStandardItem *item51, *item52, *item53, *item54, *item55, *item56, *item57, *item58, *item59, *item60;
-    QStandardItem *item61, *item62, *item63, *item64, *save_data_parametr, *save_data_value,
+    QStandardItem *time_cycle_parametr, *time_cycle_value, *time_base_selection_parametr, *Time_base_selection_value, *tepl_model_parametr, *tepl_model_value, *start_tepl_temperature_parametr, *start_tepl_temperature_value, *temperature_regime_parametr, *temperature_regime_value;
+    QStandardItem *ventilation_model_parametr, *ventilation_model_value, *ventilation_regime_parametr, *ventilation_regime_value, *design_ventilation_system_parametr, *design_ventilation_system_value, *barometric_pressure_parametr, *barometric_pressure_value, *predicting_temperature_parametr, *predicting_temperature_value;
+    QStandardItem *value_one_parametr, *value_one_value, *value_two_parametr, *value_two_value, *value_three_parametr, *value_three_value, *estimation_residual_thermal_life_parametr, *estimation_residual_thermal_life_value, *value_four_parametr, *value_four_value;
+    QStandardItem *value_five_parametr, *value_five_value, *value_six_parametr, *value_six_value, *output_data_parametr, *output_data_value, *value_seven_parametr, *value_seven_value, *value_nine_parametr, *value_eight_value;
+    QStandardItem *value_nine_value, *value_eight_parametr, *item63, *item64, *save_data_parametr, *save_data_value,
         *data_identification_parametr, *data_identification_value, *data_electomagn_process_parametr,
         *data_electomagn_process_value;
     QStandardItem *data_tepl_process_parametr, *data_tepl_process_value, *data_vent_process_parametr,
@@ -239,30 +239,30 @@ public:
     QStandardItem *read_data_identf_observer_parametr, *read_data_identf_observer_value,
         *item83, *item84, *item85, *item86, *identification_switch_parametr,
         *identification_switch_value, *item89, *item90;
-    QStandardItem *item91, *item92, *tuning_coefficient_ki_parametr, *tuning_coefficient_gd_value,
-        *tuning_coefficient_ki_value, *tuning_coefficient_gb_parametr, *tuning_coefficient_gb_value,
+    QStandardItem *switch_system_electrodrive_parametr, *switch_system_electrodrive_value, *tuning_coefficient_gd_parametr, *tuning_coefficient_gd_value,
+        *tuning_coefficient_ki_parametr, *tuning_coefficient_ki_value, *tuning_coefficient_gb_parametr, *tuning_coefficient_gb_value,
         *tuning_coefficient_kpsi_parametr, *tuning_coefficient_kpsi_value;
     QStandardItem *tuning_coefficient_gp_parametr, *tuning_coefficient_gp_value,
         *tuning_coefficient_gpsi_parametr, *tuning_coefficient_gpsi_value,
-        *load_data_ruchn_identf_parametr,*load_data_ruchn_identf_value, *item107, *item108,
+        *load_data_ruchn_identf_parametr,*load_data_ruchn_identf_value, *time_base_selection_value, *item108,
         *item109, *item110;
     QStandardItem *item111, *item112, *item113, *item114, *item115,*search_kanals_parametr,
         *search_kanals_value, *item118, *item119, *item120;
     QStandardItem *item121, *item122, *item123, *item124, *item125,*item126, *item127,
-        *item128, *item129, *item130;
-    QStandardItem *item131, *item132, *item133, *item134, *item135,*item136, *item137,
-        *item138, *item139, *item140;
-    QStandardItem *item141, *item142, *item143, *item144, *thermal_identification_parametr,
-        *thermal_identification_value, *kind_thermal_model_parametr, *kind_thermal_model_value,
-        *kind_thermal_model_2_parametr, *kind_thermal_model_3_value;
+        *item128, *enter_voltage_im_mashine_parametr, *enter_voltage_im_mashine_value;
+    QStandardItem *enter_moment_parametr, * enter_moment_value, *item133, *item134, *item135,*item136, *item137,
+        *item138, *item139, *temperature_regime_static_parametr;
+    QStandardItem *temperature_regime_static_value, *temperature_regime_dinamic_value, *item143, *temperature_regime_dinamic_parametr, *thermal_identification_parametr,
+        *thermal_identification_value, *kind_thermal_model_parametr, *kind_thermal_model_value, *kind_thermal_model_2_parametr, *kind_thermal_model_2_value,
+        *kind_thermal_model_3_value, *kind_thermal_model_4_parametr, *kind_thermal_model_4_value;
     QStandardItem *kind_thermal_model_3_parametr, *ventilation_identification_parametr,
         *ventilation_identification_value, *kind_ventilation_parametr,*kind_ventilation_value,
         *calculation_modes_parametr, *calculation_modes_value, *geometry_parameters_parametr,
         *geometry_parameters_value;
     QStandardItem *Heat_processes_accounting_parameter, *Heat_processes_accounting_value,
         *item163, *item164, *item165,*item166, *item167, *item168, *item169, *item170;
-    QStandardItem *item171, *item172, *item173, *item174, *item175,*item176, *item177,
-        *item178, *item179, *item180;
+    QStandardItem *item171, *item172, *time_work_parametr, *time_work_value, *time_work_in_cycle_parametr,*time_work_in_cycle_value, *time_start_in_cycle_parametr,
+        *time_start_in_cycle_value, *item179, *item180;
 
     void changeEvent(QEvent *event) override;
 public slots:

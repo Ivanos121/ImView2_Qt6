@@ -1,6 +1,6 @@
 #include <QPainter>
 #include <QPoint>
-#include <QtMath>
+#include <cmath>
 #include <QWheelEvent>
 #include <QDebug>
 #include <QMessageBox>

@@ -100,9 +100,9 @@ identf::identf(QWidget *parent) :
     ui->tableWidget->setItem(3, 3, new QTableWidgetItem(QString("%1").arg(0)));
     ui->tableWidget->setItem(3, 4, new QTableWidgetItem(QString("%1").arg(1)));
     ui->tableWidget->setItem(3, 5, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
-    ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
-    ui->tableWidget->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
+    // ui->tableWidget->setItem(4, 3, new QTableWidgetItem(QString("%1").arg(0)));
+    // ui->tableWidget->setItem(4, 4, new QTableWidgetItem(QString("%1").arg(1)));
+    // ui->tableWidget->setItem(4, 5, new QTableWidgetItem(QString("%1").arg(0)));
 
     for (int i = 0; i < ui->tableWidget->rowCount(); i++)
     {
