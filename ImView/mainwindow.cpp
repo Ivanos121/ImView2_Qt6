@@ -78,8 +78,8 @@
 #include "pushbuttondelegate.h"
 #include "start_app.h"
 #include "base_tepl.h"
-#include "spandelegate.h"
-#include "branchdrawingdelegate.h"
+//#include "spandelegate.h"
+//#include "branchdrawingdelegate.h"
 #include "linedelegate.h"
 #include "fillicondelegate.h"
 
@@ -3313,6 +3313,17 @@ MainWindow::MainWindow(QWidget *parent)
     widget->setHidden(1);
     widget->setVisible(1);
     ui->statusbar->addPermanentWidget(widget);
+
+    QString version = settings.value("version").toString();
+    QLabel *rightLabel = new QLabel("Версия: " + version);    
+    rightLabel->setContentsMargins(0, 0, 20, 0);
+    ui->statusbar->addPermanentWidget(rightLabel);
+
+    widget = new QWidget(ui->statusbar);
+    widget->setFixedWidth(50);
+    widget->setHidden(1);
+    widget->setVisible(1);
+    ui->statusbar->addWidget(widget);
 
     QWidget *spacerWidget = new QWidget(this);
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);

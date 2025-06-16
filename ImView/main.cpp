@@ -10,6 +10,7 @@
 
 #include "mainwindow.h"
 #include "settings.h"
+#include "version.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +18,12 @@ int main(int argc, char *argv[])
     qputenv("QT_QUICK_BACKEND", "software");
 
     QApplication a(argc, argv);
+
+    qDebug() << "Version:" << APP_VERSION_STRING;
+
+    QString vers = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_BUILD_NUMBER);
+    QSettings settings( "BRU", "IM View");
+    settings.setValue("version", vers);
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");
@@ -34,7 +41,6 @@ int main(int argc, char *argv[])
     font.setPointSize(10); // Устанавливаем размер шрифта в логических пикселях
     QApplication::setFont(font);
 
-    QSettings settings( "BRU", "IM View");
     settings.beginGroup( "language interface" );
     QString lokal = settings.value( "QtLanguage_", "").toString();
     settings.endGroup();
@@ -70,6 +76,7 @@ int main(int argc, char *argv[])
     // qtLanguageTranslator = nullptr;
 
 
+
     MainWindow w;
     QDir dir("/tmp/imview");
     if (dir.exists())
@@ -81,9 +88,6 @@ int main(int argc, char *argv[])
         QString filename(argv[1]);
         w.LoadProject(filename);
     }
-
-
-
 
     w.show();
 

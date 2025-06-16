@@ -169,6 +169,7 @@ HEADERS += \
     vent_model.h \
     vent_settings.h \
     vent_tract.h \
+    version.h \
     zerocorrector.h
 
 FORMS += \
@@ -218,3 +219,15 @@ RESOURCES += \
     Images.qrc 
 
 CODECFORSRC     = UTF-8
+
+# Путь к файлу с версией
+VERSION_FILE = version.h
+
+# Папка с скриптами
+SCRIPTS_DIR = $$PWD/scripts
+
+# Сделать скрипт исполняемым (можно выполнить один раз вручную)
+# В командной строке: chmod +x $$SCRIPTS_DIR/update_version.sh
+
+# Перед сборкой вызываем скрипт обновления версии
+QMAKE_PRE_LINK += $$quote($$SCRIPTS_DIR/increment_build.sh minor)
