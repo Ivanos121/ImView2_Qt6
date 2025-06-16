@@ -82,12 +82,14 @@
 //#include "branchdrawingdelegate.h"
 #include "linedelegate.h"
 #include "fillicondelegate.h"
+#include "version.h"
 
 Base base;
 Base_tepl base_tepl;
 Klass_izol klass_izol;
 Model modelss;
 extern Model_el model_el;
+
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2, teta0_1n,teta0_2n;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
 lambda_k0,lambda_45,lambda_50,lambda_b5,lambda_pz, lambda_zc, lambda_pc, lambda_ppz, lambda_lc, lambda_l4, lambda_pl, lambda_lp,
@@ -122,6 +124,14 @@ MainWindow::MainWindow(QWidget *parent)
     , undoOperation(false)
 {
     ui->setupUi(this);
+
+#ifdef GIT_HASH
+    QString gitHash = QStringLiteral(GIT_HASH);
+    QString vers2 = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(gitHash);
+
+    //qDebug() << "Git hash:" << gitHash;
+#endif
+
 
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);
@@ -3315,7 +3325,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->statusbar->addPermanentWidget(widget);
 
     QString version = settings.value("version").toString();
-    QLabel *rightLabel = new QLabel("Версия: " + version);    
+    //QLabel *rightLabel = new QLabel("Версия: " + version);
+    QLabel *rightLabel = new QLabel("Версия: " + vers2);
     rightLabel->setContentsMargins(0, 0, 20, 0);
     ui->statusbar->addPermanentWidget(rightLabel);
 

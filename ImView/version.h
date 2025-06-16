@@ -5,7 +5,7 @@
 
 #define APP_VERSION_MAJOR 0
 #define APP_VERSION_MINOR 2
-#define APP_BUILD_NUMBER 43
+#define APP_BUILD_NUMBER 45
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)

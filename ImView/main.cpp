@@ -21,9 +21,12 @@ int main(int argc, char *argv[])
 
     qDebug() << "Version:" << APP_VERSION_STRING;
 
+
     QString vers = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_BUILD_NUMBER);
     QSettings settings( "BRU", "IM View");
     settings.setValue("version", vers);
+
+
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");
