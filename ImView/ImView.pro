@@ -220,18 +220,12 @@ RESOURCES += \
 
 CODECFORSRC     = UTF-8
 
-# Путь к файлу с версией
-VERSION_FILE = version.h
+#SCRIPTS_DIR = $$PWD/scripts
 
-# Папка с скриптами
-SCRIPTS_DIR = $$PWD/scripts
+SCRIPT = $$PWD/scripts/increment_build.sh
 
-# Сделать скрипт исполняемым (можно выполнить один раз вручную)
-# В командной строке: chmod +x $$SCRIPTS_DIR/update_version.sh
+QMAKE_EXTRA_TARGETS += run_script
 
-# Перед сборкой вызываем скрипт обновления версии
-QMAKE_PRE_LINK += $$quote($$SCRIPTS_DIR/increment_build.sh minor)
-
-GIT_HASH = $$system(git -C $$PWD rev-parse --short HEAD)
-message("GIT_HASH = " + GIT_HASH)
-DEFINES += GIT_HASH=\\\"$$system(git rev-parse --short HEAD)\\\"
+run_script.target = run_script
+run_script.commands = bash $$SCRIPT
+PRE_TARGETDEPS += run_script

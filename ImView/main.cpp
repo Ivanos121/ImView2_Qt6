@@ -11,6 +11,7 @@
 #include "mainwindow.h"
 #include "settings.h"
 #include "version.h"
+#include "version_hash.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,20 +20,10 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    qDebug() << "Version:" << APP_VERSION_STRING;
-
-
-    QString vers = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(APP_BUILD_NUMBER);
+    QString vers = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(GIT_HASH);
+    qDebug() << "Version:" << vers;
     QSettings settings( "BRU", "IM View");
     settings.setValue("version", vers);
-
-// #ifdef GIT_HASH
-//     QString gitHash = QStringLiteral(GIT_HASH);
-//     QString vers2 = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(gitHash);
-//     qDebug() << "Git hash:" << gitHash;
-//     settings.setValue("version2", vers2);
-// #endif
-
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");

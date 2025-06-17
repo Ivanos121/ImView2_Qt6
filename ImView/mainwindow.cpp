@@ -83,6 +83,7 @@
 #include "linedelegate.h"
 #include "fillicondelegate.h"
 #include "version.h"
+#include "version_hash.h"
 
 Base base;
 Base_tepl base_tepl;

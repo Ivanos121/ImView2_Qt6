@@ -1,14 +1,6 @@
 #!/bin/bash
+VERSION_FILE="../ImView/version_hash.h"
 
-echo "Current dir: $(pwd)"
+GIT_HASH=$(git -C "$(pwd)" rev-parse --short HEAD)
 
-VERSION_FILE="../ImView/version.h"
-
-# Получить текущий номер сборки
-CURRENT_BUILD=$(grep '#define APP_BUILD_NUMBER' "$VERSION_FILE" | awk '{print $3}')
-
-# Увеличить его на 1
-NEW_BUILD=$((CURRENT_BUILD + 1))
-
-# Обновить файл version.h
-sed -i "s/#define APP_BUILD_NUMBER $CURRENT_BUILD/#define APP_BUILD_NUMBER $NEW_BUILD/" "$VERSION_FILE"
+echo "#define GIT_HASH \"$GIT_HASH\"" > "$VERSION_FILE"
