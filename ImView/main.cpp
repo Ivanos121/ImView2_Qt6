@@ -26,6 +26,12 @@ int main(int argc, char *argv[])
     QSettings settings( "BRU", "IM View");
     settings.setValue("version", vers);
 
+// #ifdef GIT_HASH
+//     QString gitHash = QStringLiteral(GIT_HASH);
+//     QString vers2 = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(gitHash);
+//     qDebug() << "Git hash:" << gitHash;
+//     settings.setValue("version2", vers2);
+// #endif
 
 
     QCoreApplication::setOrganizationName("ImView");

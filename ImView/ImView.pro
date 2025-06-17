@@ -234,4 +234,4 @@ QMAKE_PRE_LINK += $$quote($$SCRIPTS_DIR/increment_build.sh minor)
 
 GIT_HASH = $$system(git -C $$PWD rev-parse --short HEAD)
 message("GIT_HASH = " + GIT_HASH)
-DEFINES += GIT_HASH=\\\"$$GIT_HASH\\\"
+DEFINES += GIT_HASH=\\\"$$system(git rev-parse --short HEAD)\\\"
