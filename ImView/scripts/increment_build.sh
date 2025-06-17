@@ -2,7 +2,7 @@
 
 echo "Current dir: $(pwd)"
 
-VERSION_FILE="/home/elf/ImView2_Qt6/ImView/version.h"
+VERSION_FILE="../ImView/version.h"
 
 # Получить текущий номер сборки
 CURRENT_BUILD=$(grep '#define APP_BUILD_NUMBER' "$VERSION_FILE" | awk '{print $3}')
