@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION_FILE="../ImView/version_hash.h"
+VERSION_FILE="version_hash.h"
 
 GIT_HASH=$(git -C "$(pwd)" rev-parse --short HEAD)
 

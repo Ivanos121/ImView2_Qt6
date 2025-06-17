@@ -1,1 +1,1 @@
-#define GIT_HASH "c4f8b76"
+#define GIT_HASH "7fd5357"

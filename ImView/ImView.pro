@@ -220,12 +220,3 @@ RESOURCES += \
 
 CODECFORSRC     = UTF-8
 
-#SCRIPTS_DIR = $$PWD/scripts
-
-SCRIPT = $$PWD/scripts/increment_build.sh
-
-QMAKE_EXTRA_TARGETS += run_script
-
-run_script.target = run_script
-run_script.commands = bash $$SCRIPT
-PRE_TARGETDEPS += run_script

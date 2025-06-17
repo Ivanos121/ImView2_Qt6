@@ -129,8 +129,6 @@ MainWindow::MainWindow(QWidget *parent)
 #ifdef GIT_HASH
     QString vers2 = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(GIT_HASH);
     qDebug() << "Git hash:" << vers2;
-    QSettings settings( "BRU", "IM View");
-    settings.setValue("version2", vers2);
 #endif
 
 
@@ -185,7 +183,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     //Настройкак поиска
-    //QSettings settings( "BRU", "IM View");
+    QSettings settings( "BRU", "IM View");
     settings.setValue( "ii", 0);
     settings.setValue( "xx", 0);
     settings.setValue( "iz", 0);
@@ -3325,8 +3323,7 @@ MainWindow::MainWindow(QWidget *parent)
     widget->setVisible(1);
     ui->statusbar->addPermanentWidget(widget);
 
-    QString version = settings.value("version2").toString();
-    QLabel *rightLabel = new QLabel("Версия: " + version);
+    QLabel *rightLabel = new QLabel(QString("Версия: ") + vers2);
     //QLabel *rightLabel = new QLabel("Версия: " + vers2);
     rightLabel->setContentsMargins(0, 0, 20, 0);
     ui->statusbar->addPermanentWidget(rightLabel);
