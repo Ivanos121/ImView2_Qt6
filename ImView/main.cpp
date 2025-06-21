@@ -13,7 +13,7 @@
 
 int main(int argc, char *argv[])
 {
-    //qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
     qputenv("QT_QUICK_BACKEND", "software");
 
     QApplication a(argc, argv);
@@ -73,7 +73,19 @@ int main(int argc, char *argv[])
 
 
     MainWindow w;
-    QDir dir("/tmp/imview");
+
+        // Получаем размеры экрана
+        QScreen *screen = QApplication::primaryScreen();
+        QRect screenGeometry = screen->availableGeometry();
+
+        // Устанавливаем состояние окна в "обычное" (не максимизированное)
+        w.setWindowState(Qt::WindowNoState);
+
+        // Устанавливаем размер окна равным размеру экрана
+        w.resize(screenGeometry.size());
+        w.setWindowFlag(Qt::FramelessWindowHint, false);
+
+        QDir dir("/tmp/imview");
     if (dir.exists())
     {
         dir.removeRecursively();
