@@ -166,13 +166,14 @@ Start_app::Start_app(QWidget *parent)
     ui->tableWidget_2->setItem(3, 2, new QTableWidgetItem("Вентиляционная модель"));
     ui->tableWidget_2->setItem(3, 4, new QTableWidgetItem("Прогноз температур"));
     ui->tableWidget_2->setItem(5, 0, new QTableWidgetItem("Остаточный \n тепловой \n ресурс"));
+    ui->tableWidget_2->clearSelection();
 
     svgwidget2 = new MySvgWidget();
     QWidget *widget = new QWidget();
     QHBoxLayout *layout = new QHBoxLayout(widget);
     layout->addWidget(svgwidget2);
-    svgwidget2->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_ns.svg";
-    svgwidget2->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_ns_select.svg";
+    svgwidget2->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_ns.svg";
+    svgwidget2->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_ns_select.svg";
     svgwidget2->loadFile();
     layout->setAlignment(Qt::AlignCenter);
     layout->setContentsMargins(0,0,0,0);
@@ -181,8 +182,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget3 = new MySvgWidget();
     QWidget *widget2 = new QWidget();
-    svgwidget3->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id.svg";
-    svgwidget3->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_id_select.svg";
+    svgwidget3->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_id.svg";
+    svgwidget3->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_id_select.svg";
     svgwidget3->loadFile();
     QHBoxLayout *layout2 = new QHBoxLayout(widget2);
     layout2->addWidget(svgwidget3);
@@ -193,8 +194,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget4 = new MySvgWidget();
     QWidget *widget3 = new QWidget();
-    svgwidget4->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm.svg";
-    svgwidget4->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_elm_select.svg";
+    svgwidget4->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_elm.svg";
+    svgwidget4->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_elm_select.svg";
     svgwidget4->loadFile();
     QHBoxLayout *layout3 = new QHBoxLayout(widget3);
     layout3->addWidget(svgwidget4);
@@ -205,8 +206,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget5 = new MySvgWidget();
     QWidget *widget4 = new QWidget();
-    svgwidget5->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm.svg";
-    svgwidget5->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_tm_select.svg";
+    svgwidget5->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_tm.svg";
+    svgwidget5->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_tm_select.svg";
     svgwidget5->loadFile();
     QHBoxLayout *layout4 = new QHBoxLayout(widget4);
     layout4->addWidget(svgwidget5);
@@ -217,8 +218,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget6 = new MySvgWidget();
     QWidget *widget5 = new QWidget();
-    svgwidget6->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm.svg";
-    svgwidget6->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_vm_select.svg";
+    svgwidget6->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_vm.svg";
+    svgwidget6->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_vm_select.svg";
     svgwidget6->loadFile();
     QHBoxLayout *layout5 = new QHBoxLayout(widget5);
     layout5->addWidget(svgwidget6);
@@ -229,8 +230,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget7 = new MySvgWidget();
     QWidget *widget6 = new QWidget();
-    svgwidget7->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt.svg";
-    svgwidget7->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_pt_select.svg";
+    svgwidget7->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_pt.svg";
+    svgwidget7->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_pt_select.svg";
     svgwidget7->loadFile();
     QHBoxLayout *layout6 = new QHBoxLayout(widget6);
     layout6->addWidget(svgwidget7);
@@ -241,8 +242,8 @@ Start_app::Start_app(QWidget *parent)
 
     svgwidget8 = new MySvgWidget();
     QWidget *widget7 = new QWidget();
-    svgwidget8->svgFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_otr.svg";
-    svgwidget8->svgSelectedFileName = "/home/elf/ImView2/data/img/system_icons/IM_96x96_otr_select.svg";
+    svgwidget8->svgFileName = ":/system_icons/data/img/system_icons/IM_96x96_otr.svg";
+    svgwidget8->svgSelectedFileName = ":/system_icons/data/img/system_icons/IM_96x96_otr_select.svg";
     svgwidget8->loadFile();
     QHBoxLayout *layout7 = new QHBoxLayout(widget7);
     layout7->addWidget(svgwidget8);

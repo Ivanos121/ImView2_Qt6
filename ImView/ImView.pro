@@ -17,6 +17,7 @@ CONFIG -= qml_debug
 SOURCES += \
     MySortFilterProxyModel.cpp \
     aboutdialog.cpp \
+    action_create.cpp \
     archiverchannel.cpp \
     base.cpp \
     branchdrawingdelegate.cpp \
@@ -93,6 +94,7 @@ SOURCES += \
 HEADERS += \
     MySortFilterProxyModel.h \
     aboutdialog.h \
+    action_create.h \
     archiverchannel.h \
     base.h \
     base_tepl.h \
@@ -175,6 +177,7 @@ HEADERS += \
 FORMS += \
     about_dialog.ui \
     aboutdialog.ui \
+    action_create.ui \
     datas.ui \
     draw_line.ui \
     draw_poper.ui \

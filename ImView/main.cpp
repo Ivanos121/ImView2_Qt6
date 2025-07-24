@@ -22,15 +22,16 @@ int main(int argc, char *argv[])
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");
+    a.setWindowIcon(QIcon(":/icons/data/img/icons/IM_16x16.png"));
 
-    if(QGuiApplication::platformName() == QLatin1String("xcb"))
-    {
-        QGuiApplication::setWindowIcon(QIcon("/home/elf/ImView2/data/img/icons/IM_24_blue.png"));
-    }
-    else if(QGuiApplication::platformName() == QLatin1String("wayland"))
-    {
-        QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
-    }
+    // if(QGuiApplication::platformName() == QLatin1String("xcb"))
+    // {
+    //     QGuiApplication::setWindowIcon(QIcon(":/icons/data/img/icons/IM_24_blue.png"));
+    // }
+    // else if(QGuiApplication::platformName() == QLatin1String("wayland"))
+    // {
+    //     QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
+    // }
 
     QFont font = QApplication::font();
     font.setPointSize(10); // Устанавливаем размер шрифта в логических пикселях

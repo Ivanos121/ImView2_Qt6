@@ -17,6 +17,8 @@
 #include "datas.h"
 #include "nastroiki.h"
 #include "aboutdialog.h"
+#include "action_create.h"
+#include "pushbuttondelegate.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -180,6 +182,9 @@ public:
     QTimer *timer;
     Model_el *wf;
     AboutDialog *rsc;
+    Action_create *crt;
+    ButtonColumnDelegate *buttonColumnDelegate;
+
     Kalibr *kalibr;
     Ksettings *set;
     Nastroiki *nastr;
@@ -268,6 +273,13 @@ public:
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);
+    void action_create();
+
+protected slots:
+    void onNodeExpandeds();
+    void onNodeCollapseds();
+private:
+    QHash<QModelIndex, bool> rootNodeStates;
 };
 
 #endif // MAINWINDOW_H

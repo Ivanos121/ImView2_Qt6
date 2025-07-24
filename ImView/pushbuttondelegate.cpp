@@ -11,6 +11,7 @@
 #include <QAbstractItemView>
 #include <QComboBox>
 #include <QApplication>
+#include <QStyle>
 
 #include "pushbuttondelegate.h"
 #include "settingscanals.h"
@@ -1232,6 +1233,70 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
     opt.state &= ~QStyle::State_HasFocus;
     opt.state &= ~QStyle::State_MouseOver;
 
+    QStyleOptionViewItem optt = option;
+    initStyleOption(&optt, index);
+
+    int rowHeight = optt.rect.height();
+
+    // Размер значка — например, половина высоты строки
+    int iconSize = rowHeight;
+
+    QRect rect = m_view->visualRect(index);
+    int width = rect.width();
+
+    // Создаем rect для иконки
+    QRect iconRect(optt.rect.left()-1.2*width,
+                   optt.rect.top() + (rowHeight - iconSize) / 2,
+                   iconSize+30,
+                   iconSize);
+
+    // QStyle *style = nullptr;
+    // if (option.widget)
+    //     style = option.widget->style();
+    // else
+    //     style = QApplication::style();
+
+    // QRect iconRect = style->subElementRect(QStyle::SE_ItemViewItemDecoration, &option, option.widget);
+
+    if (shouldSpan(index))
+    {
+        painter->save();
+        QColor fillColor(Qt::green);
+        painter->save();
+        painter->setRenderHint(QPainter::Antialiasing);
+        painter->setBrush(fillColor);
+        painter->setPen(Qt::NoPen);
+        painter->drawRect(iconRect);
+
+        QIcon icon ("/home/elf/ImView2_Qt6/data/img/icons/branch-closed.png"); // ваш иконка
+        // Нарисуйте иконку в iconRect
+        icon.paint(painter, iconRect);
+
+        QIcon icons;
+            bool isExpanded = m_view->isExpanded(index);
+            if (isExpanded)
+            {
+                // Корень раскрыт
+                icons = QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-closed.png");
+                icons.paint(painter, iconRect);
+            }
+            else
+            {
+                // Корень закрыт
+                icons = QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-opened.png");
+                icons.paint(painter, iconRect);
+            }
+
+        // Выбираем иконку в зависимости от статуса
+        // QIcon icons;
+        // if (isRoot) {
+        //     icons = QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-closed.png");
+        // } else {
+        //     icons = QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-opened.png");
+        // }
+
+        painter->restore();
+        }
     if (shouldSpan(index))
     {
         painter->save();
@@ -1240,8 +1305,8 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
         QRect rect2 = m_view->visualRect(spanIndex);
 
         // Получаем геометрию обеих ячеек
-        QRect rect1 = option.rect;
-        //QRect rect2 = view->visualRect(spanIndex);
+        //QRect rect1 = option.rect;
+        QRect rect1 = m_view->visualRect(index);
 
         // Объединяем области
         QRect unionRect = rect1.united(rect2);
@@ -1327,7 +1392,7 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
             text = "Сохранение данных";
         }
 
-        painter->save();
+         painter->save();
         QTextOption textOption(Qt::AlignCenter);
 
         QFont boldFont = painter->font();
@@ -1337,110 +1402,176 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
         painter->setPen(Qt::black);
         painter->drawText(unionRect, text, textOption);
         painter->restore();
+        painter->restore();
 
+        //ЗАЛИВКА ОБЛАСТИ ПОД ЗНАЧКОМ УЗЛА
+
+        // // Инициализация стиля
+        // QStyleOptionViewItem opt = option;
+        // initStyleOption(&opt, index);
+
+        // int rowHeight = opt.rect.height();
+
+        // // Размер значка — например, половина высоты строки
+        // int iconSize = rowHeight;
+
+        // QRect rect = m_view->visualRect(index);
+        // int width = rect.width();
+
+        // // Создаем rect для иконки
+        // QRect iconRect(opt.rect.left()-1.2*width,
+        //                opt.rect.top() + (rowHeight - iconSize) / 2,
+        //                iconSize+30,
+        //                iconSize);
+
+        // if (shouldSpan(index))
+        // {
+        //     painter->save();
+        //    // QColor fillColor(Qt::green);
+        //     painter->save();
+        //     painter->setRenderHint(QPainter::Antialiasing);
+        //     //painter->setBrush(fillColor);
+        //     painter->setPen(Qt::NoPen);
+        //     painter->drawRect(iconRect);
+        //     painter->restore();
+        // }
+    }
+
+        else
+        {
+            // Просто рисуем обычную ячейку без рамки
+            QStyleOptionViewItem opt2 = opt;
+            opt2.state &= ~QStyle::State_HasFocus; // отключить фокусные рамки
+
+            // Убираем границы у стиля по умолчанию:
+            QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem,
+                                                 &opt2, painter);
+
+            // Или просто вызываем базовый метод:
+            QStyledItemDelegate::paint(painter, opt2, index);
+        }
+    }
+
+    bool ButtonColumnDelegate::shouldSpan(const QModelIndex &index) const
+    {
+        // Здесь логика определения необходимости объединения
+        // Например: объединять колонки 0 и 1 в первой строке
+        auto model = index.model();
+        QModelIndex Index_1 = model->index(0, 1, QModelIndex());
+        QModelIndex Index_2 = model->index(1, 1, QModelIndex());
+        QModelIndex Index_3 = model->index(2, 1, QModelIndex());
+        QModelIndex Index_4 = model->index(3, 1, QModelIndex());
+        QModelIndex Index_5 = model->index(4, 1, QModelIndex());
+        QModelIndex Index_6 = model->index(5, 1, QModelIndex());
+        QModelIndex Index_7 = model->index(6, 1, QModelIndex());
+        QModelIndex Index_8 = model->index(7, 1, QModelIndex());
+        QModelIndex Index_9 = model->index(8, 1, QModelIndex());
+        QModelIndex Index_10 = model->index(9, 1, QModelIndex());
+        QModelIndex nonRootIdx_1 = model->index(1, 1, model->index(0, 0, QModelIndex()));
+        QModelIndex nonRootIdx_2 = model->index(2, 1, model->index(0, 0, QModelIndex()));
+
+        if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
+            || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
+            || (index == Index_9) || (index == Index_10) || (index == nonRootIdx_1)
+            || (index == nonRootIdx_2))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void ButtonColumnDelegate::m_paintFunc4(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+    {
+        //QStyledItemDelegate::paint(painter, option, index);
+
+        painter->save();
+        QPen pen((QColor(Qt::lightGray)));
+        pen.setStyle(Qt::SolidLine);
+        painter->setPen(pen);
+
+        //QModelIndex spanIndex = index.sibling(index.row(), index.column() + 1);
+
+        QRect rect1 = option.rect;
+        QRect unionRect = rect1;
+
+        if (shouldSpan(index))
+        {
+            QRect rect = option.rect;
+            painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
+            painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
+            painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
+        }
+        else
+        {
+            int columnCount = index.model()->columnCount();
+            QRect rect = option.rect;
+
+            if (index.row() == index.model()->rowCount() - 1)
+            {
+                painter->drawLine(rect.bottomLeft(), rect.bottomRight());
+            }
+            if (index.column() == columnCount - 1)
+            {
+                painter->drawLine(rect.topRight(), rect.bottomRight());
+            }
+
+            painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
+            painter->drawLine(rect.topLeft(), rect.bottomLeft());
+            painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
+            painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
+        }
         painter->restore();
     }
-    else
+
+    void ButtonColumnDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const
     {
-        // Просто рисуем обычную ячейку без рамки
-        QStyleOptionViewItem opt2 = opt;
-        opt2.state &= ~QStyle::State_HasFocus; // отключить фокусные рамки
-
-        // Убираем границы у стиля по умолчанию:
-        QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem,
-                                             &opt2, painter);
-
-        // Или просто вызываем базовый метод:
-        QStyledItemDelegate::paint(painter, opt2, index);
+        m_paintFunc2(painter, option, index);
+        m_paintFunc4(painter, option, index);
     }
-}
 
-bool ButtonColumnDelegate::shouldSpan(const QModelIndex &index) const
-{
-    // Здесь логика определения необходимости объединения
-    // Например: объединять колонки 0 и 1 в первой строке
-    auto model = index.model();
-    QModelIndex Index_1 = model->index(0, 1, QModelIndex());
-    QModelIndex Index_2 = model->index(1, 1, QModelIndex());
-    QModelIndex Index_3 = model->index(2, 1, QModelIndex());
-    QModelIndex Index_4 = model->index(3, 1, QModelIndex());
-    QModelIndex Index_5 = model->index(4, 1, QModelIndex());
-    QModelIndex Index_6 = model->index(5, 1, QModelIndex());
-    QModelIndex Index_7 = model->index(6, 1, QModelIndex());
-    QModelIndex Index_8 = model->index(7, 1, QModelIndex());
-    QModelIndex Index_9 = model->index(8, 1, QModelIndex());
-    QModelIndex Index_10 = model->index(9, 1, QModelIndex());
-    QModelIndex nonRootIdx_1 = model->index(1, 1, model->index(0, 0, QModelIndex()));
-    QModelIndex nonRootIdx_2 = model->index(2, 1, model->index(0, 0, QModelIndex()));
-
-    if ((index == Index_1) || (index == Index_2) || (index == Index_3) || (index == Index_4)
-        || (index == Index_5) || (index == Index_6) || (index == Index_7) || (index == Index_8)
-        || (index == Index_9) || (index == Index_10) || (index == nonRootIdx_1)
-        || (index == nonRootIdx_2))
+    bool ButtonColumnDelegate::isPartOfSpan(const QModelIndex &index) const
     {
-        return true;
-    }
-    return false;
-}
-
-void ButtonColumnDelegate::m_paintFunc4(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    //QStyledItemDelegate::paint(painter, option, index);
-
-    painter->save();
-    QPen pen((QColor(Qt::lightGray)));
-    pen.setStyle(Qt::SolidLine);
-    painter->setPen(pen);
-
-    //QModelIndex spanIndex = index.sibling(index.row(), index.column() + 1);
-
-    QRect rect1 = option.rect;
-    QRect unionRect = rect1;
-
-    if (shouldSpan(index))
-    {
-        QRect rect = option.rect;
-        painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
-        painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
-        painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
-    }
-    else
-    {
-        int columnCount = index.model()->columnCount();
-        QRect rect = option.rect;
-
-        if (index.row() == index.model()->rowCount() - 1)
+        // Проверка: если индекс входит в объединённую область,
+        // то он не должен рисовать свой текст.
+        // Реализуйте по вашей логике.
+        if (index.column() == 1)
         {
-            painter->drawLine(rect.bottomLeft(), rect.bottomRight());
+            return true; // например
         }
-        if (index.column() == columnCount - 1)
-        {
-            painter->drawLine(rect.topRight(), rect.bottomRight());
-        }
-
-        painter->drawLine(QPoint(0, rect.bottomLeft().y()), QPoint(0, rect.topLeft().y()));
-        painter->drawLine(rect.topLeft(), rect.bottomLeft());
-        painter->drawLine(QPoint(0, rect.bottomLeft().y()), unionRect.bottomRight());
-        painter->drawLine(unionRect.topRight(), unionRect.bottomRight());
+        return false;
     }
-    painter->restore();
-}
 
-void ButtonColumnDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                                 const QModelIndex &index) const
-{
-    m_paintFunc2(painter, option, index);
-    m_paintFunc4(painter, option, index);
-}
-
-bool ButtonColumnDelegate::isPartOfSpan(const QModelIndex &index) const
-{
-    // Проверка: если индекс входит в объединённую область,
-    // то он не должен рисовать свой текст.
-    // Реализуйте по вашей логике.
-    if (index.column() == 1)
+    QRect ButtonColumnDelegate::iconRect(const QStyleOptionViewItem &option, const QModelIndex &index) const
     {
-        return true; // например
+        //int iconSize = 16; // или любой другой размер
+        QRect rect = m_view->visualRect(index);
+        int width = rect.width();
+
+        // Размер значка — например, половина высоты строки
+        int iconSize = width;
+        return QRect(option.rect.left() + 2, // отступ слева
+                     option.rect.top() + (option.rect.height() - iconSize) / 2,
+                     iconSize,
+                     iconSize);
     }
-    return false;
-}
+
+    // void ButtonColumnDelegate::setNodeExpanded(const QModelIndex &index, bool expanded)
+    // {
+    //     m_expandedNodes[index] = expanded;
+    // }
+
+    // bool ButtonColumnDelegate::isNodeExpanded(const QModelIndex &index) const
+    // {
+    //     return m_expandedNodes.value(index, false);
+    // }
+
+    // void ButtonColumnDelegate::setArrowIcons(const QIcon &downIcon, const QIcon &rightIcon)
+    // {
+    //     arrowDownIcon = downIcon;
+    //     arrowRightIcon = rightIcon;
+    // }
+    // void ButtonColumnDelegate::setRootIcon(const QIcon &icon)
+    // {
+    //     rootIcon = icon;
+    // }

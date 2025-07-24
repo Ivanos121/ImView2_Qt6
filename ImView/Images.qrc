@@ -56,6 +56,9 @@
         <file>../data/img/system_icons/IM_96x96_ns.svg</file>
         <file>../data/img/system_icons/IM_96x96_otr_select.svg</file>
         <file>../data/img/system_icons/IM_96x96_otr.svg</file>
+        <file>../data/img/system_icons/IM_96x96_tm_select.svg</file>
+        <file>../data/img/system_icons/IM_96x96_vm_select.svg</file>
+        <file>../data/img/system_icons/IM_96x96_pt_select.svg</file>
     </qresource>
     <qresource prefix="/icons">
         <file>../data/img/icons/IM_16x16.png</file>
@@ -93,6 +96,8 @@
         <file>../data/img/icons/branch-end.png</file>
         <file>../data/img/icons/branch-more.png</file>
         <file>../data/img/icons/vline.png</file>
+        <file>../data/img/icons/branch-closed.png</file>
+        <file>../data/img/icons/branch-open.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>../data/img/images/IM_LOGO.png</file>

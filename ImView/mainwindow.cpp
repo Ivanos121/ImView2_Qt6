@@ -193,6 +193,9 @@ MainWindow::MainWindow(QWidget *parent)
     settings.setValue( "number", 0);
     settings.setValue( "kz", 0.5);
 
+    connect(ui->treeView, &QTreeView::expanded, this, &MainWindow::onNodeExpandeds);
+    connect(ui->treeView, &QTreeView::collapsed, this, &MainWindow::onNodeCollapseds);
+
     //поиск - замена
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
@@ -206,6 +209,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //файловые операции
 
+    connect(ui->action_create, &QAction::triggered, this, &MainWindow::action_create);
     connect(ui->open_file, &QAction::triggered, this, &MainWindow::open_file);
     connect(ui->save_file, &QAction::triggered, this, &MainWindow::save_file);
     connect(ui->save_as_file, &QAction::triggered, this, &MainWindow::save_as_file);
@@ -1200,7 +1204,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->header()->setSectionResizeMode(1,QHeaderView::Fixed);
     ui->treeView->expandAll();
 
-    ButtonColumnDelegate *buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this); //создание делегата для создания комбобоксов
+    buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this); //создание делегата для создания комбобоксов
+    //buttonColumnDelegate->setRootIcon(QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-open.png"));
     ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 
     LineDelegate *delegate = new LineDelegate(ui->treeView);
@@ -1209,77 +1214,77 @@ MainWindow::MainWindow(QWidget *parent)
     FillIconDelegate *fillIconDelegate = new FillIconDelegate(ui->treeView);
     ui->treeView->setItemDelegate(fillIconDelegate);
 
-    ui->treeView->setStyleSheet(
-                    "QScrollBar:vertical {border-width: 0px;border-style: solid;"
-                    "background-color: #FFFFFF; width: 18px;}"
-                    "QScrollBar::handle:vertical {background-color:#d0d2d2;min-height: 25px;"
-                    "margin-left:5px;margin-right:5px;border-radius:4px;margin-top:5px;margin-bottom:5px;}"
-                    "QScrollBar::handle:vertical:hover {background-color:#97d5f0;}"
-                    "QScrollBar::add-line:vertical {border: 0px solid black;"
-                    "height: 0px;subcontrol-position: bottom;subcontrol-origin: margin;}"
-                    "QScrollBar::sub-line:vertical {border: 0px solid black;"
-                    "height: 0px;subcontrol-position: top;subcontrol-origin: margin;}"
-                            "*{"
-                            "background: rgb(255, 255, 222);"
-                            "}"
-                           "*{"
-                            "alternate-background-color: rgb(255, 255, 191);"
-                           "}"
-                            // "*::item{"
-                            // "    border-top-width: 0px;"
-                            // "    border-right-width: 1px;"
-                            // "    border-bottom-width: 1px;"
-                            // "    border-left-width: 0px;"
-                            // "    border-style: solid;"
-                            // "    border-color: silver;"
-                            // "}"
-                            "*::item:selected{"
-                            "    background: palette(Highlight);"
-                            "}"
-//                            "*::item:has-children{"
-//                            "    background: rgb(128,128,128);"
+//     ui->treeView->setStyleSheet(
+//                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
+//                     "background-color: #FFFFFF; width: 18px;}"
+//                     "QScrollBar::handle:vertical {background-color:#d0d2d2;min-height: 25px;"
+//                     "margin-left:5px;margin-right:5px;border-radius:4px;margin-top:5px;margin-bottom:5px;}"
+//                     "QScrollBar::handle:vertical:hover {background-color:#97d5f0;}"
+//                     "QScrollBar::add-line:vertical {border: 0px solid black;"
+//                     "height: 0px;subcontrol-position: bottom;subcontrol-origin: margin;}"
+//                     "QScrollBar::sub-line:vertical {border: 0px solid black;"
+//                     "height: 0px;subcontrol-position: top;subcontrol-origin: margin;}"
+//                             "*{"
+//                             "background: rgb(255, 255, 222);"
+//                             "}"
+//                            "*{"
+//                             "alternate-background-color: rgb(255, 255, 191);"
 //                            "}"
-                            // "::branch"
-                            // "{"
-                            // "border-bottom: 1px solid silver;"
-                            // "border-image: none 0;"
-                            // "image: none 0;"
-                            // "}"
-                                    "::branch:has-children:!has-siblings:closed,"
-                                    "::branch:closed:has-children:has-siblings {"
-                                    "        border-image: none;"
-                                    //"        image: url(:/image/data/img/icons/branch-closed.png);"
-                                    "}"
-                                    "::branch:open:has-children:!has-siblings,"
-                                    "::branch:open:has-children:has-siblings  {"
-                                   "        border-image: none;"
-                                   // "        image: url(:/image/data/img/icons/branch-open.png);"
-                                    "}"
-                "::branch:has-siblings:!adjoins-item {"
-                "    border-image: url(:/data/img/icons/vline.png) 0;"
-                "}"
+//                             // "*::item{"
+//                             // "    border-top-width: 0px;"
+//                             // "    border-right-width: 1px;"
+//                             // "    border-bottom-width: 1px;"
+//                             // "    border-left-width: 0px;"
+//                             // "    border-style: solid;"
+//                             // "    border-color: silver;"
+//                             // "}"
+//                             "*::item:selected{"
+//                             "    background: palette(Highlight);"
+//                             "}"
+// //                            "*::item:has-children{"
+// //                            "    background: rgb(128,128,128);"
+// //                            "}"
+//                             // "::branch"
+//                             // "{"
+//                             // "border-bottom: 1px solid silver;"
+//                             // "border-image: none 0;"
+//                             // "image: none 0;"
+//                             // "}"
+//                                     "::branch:has-children:!has-siblings:closed,"
+//                                     "::branch:closed:has-children:has-siblings {"
+//                                     "        border-image: none;"
+//                                     //"        image: url(:/image/data/img/icons/branch-closed.png);"
+//                                     "}"
+//                                     "::branch:open:has-children:!has-siblings,"
+//                                     "::branch:open:has-children:has-siblings  {"
+//                                    "        border-image: none;"
+//                                    // "        image: url(:/image/data/img/icons/branch-open.png);"
+//                                     "}"
+//                 "::branch:has-siblings:!adjoins-item {"
+//                 "    border-image: url(:/data/img/icons/vline.png) 0;"
+//                 "}"
 
-                "::branch:has-siblings:adjoins-item {"
-                "    border-image: url(:/data/img/icons/branch-more.png) 0;"
-                "}"
+//                 "::branch:has-siblings:adjoins-item {"
+//                 "    border-image: url(:/data/img/icons/branch-more.png) 0;"
+//                 "}"
 
-                "::branch:!has-children:!has-siblings:adjoins-item {"
-                "    border-image: url(:/data/img/icons/branch-end.png) 0;"
-                "}"
+//                 "::branch:!has-children:!has-siblings:adjoins-item {"
+//                 "    border-image: url(:/data/img/icons/branch-end.png) 0;"
+//                 "}"
 
-                "::branch:has-children:!has-siblings:closed,"
-                "::branch:closed:has-children:has-siblings {"
-                "        border-image: none;"
-                "        image: url(:/image/data/img/icons/branch-closed.png);"
-                "}"
+//                 "::branch:has-children:!has-siblings:closed,"
+//                 "::branch:closed:has-children:has-siblings {"
+//                 "        border-image: none;"
+//                 "        image: url(:/image/data/img/icons/branch-closed.png);"
+//                 "}"
 
-                "::branch:open:has-children:!has-siblings,"
-                "::branch:open:has-children:has-siblings  {"
-                "        border-image: none;"
-                "        image: url(:/image/data/img/icons/branch-open.png);"
-                "}"
+//                 "::branch:open:has-children:!has-siblings,"
+//                 "::branch:open:has-children:has-siblings  {"
+//                 "        border-image: none;"
+//                 "        image: url(:/image/data/img/icons/branch-open.png);"
+//                 "}"
 
-                                    );
+//                                     );
 
     ui->treeView->setRootIsDecorated(true);
 
@@ -4142,10 +4147,10 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         time_cycle_value->setToolTip(w108);
     }
     else
-    if (item == Time_base_selection_value)
+    if (item == time_base_selection_value)
     {
-        QString w109=Time_base_selection_value->text();
-        Time_base_selection_value->setToolTip(w109);
+        QString w109=time_base_selection_value->text();
+        time_base_selection_value->setToolTip(w109);
     }
     else
     if (item == item90)
@@ -4180,7 +4185,7 @@ void MainWindow::modelItemChangedSlot_5(QStandardItem *item)
 
 void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
 {
-    if (item == Time_base_selection_value)
+    if (item == time_base_selection_value)
     {
         if (item->text() == "Фиксированное время")
         {
@@ -4349,7 +4354,7 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_11");
-    xmlWriter.writeAttribute("value", (Time_base_selection_value->text()));
+    xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_12");
@@ -4448,7 +4453,7 @@ void MainWindow::SaveProgectToFile()
         xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
         xmlWriter.writeEndElement();
     }
-    if(Time_base_selection_value->text() == "Фиксированное время")
+    if(time_base_selection_value->text() == "Фиксированное время")
     {
         xmlWriter.writeStartElement("time_work");
         xmlWriter.writeAttribute("value", (time_work_value->text()));
@@ -9892,7 +9897,7 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_11");
-    xmlWriter.writeAttribute("value", (Time_base_selection_value->text()));
+    xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_12");
@@ -9991,7 +9996,7 @@ void MainWindow::save_file()
         xmlWriter.writeAttribute("value", (ui->lineEdit_18->text()));
         xmlWriter.writeEndElement();
     }
-    if(Time_base_selection_value->text() == "Фиксированное время")
+    if(time_base_selection_value->text() == "Фиксированное время")
     {
         xmlWriter.writeStartElement("time_work");
         xmlWriter.writeAttribute("value", (time_work_value->text()));
@@ -10780,7 +10785,7 @@ void::MainWindow::close_progect()
     calculation_mode_value->setText(tr("Выберите режим"));
     engine_duty_cycle_value->setText(tr("Выбрать режим"));
     time_cycle_value->setText(tr("0"));
-    Time_base_selection_value->setText(tr("0"));
+    time_base_selection_value->setText(tr("0"));
     start_tepl_temperature_value->setText(tr("0"));
     enter_voltage_im_mashine_value->setText(tr("0"));
     enter_moment_value->setText(tr("0"));
@@ -12603,6 +12608,36 @@ void MainWindow::message_action(QString summary_s, QString body_s)
         qWarning() << "Failed to send notification:" << reply.error().message();
         return;
     }
+}
+
+void MainWindow::action_create()
+{
+    QScreen *screen = QGuiApplication::primaryScreen();
+    crt = new Action_create(this);
+    crt->wf = this;
+    crt->exec();
+    crt->setGeometry(
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    crt->size(),
+                    screen->geometry()));
+    crt->setWindowTitle("Выбор режима работы");
+}
+
+void MainWindow::onNodeExpandeds()
+{
+    buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this);
+    //all_sesion_name_parametr->setIcon(QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-open.png"));
+
+   // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+}
+
+void MainWindow::onNodeCollapseds()
+{
+    buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this);
+    all_sesion_name_parametr->setIcon(QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-closed.png"));
+   // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 }
 
 
