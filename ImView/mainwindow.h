@@ -12,6 +12,7 @@
 #include <QProgressBar>
 #include <QUndoView>
 
+#include "Identf_kpeff.h"
 #include "kalibr.h"
 #include "settings.h"
 #include "datas.h"
@@ -270,14 +271,27 @@ public:
         *time_start_in_cycle_value, *item179, *item180;
 
     void changeEvent(QEvent *event) override;
+
+    KoeffBase *selectClosestKoeff(int target);
+    std::string demangle(const char *mangled_name);
+    int findNumberInString(const std::string &str, int target);
+
+    bool findNumberInStructByName(const Koeff_ad &koeff_ad, const std::string &targetName,
+                                  int targetNumber, int &colnumber);
+    void printColumnValues(const KoeffBase &koeffObj, int col);
+    KoeffBase *findKoeffByName(const std::vector<std::reference_wrapper<KoeffBase> > &koeffs, const std::string &targetName);
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);
     void action_create();
 
+    void ventidentf_start();
+    void ventidentf_stop();
 protected slots:
     void onNodeExpandeds();
     void onNodeCollapseds();
+    void open_start_screen();
+    void enable_disable_actionsdtart_app();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
 };

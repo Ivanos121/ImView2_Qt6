@@ -374,6 +374,7 @@ void electromagn::realtimeDataSlot()
 
         key = model_el.t;
 
+
         //вывод на qcustomPlot графика напряжения Ua после преобразования 2 в 3
 
         if(wf->ui->graph_settings->model()->index(4,2).data(Qt::CheckStateRole)==Qt::Checked)
@@ -1376,12 +1377,6 @@ void electromagn::raschet_el()
         nabludatel->init(base.R1, base.R2, base.L1, base.L2, base.Lm);
         connect(dataSource, &DataSource::ready, this, &electromagn::realtimeDataSlot);
     }
-
-    /*ui->plot->clear();
-    for (int i = 0; i < dataLineColors.size(); i++)
-    {
-        ui->plot->addDataLine(dataLineColors[i], 0);
-    }*/
     time->start();
 }
 

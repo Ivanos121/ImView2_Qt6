@@ -40,6 +40,10 @@
 #include <QDBusReply>
 #include <QDBusInterface>
 #include <QImageWriter>
+#include <iostream>
+#include <typeinfo>
+#include <cxxabi.h>
+#include <memory>
 
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
@@ -84,12 +88,14 @@
 #include "fillicondelegate.h"
 #include "version.h"
 #include "version_hash.h"
+#include "Identf_kpeff.h"
 
 Base base;
 Base_tepl base_tepl;
 Klass_izol klass_izol;
 Model modelss;
 extern Model_el model_el;
+struct Koeff_ad koeff_ad;
 
 double teta_0,teta_1,teta_2,teta_3,teta_4,teta_5,teta_k,teta_c,teta_p, teta_v, teta_z, teta_l_1, teta_l_2, teta_pp,teta0_0,teta0_1,teta0_2, teta0_1n,teta0_2n;
 double lambda_10, lambda_21, lambda_c2,lambda_p2,lambda_30,lambda_c3,lambda_p3,lambda_3k,lambda_c4,lambda_pb,lambda_p5,
@@ -135,6 +141,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);
     ui->widget_2->ui->widget->hide();
+
+    ui->actionsdtart_app->setEnabled(false);
 
     //настройка стартового экрана
     ui->tabWidget->hide();
@@ -226,19 +234,26 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
     connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
     connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
+    connect(ui->actionteplident_start, &QAction::triggered, this, &MainWindow::actionteplident_start);
+    connect(ui->actionteplident_stop, &QAction::triggered, this, &MainWindow::actionteplident_stop);
+    connect(ui->ventidentf_start, &QAction::triggered, this, &MainWindow::ventidentf_start);
+    connect(ui->ventidentf_start, &QAction::triggered, this, &MainWindow::ventidentf_start);
     connect(ui->electromagn_start, &QAction::triggered, this, &MainWindow::electromagn_start);
     connect(ui->electromagn_stop, &QAction::triggered, this, &MainWindow::electromagn_stop);
     connect(ui->kalibr_osc, &QAction::triggered, this, &MainWindow::kalibr_osc);
     connect(ui->actionresult, &QAction::triggered, this, &MainWindow::actionresult);
     connect(ui->actionresultidentf, &QAction::triggered, this, &MainWindow::actionresultidentf);
-    connect(ui->actionteplident_start, &QAction::triggered, this, &MainWindow::actionteplident_start);
-    connect(ui->actionteplident_stop, &QAction::triggered, this, &MainWindow::actionteplident_stop);
+
+
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::actionExit);
     connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
     connect(ui->actionhelp, &QAction::triggered, this, &MainWindow::actionhelp);
     connect(ui->switch_regim_upr,&QPushButton::clicked, this, &MainWindow::switch_regim_upr);
     connect(ui->actionaction_graph, &QAction::triggered, this, &MainWindow::actionaction_graph);
     connect(ui->action_gruph, &QAction::triggered, this, &MainWindow::action_gruph);
+    connect(ui->actionsdtart_app, &QAction::triggered, this, &MainWindow::open_start_screen);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::enable_disable_actionsdtart_app);
+    connect(ui->stackedWidget, &QStackedWidget::currentChanged, this, &MainWindow::enable_disable_actionsdtart_app);
 
     //операции правки
     connect(ui->actioncopy, &QAction::triggered, this, &MainWindow::actioncopy);
@@ -279,9 +294,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_3->wf=this;
     ui->widget_5->wf=this;
     ui->widget_6->wf=this;
+    ui->widget_7->wf=this;
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
     ui->widget_15->wf=this;
+    ui->widget_10->wf=this;
 
     //формирование поведения файловых операций
     ui->LoadProgect->setVisible(false);
@@ -693,11 +710,11 @@ MainWindow::MainWindow(QWidget *parent)
     model_treeView->appendRow(thermal_identification);
     thermal_identification.clear();
 
-    kind_thermal_model_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_parametr = new QStandardItem(tr("Тип тепловой модели"));
     kind_thermal_model_parametr->setEditable(false);
     QString kind_thermal_model_parametr_tooltip = kind_thermal_model_parametr->text();
     kind_thermal_model_parametr->setToolTip(kind_thermal_model_parametr_tooltip);
-    kind_thermal_model_value = new QStandardItem(tr("Выберите вид"));
+    kind_thermal_model_value = new QStandardItem(tr("Выберите тип"));
     QString kind_thermal_model_value_tooltip = kind_thermal_model_value->text();
     kind_thermal_model_value->setToolTip(kind_thermal_model_value_tooltip);
     thermal_identification.append(kind_thermal_model_parametr);
@@ -705,7 +722,7 @@ MainWindow::MainWindow(QWidget *parent)
     thermal_identification_parametr->appendRow(thermal_identification);
     thermal_identification.clear();
 
-    kind_thermal_model_2_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_2_parametr = new QStandardItem(tr("Вид тепловой идентификации"));
     kind_thermal_model_2_parametr->setEditable(false);
     QString kind_thermal_model_2_parametr_tooltip = kind_thermal_model_2_parametr->text();
     kind_thermal_model_2_parametr->setToolTip(kind_thermal_model_2_parametr_tooltip);
@@ -717,11 +734,11 @@ MainWindow::MainWindow(QWidget *parent)
     thermal_identification_parametr->appendRow(thermal_identification);
     thermal_identification.clear();
 
-    kind_thermal_model_4_parametr = new QStandardItem(tr("Вид тепловой модели"));
+    kind_thermal_model_4_parametr = new QStandardItem(tr("Необходимость учета вентиляции"));
     kind_thermal_model_4_parametr->setEditable(false);
     QString kind_thermal_model_4_parametr_tooltip = kind_thermal_model_4_parametr->text();
     kind_thermal_model_4_parametr->setToolTip(kind_thermal_model_4_parametr_tooltip);
-    kind_thermal_model_4_value = new QStandardItem(tr("Выберите вид"));
+    kind_thermal_model_4_value = new QStandardItem(tr("Выберите параметр"));
     QString kind_thermal_model_4_value_tooltip = kind_thermal_model_4_value->text();
     kind_thermal_model_4_value->setToolTip(kind_thermal_model_4_value_tooltip);
     thermal_identification.append(kind_thermal_model_4_parametr);
@@ -2896,122 +2913,12 @@ MainWindow::MainWindow(QWidget *parent)
     CustomHelpDelegate* customHelpDelegate15 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
     ui->tableWidget_15->setItemDelegateForColumn(0, customHelpDelegate15);
 
-    ui->tableWidget_16->setRowCount(30);
-    ui->tableWidget_16->setColumnCount(4);
-    QStringList name_16;
-    name_16 << "Величина" << "Обозначение" << "Значение" << "Размерность";
-
-    ui->tableWidget_16->setHorizontalHeaderLabels(name_16);
-    ui->tableWidget_16->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget_16->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_16->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_16->verticalHeader()->setVisible(true);
-    ui->tableWidget_16->resizeColumnsToContents();
-
-    for(int row = 0; row<ui->tableWidget_16->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget_16->columnCount(); column++)
-        {
-            ui->tableWidget_16->setItem(row, column, new QTableWidgetItem());
-
-        }
-    }
-
-    // ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Установившаяся температура статора"));
-    // ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Установившаяся температура ротора"));
-    // ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Постоянная времени статора"));
-    // ui->tableWidget_16->setItem(3, 0, new QTableWidgetItem("Постоянная времени ротора"));
-    // ui->tableWidget_16->setItem(4, 0, new QTableWidgetItem("Теплоемкость статора"));
-    // ui->tableWidget_16->setItem(5, 0, new QTableWidgetItem("Теплоемкость ротора"));
-    // ui->tableWidget_16->setItem(6, 0, new QTableWidgetItem("Тепловая проводимость статора"));
-    // ui->tableWidget_16->setItem(7, 0, new QTableWidgetItem("Тепловая проводимость между статором и ротором"));
-    // ui->tableWidget_16->setItem(8, 0, new QTableWidgetItem("Тепловая проводимость ротора"));
-    // ui->tableWidget_16->setItem(9, 0, new QTableWidgetItem("Суммарные потери в статоре"));
-    // ui->tableWidget_16->setItem(10, 0, new QTableWidgetItem("Суммарные потери в роторе"));
-    // ui->tableWidget_16->setItem(11, 0, new QTableWidgetItem("Потери в стали"));
-    // ui->tableWidget_16->setItem(12, 0, new QTableWidgetItem("Скорость вращения"));
-    // ui->tableWidget_16->setItem(13, 0, new QTableWidgetItem("Момент"));
-
-    // ui->tableWidget_16->setItem(0, 1, new QTableWidgetItem("τ_1"));
-    // ui->tableWidget_16->setItem(1, 1, new QTableWidgetItem("τ_2"));
-    // ui->tableWidget_16->setItem(2, 1, new QTableWidgetItem("T_1"));
-    // ui->tableWidget_16->setItem(3, 1, new QTableWidgetItem("T_2"));
-    // ui->tableWidget_16->setItem(4, 1, new QTableWidgetItem("C_1"));
-    // ui->tableWidget_16->setItem(5, 1, new QTableWidgetItem("C_2"));
-    // ui->tableWidget_16->setItem(6, 1, new QTableWidgetItem("λ10"));
-    // ui->tableWidget_16->setItem(7, 1, new QTableWidgetItem("λ12"));
-    // ui->tableWidget_16->setItem(8, 1, new QTableWidgetItem("λ20"));
-    // ui->tableWidget_16->setItem(9, 1, new QTableWidgetItem("dPel1"));
-    // ui->tableWidget_16->setItem(10, 1, new QTableWidgetItem("dPel2"));
-    // ui->tableWidget_16->setItem(11, 1, new QTableWidgetItem("dPct"));
-    // ui->tableWidget_16->setItem(12, 1, new QTableWidgetItem("omega"));
-    // ui->tableWidget_16->setItem(13, 1, new QTableWidgetItem("M"));
-
-    // ui->tableWidget_16->setItem(0, 3, new QTableWidgetItem("˚C"));
-    // ui->tableWidget_16->setItem(1, 3, new QTableWidgetItem("˚C"));
-    // ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("c"));
-    // ui->tableWidget_16->setItem(3, 3, new QTableWidgetItem("c"));
-    // ui->tableWidget_16->setItem(4, 3, new QTableWidgetItem("Дж/˚C"));
-    // ui->tableWidget_16->setItem(5, 3, new QTableWidgetItem("Дж/˚C"));
-    // ui->tableWidget_16->setItem(6, 3, new QTableWidgetItem("Вт/(˚C*м)"));
-    // ui->tableWidget_16->setItem(7, 3, new QTableWidgetItem("Вт/(˚C*м)"));
-    // ui->tableWidget_16->setItem(8, 3, new QTableWidgetItem("Вт/(˚C*м)"));
-    // ui->tableWidget_16->setItem(9, 3, new QTableWidgetItem("Вт"));
-    // ui->tableWidget_16->setItem(10, 3, new QTableWidgetItem("Вт"));
-    // ui->tableWidget_16->setItem(11, 3, new QTableWidgetItem("Вт"));
-    // ui->tableWidget_16->setItem(12, 3, new QTableWidgetItem("рад/с"));
-    // ui->tableWidget_16->setItem(13, 3, new QTableWidgetItem("Н*м"));
-
-    for (int i=0; i<ui->tableWidget_16->rowCount(); i++)
-    {
-
-        if (ui->tableWidget_16->item(i, 1) != 0)
-        {
-            ui->tableWidget_16->item(i, 1)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_16->item(i, 3) != 0)
-        {
-            ui->tableWidget_16->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-
-
-    //запрет редактирования первого столбца
-    for(int row = 0; row<ui->tableWidget_16->rowCount(); row++)
-    {
-        if (ui->tableWidget_16->item(row,0) != 0)
-        {
-            ui->tableWidget_16->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_16->item(row,1) != 0)
-        {
-            ui->tableWidget_16->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_16->item(row,2) != 0)
-        {
-            ui->tableWidget_16->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
-            ui->tableWidget_16->item(row,2)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_16->item(row,3) != 0)
-        {
-            ui->tableWidget_16->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-    }
-
-    QPalette p_16=ui->tableWidget_16->palette(); 
-    p_16.setColor(QPalette::Base, QColor(255, 255, 191));
-    p_16.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_16->setPalette(p_16);
-
-    CustomHelpDelegate* customHelpDelegate16 = new CustomHelpDelegate(this); //создание делегата для создания комбобоксов
-    ui->tableWidget_16->setItemDelegateForColumn(0, customHelpDelegate16);
-
     ui->tableWidget_17->setRowCount(30);
     ui->tableWidget_17->setColumnCount(4);
     QStringList name_17;
     name_17 << "Величина" << "Обозначение" << "Значение" << "Размерность";
 
-    ui->tableWidget_17->setHorizontalHeaderLabels(name_16);
+    ui->tableWidget_17->setHorizontalHeaderLabels(name_17);
     ui->tableWidget_17->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_17->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_17->setSelectionMode(QAbstractItemView :: SingleSelection);
@@ -3103,7 +3010,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     selectionModel3 = ui->tableWidget_17->selectionModel();
     connect(selectionModel3, &QItemSelectionModel::currentChanged,
-                     this, [this]() {  int index = 0;
+            this, [this]() {  int index = 0;
         QString currentTabText = ui->tabWidget->tabText(index);
         setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView*"));
         isNablLaunched = true;
@@ -3114,7 +3021,7 @@ MainWindow::MainWindow(QWidget *parent)
     QStringList name_18;
     name_18 << "Величина" << "Обозначение" << "Значение" << "Размерность";
 
-    ui->tableWidget_18->setHorizontalHeaderLabels(name_16);
+    ui->tableWidget_18->setHorizontalHeaderLabels(name_18);
     ui->tableWidget_18->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget_18->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget_18->setSelectionMode(QAbstractItemView :: SingleSelection);
@@ -3400,7 +3307,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::treview_changed()
 {
-     //qDebug() << "Item selection changed";
+    //qDebug() << "Item selection changed";
     isNablLaunched = true;
 }
 
@@ -3418,20 +3325,20 @@ QImage fromSvg(const QString &path, int size)
 
 void MainWindow::itemEdit()
 {
-//    if(ui->treeView->isHidden())
-//            return;
+    //    if(ui->treeView->isHidden())
+    //            return;
 
-//        int nrFillItems = 0;
-//        foreach(QStandardItem* itemm, item)){
-//            if(dynamic_cast<QAbstractGraphicsShapeItem*> (item))
-//                nrFillItems++;
-//        }
-//        if(nrFillItems == 0)
-//            return;
+    //        int nrFillItems = 0;
+    //        foreach(QStandardItem* itemm, item)){
+    //            if(dynamic_cast<QAbstractGraphicsShapeItem*> (item))
+    //                nrFillItems++;
+    //        }
+    //        if(nrFillItems == 0)
+    //            return;
 
-//        int currentIndex = itemm->currentIndex();
-//        QString currrenttext = colorComboBox->itemData(currentIndex).value<QColor>();
-//        undoStack->push(new ChangeItemColorCommand(itemm, currrenttext));
+    //        int currentIndex = itemm->currentIndex();
+    //        QString currrenttext = colorComboBox->itemData(currentIndex).value<QColor>();
+    //        undoStack->push(new ChangeItemColorCommand(itemm, currrenttext));
 
 }
 
@@ -3455,12 +3362,12 @@ void MainWindow::closeEvent (QCloseEvent *event)
             save_file();
             dir.removeRecursively();
             event->accept();
-        break;
+            break;
         case QMessageBox::Discard:
             ui->widget_3->stop();
             dir.removeRecursively();
             event->accept();
-        break;
+            break;
         default:
         case QMessageBox::Cancel:
             event->ignore();
@@ -3578,7 +3485,7 @@ void MainWindow::identf_pusk()
         QDir dir(setpath);
 
         dirName= QString ("%1""%2""%3").arg("Сеанс ",currentTime.toString("hh:mm:ss ").toUtf8().data(),
-                currentDate.toString("dd.MM.yyyy").toUtf8().data());
+                                            currentDate.toString("dd.MM.yyyy").toUtf8().data());
 
         dir.mkdir(dirName);
 
@@ -3616,7 +3523,225 @@ void MainWindow::identf_pusk()
             fout.close();
         }
         ui->widget_2->raschet_f();
+
+        /*Автоматический поиск настроечных коэффициентов*/
+
+
+        //считывание скорости выбранного двигателя
+        int userInput = base.n_nom;
+
+        //поиск нужной структуре по ближайшей синхронной скорости вращения
+
+        KoeffBase* selectedKoeff = selectClosestKoeff(userInput);
+
+        if (selectedKoeff != nullptr)
+        {
+            std::cout << "Выбран коэффициент: " << selectedKoeff->koefff << "\n";
+
+            // В зависимости от типа можно привести к нужному типу и работать с массивом
+            if (selectedKoeff->koefff == 3000)
+            {
+                auto* ptr = static_cast<Koeff_3000*>(selectedKoeff);
+                std::cout << "Массив данных:\n";
+                for (const auto& row : std::as_const(ptr->Koeff))
+                {
+                    for (int val : row) {
+                        std::cout << val << ' ';
+                    }
+                    std::cout << '\n';
+                }
+            } else if (selectedKoeff->koefff == 1500) {
+                auto* ptr = static_cast<Koeff_1500*>(selectedKoeff);
+                std::cout << "Массив данных:\n";
+                for (const auto& row : std::as_const(ptr->Koeff))
+                {
+                    for (int val : row)
+                    {
+                        std::cout << val << ' ';
+                    }
+                    std::cout << '\n';
+                }
+            } else if (selectedKoeff->koefff == 1000)
+            {
+                auto* ptr = static_cast<Koeff_1000*>(selectedKoeff);
+                std::cout << "Массив данных:\n";
+                for (const auto& row : std::as_const(ptr->Koeff))
+                {
+                    for (int val : row)
+                    {
+                        std::cout << val << ' ';
+                    }
+                    std::cout << '\n';
+                }
+            } else if (selectedKoeff->koefff == 750)
+            {
+                auto* ptr = static_cast<Koeff_750*>(selectedKoeff);
+                std::cout << "Массив данных:\n";
+                for (const auto& row : std::as_const(ptr->Koeff))
+                {
+                    for (int val : row)
+                    {
+                        std::cout << val << ' ';
+                    }
+                    std::cout << '\n';
+                }
+            }
+
+        } else
+        {
+            std::cout << "Не удалось выбрать коэффициент.\n";
+        }
+
+        std::string targetName = demangle(typeid(*selectedKoeff).name());
+
+        int col = -1;
+
+        int targetNumber = base.P_nom;
+
+
+        bool result = (findNumberInStructByName(koeff_ad, targetName, targetNumber, col));
+        if(result)
+        {
+            std::cout << "Число " << targetNumber << " найдено в структуре " << targetName << std::endl;
+
+
+            for (auto& ref : koeff_ad.allKoeffs)
+            {
+                if (ref.get().name == targetName)
+                {
+                    printColumnValues(ref.get(), col);
+                    break;
+                }
+            }
+
+        }
+        else
+        {
+            std::cout << "Число " << targetNumber << " не найдено в структуре " << targetName << std::endl;
+        }
     }
+
+}
+
+KoeffBase* MainWindow::selectClosestKoeff(int target)
+{
+    std::vector<KoeffBase*> options =
+    {
+        &koeff_ad.koeff_3000,
+        &koeff_ad.koeff_1500,
+        &koeff_ad.koeff_1000,
+        &koeff_ad.koeff_750
+    };
+
+    int minDiff = INT_MAX;
+    KoeffBase* closest = nullptr;
+
+    for (auto* option : options)
+    {
+        int diff = std::abs(option->koefff - target);
+        if (diff < minDiff)
+        {
+            minDiff = diff;
+            closest = option;
+        }
+    }
+    return closest;
+}
+
+std::string MainWindow::demangle(const char* mangled_name)
+{
+    int status = -1;
+    std::unique_ptr<char, void(*)(void*)> res(
+        abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status),
+        std::free
+    );
+    return (status == 0) ? res.get() : mangled_name;
+}
+
+int MainWindow::findNumberInString(const std::string& str, int target)
+{
+    std::string targetStr = std::to_string(target);
+    size_t pos = str.find(targetStr);
+    if (pos != std::string::npos) {
+        return static_cast<int>(pos);
+    }
+    return -1; // не найдено
+}
+
+bool MainWindow::findNumberInStructByName(const Koeff_ad& koeff_ad, const std::string& targetName,
+                int targetNumber, int& colnumber)
+{
+    bool found = false;
+    for (const auto& s_ref : koeff_ad.allKoeffs)
+    {
+        const auto& s = s_ref.get();
+        if (s.name != targetName)
+        {
+        //     std::cout << "Пропускаю элемент: " << s.name << std::endl;
+            continue;
+
+        // std::cout << "Нашел нужный элемент: " << s.name << std::endl;
+        }
+
+        for (int row = 0; row < s.Koeff.size(); ++row)
+        {
+            for (int col = 0; col < s.Koeff[row].size(); ++col)
+            {
+                int val = s.Koeff[row][col];
+                std::cout << "Проверяю: " << val << " в позиции (" << row << ", " << col << ")\n";
+                if (val == targetNumber)
+                {
+                    std::cout << "Найдено число: " << val
+                              << " в позиции (" << row << ", " << col << ")\n";
+                    colnumber = col;
+                    found = true;
+                    break; // выйти из внутреннего цикла
+                }
+            }
+            if (found) break;
+        }
+        if (found) break;
+    }
+    return found;
+}
+
+void MainWindow::printColumnValues(const KoeffBase& koeffObj, int col)
+{
+    const auto& table = koeffObj.Koeff;
+    if (table.size() > 6 && col < table[1].size() && col < table[2].size() &&
+            col < table[3].size() && col < table[4].size() &&
+            col < table[5].size() && col < table[6].size())
+        {
+            double gd = table[1][col];
+            double ki = table[2][col];
+            double gb = table[3][col];
+            double kpsi = table[4][col];
+            double gp = table[5][col];
+            double gpsi = table[6][col];
+
+            std::cout << "gd = " << gd << std::endl;
+            std::cout << "ki = " << ki << std::endl;
+            std::cout << "gb = " << gb << std::endl;
+            std::cout << "kpsi = " << kpsi << std::endl;
+            std::cout << "gp = " << gp << std::endl;
+            std::cout << "gpsi = " << gpsi << std::endl;
+        }
+            else
+            {
+                std::cout << "Некорректный индекс или отсутствуют необходимые строки." << std::endl;
+            }
+
+}
+
+KoeffBase* MainWindow::findKoeffByName(const std::vector<std::reference_wrapper<KoeffBase>>& koeffs,
+                                       const std::string& targetName) {
+    for (auto& ref : koeffs) {
+        KoeffBase& obj = ref.get();
+        if (obj.name == targetName) { // предполагается, что есть поле name
+            return &obj;
+        }
+    }
+    return nullptr; // не нашли
 }
 
 void MainWindow::identf_stop()
@@ -4187,7 +4312,7 @@ void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
 {
     if (item == time_base_selection_value)
     {
-        if (item->text() == "Фиксированное время")
+        if (item->text() == "Текущее время")
         {
             time_work_parametr->setEnabled(true);
             time_work_value->setEnabled(true);
@@ -4256,12 +4381,14 @@ void MainWindow::SaveProgectToFile()
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
 
-   // QFile file(QString("/home/elf/ImView/data/tepl.xml"));
     QFile file(str);
     file.open(QIODevice::WriteOnly);
 
     //Создаем объект, с помощью которого осуществляется запись в файл
-    QXmlStreamWriter xmlWriter(&file);
+    QFile files(QString("../save/project.xml"));
+    files.open(QIODevice::WriteOnly);
+
+    QXmlStreamWriter xmlWriter(&files);
     xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
     xmlWriter.writeStartDocument();     // Запускаем запись в документ
     xmlWriter.writeStartElement("resources");   // Записываем первый элемент с его именем
@@ -4342,6 +4469,18 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_10");
+    xmlWriter.writeAttribute("value", (kind_thermal_model_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_11");
+    xmlWriter.writeAttribute("value", (kind_thermal_model_2_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_12");
+    xmlWriter.writeAttribute("value", (kind_thermal_model_4_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_13");
     xmlWriter.writeAttribute("value", (engine_duty_cycle_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4353,11 +4492,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (time_work_in_cycle_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_11");
+    xmlWriter.writeStartElement("combobox_14");
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_12");
+    xmlWriter.writeStartElement("combobox_15");
     xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4373,15 +4512,15 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeStartElement("combobox_16");
     xmlWriter.writeAttribute("value", (temperature_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_17");
     xmlWriter.writeAttribute("value", (temperature_regime_static_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeStartElement("combobox_18");
     xmlWriter.writeAttribute("value", (temperature_regime_dinamic_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4389,11 +4528,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeStartElement("combobox_19");
     xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_17");
+    xmlWriter.writeStartElement("combobox_20");
     xmlWriter.writeAttribute("value", (design_ventilation_system_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4464,7 +4603,7 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
-    file.close();   // Закрываем файл
+    files.close();   // Закрываем файл
 
     if(data_identification_value->text() == "Сохранить")
     {
@@ -4754,6 +4893,39 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
+                            kind_thermal_model_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_11")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            kind_thermal_model_2_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_12")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            kind_thermal_model_4_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_13")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
                             engine_duty_cycle_value->setText(attribute_value);
                         }
                     }
@@ -4780,7 +4952,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_11")
+                else if(xmlReader.name() == "combobox_14")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4791,7 +4963,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_12")
+                else if(xmlReader.name() == "combobox_15")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4835,7 +5007,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_13")
+                else if(xmlReader.name() == "combobox_16")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4846,7 +5018,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_14")
+                else if(xmlReader.name() == "combobox_17")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4857,7 +5029,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_15")
+                else if(xmlReader.name() == "combobox_18")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4879,7 +5051,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_16")
+                if(xmlReader.name() == "combobox_19")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4890,7 +5062,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_17")
+                if(xmlReader.name() == "combobox_20")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -9696,79 +9868,48 @@ void MainWindow::actionteplident_start()
     QIcon ButtonIcon_1(pixmap);
     ui->switch_regim_upr->setIcon(ButtonIcon_1);
 
-    ui->tableWidget_16->setItem(0, 0, new QTableWidgetItem("Суммарные потери"));
-    ui->tableWidget_16->setItem(1, 0, new QTableWidgetItem("Теплоемкость"));
-    ui->tableWidget_16->setItem(2, 0, new QTableWidgetItem("Коэффициент теплоотдачи"));
-
-    ui->tableWidget_16->setItem(0, 1, new QTableWidgetItem("dPsumm"));
-    ui->tableWidget_16->setItem(1, 1, new QTableWidgetItem("C_1"));
-    ui->tableWidget_16->setItem(2, 1, new QTableWidgetItem("А"));
-
-    ui->tableWidget_16->setItem(0, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_16->setItem(1, 3, new QTableWidgetItem("Вт"));
-    ui->tableWidget_16->setItem(2, 3, new QTableWidgetItem("Вт"));
-
-
-    if (temperature_regime_static_value->text() == "Выберите режим")
+    if (kind_thermal_model_value->text() == "Выберите режим")
     {
         QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
         ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
         ui->actionteplident_stop->setEnabled(false);
-
     }
     else
     {
-        if (temperature_regime_static_value->text() == "Одномассовая модель")
+        if ((kind_thermal_model_value->text() == "Одномассовая модель")||
+                (kind_thermal_model_value->text() == "Двухмассовая модель"))
         {
             ui->tabWidget->show();
             ui->tabWidget->setCurrentIndex(2);
             ui->stackedWidget->hide();
             ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
             ui->actionteplident_stop->setEnabled(true);
-            base.R1 = ui->lineEdit_12->text().toDouble();
-            base.R2 = ui->lineEdit_11->text().toDouble();
-            base.L1 = ui->lineEdit_10->text().toDouble();
-            base.L2 = ui->lineEdit_9->text().toDouble();
-            base.Lm = ui->lineEdit_8->text().toDouble();
-            teta0_0=start_tepl_temperature_value->text().toDouble();
+            // base.R1 = ui->lineEdit_12->text().toDouble();
+            // base.R2 = ui->lineEdit_11->text().toDouble();
+            // base.L1 = ui->lineEdit_10->text().toDouble();
+            // base.L2 = ui->lineEdit_9->text().toDouble();
+            // base.Lm = ui->lineEdit_8->text().toDouble();
+            // teta0_0=start_tepl_temperature_value->text().toDouble();
 
-            ui->widget_10->ui->plot->clear();
-            ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
-            ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
+            // ui->widget_10->ui->plot->clear();
+            // ui->widget_10->ui->plot->addDataLine(QColor(Qt::red), 0);
+            // ui->widget_10->ui->plot->addDataLine(QColor(Qt::green), 0);
 
-            tepl_ident_P1.clear();
-            tepl_ident_P2.clear();
-            tepl_ident_t.clear();
-            tepl_ident_StatorTemp.clear();
-            tepl_start = false;
+            // tepl_ident_P1.clear();
+            // tepl_ident_P2.clear();
+            // tepl_ident_t.clear();
+            // tepl_ident_StatorTemp.clear();
+            // tepl_start = false;
 
             statusbar_label_9->setVisible(true);
             statusbar_progres->setVisible(true);
             statusbar_progres->setMinimum(0);
             statusbar_progres->setMaximum(100);
-            //statusbar_progres->setRange(0, 1000);
             statusbar_progres->reset();
-            ui->widget_3->raschet_el();
-
+            //ui->widget_3->raschet_el();
+            ui->widget_10->raschet_tepl_identf();
         }
     }
-
-    // double teta_1=0, teta_2=0, T_1=0, T_2=0, C_1=0, C_2=0, lambda10=0, lambda12=0,
-    //         lambda20=0, dPel1=0, dPel2=0, omega=0, M=0, dPct=0, dPsumm=1100;
-    // ui->tableWidget_16->item(0,2)->setText(QString::number(teta_1,'f',3));
-    // ui->tableWidget_16->item(1,2)->setText(QString::number(teta_2,'f',3));
-    // ui->tableWidget_16->item(2,2)->setText(QString::number(T_1,'f',3));
-    // ui->tableWidget_16->item(3,2)->setText(QString::number(T_2,'f',3));
-    // ui->tableWidget_16->item(4,2)->setText(QString::number(C_1,'f',3));
-    // ui->tableWidget_16->item(5,2)->setText(QString::number(C_2,'f',3));
-    // ui->tableWidget_16->item(6,2)->setText(QString::number(lambda10,'f',3));
-    // ui->tableWidget_16->item(7,2)->setText(QString::number(lambda12,'f',3));
-    // ui->tableWidget_16->item(8,2)->setText(QString::number(lambda20,'f',3));
-    // ui->tableWidget_16->item(9,2)->setText(QString::number(dPel1,'f',3));
-    // ui->tableWidget_16->item(10,2)->setText(QString::number(dPel2,'f',3));
-    // ui->tableWidget_16->item(11,2)->setText(QString::number(dPct,'f',3));
-    // ui->tableWidget_16->item(12,2)->setText(QString::number(omega,'f',3));
-    // ui->tableWidget_16->item(13,2)->setText(QString::number(M,'f',3));
 }
 
 void MainWindow::actionteplident_stop()
@@ -9776,6 +9917,8 @@ void MainWindow::actionteplident_stop()
     isNablLaunched = false;
     ui->actionteplident_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_3.svg"));
     ui->actionteplident_stop->setEnabled(false);
+    statusbar_label_9->setVisible(false);
+    statusbar_progres->setVisible(false);
 
     ui->widget_3->stop();
     ui->stackedWidget->show();
@@ -9885,6 +10028,18 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_10");
+    xmlWriter.writeAttribute("value", (kind_thermal_model_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_11");
+    xmlWriter.writeAttribute("value", (kind_thermal_model_2_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_12");
+    xmlWriter.writeAttribute("value", (kind_thermal_model_4_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_13");
     xmlWriter.writeAttribute("value", (engine_duty_cycle_value->text()));
     xmlWriter.writeEndElement();
 
@@ -9896,11 +10051,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (time_work_in_cycle_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_11");
+    xmlWriter.writeStartElement("combobox_14");
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_12");
+    xmlWriter.writeStartElement("combobox_15");
     xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
@@ -9916,15 +10071,15 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeStartElement("combobox_16");
     xmlWriter.writeAttribute("value", (temperature_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_17");
     xmlWriter.writeAttribute("value", (temperature_regime_static_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeStartElement("combobox_18");
     xmlWriter.writeAttribute("value", (temperature_regime_dinamic_value->text()));
     xmlWriter.writeEndElement();
 
@@ -9932,11 +10087,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeStartElement("combobox_19");
     xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_17");
+    xmlWriter.writeStartElement("combobox_20");
     xmlWriter.writeAttribute("value", (design_ventilation_system_value->text()));
     xmlWriter.writeEndElement();
 
@@ -10918,54 +11073,54 @@ void MainWindow::poisk()
             settings.setValue( "number", 2);
             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
             ui->tabWidget->setCurrentIndex(2);
-            ui->tableWidget_16->setFocus();
-        }
-    }
-
-
-if ((number == 2) && (number < 3))    {
-
-
-        if(ui->tableWidget_16->isEnabled() == true)
-        {
-            for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
-            {
-                for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
-                {
-                    moc_2 = ui->tableWidget_16->item(x,i)->text();
-
-                    j = jz;
-                    while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
-                    {
-                        ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
-
-                        QSettings settings( "BRU", "IM View");
-                        settings.setValue( "iz", i+1);
-                        settings.setValue( "jz", j+1);
-                        settings.setValue( "xz", x);
-
-                        if(x == ui->tableWidget_16->rowCount()-1)
-                        {
-                            settings.setValue( "iz", i+1);
-                        }
-                        return;
-                    }
-                    jz = 0;
-                }
-                iz = 0;
-            }
-
-            QSettings settings( "BRU", "IM View");
-            settings.setValue( "iz", 0);
-            settings.setValue( "xz", 0);
-            settings.setValue( "jz", 0);
-            settings.setValue( "number", 3);
-            QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
-            ui->tabWidget->setCurrentIndex(3);
-            ui->tabWidget_2->setCurrentIndex(0);
             ui->electromagn_result->setFocus();
         }
     }
+
+
+// if ((number == 2) && (number < 3))    {
+
+
+//         if(ui->tableWidget_16->isEnabled() == true)
+//         {
+//             for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
+//             {
+//                 for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
+//                 {
+//                     moc_2 = ui->tableWidget_16->item(x,i)->text();
+
+//                     j = jz;
+//                     while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+//                     {
+//                         ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
+
+//                         QSettings settings( "BRU", "IM View");
+//                         settings.setValue( "iz", i+1);
+//                         settings.setValue( "jz", j+1);
+//                         settings.setValue( "xz", x);
+
+//                         if(x == ui->tableWidget_16->rowCount()-1)
+//                         {
+//                             settings.setValue( "iz", i+1);
+//                         }
+//                         return;
+//                     }
+//                     jz = 0;
+//                 }
+//                 iz = 0;
+//             }
+
+//             QSettings settings( "BRU", "IM View");
+//             settings.setValue( "iz", 0);
+//             settings.setValue( "xz", 0);
+//             settings.setValue( "jz", 0);
+//             settings.setValue( "number", 3);
+//             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+//             ui->tabWidget->setCurrentIndex(3);
+//             ui->tabWidget_2->setCurrentIndex(0);
+//             ui->electromagn_result->setFocus();
+//         }
+//     }
 
     if ((number == 3) && (number < 4))
     {
@@ -11605,20 +11760,20 @@ void MainWindow::zakr()
         }
     }
 
-    for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
-    {
-        for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
-        {
-            if (x % 2 == 0)
-            {
-                ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
-            }
-            else
-            {
-                ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
-            }
-        }
-    }
+    // for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
+    // {
+    //     for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
+    //     {
+    //         if (x % 2 == 0)
+    //         {
+    //             ui->tableWidget_16->item(x,i)->setBackground(QColor(255, 255, 191));
+    //         }
+    //         else
+    //         {
+    //             ui->tableWidget_16->item(x,i)->setBackground( QColor(255, 255, 222));
+    //         }
+    //     }
+    // }
 
     for(int i = 0; i < ui->electromagn_result->columnCount(); i++)
     {
@@ -11861,20 +12016,20 @@ void MainWindow::select_all()
 
 
 
-    for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
-    {
-        for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
-        {
-            QString moc_2 = ui->tableWidget_16->item(x,i)->text();
-            index = moc_2.indexOf(str, index);
-            int j = 0;
-            while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
-            {
-                ui->tableWidget_16->item(x,i)->setBackground(Qt::yellow);
-                ++j;
-            }
-        }
-    }
+    // for(int i = 0; i < ui->tableWidget_16->columnCount(); i++)
+    // {
+    //     for(int x = 0; x < ui->tableWidget_16->rowCount(); x++)
+    //     {
+    //         QString moc_2 = ui->tableWidget_16->item(x,i)->text();
+    //         index = moc_2.indexOf(str, index);
+    //         int j = 0;
+    //         while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+    //         {
+    //             ui->tableWidget_16->item(x,i)->setBackground(Qt::yellow);
+    //             ++j;
+    //         }
+    //     }
+    // }
 
     for(int i = 0; i < ui->electromagn_result->columnCount(); i++)
     {
@@ -12430,7 +12585,7 @@ void MainWindow::electromagn_tick()
         tepl_start = true;
 
     double temp = temp_prev*((2*C-A*k*Ts)/(2*C+A*k*Ts))+(k*Ts*dP+k*Ts*dPprev)/(2*C+A*k*Ts);
-    ui->widget_10->ui->plot->addPoint(0, tt, temp);
+    //ui->widget_10->ui->plot->addPoint(0, tt, temp);
 
     temp_prev = temp;
     dPprev = dP;
@@ -12449,7 +12604,7 @@ void MainWindow::electromagn_tick()
         P1sum /= tepl_ident_P1.size();
         P2sum /= tepl_ident_P2.size();
 
-        ui->tableWidget_16->item(0,2)->setText(QString::number(P1sum - P2sum,'f',3));
+
 
         //double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
         //double t1 = tepl_ident_StatorTemp
@@ -12638,6 +12793,70 @@ void MainWindow::onNodeCollapseds()
     buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this);
     all_sesion_name_parametr->setIcon(QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-closed.png"));
    // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+}
+
+void MainWindow::open_start_screen()
+{
+    ui->tabWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::enable_disable_actionsdtart_app()
+{
+    int tabIndex = ui->tabWidget->currentIndex();
+    int stackedIndex = ui->stackedWidget->currentIndex();
+
+    if (tabIndex != 0 || stackedIndex != 0) {
+        ui->actionsdtart_app->setEnabled(true);
+    } else {
+        ui->actionsdtart_app->setEnabled(false);
+    }
+}
+
+void MainWindow::ventidentf_start()
+{
+    isNablLaunched = true;
+
+    QPixmap pixmap(":/system_icons/data/img/system_icons/go-previous.svg");
+    QIcon ButtonIcon_1(pixmap);
+    ui->switch_regim_upr->setIcon(ButtonIcon_1);
+
+    if (kind_ventilation_value->text() == "Выберите вид")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+        ui->ventidentf_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_4.svg"));
+        ui->vent_identf_stop->setEnabled(false);
+    }
+    else
+    {
+        if ((kind_ventilation_value->text() == "Принудительная вентиляция")||
+                (kind_ventilation_value->text() == "Независимая вентиляция"))
+        {
+            ui->tabWidget->show();
+            ui->tabWidget->setCurrentIndex(3);
+            ui->stackedWidget->hide();
+            ui->ventidentf_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-paused.svg"));
+            ui->vent_identf_stop->setEnabled(true);
+            statusbar_label_9->setVisible(true);
+            statusbar_progres->setVisible(true);
+            statusbar_progres->setMinimum(0);
+            statusbar_progres->setMaximum(100);
+            statusbar_progres->reset();
+            ui->widget_7->raschet_vent_identf();
+        }
+    }
+
+}
+
+void MainWindow::ventidentf_stop()
+{
+    isNablLaunched = false;
+    ui->ventidentf_start->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_4.svg"));
+    ui->vent_identf_stop->setEnabled(false);
+    statusbar_label_9->setVisible(false);
+    statusbar_progres->setVisible(false);
+    ui->widget_3->stop();
+    ui->stackedWidget->show();
 }
 
 

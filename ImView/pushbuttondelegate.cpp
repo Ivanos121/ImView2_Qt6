@@ -195,29 +195,20 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QComboBox *editor = new QComboBox(parent);
         editor->insertItem(0, "Одномассовая модель");
         editor->insertItem(1, "Двухмассовая модель");
-        editor->insertItem(2, "Трехмассовая модель");
-        editor->insertItem(3, "Четырехмассовая модель");
-        editor->insertItem(4, "Многомассовая модель");
         return editor;
     }
     else if ((index.parent().row() == 2) && (index.row() == 1))
     {
         QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Одномассовая модель");
-        editor->insertItem(1, "Двухмассовая модель");
-        editor->insertItem(2, "Трехмассовая модель");
-        editor->insertItem(3, "Четырехмассовая модель");
-        editor->insertItem(4, "Многомассовая модель");
+        editor->insertItem(0, "Cтатика");
+        editor->insertItem(1, "Динамика");
         return editor;
     }
     else if ((index.parent().row() == 2) && (index.row() == 2))
     {
         QComboBox *editor = new QComboBox(parent);
-        editor->insertItem(0, "Одномассовая модель");
-        editor->insertItem(1, "Двухмассовая модель");
-        editor->insertItem(2, "Трехмассовая модель");
-        editor->insertItem(3, "Четырехмассовая модель");
-        editor->insertItem(4, "Многомассовая модель");
+        editor->insertItem(0, "Учитывать");
+        editor->insertItem(1, "Не учитывать");
         return editor;
     }
     else if ((index.parent().row() == 3) && (index.row() == 0))
@@ -585,12 +576,6 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
             comboBox->setCurrentIndex(0);
         else if(value == "Двухмассовая модель")
             comboBox->setCurrentIndex(1);
-        else if(value == "Трехмассовая модель")
-            comboBox->setCurrentIndex(2);
-        else if(value == "Четырехмассовая модель")
-            comboBox->setCurrentIndex(3);
-        else if(value == "Многомассовая модель")
-            comboBox->setCurrentIndex(4);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
@@ -598,16 +583,10 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Одномассовая модель")
+        if(value == "Статика")
             comboBox->setCurrentIndex(0);
-        else if(value == "Двухмассовая модель")
+        else if(value == "Динамика")
             comboBox->setCurrentIndex(1);
-        else if(value == "Трехмассовая модель")
-            comboBox->setCurrentIndex(2);
-        else if(value == "Четырехмассовая модель")
-            comboBox->setCurrentIndex(3);
-        else if(value == "Многомассовая модель")
-            comboBox->setCurrentIndex(4);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }
@@ -615,16 +594,10 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
-        if(value == "Одномассовая модель")
+        if(value == "Учитывать")
             comboBox->setCurrentIndex(0);
-        else if(value == "Двухмассовая модель")
+        else if(value == "Не учитывать")
             comboBox->setCurrentIndex(1);
-        else if(value == "Трехмассовая модель")
-            comboBox->setCurrentIndex(2);
-        else if(value == "Четырехмассовая модель")
-            comboBox->setCurrentIndex(3);
-        else if(value == "Многомассовая модель")
-            comboBox->setCurrentIndex(4);
         int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);
     }

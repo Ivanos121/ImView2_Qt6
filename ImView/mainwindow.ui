@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1252</width>
-    <height>1019</height>
+    <height>1053</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -217,7 +217,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_33">
@@ -760,84 +760,8 @@
            </size>
           </property>
           <layout class="QGridLayout" name="gridLayout_32">
-           <item row="1" column="1">
-            <widget class="QLabel" name="label_42">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLineEdit" name="lineEdit_3">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>152</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLabel" name="label_43">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLineEdit" name="lineEdit_4">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>152</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="label_44">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
            <item row="3" column="2">
             <widget class="QLineEdit" name="lineEdit_5">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>152</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QLabel" name="label_45">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="2">
-            <widget class="QLineEdit" name="lineEdit_6">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -862,6 +786,105 @@
              </property>
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Итоги текущей идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="label_45">
+             <property name="text">
+              <string>Индуктивность фазы ротора, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="label_44">
+             <property name="text">
+              <string>Индуктивность фазы статора, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QLineEdit" name="lineEdit_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label_43">
+             <property name="text">
+              <string>Активное сопротивление фазы ротора, Ом =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="lineEdit_4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="label_42">
+             <property name="text">
+              <string>Активное сопротивление фазы статора, Ом =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLineEdit" name="lineEdit_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="label_48">
+             <property name="text">
+              <string>Индуктивность взаимоиндукции, Гн =</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QLineEdit" name="lineEdit_24">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -1288,34 +1311,212 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </layout>
       </widget>
       <widget class="QWidget" name="page_18">
-       <layout class="QGridLayout" name="gridLayout_16">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_39">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Параметры тепловой идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <layout class="QGridLayout" name="gridLayout_25">
+        <item row="3" column="0">
+         <widget class="QGroupBox" name="groupBox_6">
+          <property name="title">
+           <string/>
           </property>
+          <layout class="QGridLayout" name="gridLayout_28">
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lineEdit_21">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEdit_23">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_56">
+             <property name="text">
+              <string>Тепловая проводимость между первым узлом 
+и вторым узлом </string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_22">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_51">
+             <property name="text">
+              <string>Тепловая проводимость между вторым узлом 
+и окружающей средой</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_57">
+             <property name="text">
+              <string>Тепловая проводимость между первым узлом 
+и окружающей средой</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2" alignment="Qt::AlignmentFlag::AlignHCenter">
+            <widget class="QLabel" name="label_47">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Параметры текущей тепловой идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QTableWidget" name="tableWidget_16">
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
+        <item row="5" column="0">
          <widget class="QPushButton" name="load_Vent_dannie_2">
           <property name="text">
            <string>Загрузить</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="6" column="0">
          <widget class="QPushButton" name="save_Vent_dannie_2">
           <property name="text">
            <string>Сохранить</string>
           </property>
          </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_16">
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_54">
+             <property name="text">
+              <string>Тепловая проводимость между первым узлом 
+и вторым узлом </string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_7">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_55">
+             <property name="text">
+              <string>Тепловая проводимость между первым узлом 
+и окружающей средой</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEdit_19">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_50">
+             <property name="text">
+              <string>Тепловая проводимость между вторым узлом 
+и окружающей средой</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="lineEdit_20">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>152</width>
+               <height>0</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_39">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Параметры предварительной тепловой\n идентификации&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -2164,8 +2365,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="electromagn_stop"/>
    <addaction name="kalibr_osc"/>
    <addaction name="separator"/>
-   <addaction name="actionaction_graph"/>
    <addaction name="action_gruph"/>
+   <addaction name="actionsdtart_app"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -2667,8 +2868,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
   </action>
   <action name="action_gruph">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/image/data/img/icons/labplot-xy-interpolation-curve.png</normaloff>:/image/data/img/icons/labplot-xy-interpolation-curve.png</iconset>
+   </property>
    <property name="text">
     <string>action_gruph</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionsdtart_app">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/icons/data/img/icons/IM_16x16.png</normaloff>:/icons/data/img/icons/IM_16x16.png</iconset>
+   </property>
+   <property name="text">
+    <string>sdtart_app</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
@@ -2724,12 +2941,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Tepl_identf</class>
-   <extends>QWidget</extends>
-   <header>tepl_identf.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>Ostat_resurs</class>
    <extends>QWidget</extends>
    <header>ostat_resurs.h</header>
@@ -2745,6 +2956,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>Vent_identf</class>
    <extends>QWidget</extends>
    <header>vent_identf.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Tepl_identf</class>
+   <extends>QWidget</extends>
+   <header>tepl_identf.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

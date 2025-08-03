@@ -54,6 +54,8 @@ struct Base
     double L1;
     double L2;
     double Lm;
+    double R11;
+    double R21;
     QString dataSourceFilename;
     QString identfFilename;
     QString identfFilename_result;

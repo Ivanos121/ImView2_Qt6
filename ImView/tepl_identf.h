@@ -1,8 +1,10 @@
 #ifndef TEPL_IDENTF_H
 #define TEPL_IDENTF_H
 
+#include "qelapsedtimer.h"
 #include <QWidget>
-#include <QElapsedTimer>
+
+class MainWindow;
 
 namespace Ui {
 class Tepl_identf;
@@ -15,11 +17,14 @@ class Tepl_identf : public QWidget
 public:
     explicit Tepl_identf(QWidget *parent = nullptr);
     ~Tepl_identf();
-    Ui::Tepl_identf *ui;
-
-private:
-
+    MainWindow *wf;
     QElapsedTimer *time;
+
+    void raschet_tepl_identf();
+public slots:
+    void realtimeDataSlot();
+private:
+    Ui::Tepl_identf *ui;
 };
 
 #endif // TEPL_IDENTF_H

@@ -92,6 +92,8 @@ SOURCES += \
     zerocorrector.cpp
 
 HEADERS += \
+    Base_tepl_vent.h \
+    Identf_kpeff.h \
     MySortFilterProxyModel.h \
     aboutdialog.h \
     action_create.h \

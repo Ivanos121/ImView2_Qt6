@@ -27,7 +27,7 @@ public:
     MainWindow *wf;
     void startTeplo();
     void stopTeplo();
-    double y_0,y_1,y_2,y_3,y_4,y_5,y_6,y_7,y_8,y_9,y_10,y_11,y_12,y_13,y_14,y_15,y_16;
+    double y_0,y_1,y_2,y_3,y_4,y_5,y_6,y_7,y_8,y_9,y_10,y_11,y_12,y_13,y_14,y_15,y_16, y_21, y_22;
     Trend *trend;
 
 private slots:

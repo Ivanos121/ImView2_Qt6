@@ -16,14 +16,14 @@
 #include "ui_draw_poper.h"
 #include "ui_draw_line.h"
 #include "ui_teplovent.h"
+#include "Base_tepl_vent.h"
 
 int position_2;
 double t_max;
 double a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16;
 double b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16;
 double w_w,w_0,M_M,M_k,s_s,s_k,R_1,R_2;
-
-
+TeplParam teplparam;
 
 Trend::Trend(QWidget *parent) :
     QWidget(parent),
@@ -293,6 +293,20 @@ void Trend::startTeplo()
     y_15=60*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Вал
     y_16=50*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();//Клеммная коробка
 
+    // teplparam.y_21=80*(1-exp(-t/120))+wf->start_tepl_temperature_value->text().toDouble();//Статор
+    // teplparam.y_22=80*(1-exp(-t/120))+wf->start_tepl_temperature_value->text().toDouble();//Ротор
+    // double a=0.00403;
+    // teplparam.y_01=wf->start_tepl_temperature_value->text().toDouble();
+    // base.R11=base.R1*(1+a*(teplparam.y_21-teplparam.y_01));
+    // base.R21=base.R2*(1+a*(teplparam.y_22-teplparam.y_01));
+    // wf->ui->lineEdit_3->setText(QString::number(base.R11,'f',3));
+    // wf->ui->lineEdit_4->setText(QString::number(base.R21,'f',3));
+    // wf->ui->lineEdit_5->setText(QString::number(base.L1,'f',3));
+    // wf->ui->lineEdit_6->setText(QString::number(base.L2,'f',3));
+    // wf->ui->lineEdit_24->setText(QString::number(base.Lm,'f',3));
+
+    qDebug() << base.R11 << " " << base.R21 << Qt::endl;
+
     ui->plot->addPoint(0, t, y_0);
     ui->plot->addPoint(1, t, y_1);
     ui->plot->addPoint(2, t, y_2);
@@ -310,6 +324,8 @@ void Trend::startTeplo()
     ui->plot->addPoint(14, t, y_10);
     ui->plot->addPoint(15, t, y_10);
     ui->plot->addPoint(16, t, y_10);
+    ui->plot->addPoint(15, t, y_21);
+    ui->plot->addPoint(16, t, y_22);
 
     timer.start(1000);
 }
@@ -339,6 +355,24 @@ void Trend::on_timerTimeout()
     y_14=40*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
     y_15=60*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
     y_16=50*(1-exp(-t/20))+wf->start_tepl_temperature_value->text().toDouble();
+
+    teplparam.y_21=80*(1-exp(-t/120))+wf->start_tepl_temperature_value->text().toDouble();//Статор
+    teplparam.y_22=80*(1-exp(-t/120))+wf->start_tepl_temperature_value->text().toDouble();//Ротор
+    double a=0.00403;
+    teplparam.y_01=wf->start_tepl_temperature_value->text().toDouble();
+    base.R11=base.R1*(1+a*(teplparam.y_21-teplparam.y_01));
+    base.R21=base.R2*(1+a*(teplparam.y_22-teplparam.y_01));
+    wf->ui->lineEdit_3->setText(QString::number(base.R11,'f',3));
+    wf->ui->lineEdit_4->setText(QString::number(base.R21,'f',3));
+    wf->ui->lineEdit_5->setText(QString::number(base.L1,'f',3));
+    wf->ui->lineEdit_6->setText(QString::number(base.L2,'f',3));
+    wf->ui->lineEdit_24->setText(QString::number(base.Lm,'f',3));
+
+    wf->ui->lineEdit_3->setAlignment(Qt::AlignCenter);
+    wf->ui->lineEdit_4->setAlignment(Qt::AlignCenter);
+    wf->ui->lineEdit_5->setAlignment(Qt::AlignCenter);
+    wf->ui->lineEdit_6->setAlignment(Qt::AlignCenter);
+    wf->ui->lineEdit_24->setAlignment(Qt::AlignCenter);
 
     w_0=314;
     w_w=147;

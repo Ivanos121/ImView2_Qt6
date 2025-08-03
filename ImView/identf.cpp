@@ -23,6 +23,7 @@
 #include "plot.h"
 #include "base.h"
 #include "spinboxdelegate.h"
+#include "Identf_kpeff.h"
 
 double key;
 Model model;

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class MainWindow;
+
 namespace Ui {
 class Vent_identf;
 }
@@ -14,7 +16,12 @@ class Vent_identf : public QWidget
 public:
     explicit Vent_identf(QWidget *parent = nullptr);
     ~Vent_identf();
+    MainWindow *wf;
+    QTimer *times;
 
+    void raschet_vent_identf();
+public slots:
+    void realtimeDataSlot();
 private:
     Ui::Vent_identf *ui;
 };
