@@ -23,7 +23,6 @@
 #include "plot.h"
 #include "base.h"
 #include "spinboxdelegate.h"
-#include "Identf_kpeff.h"
 
 double key;
 Model model;
@@ -187,31 +186,31 @@ void identf::realtimeDataSlot()
     //wf->statusbar_progres->setValue(t / maxTime * 100);
 
     if (model.R2 > maxR2)
-           {
-               maxR2 = model.R2;
-           }
+    {
+        maxR2 = model.R2;
+    }
 
-           if (model.R2 < minR2)
-           {
-               minR2 = model.R2;
-           }
+    if (model.R2 < minR2)
+    {
+        minR2 = model.R2;
+    }
 
-           middleR2 += model.R2;
-           count++;
+    middleR2 += model.R2;
+    count++;
 
-   if (count == 3)
-   {
-       middleR2 /= count;
+    if (count == 3)
+    {
+        middleR2 /= count;
 
-       count = 0;
+        count = 0;
 
-       if (fabs((maxR2 - minR2)/middleR2) < 0.006)
-       {
+        if (fabs((maxR2 - minR2)/middleR2) < 0.006)
+        {
             dataSource->stop();
             wf->ui->identf_stop->setEnabled(false);
             wf->ui->identf_pusk->setIcon(QIcon(":/system_icons/data/img/system_icons/media-playback-start_2.svg"));
 
-          //  wf->statusbar_label_9->setVisible(false);
+            //  wf->statusbar_label_9->setVisible(false);
             wf->statusbar_progres->setVisible(false);
 
             QSettings settings( "BRU", "IM View");
@@ -229,17 +228,17 @@ void identf::realtimeDataSlot()
                 QString body_s = "Расчет параметров схемы замещения закончен";
                 wf->message_action(summary_s, body_s);
             }
-                wf->ui->stackedWidget->show();
+            wf->ui->stackedWidget->show();
             wf->ui->stackedWidget->setCurrentIndex(1);
-       }
-       minR2 = DBL_MAX;
-       maxR2 = -DBL_MAX;
-       middleR2 = 0.0;
-   }
+        }
+        minR2 = DBL_MAX;
+        maxR2 = -DBL_MAX;
+        middleR2 = 0.0;
+    }
 
-   //if (count % 100 == 0)
-   if (true)
-   {
+    //if (count % 100 == 0)
+    if (true)
+    {
         ui->plot->addPoint(0, key, model.R2);
         ui->plot->addPoint(1, key, model.L);
         ui->plot->addPoint(2, key, model.L);
@@ -267,13 +266,30 @@ void identf::realtimeDataSlot()
     }
 }
 
+KoeffBase identf::selectClosestKoeff(int target)
+{
+    int minDiff = INT_MAX;
+    KoeffBase closest;
+    for (auto &koeff : koeff_ad.allKoeffs)
+    {
+        int diff = std::abs(koeff.speed - target);
+        if (diff < minDiff)
+        {
+            minDiff = diff;
+            closest = koeff;
+        }
+    }
+
+    return closest;
+}
+
 void identf::raschet_f()
 {
     minR2 = DBL_MAX;
     maxR2 = -DBL_MAX;
     middleR2 = 0.0;
 
-   // auto uiDatasWindow = wf->ui->widget->ui;
+    // auto uiDatasWindow = wf->ui->widget->ui;
 
     //Режим Осциллограф
     if(wf->identification_switch_value->text() == "Осциллограф")
@@ -298,9 +314,78 @@ void identf::raschet_f()
     }
 
     dataSource->init();
-    model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0,
-               wf->ui->lineEdit_13->text().toDouble(),wf->ui->lineEdit_14->text().toDouble(),wf->ui->lineEdit_15->text().toDouble(),
-               wf->ui->lineEdit_16->text().toDouble(),wf->ui->lineEdit_17->text().toDouble(),wf->ui->lineEdit_18->text().toDouble());
+
+    double gd = 0;
+    double ki = 0;
+    double gb = 0;
+    double kpsi = 0;
+    double gp = 0;
+    double gpsi = 0;
+
+    if (wf->calculation_mode_value->text() == "Ручной" )
+    {
+        gd = wf->tuning_coefficient_gd_value->text().toDouble();
+        ki = wf->tuning_coefficient_ki_value->text().toDouble();
+        gb = wf->tuning_coefficient_gb_value->text().toDouble();
+        kpsi = wf->tuning_coefficient_kpsi_value->text().toDouble();
+        gp = wf->tuning_coefficient_gp_value->text().toDouble();
+        gpsi = wf->tuning_coefficient_gpsi_value->text().toDouble();
+    }
+    else if (wf->calculation_mode_value->text() == "Автоматический" )
+    {
+        //считывание скорости выбранного двигателя
+        int userInput = base.n_nom;
+
+        //поиск нужной структуре по ближайшей синхронной скорости вращения
+
+        auto &&selectedKoeff = selectClosestKoeff(userInput);
+
+        std::cout << "Выбран коэффициент: " << selectedKoeff.speed << "\n";
+
+        // В зависимости от типа можно привести к нужному типу и работать с массивом
+
+        std::cout << "Массив данных:\n";
+        for (const auto& row : selectedKoeff.koeffs)
+        {
+            for (int val : row) {
+                std::cout << val << ' ';
+            }
+            std::cout << '\n';
+        }
+
+        auto col = -1;
+
+        auto targetPower = base.P_nom;
+
+        for (int i = 0; i < selectedKoeff.koeffs[0].size(); ++i)
+        {
+            auto val = selectedKoeff.koeffs[0][i];
+            if (val == targetPower)
+            {
+                col = i;
+                break;
+            }
+        }
+
+        if (col != (-1))
+        {
+            std::cout << "Число " << targetPower << " найдено в структуре " << selectedKoeff.speed << std::endl;
+
+            gd = selectedKoeff.koeffs[1][col];
+            ki = selectedKoeff.koeffs[2][col];
+            gb = selectedKoeff.koeffs[3][col];
+            kpsi = selectedKoeff.koeffs[4][col];
+            gp = selectedKoeff.koeffs[5][col];
+            gpsi = selectedKoeff.koeffs[6][col];
+        }
+        else
+        {
+            std::cout << "Число " << targetPower << " не найдено в структуре " << selectedKoeff.speed << std::endl;
+        }
+
+        model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0,
+                   gd, gb, gp, ki,kpsi,gpsi);
+    }
     ui->plot->clear();
 
     for (int i = 0; i < 4; i++)

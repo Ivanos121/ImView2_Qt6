@@ -11,6 +11,7 @@
 #include "modell.h"
 #include "spinboxdelegate.h"
 #include "mainwindow.h"
+#include "Identf_kpeff.h"
 
 class MainWindow;
 
@@ -41,6 +42,8 @@ public:
     Model model;
     QVector<QColor> dataLineColors_identf;
     SpinBoxDelegate *spin;
+
+    KoeffBase selectClosestKoeff(int target);
 
 protected slots:
     void setcolorincell(int row, int column);

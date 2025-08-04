@@ -272,12 +272,8 @@ public:
 
     void changeEvent(QEvent *event) override;
 
-    KoeffBase *selectClosestKoeff(int target);
-    std::string demangle(const char *mangled_name);
-    int findNumberInString(const std::string &str, int target);
+    KoeffBase selectClosestKoeff(int target);
 
-    bool findNumberInStructByName(const Koeff_ad &koeff_ad, const std::string &targetName,
-                                  int targetNumber, int &colnumber);
     void printColumnValues(const KoeffBase &koeffObj, int col);
     KoeffBase *findKoeffByName(const std::vector<std::reference_wrapper<KoeffBase> > &koeffs, const std::string &targetName);
 public slots:

@@ -1069,8 +1069,8 @@ MainWindow::MainWindow(QWidget *parent)
     barometric_pressure_value = new QStandardItem(tr("0"));
     QString barometric_pressure_value_tooltip = barometric_pressure_value->text();
     barometric_pressure_value->setToolTip(barometric_pressure_value_tooltip);
-    ventilation_regime.append(barometric_pressure_parametr);    
-    ventilation_regime.append(barometric_pressure_value);    
+    ventilation_regime.append(barometric_pressure_parametr);
+    ventilation_regime.append(barometric_pressure_value);
     ventilation_model_parametr->appendRow(ventilation_regime);
     ventilation_regime.clear();
 
@@ -1107,7 +1107,7 @@ MainWindow::MainWindow(QWidget *parent)
     value_two_parametr->setToolTip(value_two_parametr_tooltip);
     value_two_value = new QStandardItem(tr("Значение 14"));
     QString  value_two_value_tooltip =  value_two_value->text();
-     value_two_value->setToolTip( value_two_value_tooltip);
+    value_two_value->setToolTip( value_two_value_tooltip);
     value_one.append(value_two_parametr);
     value_one.append(value_two_value);
     predicting_temperature_parametr->appendRow(value_one);
@@ -1232,83 +1232,83 @@ MainWindow::MainWindow(QWidget *parent)
     FillIconDelegate *fillIconDelegate = new FillIconDelegate(ui->treeView);
     ui->treeView->setItemDelegate(fillIconDelegate);
 
-//     ui->treeView->setStyleSheet(
-//                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
-//                     "background-color: #FFFFFF; width: 18px;}"
-//                     "QScrollBar::handle:vertical {background-color:#d0d2d2;min-height: 25px;"
-//                     "margin-left:5px;margin-right:5px;border-radius:4px;margin-top:5px;margin-bottom:5px;}"
-//                     "QScrollBar::handle:vertical:hover {background-color:#97d5f0;}"
-//                     "QScrollBar::add-line:vertical {border: 0px solid black;"
-//                     "height: 0px;subcontrol-position: bottom;subcontrol-origin: margin;}"
-//                     "QScrollBar::sub-line:vertical {border: 0px solid black;"
-//                     "height: 0px;subcontrol-position: top;subcontrol-origin: margin;}"
-//                             "*{"
-//                             "background: rgb(255, 255, 222);"
-//                             "}"
-//                            "*{"
-//                             "alternate-background-color: rgb(255, 255, 191);"
-//                            "}"
-//                             // "*::item{"
-//                             // "    border-top-width: 0px;"
-//                             // "    border-right-width: 1px;"
-//                             // "    border-bottom-width: 1px;"
-//                             // "    border-left-width: 0px;"
-//                             // "    border-style: solid;"
-//                             // "    border-color: silver;"
-//                             // "}"
-//                             "*::item:selected{"
-//                             "    background: palette(Highlight);"
-//                             "}"
-// //                            "*::item:has-children{"
-// //                            "    background: rgb(128,128,128);"
-// //                            "}"
-//                             // "::branch"
-//                             // "{"
-//                             // "border-bottom: 1px solid silver;"
-//                             // "border-image: none 0;"
-//                             // "image: none 0;"
-//                             // "}"
-//                                     "::branch:has-children:!has-siblings:closed,"
-//                                     "::branch:closed:has-children:has-siblings {"
-//                                     "        border-image: none;"
-//                                     //"        image: url(:/image/data/img/icons/branch-closed.png);"
-//                                     "}"
-//                                     "::branch:open:has-children:!has-siblings,"
-//                                     "::branch:open:has-children:has-siblings  {"
-//                                    "        border-image: none;"
-//                                    // "        image: url(:/image/data/img/icons/branch-open.png);"
-//                                     "}"
-//                 "::branch:has-siblings:!adjoins-item {"
-//                 "    border-image: url(:/data/img/icons/vline.png) 0;"
-//                 "}"
+    //     ui->treeView->setStyleSheet(
+    //                     "QScrollBar:vertical {border-width: 0px;border-style: solid;"
+    //                     "background-color: #FFFFFF; width: 18px;}"
+    //                     "QScrollBar::handle:vertical {background-color:#d0d2d2;min-height: 25px;"
+    //                     "margin-left:5px;margin-right:5px;border-radius:4px;margin-top:5px;margin-bottom:5px;}"
+    //                     "QScrollBar::handle:vertical:hover {background-color:#97d5f0;}"
+    //                     "QScrollBar::add-line:vertical {border: 0px solid black;"
+    //                     "height: 0px;subcontrol-position: bottom;subcontrol-origin: margin;}"
+    //                     "QScrollBar::sub-line:vertical {border: 0px solid black;"
+    //                     "height: 0px;subcontrol-position: top;subcontrol-origin: margin;}"
+    //                             "*{"
+    //                             "background: rgb(255, 255, 222);"
+    //                             "}"
+    //                            "*{"
+    //                             "alternate-background-color: rgb(255, 255, 191);"
+    //                            "}"
+    //                             // "*::item{"
+    //                             // "    border-top-width: 0px;"
+    //                             // "    border-right-width: 1px;"
+    //                             // "    border-bottom-width: 1px;"
+    //                             // "    border-left-width: 0px;"
+    //                             // "    border-style: solid;"
+    //                             // "    border-color: silver;"
+    //                             // "}"
+    //                             "*::item:selected{"
+    //                             "    background: palette(Highlight);"
+    //                             "}"
+    // //                            "*::item:has-children{"
+    // //                            "    background: rgb(128,128,128);"
+    // //                            "}"
+    //                             // "::branch"
+    //                             // "{"
+    //                             // "border-bottom: 1px solid silver;"
+    //                             // "border-image: none 0;"
+    //                             // "image: none 0;"
+    //                             // "}"
+    //                                     "::branch:has-children:!has-siblings:closed,"
+    //                                     "::branch:closed:has-children:has-siblings {"
+    //                                     "        border-image: none;"
+    //                                     //"        image: url(:/image/data/img/icons/branch-closed.png);"
+    //                                     "}"
+    //                                     "::branch:open:has-children:!has-siblings,"
+    //                                     "::branch:open:has-children:has-siblings  {"
+    //                                    "        border-image: none;"
+    //                                    // "        image: url(:/image/data/img/icons/branch-open.png);"
+    //                                     "}"
+    //                 "::branch:has-siblings:!adjoins-item {"
+    //                 "    border-image: url(:/data/img/icons/vline.png) 0;"
+    //                 "}"
 
-//                 "::branch:has-siblings:adjoins-item {"
-//                 "    border-image: url(:/data/img/icons/branch-more.png) 0;"
-//                 "}"
+    //                 "::branch:has-siblings:adjoins-item {"
+    //                 "    border-image: url(:/data/img/icons/branch-more.png) 0;"
+    //                 "}"
 
-//                 "::branch:!has-children:!has-siblings:adjoins-item {"
-//                 "    border-image: url(:/data/img/icons/branch-end.png) 0;"
-//                 "}"
+    //                 "::branch:!has-children:!has-siblings:adjoins-item {"
+    //                 "    border-image: url(:/data/img/icons/branch-end.png) 0;"
+    //                 "}"
 
-//                 "::branch:has-children:!has-siblings:closed,"
-//                 "::branch:closed:has-children:has-siblings {"
-//                 "        border-image: none;"
-//                 "        image: url(:/image/data/img/icons/branch-closed.png);"
-//                 "}"
+    //                 "::branch:has-children:!has-siblings:closed,"
+    //                 "::branch:closed:has-children:has-siblings {"
+    //                 "        border-image: none;"
+    //                 "        image: url(:/image/data/img/icons/branch-closed.png);"
+    //                 "}"
 
-//                 "::branch:open:has-children:!has-siblings,"
-//                 "::branch:open:has-children:has-siblings  {"
-//                 "        border-image: none;"
-//                 "        image: url(:/image/data/img/icons/branch-open.png);"
-//                 "}"
+    //                 "::branch:open:has-children:!has-siblings,"
+    //                 "::branch:open:has-children:has-siblings  {"
+    //                 "        border-image: none;"
+    //                 "        image: url(:/image/data/img/icons/branch-open.png);"
+    //                 "}"
 
-//                                     );
+    //                                     );
 
     ui->treeView->setRootIsDecorated(true);
 
     selectionModel = ui->treeView->selectionModel();
     connect(selectionModel, &QItemSelectionModel::currentChanged,
-                     this, [this]() {   int index = 0;
+            this, [this]() {   int index = 0;
         QString currentTabText = ui->tabWidget->tabText(index);
         setWindowTitle(currentTabText + "@" + QString(sesion_name_value1->text()) + QString(" - ImView*"));
         isNablLaunched = true;
@@ -1317,53 +1317,53 @@ MainWindow::MainWindow(QWidget *parent)
     selectionModel2 = ui->widget->ui->tableView->selectionModel();
     //connect(selectionModel, &QItemSelectionModel::selectionChanged, this, &MainWindow::treview_changed);
     connect(selectionModel2, &QItemSelectionModel::currentChanged,
-                     this, []() {  isNablLaunched = true;
+            this, []() {  isNablLaunched = true;
     });
 
 
     connect(ui->lineEdit_13, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_14, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_15, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_16, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_17, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_18, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_8, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_9, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_10, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_11, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
     connect(ui->lineEdit_12, &QLineEdit::textChanged, this, []()
     {
-      isNablLaunched = true;
+        isNablLaunched = true;
     });
 
     ui->tabWidget->setCurrentIndex(0);
@@ -1393,7 +1393,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
         for(int column = 0; column<ui->graph_settings->columnCount(); column++)
         {
-          ui->graph_settings->setItem(row, column, new QTableWidgetItem());
+            ui->graph_settings->setItem(row, column, new QTableWidgetItem());
         }
     }
 
@@ -3528,210 +3528,88 @@ void MainWindow::identf_pusk()
         /*Автоматический поиск настроечных коэффициентов*/
 
 
-        //считывание скорости выбранного двигателя
-        int userInput = base.n_nom;
+        // //считывание скорости выбранного двигателя
+        // int userInput = base.n_nom;
 
-        //поиск нужной структуре по ближайшей синхронной скорости вращения
+        // //поиск нужной структуре по ближайшей синхронной скорости вращения
 
-        KoeffBase* selectedKoeff = selectClosestKoeff(userInput);
+        // auto &&selectedKoeff = selectClosestKoeff(userInput);
 
-        if (selectedKoeff != nullptr)
-        {
-            std::cout << "Выбран коэффициент: " << selectedKoeff->koefff << "\n";
+        // std::cout << "Выбран коэффициент: " << selectedKoeff.speed << "\n";
 
-            // В зависимости от типа можно привести к нужному типу и работать с массивом
-            if (selectedKoeff->koefff == 3000)
-            {
-                auto* ptr = static_cast<Koeff_3000*>(selectedKoeff);
-                std::cout << "Массив данных:\n";
-                for (const auto& row : std::as_const(ptr->Koeff))
-                {
-                    for (int val : row) {
-                        std::cout << val << ' ';
-                    }
-                    std::cout << '\n';
-                }
-            } else if (selectedKoeff->koefff == 1500) {
-                auto* ptr = static_cast<Koeff_1500*>(selectedKoeff);
-                std::cout << "Массив данных:\n";
-                for (const auto& row : std::as_const(ptr->Koeff))
-                {
-                    for (int val : row)
-                    {
-                        std::cout << val << ' ';
-                    }
-                    std::cout << '\n';
-                }
-            } else if (selectedKoeff->koefff == 1000)
-            {
-                auto* ptr = static_cast<Koeff_1000*>(selectedKoeff);
-                std::cout << "Массив данных:\n";
-                for (const auto& row : std::as_const(ptr->Koeff))
-                {
-                    for (int val : row)
-                    {
-                        std::cout << val << ' ';
-                    }
-                    std::cout << '\n';
-                }
-            } else if (selectedKoeff->koefff == 750)
-            {
-                auto* ptr = static_cast<Koeff_750*>(selectedKoeff);
-                std::cout << "Массив данных:\n";
-                for (const auto& row : std::as_const(ptr->Koeff))
-                {
-                    for (int val : row)
-                    {
-                        std::cout << val << ' ';
-                    }
-                    std::cout << '\n';
-                }
-            }
+        // // В зависимости от типа можно привести к нужному типу и работать с массивом
 
-        } else
-        {
-            std::cout << "Не удалось выбрать коэффициент.\n";
-        }
+        // std::cout << "Массив данных:\n";
+        // for (const auto& row : selectedKoeff.koeffs)
+        // {
+        //     for (int val : row) {
+        //         std::cout << val << ' ';
+        //     }
+        //     std::cout << '\n';
+        // }
 
-        std::string targetName = demangle(typeid(*selectedKoeff).name());
+        // auto col = -1;
 
-        int col = -1;
+        // auto targetPower = base.P_nom;
 
-        int targetNumber = base.P_nom;
+        // for (int i = 0; i < selectedKoeff.koeffs[0].size(); ++i)
+        // {
+        //     auto val = selectedKoeff.koeffs[0][i];
+        //     if (val == targetPower)
+        //     {
+        //         col = i;
+        //         break;
+        //     }
+        // }
 
+        // if (col != (-1))
+        // {
+        //     std::cout << "Число " << targetPower << " найдено в структуре " << selectedKoeff.speed << std::endl;
 
-        bool result = (findNumberInStructByName(koeff_ad, targetName, targetNumber, col));
-        if(result)
-        {
-            std::cout << "Число " << targetNumber << " найдено в структуре " << targetName << std::endl;
-
-
-            for (auto& ref : koeff_ad.allKoeffs)
-            {
-                if (ref.get().name == targetName)
-                {
-                    printColumnValues(ref.get(), col);
-                    break;
-                }
-            }
-
-        }
-        else
-        {
-            std::cout << "Число " << targetNumber << " не найдено в структуре " << targetName << std::endl;
-        }
+        //     printColumnValues(selectedKoeff, col);
+        // }
+        // else
+        // {
+        //     std::cout << "Число " << targetPower << " не найдено в структуре " << selectedKoeff.speed << std::endl;
+        // }
     }
 
 }
 
-KoeffBase* MainWindow::selectClosestKoeff(int target)
+KoeffBase MainWindow::selectClosestKoeff(int target)
 {
-    std::vector<KoeffBase*> options =
-    {
-        &koeff_ad.koeff_3000,
-        &koeff_ad.koeff_1500,
-        &koeff_ad.koeff_1000,
-        &koeff_ad.koeff_750
-    };
-
     int minDiff = INT_MAX;
-    KoeffBase* closest = nullptr;
-
-    for (auto* option : options)
+    KoeffBase closest;
+    for (auto &koeff : koeff_ad.allKoeffs)
     {
-        int diff = std::abs(option->koefff - target);
+        int diff = std::abs(koeff.speed - target);
         if (diff < minDiff)
         {
             minDiff = diff;
-            closest = option;
+            closest = koeff;
         }
     }
+
     return closest;
-}
-
-std::string MainWindow::demangle(const char* mangled_name)
-{
-    int status = -1;
-    std::unique_ptr<char, void(*)(void*)> res(
-        abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status),
-        std::free
-    );
-    return (status == 0) ? res.get() : mangled_name;
-}
-
-int MainWindow::findNumberInString(const std::string& str, int target)
-{
-    std::string targetStr = std::to_string(target);
-    size_t pos = str.find(targetStr);
-    if (pos != std::string::npos) {
-        return static_cast<int>(pos);
-    }
-    return -1; // не найдено
-}
-
-bool MainWindow::findNumberInStructByName(const Koeff_ad& koeff_ad, const std::string& targetName,
-                int targetNumber, int& colnumber)
-{
-    bool found = false;
-    for (const auto& s_ref : koeff_ad.allKoeffs)
-    {
-        const auto& s = s_ref.get();
-        if (s.name != targetName)
-        {
-        //     std::cout << "Пропускаю элемент: " << s.name << std::endl;
-            continue;
-
-        // std::cout << "Нашел нужный элемент: " << s.name << std::endl;
-        }
-
-        for (int row = 0; row < s.Koeff.size(); ++row)
-        {
-            for (int col = 0; col < s.Koeff[row].size(); ++col)
-            {
-                int val = s.Koeff[row][col];
-                std::cout << "Проверяю: " << val << " в позиции (" << row << ", " << col << ")\n";
-                if (val == targetNumber)
-                {
-                    std::cout << "Найдено число: " << val
-                              << " в позиции (" << row << ", " << col << ")\n";
-                    colnumber = col;
-                    found = true;
-                    break; // выйти из внутреннего цикла
-                }
-            }
-            if (found) break;
-        }
-        if (found) break;
-    }
-    return found;
 }
 
 void MainWindow::printColumnValues(const KoeffBase& koeffObj, int col)
 {
-    const auto& table = koeffObj.Koeff;
-    if (table.size() > 6 && col < table[1].size() && col < table[2].size() &&
-            col < table[3].size() && col < table[4].size() &&
-            col < table[5].size() && col < table[6].size())
-        {
-            double gd = table[1][col];
-            double ki = table[2][col];
-            double gb = table[3][col];
-            double kpsi = table[4][col];
-            double gp = table[5][col];
-            double gpsi = table[6][col];
+    const auto& table = koeffObj.koeffs;
 
-            std::cout << "gd = " << gd << std::endl;
-            std::cout << "ki = " << ki << std::endl;
-            std::cout << "gb = " << gb << std::endl;
-            std::cout << "kpsi = " << kpsi << std::endl;
-            std::cout << "gp = " << gp << std::endl;
-            std::cout << "gpsi = " << gpsi << std::endl;
-        }
-            else
-            {
-                std::cout << "Некорректный индекс или отсутствуют необходимые строки." << std::endl;
-            }
+    double gd = table[1][col];
+    double ki = table[2][col];
+    double gb = table[3][col];
+    double kpsi = table[4][col];
+    double gp = table[5][col];
+    double gpsi = table[6][col];
 
+    std::cout << "gd = " << gd << std::endl;
+    std::cout << "ki = " << ki << std::endl;
+    std::cout << "gb = " << gb << std::endl;
+    std::cout << "kpsi = " << kpsi << std::endl;
+    std::cout << "gp = " << gp << std::endl;
+    std::cout << "gpsi = " << gpsi << std::endl;
 }
 
 KoeffBase* MainWindow::findKoeffByName(const std::vector<std::reference_wrapper<KoeffBase>>& koeffs,
@@ -3930,11 +3808,11 @@ void MainWindow::kalibr_osc()
     kalibr=new Kalibr(this);
     kalibr->showMaximized();
     kalibr->setGeometry(
-    QStyle::alignedRect(
-    Qt::LeftToRight,
-    Qt::AlignCenter,
-    kalibr->size(),
-    screen->geometry()));
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    kalibr->size(),
+                    screen->geometry()));
 }
 
 void MainWindow::nastr_graph()
@@ -3950,7 +3828,7 @@ void MainWindow::changeEvent(QEvent *event)
 {
     if (event->type() == QEvent::LanguageChange)
     {
-            ui->retranslateUi(this);
+        ui->retranslateUi(this);
     }
     QMainWindow::changeEvent(event);
 }
@@ -3990,7 +3868,7 @@ void MainWindow::translate_ru()
     {
         qDebug() << "Translation file ru_RU not loaded!";
     }
-   // qtLanguageTranslator = nullptr;
+    // qtLanguageTranslator = nullptr;
 }
 
 void MainWindow::translator()
@@ -4002,8 +3880,8 @@ void MainWindow::translator()
     // settings.endGroup();
     // QString language = QString("QtLanguage_") + lokal;
 
-   // qtLanguageTranslator->load("QtLanguage_" + lokal);   // Загружаем перевод
-   // qApp->installTranslator(&qtLanguageTranslator);
+    // qtLanguageTranslator->load("QtLanguage_" + lokal);   // Загружаем перевод
+    // qApp->installTranslator(&qtLanguageTranslator);
 
 
     // qApp->removeTranslator(qtLanguageTranslator);
@@ -4026,11 +3904,11 @@ void MainWindow::nastroiki()
     nastr->wf = this;
     nastr->exec();
     nastr->setGeometry(
-    QStyle::alignedRect(
-    Qt::LeftToRight,
-    Qt::AlignCenter,
-    nastr->size(),
-    screen->geometry()));
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    nastr->size(),
+                    screen->geometry()));
 }
 
 void MainWindow::modelItemChangedSlot(QStandardItem *item)
@@ -4153,143 +4031,143 @@ void MainWindow::modelItemChangedSlot_4(QStandardItem *item)
         }
     }
     else
-    if (item == data_electomagn_process_value)
-    {
-        if (item->checkState() == Qt::Checked)
+        if (item == data_electomagn_process_value)
         {
-            data_electomagn_process_value->setToolTip(tr ("Вкл"));
+            if (item->checkState() == Qt::Checked)
+            {
+                data_electomagn_process_value->setToolTip(tr ("Вкл"));
+            }
+            else
+            {
+                data_electomagn_process_value->setToolTip(tr ("Выкл"));
+            }
         }
         else
-        {
-            data_electomagn_process_value->setToolTip(tr ("Выкл"));
-        }
-    }
-    else
-    if (item == data_tepl_process_value)
-    {
-        if (item->checkState() == Qt::Checked)
-        {
-            data_tepl_process_value->setToolTip(tr ("Вкл"));
-        }
-        else
-        {
-            data_tepl_process_value->setToolTip(tr ("Выкл"));
-        }
-    }
-    else
-    if (item == data_vent_process_value)
-    {
-        if (item->checkState() == Qt::Checked)
-        {
-            data_vent_process_value->setToolTip(tr ("Вкл"));
-        }
-        else
-        {
-            data_vent_process_value->setToolTip(tr ("Выкл"));
-        }
-    }
-    else
-    if (item == data_tepl_prognose_value)
-    {
-        if (item->checkState() == Qt::Checked)
-        {
-            data_tepl_prognose_value->setToolTip(tr ("Вкл"));
-        }
-        else
-        {
-            data_tepl_prognose_value->setToolTip(tr ("Выкл"));
-        }
-    }
-    else
-    if (item == data_ostat_tepl_resurs_value)
-    {
-        if (item->checkState() == Qt::Checked)
-        {
-            data_ostat_tepl_resurs_value->setToolTip(tr ("Вкл"));
-        }
-        else
-        {
-            data_ostat_tepl_resurs_value->setToolTip(tr ("Выкл"));
-        }
-    }
-    else
-    if (item == calculation_mode_value)
-    {
-        if (item->checkState() == Qt::Checked)
-        {
-            calculation_mode_value->setToolTip(tr ("Вкл"));
-        }
-        else
-        {
-            calculation_mode_value->setToolTip(tr ("Выкл"));
-        }
-    }
-    else
-    if (item == tuning_coefficient_gd_value)
-    {
-        QString w101=tuning_coefficient_gd_value->text();
-        tuning_coefficient_gd_value->setToolTip(w101);
-    }
-    else
-    if (item == tuning_coefficient_ki_value)
-    {
-        QString w102=tuning_coefficient_ki_value->text();
-        tuning_coefficient_ki_value->setToolTip(w102);
-    }
-    else
-    if (item == tuning_coefficient_gb_value)
-    {
-        QString w103=tuning_coefficient_gb_value->text();
-        tuning_coefficient_gb_value->setToolTip(w103);
-    }
-    else
-    if (item == tuning_coefficient_kpsi_value)
-    {
-        QString w104=tuning_coefficient_kpsi_value->text();
-        tuning_coefficient_kpsi_value->setToolTip(w104);
-    }
-    else
-    if (item == tuning_coefficient_gp_value)
-    {
-        QString w105=tuning_coefficient_gp_value->text();
-        tuning_coefficient_gp_value->setToolTip(w105);
-    }
-    else
-    if (item == tuning_coefficient_gpsi_value)
-    {
-        QString w106=tuning_coefficient_gpsi_value->text();
-        tuning_coefficient_gpsi_value->setToolTip(w106);
-    }
-    else
-    if (item == engine_duty_cycle_value)
-    {
-        QString w107=engine_duty_cycle_value->text();
-        engine_duty_cycle_value->setToolTip(w107);
-    }
-    else
-    if (item == time_cycle_value)
-    {
-        QString w108=time_cycle_value->text();
-        time_cycle_value->setToolTip(w108);
-    }
-    else
-    if (item == time_base_selection_value)
-    {
-        QString w109=time_base_selection_value->text();
-        time_base_selection_value->setToolTip(w109);
-    }
-    else
-    if (item == item90)
-    {
-        QString w110=item90->text();
-        item90->setToolTip(w110);
-    }
-    else
-    if (item == switch_system_electrodrive_value)
-    {
-        QString w111=switch_system_electrodrive_value->text();
-        switch_system_electrodrive_value->setToolTip(w111);
-    }
+            if (item == data_tepl_process_value)
+            {
+                if (item->checkState() == Qt::Checked)
+                {
+                    data_tepl_process_value->setToolTip(tr ("Вкл"));
+                }
+                else
+                {
+                    data_tepl_process_value->setToolTip(tr ("Выкл"));
+                }
+            }
+            else
+                if (item == data_vent_process_value)
+                {
+                    if (item->checkState() == Qt::Checked)
+                    {
+                        data_vent_process_value->setToolTip(tr ("Вкл"));
+                    }
+                    else
+                    {
+                        data_vent_process_value->setToolTip(tr ("Выкл"));
+                    }
+                }
+                else
+                    if (item == data_tepl_prognose_value)
+                    {
+                        if (item->checkState() == Qt::Checked)
+                        {
+                            data_tepl_prognose_value->setToolTip(tr ("Вкл"));
+                        }
+                        else
+                        {
+                            data_tepl_prognose_value->setToolTip(tr ("Выкл"));
+                        }
+                    }
+                    else
+                        if (item == data_ostat_tepl_resurs_value)
+                        {
+                            if (item->checkState() == Qt::Checked)
+                            {
+                                data_ostat_tepl_resurs_value->setToolTip(tr ("Вкл"));
+                            }
+                            else
+                            {
+                                data_ostat_tepl_resurs_value->setToolTip(tr ("Выкл"));
+                            }
+                        }
+                        else
+                            if (item == calculation_mode_value)
+                            {
+                                if (item->checkState() == Qt::Checked)
+                                {
+                                    calculation_mode_value->setToolTip(tr ("Вкл"));
+                                }
+                                else
+                                {
+                                    calculation_mode_value->setToolTip(tr ("Выкл"));
+                                }
+                            }
+                            else
+                                if (item == tuning_coefficient_gd_value)
+                                {
+                                    QString w101=tuning_coefficient_gd_value->text();
+                                    tuning_coefficient_gd_value->setToolTip(w101);
+                                }
+                                else
+                                    if (item == tuning_coefficient_ki_value)
+                                    {
+                                        QString w102=tuning_coefficient_ki_value->text();
+                                        tuning_coefficient_ki_value->setToolTip(w102);
+                                    }
+                                    else
+                                        if (item == tuning_coefficient_gb_value)
+                                        {
+                                            QString w103=tuning_coefficient_gb_value->text();
+                                            tuning_coefficient_gb_value->setToolTip(w103);
+                                        }
+                                        else
+                                            if (item == tuning_coefficient_kpsi_value)
+                                            {
+                                                QString w104=tuning_coefficient_kpsi_value->text();
+                                                tuning_coefficient_kpsi_value->setToolTip(w104);
+                                            }
+                                            else
+                                                if (item == tuning_coefficient_gp_value)
+                                                {
+                                                    QString w105=tuning_coefficient_gp_value->text();
+                                                    tuning_coefficient_gp_value->setToolTip(w105);
+                                                }
+                                                else
+                                                    if (item == tuning_coefficient_gpsi_value)
+                                                    {
+                                                        QString w106=tuning_coefficient_gpsi_value->text();
+                                                        tuning_coefficient_gpsi_value->setToolTip(w106);
+                                                    }
+                                                    else
+                                                        if (item == engine_duty_cycle_value)
+                                                        {
+                                                            QString w107=engine_duty_cycle_value->text();
+                                                            engine_duty_cycle_value->setToolTip(w107);
+                                                        }
+                                                        else
+                                                            if (item == time_cycle_value)
+                                                            {
+                                                                QString w108=time_cycle_value->text();
+                                                                time_cycle_value->setToolTip(w108);
+                                                            }
+                                                            else
+                                                                if (item == time_base_selection_value)
+                                                                {
+                                                                    QString w109=time_base_selection_value->text();
+                                                                    time_base_selection_value->setToolTip(w109);
+                                                                }
+                                                                else
+                                                                    if (item == item90)
+                                                                    {
+                                                                        QString w110=item90->text();
+                                                                        item90->setToolTip(w110);
+                                                                    }
+                                                                    else
+                                                                        if (item == switch_system_electrodrive_value)
+                                                                        {
+                                                                            QString w111=switch_system_electrodrive_value->text();
+                                                                            switch_system_electrodrive_value->setToolTip(w111);
+                                                                        }
 }
 
 void MainWindow::modelItemChangedSlot_5(QStandardItem *item)
@@ -4743,7 +4621,7 @@ void MainWindow::LoadProject(QString str)
                             read_data_identf_observer_value->setText(attribute_value);
                         }
                     }
-                }                
+                }
                 else if(xmlReader.name() == "combobox_3")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -4993,7 +4871,7 @@ void MainWindow::LoadProject(QString str)
                         if (attr.name().toString() == "value")
                         {
                             QString attribute_value = attr.value().toString();
-                             enter_moment_value->setText(attribute_value);
+                            enter_moment_value->setText(attribute_value);
                         }
                     }
                 }
@@ -5603,7 +5481,7 @@ void MainWindow::radioButton_toggled(bool checked)
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">5</tspan>');"));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">в</tspan>');"));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">р</tspan>');"));
-           }
+            }
         }
         else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
@@ -5621,7 +5499,7 @@ void MainWindow::radioButton_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">1</tspan>');"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">2</tspan>');"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').html('θ<tspan style=\"font-size: 15px;\" dy=\"3\">0</tspan>');"));
-           }
+            }
         }
     }
 }
@@ -5638,15 +5516,15 @@ void MainWindow::radioButton_2_toggled(bool checked)
         {
             if (checked)
             {
-//                teta_p=20;
-//                teta_z=50;
-//                teta_3=70;
-//                teta_c=76;
-//                teta_l_1=120;
-//                teta_pp=80;
-//                teta_l_2=120;
-//                teta_2=60;
-//                teta_4=40;
+                //                teta_p=20;
+                //                teta_z=50;
+                //                teta_3=70;
+                //                teta_c=76;
+                //                teta_l_1=120;
+                //                teta_pp=80;
+                //                teta_l_2=120;
+                //                teta_2=60;
+                //                teta_4=40;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 °C');").arg(teta_p,0,'f',2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931' ).text('%1 °C');").arg(teta_z, 0, 'f', 2));
@@ -5657,7 +5535,7 @@ void MainWindow::radioButton_2_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1011' ).text('%1 °C');").arg(teta_l_2, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1065').text('%1 °C');").arg(teta_2, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1097' ).text('%1 °C');").arg(teta_4, 0, 'f', 2));
-             }
+            }
         }
         if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
@@ -5706,7 +5584,7 @@ void MainWindow::radioButton_2_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').text('%1 °C');").arg(teta0_1,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 °C');").arg(teta0_2,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').text('%1 °C');").arg(teta0_0,0,'f',3));
-           }
+            }
         }
     }
 }
@@ -5722,16 +5600,16 @@ void MainWindow::radioButton_3_toggled(bool checked)
         if (temperature_regime_value->text() == "Статика (статор)")
         {
             if (checked)
-            {               
-//                C_p=0.034;
-//                C_z=0.35;
-//                C_3=0.23;
-//                C_c=0.034;
-//                C_l_1=0.067;
-//                C_pp=0.067;
-//                C_l_2=0.67;
-//                C_4=0.56;
-//                C_4=0.059;
+            {
+                //                C_p=0.034;
+                //                C_z=0.35;
+                //                C_3=0.23;
+                //                C_c=0.034;
+                //                C_l_1=0.067;
+                //                C_pp=0.067;
+                //                C_l_2=0.67;
+                //                C_4=0.56;
+                //                C_4=0.059;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Дж/К');").arg(C_z, 0, 'f', 2));
@@ -5746,33 +5624,33 @@ void MainWindow::radioButton_3_toggled(bool checked)
         }
         if (temperature_regime_value->text() == "Статика (упрощенный вариант)")
         {
-    if (checked)
-    {
-        C_0=0.034;
-        C_1=0.35;
-        C_2=0.23;
-        C_3=0.021;
-        C_4=0.034;
-        C_5=0.067;
-        C_k=0.067;
-        C_c=0.67;
-        C_p=0.56;
-        C_v=0.059;
+            if (checked)
+            {
+                C_0=0.034;
+                C_1=0.35;
+                C_2=0.23;
+                C_3=0.021;
+                C_4=0.034;
+                C_5=0.067;
+                C_k=0.067;
+                C_c=0.67;
+                C_p=0.56;
+                C_v=0.059;
 
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Дж/К');").arg(C_1, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Дж/К');").arg(C_2, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 Дж/К');").arg(C_3, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 Дж/К');").arg(C_5, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 Дж/К');").arg(C_k, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Дж/К');").arg(C_c, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
-        ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Дж/К');").arg(C_v, 0, 'f', 2));
-    }
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1231').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text827').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1037').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1239').text('%1 Дж/К');").arg(C_0, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1007').text('%1 Дж/К');").arg(C_1, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1361').text('%1 Дж/К');").arg(C_2, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text839').text('%1 Дж/К');").arg(C_3, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1145').text('%1 Дж/К');").arg(C_4, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text863').text('%1 Дж/К');").arg(C_5, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text919').text('%1 Дж/К');").arg(C_k, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text939').text('%1 Дж/К');").arg(C_c, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text971').text('%1 Дж/К');").arg(C_p, 0, 'f', 2));
+                ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text947').text('%1 Дж/К');").arg(C_v, 0, 'f', 2));
+            }
         }
         else if (temperature_regime_value->text() == "Статика (полный вариант)")
         {
@@ -5790,7 +5668,7 @@ void MainWindow::radioButton_3_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 Дж/К');").arg(C0_1,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').hide();"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').hide();"));
-           }
+            }
             else
             {
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').show();"));
@@ -5812,15 +5690,15 @@ void MainWindow::radioButton_4_toggled(bool checked)
         {
             if (checked)
             {
-//                P_p=20;
-//                P_z=100;
-//                P_3=120;
-//                P_c=502;
-//                P_l_1=67;
-//                P_pp=76;
-//                P_l_2=120;
-//                P_2=56;
-//                P_4=59;
+                //                P_p=20;
+                //                P_z=100;
+                //                P_3=120;
+                //                P_c=502;
+                //                P_l_1=67;
+                //                P_pp=76;
+                //                P_l_2=120;
+                //                P_2=56;
+                //                P_4=59;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1115').text('%1 Вт');").arg(P_p, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text931').text('%1 Вт');").arg(P_z, 0, 'f', 2));
@@ -5869,7 +5747,7 @@ void MainWindow::radioButton_4_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').text('%1 Вт');").arg(P_2,0,'f',3));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').hide();"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').hide();"));
-           }
+            }
             else
             {
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').show();"));
@@ -5891,15 +5769,15 @@ void MainWindow::radioButton_5_toggled(bool checked)
         {
             if (checked)
             {
-//                lambda_zp=0.034;
-//                lambda_zc=0.35;
-//                lambda_c3=0.23;
-//                lambda_pc=0.021;
-//                lambda_pz=0.034;
-//                lambda_l2c=0.067;
-//                lambda_l14=0.067;
-//                lambda_pl1=0.67;
-//                lambda_pl2=0.56;
+                //                lambda_zp=0.034;
+                //                lambda_zc=0.35;
+                //                lambda_c3=0.23;
+                //                lambda_pc=0.021;
+                //                lambda_pz=0.034;
+                //                lambda_l2c=0.067;
+                //                lambda_l14=0.067;
+                //                lambda_pl1=0.67;
+                //                lambda_pl2=0.56;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">zр</tspan>');"));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">zc</tspan>');"));
@@ -5916,21 +5794,21 @@ void MainWindow::radioButton_5_toggled(bool checked)
         {
             if (checked)
             {
-//                lambda_10=0.034;
-//                lambda_30=0.034;
-//                lambda_k0=0.34;
-//                lambda_50=0.93;
-//                lambda_3k=0.67;
-//                lambda_21=0.35;
-//                lambda_c2=0.23;
-//                lambda_c3=0.067;
-//                lambda_c4=0.56;
-//                lambda_45=0.56;
-//                lambda_pc=0.067;
-//                lambda_pb=0.059;
-//                lambda_b5=0.043;
-//                lambda_p5=0.0045;
-//                lambda_p2=0.021;
+                //                lambda_10=0.034;
+                //                lambda_30=0.034;
+                //                lambda_k0=0.34;
+                //                lambda_50=0.93;
+                //                lambda_3k=0.67;
+                //                lambda_21=0.35;
+                //                lambda_c2=0.23;
+                //                lambda_c3=0.067;
+                //                lambda_c4=0.56;
+                //                lambda_45=0.56;
+                //                lambda_pc=0.067;
+                //                lambda_pb=0.059;
+                //                lambda_b5=0.043;
+                //                lambda_p5=0.0045;
+                //                lambda_p2=0.021;
 
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">10</tspan>');"));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').html('λ<tspan style=\"font-size: 15px;\" dy=\"3\">30</tspan>');"));
@@ -5980,15 +5858,15 @@ void MainWindow::radioButton_6_toggled(bool checked)
         {
             if (checked)
             {
-//                lambda_zp=0.034;
-//                lambda_zc=0.35;
-//                lambda_c3=0.23;
-//                lambda_pc=0.021;
-//                lambda_pz=0.034;
-//                lambda_l22=0.067;
-//                lambda_l14=0.067;
-//                lambda_pl1=0.67;
-//                lambda_pl2=0.56;
+                //                lambda_zp=0.034;
+                //                lambda_zc=0.35;
+                //                lambda_c3=0.23;
+                //                lambda_pc=0.021;
+                //                lambda_pz=0.034;
+                //                lambda_l22=0.067;
+                //                lambda_l14=0.067;
+                //                lambda_pl1=0.67;
+                //                lambda_pl2=0.56;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт/°C');").arg(lambda_zp, 0, 'f', 3));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891'). text('%1 Вт/°C');").arg(lambda_zc, 0, 'f', 3));
@@ -6069,15 +5947,15 @@ void MainWindow::radioButton_7_toggled(bool checked)
         {
             if (checked)
             {
-//                dP_zp=100;
-//                dP_zc=220;
-//                dP_c3=230;
-//                dP_pс=450;
-//                dP_pz=120;
-//                dP_l22=340;
-//                dP_l14=560;
-//                dP_pl1=506;
-//                dP_pl2=760;
+                //                dP_zp=100;
+                //                dP_zc=220;
+                //                dP_c3=230;
+                //                dP_pс=450;
+                //                dP_pz=120;
+                //                dP_l22=340;
+                //                dP_l14=560;
+                //                dP_pl1=506;
+                //                dP_pl2=760;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 Вт');").arg(dP_zp, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 Вт);").arg(dP_zc, 0, 'f', 2));
@@ -6094,21 +5972,21 @@ void MainWindow::radioButton_7_toggled(bool checked)
         {
             if (checked)
             {
-//                P_10=100;
-//                P_30=220;
-//                P_k0=230;
-//                P_50=450;
-//                P_3k=120;
-//                P_21=340;
-//                P_c2=560;
-//                P_c3=506;
-//                P_c4=760;
-//                P_45=100;
-//                P_pc=220;
-//                P_pb=230;
-//                P_b5=450;
-//                P_p5=120;
-//                P_p2=340;
+                //                P_10=100;
+                //                P_30=220;
+                //                P_k0=230;
+                //                P_50=450;
+                //                P_3k=120;
+                //                P_21=340;
+                //                P_c2=560;
+                //                P_c3=506;
+                //                P_c4=760;
+                //                P_45=100;
+                //                P_pc=220;
+                //                P_pb=230;
+                //                P_b5=450;
+                //                P_p5=120;
+                //                P_p2=340;
 
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 °C');").arg(P_10, 0, 'f', 2));
                 ui->widget_5->ui->widget_3->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 °C');").arg(P_30, 0, 'f', 2));
@@ -6159,15 +6037,15 @@ void MainWindow::radioButton_8_toggled(bool checked)
         {
             if (checked)
             {
-//                d_teta_zp=10;
-//                d_teta_zc=5;
-//                d_teta_c3=20;
-//                d_teta_pc=30;
-//                d_teta_pz=15;
-//                d_teta_l22=10;
-//                d_teta_l14=5;
-//                d_teta_pl1=35;
-//                d_teta_pl2=35;
+                //                d_teta_zp=10;
+                //                d_teta_zc=5;
+                //                d_teta_c3=20;
+                //                d_teta_pc=30;
+                //                d_teta_pz=15;
+                //                d_teta_l22=10;
+                //                d_teta_l14=5;
+                //                d_teta_pl1=35;
+                //                d_teta_pl2=35;
 
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text1131').text('%1 °C');").arg(d_teta_zp, 0, 'f', 2));
                 ui->widget_5->ui->webEngineView_2->page()->runJavaScript(QString("$('#text891').text('%1 °C');").arg(d_teta_zc, 0, 'f', 2));
@@ -6330,7 +6208,7 @@ void MainWindow::radioButton_9_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863-6').hide();"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text863').hide();"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947').hide();"));
-           }
+            }
             else
             {
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text947-1').show();"));
@@ -6448,7 +6326,7 @@ void MainWindow::on_save_tepl_dannie_clicked()
     QString filter = "Файл конфигурации тепловых данных (*.xml);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../save", filter);
 
-   // QFile file(QString("/home/elf/ImView/data/tepl.xml"));
+    // QFile file(QString("/home/elf/ImView/data/tepl.xml"));
     QFile file(str);
     file.open(QIODevice::WriteOnly);
 
@@ -6779,7 +6657,7 @@ void MainWindow::on_save_Vent_dannie_clicked()
     QString filter2 = "Файл конфигурации вентиляционных данных (*.xml);;Все файлы (*.*)";
     QString str2 = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../save", filter2);
 
-   // QFile file(QString("/home/elf/ImView/data/vent.xml"));
+    // QFile file(QString("/home/elf/ImView/data/vent.xml"));
     QFile file(str2);
     file.open(QIODevice::WriteOnly);
 
@@ -6871,8 +6749,8 @@ void MainWindow::on_load_tepl_dannie_clicked()
 
 void MainWindow::LoadTeplDannie(QString str)
 {
-//    QDir().mkdir("/tmp/imview");
-//    JlCompress::extractDir(str,"/tmp/imview");
+    //    QDir().mkdir("/tmp/imview");
+    //    JlCompress::extractDir(str,"/tmp/imview");
 
 
     QFile file(str);
@@ -7645,99 +7523,99 @@ void MainWindow::LoadTeplDannie(QString str)
                         }
                     }
                 }
-            else if(xmlReader.name() == "poleznaja_mochnost")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                else if(xmlReader.name() == "poleznaja_mochnost")
                 {
-                    if (attr.name().toString() == "value")
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->setText(attribute_value);
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(68,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "napragenie_pitanija")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koefficient_poleznogo_deistvia")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koefficient_mochnosti")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "udelnaje_soprotivlenie_aluminia")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "srednij_diametr_korotkozamykauchego_kolca")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "obmotochny_koefficient_obmotki_statora")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "koefficient_ckosa_pazov")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->setText(attribute_value);
+                        }
                     }
                 }
             }
-            else if(xmlReader.name() == "napragenie_pitanija")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(69,1)->setText(attribute_value);
-                    }
-                }
-            }
-            else if(xmlReader.name() == "koefficient_poleznogo_deistvia")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(70,1)->setText(attribute_value);
-                    }
-                }
-            }
-            else if(xmlReader.name() == "koefficient_mochnosti")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(71,1)->setText(attribute_value);
-                    }
-                }
-            }
-            else if(xmlReader.name() == "udelnaje_soprotivlenie_aluminia")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(72,1)->setText(attribute_value);
-                    }
-                }
-            }
-            else if(xmlReader.name() == "srednij_diametr_korotkozamykauchego_kolca")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(73,1)->setText(attribute_value);
-                    }
-                }
-            }
-            else if(xmlReader.name() == "obmotochny_koefficient_obmotki_statora")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(74,1)->setText(attribute_value);
-                    }
-                }
-            }
-            else if(xmlReader.name() == "koefficient_ckosa_pazov")
-            {
-                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                {
-                    if (attr.name().toString() == "value")
-                    {
-                        QString attribute_value = attr.value().toString();
-                        ui->widget_5->ui->widget_2->ui->tableWidget->item(75,1)->setText(attribute_value);
-                    }
-                }
-            }
+            xmlReader.readNext(); // Переходим к следующему элементу файла
         }
-        xmlReader.readNext(); // Переходим к следующему элементу файла
-     }
         file.close(); // Закрываем файл
-  }
+    }
 }
 
 void MainWindow::on_load_Vent_dannie_clicked()
@@ -7996,7 +7874,7 @@ void MainWindow::on_tepl_result_clicked()
             //base_tepl.lambda_c   = ui->widget_5->ui->widget_2->ui->tableWidget->item(30,1)->text().toDouble();
             base_tepl.lambda_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(31,1)->text().toDouble();
             base_tepl.q_mi     = ui->widget_5->ui->widget_2->ui->tableWidget->item(32,1)->text().toDouble();
-           // base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
+            // base_tepl.z_i     = ui->widget_5->ui->widget_2->ui->tableWidget->item(33,1)->text().toDouble();
             base_tepl.Lp1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(34,1)->text().toDouble();
             base_tepl.lambda_il     = ui->widget_5->ui->widget_2->ui->tableWidget->item(35,1)->text().toDouble();
             base_tepl.K_l1     = ui->widget_5->ui->widget_2->ui->tableWidget->item(36,1)->text().toDouble();
@@ -8005,7 +7883,7 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.lambda_ekpa      = ui->widget_5->ui->widget_2->ui->tableWidget->item(39,1)->text().toDouble();
 
             //base_tepl.L_li    = ui->widget_5->ui->widget_2->ui->tableWidget->item(40,1)->text().toDouble();
-           // base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
+            // base_tepl.alpha_l1    = ui->widget_5->ui->widget_2->ui->tableWidget->item(41,1)->text().toDouble();
             base_tepl.lambda_m2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(42,1)->text().toDouble();
             base_tepl.qc    = ui->widget_5->ui->widget_2->ui->tableWidget->item(43,1)->text().toDouble();
             base_tepl.Z2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(44,1)->text().toDouble();
@@ -8013,10 +7891,10 @@ void MainWindow::on_tepl_result_clicked()
             base_tepl.Bk    = ui->widget_5->ui->widget_2->ui->tableWidget->item(46,1)->text().toDouble();
             //base_tepl.alpha_а2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(47,1)->text().toDouble();
             base_tepl.S_l2    = ui->widget_5->ui->widget_2->ui->tableWidget->item(48,1)->text().toDouble();
-           // base_tepl.alpha_asch      = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
+            // base_tepl.alpha_asch      = ui->widget_5->ui->widget_2->ui->tableWidget->item(49,1)->text().toDouble();
 
             base_tepl.S_isch    = ui->widget_5->ui->widget_2->ui->tableWidget->item(50,1)->text().toDouble();
-           // base_tepl.alpha_ast    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
+            // base_tepl.alpha_ast    = ui->widget_5->ui->widget_2->ui->tableWidget->item(51,1)->text().toDouble();
             base_tepl.S_ist    = ui->widget_5->ui->widget_2->ui->tableWidget->item(52,1)->text().toDouble();
             base_tepl.alpha_st    = ui->widget_5->ui->widget_2->ui->tableWidget->item(53,1)->text().toDouble();
             base_tepl.alpha_r    = ui->widget_5->ui->widget_2->ui->tableWidget->item(54,1)->text().toDouble();
@@ -8351,7 +8229,7 @@ void MainWindow::on_tepl_result_clicked()
 
             //+Коэффициент теплоотдачи от ротора к внутреннему воздуху
             alpha_sigma = (((2*base_tepl.delta_ai)/(base_tepl.Dp1/2))*(base_tepl.lambda_v/(2*base_tepl.delta_ai)))/
-            log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
+                    log(1+(base_tepl.delta_ai/(base_tepl.Dp1/2)));
 
             //+Тепловая проводимость воздушного зазора:
             Lambda_sigma = (M_PI / 2) * (base_tepl.Di1 * base_tepl.L1 * alpha_sigma);
@@ -8370,12 +8248,12 @@ void MainWindow::on_tepl_result_clicked()
 
             //+Эквивалентный коэффициент теплопроводности обмотки
             Lambda_ekv = 0.00165*(1 + 0.0007 * base_tepl.teta_m)*(1 - 3.2 * base_tepl.d1 * (1 - 9.2 * base_tepl.Kp + 5.2 *
-            pow(base_tepl.Kp,2)) + 81 * pow(base_tepl.d1,2))*( 2.11 * pow(base_tepl.Kz,1.5) * 1.15 - 0.32)*pow((base_tepl.lambda_l / 0.00162 ),0.33) *
-            pow((base_tepl.lambda_em/ 0.00143),0.25);
+                                                                                            pow(base_tepl.Kp,2)) + 81 * pow(base_tepl.d1,2))*( 2.11 * pow(base_tepl.Kz,1.5) * 1.15 - 0.32)*pow((base_tepl.lambda_l / 0.00162 ),0.33) *
+                    pow((base_tepl.lambda_em/ 0.00143),0.25);
 
             //+Эквивалентная тепловая проводимость обмотки к зубцам
             Lambda_epz = ((base_tepl.d1 + delta) * Lambda_ekv * 2 * base_tepl.Hz1 * base_tepl.Z1 * base_tepl.L1)/
-            ((base_tepl.Bp - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
+                    ((base_tepl.Bp - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
 
             //+Тепловая проводимость воздушного зазора между пазовой изоляцией и зубцами статора
             Lambda_i1z = (2 * base_tepl.Hz1 * base_tepl.L1 * base_tepl.Z1 * base_tepl.lambda_i)/base_tepl.sigma_i;
@@ -8391,28 +8269,28 @@ void MainWindow::on_tepl_result_clicked()
 
             //+Эквивалентная тепловая проводимость обмотки к спинке
             Lambda_ekpa = ((base_tepl.d1 + delta) * base_tepl.lambda_ek * base_tepl.Bp * base_tepl.L1 * base_tepl.Z1) /
-            ((base_tepl.Hz1 - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
+                    ((base_tepl.Hz1 - 2 * base_tepl.delta_ip1) * (base_tepl.sigma_ipr + delta));
 
             //+Тепловая проводимость пазовой изоляции
             Lambda_2ip1 = (base_tepl.Z1 * base_tepl.Bp * base_tepl.L1 * base_tepl.lambda_ip1)/base_tepl.delta_ip1;
 
             //+Проводимость спинки статора в направлении теплового потока от пазовой части обмотки
             Lambda_a = base_tepl.Ha1/((0.5 * 3.14 * (base_tepl.Da1 - base_tepl.Ha1) + base_tepl.Z1 * base_tepl.Bp) *
-            base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1);
+                                      base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1);
 
             //+Общая тепловая проводимость между пазовой частью обмотки и спинкой статора
             Lambda_na = 1/((1/Lambda_2ip1) + (1/Lambda_ekpa)+(1/Lambda_i1a)+(1/Lambda_a));
 
             //+Проводимость между зубцом и спинкой статора
             Lambda_za = base_tepl.L1 * base_tepl.Kc1 * base_tepl.lambda_c1/(base_tepl.Hz1/( 2 * base_tepl.Z1 * base_tepl.Bz1) +
-            base_tepl.Ha1 / (2 * 3.14 * (base_tepl.Da1 - base_tepl.Ha1)));
+                                                                            base_tepl.Ha1 / (2 * 3.14 * (base_tepl.Da1 - base_tepl.Ha1)));
 
             //+hТепловая проводимость между пазовой и лобовой частями обмотки статора
             Lambda_pl = 12 * base_tepl.lambda_mi * base_tepl.q_mi * base_tepl.Z1 / (base_tepl.L1 + base_tepl.Lp1);
 
             //+Тепловая проводимость изоляции
             Lambda_il= (base_tepl.lambda_il * 2 * (base_tepl.Hz1 + base_tepl.Bp) * base_tepl.L1 * base_tepl.Z1 *
-            base_tepl.K_l1) / base_tepl.delta_il1;
+                        base_tepl.K_l1) / base_tepl.delta_il1;
 
             //+Эквивалентная тепловая проводимость лобовой части
             Lambda_el = (base_tepl.lambda_ekuz + base_tepl.lambda_ekpa) * base_tepl.Lp1 / base_tepl.L1;
@@ -8461,7 +8339,7 @@ void MainWindow::on_tepl_result_clicked()
             delta_Kp = base_tepl.n_p * base_tepl.a_p / 3.14 * base_tepl.D_ct * k_p;
             ro_t  = sqrt((2 * base_tepl.alpha_st)/(base_tepl.lambda_ct * base_tepl.Bp));
             Krp1 = (1 / (ro_t * base_tepl.h_p)) * (tanh(ro_t * base_tepl.h_p) * (2 * base_tepl.h_p/ base_tepl.t_p) *
-            (1-(base_tepl.alpha_r / alpha_stsumm)) + ro_t * base_tepl.h_p *delta_Kp);
+                                                   (1-(base_tepl.alpha_r / alpha_stsumm)) + ro_t * base_tepl.h_p *delta_Kp);
             Lambda_ct1 = alpha_stsumm * 3.14 * base_tepl.D_ct * k_p * Krp1;
 
             //Параметр теплоотдачи
@@ -9065,9 +8943,9 @@ void MainWindow::on_tepl_result_clicked()
                 tepl_struct.dPel2=ui->energy_results->item(3,2)->text().toDouble();
             }
 
-           lambda0_10 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_1n;
-           lambda0_20 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_2n;
-           lambda0_12 = (tepl_struct.dPel1+tepl_struct.dPel2+tepl_struct.dPct)/(teta0_2n-teta0_2n);
+            lambda0_10 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_1n;
+            lambda0_20 = (tepl_struct.dPel1+tepl_struct.dPct)/teta0_2n;
+            lambda0_12 = (tepl_struct.dPel1+tepl_struct.dPel2+tepl_struct.dPct)/(teta0_2n-teta0_2n);
 
             //Решение СЛАУ
 
@@ -9076,71 +8954,71 @@ void MainWindow::on_tepl_result_clicked()
             while(n<n_k)
             {
                 n+=0.1;
-            double a_data[] = { lambda0_10+lambda0_12, -lambda0_12,
-                                -lambda0_12, lambda0_10+lambda0_12 };
+                double a_data[] = { lambda0_10+lambda0_12, -lambda0_12,
+                                    -lambda0_12, lambda0_10+lambda0_12 };
 
-            //double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
+                //double b_data[] = { dPel1+dPct+lambda0_10*teta0_0, dPel2+lambda0_10*teta0_0 };
 
-            double b_data[] = { tepl_struct.dPel1+tepl_struct.dPct+lambda0_10*teta0_0, tepl_struct.dPel2+lambda0_10*teta0_0 };
+                double b_data[] = { tepl_struct.dPel1+tepl_struct.dPct+lambda0_10*teta0_0, tepl_struct.dPel2+lambda0_10*teta0_0 };
 
-            gsl_matrix_view m = gsl_matrix_view_array (a_data, 2, 2);
+                gsl_matrix_view m = gsl_matrix_view_array (a_data, 2, 2);
 
-            gsl_vector_view b = gsl_vector_view_array (b_data, 2);
+                gsl_vector_view b = gsl_vector_view_array (b_data, 2);
 
-            gsl_vector *x = gsl_vector_alloc (2);
+                gsl_vector *x = gsl_vector_alloc (2);
 
-            int s;
+                int s;
 
-            gsl_permutation * p = gsl_permutation_alloc (2);
+                gsl_permutation * p = gsl_permutation_alloc (2);
 
-            gsl_linalg_LU_decomp (&m.matrix, p, &s);
+                gsl_linalg_LU_decomp (&m.matrix, p, &s);
 
-            gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
+                gsl_linalg_LU_solve (&m.matrix, p, &b.vector, x);
 
-            //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
+                //ВЫВОД ДАННЫХ В ТАБЛИЦЫ
 
-            //вывод температур в таблицу
-            teta0_1=gsl_vector_get(x, 0);
-            teta0_2=gsl_vector_get(x, 1);
+                //вывод температур в таблицу
+                teta0_1=gsl_vector_get(x, 0);
+                teta0_2=gsl_vector_get(x, 1);
 
-            gsl_permutation_free (p);
-            gsl_vector_free (x);
+                gsl_permutation_free (p);
+                gsl_vector_free (x);
 
-            //Вывод температур в таблицу
-            ui->widget_5->ui->tableWidget->item(0,0)->setText("Температура_1, °C");
-            ui->widget_5->ui->tableWidget->item(1,0)->setText("Температура_2, °C");
+                //Вывод температур в таблицу
+                ui->widget_5->ui->tableWidget->item(0,0)->setText("Температура_1, °C");
+                ui->widget_5->ui->tableWidget->item(1,0)->setText("Температура_2, °C");
 
-            ui->widget_5->ui->tableWidget->item(0,1)->setText(QString::number(teta0_1,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,1)->setText(QString::number(teta0_2,'f',3));
+                ui->widget_5->ui->tableWidget->item(0,1)->setText(QString::number(teta0_1,'f',3));
+                ui->widget_5->ui->tableWidget->item(1,1)->setText(QString::number(teta0_2,'f',3));
 
-            ui->widget_5->ui->tableWidget->item(0,2)->setText("Теплоемкость_1, Дж/К");
-            ui->widget_5->ui->tableWidget->item(1,2)->setText("Теплоемкость_2, Дж/К");
+                ui->widget_5->ui->tableWidget->item(0,2)->setText("Теплоемкость_1, Дж/К");
+                ui->widget_5->ui->tableWidget->item(1,2)->setText("Теплоемкость_2, Дж/К");
 
-            ui->widget_5->ui->tableWidget->item(0,3)->setText(QString::number(C_0,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,3)->setText(QString::number(C_1,'f',3));
+                ui->widget_5->ui->tableWidget->item(0,3)->setText(QString::number(C_0,'f',3));
+                ui->widget_5->ui->tableWidget->item(1,3)->setText(QString::number(C_1,'f',3));
 
-            ui->widget_5->ui->tableWidget->item(0,4)->setText("Мощность_рассеяния_1, Вт");
-            ui->widget_5->ui->tableWidget->item(1,4)->setText("Мощность_рассеяния_2, Вт");
+                ui->widget_5->ui->tableWidget->item(0,4)->setText("Мощность_рассеяния_1, Вт");
+                ui->widget_5->ui->tableWidget->item(1,4)->setText("Мощность_рассеяния_2, Вт");
 
-            ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(tepl_struct.dPel1+tepl_struct.dPct+lambda0_10*teta0_0,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(tepl_struct.dPel2+lambda0_10*teta0_0,'f',3));
+                ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(tepl_struct.dPel1+tepl_struct.dPct+lambda0_10*teta0_0,'f',3));
+                ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(tepl_struct.dPel2+lambda0_10*teta0_0,'f',3));
 
-            //ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
-            //ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
+                //ui->widget_5->ui->tableWidget->item(0,5)->setText(QString::number(dPel1+dPct+lambda0_10*teta0_0,'f',3));
+                //ui->widget_5->ui->tableWidget->item(1,5)->setText(QString::number(dPel2+lambda0_10*teta0_0,'f',3));
 
 
-            ui->widget_5->ui->tableWidget->item(0,6)->setText("Теплопроводность_1, Вт/°C");
-            ui->widget_5->ui->tableWidget->item(1,6)->setText("Теплопроводность_2, Вт/°C");
+                ui->widget_5->ui->tableWidget->item(0,6)->setText("Теплопроводность_1, Вт/°C");
+                ui->widget_5->ui->tableWidget->item(1,6)->setText("Теплопроводность_2, Вт/°C");
 
-            ui->widget_5->ui->tableWidget->item(0,7)->setText(QString::number(lambda_10,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,7)->setText(QString::number(lambda_30,'f',3));
+                ui->widget_5->ui->tableWidget->item(0,7)->setText(QString::number(lambda_10,'f',3));
+                ui->widget_5->ui->tableWidget->item(1,7)->setText(QString::number(lambda_30,'f',3));
 
-            ui->widget_5->ui->tableWidget->item(0,8)->setText("Падение_температуры_1, °C");
-            ui->widget_5->ui->tableWidget->item(1,8)->setText("Падение_температуры_2, °C");
+                ui->widget_5->ui->tableWidget->item(0,8)->setText("Падение_температуры_1, °C");
+                ui->widget_5->ui->tableWidget->item(1,8)->setText("Падение_температуры_2, °C");
 
-            ui->widget_5->ui->tableWidget->item(0,9)->setText(QString::number(d_teta_10,'f',3));
-            ui->widget_5->ui->tableWidget->item(1,9)->setText(QString::number(d_teta_30,'f',3));
-        }}
+                ui->widget_5->ui->tableWidget->item(0,9)->setText(QString::number(d_teta_10,'f',3));
+                ui->widget_5->ui->tableWidget->item(1,9)->setText(QString::number(d_teta_30,'f',3));
+            }}
         if (temperature_regime_value->text() == "Двухмассовая модель (эксперимент)")
         {
             ui->widget_5->ui->tabWidget->show();
@@ -9443,7 +9321,7 @@ void MainWindow::on_vent_result_clicked()
                 ui->tableWidget_8->item(8, 2)->setText(QString::number(omega,'f',3));
             }
 
-           // ne=0.19*sin(M_PI)*(Qp/Qmax);
+            // ne=0.19*sin(M_PI)*(Qp/Qmax);
             Pv=(Qp*Hp);
             double dPvk=0.01;
             double dPsvp=0.001;
@@ -10098,7 +9976,7 @@ void MainWindow::save_file()
 
     xmlWriter.writeStartElement("pressure");
     xmlWriter.writeAttribute("value", (barometric_pressure_value->text()));
-    xmlWriter.writeEndElement();    
+    xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("selected_row");
     xmlWriter.writeAttribute("value", QString::number(rowNumber));
@@ -10251,12 +10129,12 @@ void MainWindow::printTable(QPrinter *printer, bool isPreview)
     out <<  "<html>\n"
             "<head>\n"
             "<meta Content=\"Text/html; charset=Windows-1251\">\n"
-            <<  QString("<title>%1</title>\n").arg(dirName)
-            <<  "</head>\n"
-            "<body bgcolor=#ffffff link=#5000A0>\n"
-            "<table border=1 cellspacing=0 cellpadding=2>\n";
+         <<  QString("<title>%1</title>\n").arg(dirName)
+          <<  "</head>\n"
+              "<body bgcolor=#ffffff link=#5000A0>\n"
+              "<table border=1 cellspacing=0 cellpadding=2>\n";
 
-        // headers
+    // headers
     out << "<thead><tr bgcolor=#f0f0f0>";
     for (int column = 0; column < columnCount; column++)
         if (!ui->treeView->isColumnHidden(column))
@@ -10268,16 +10146,16 @@ void MainWindow::printTable(QPrinter *printer, bool isPreview)
     for (int row = 0; row < rowCount; row++)
     {
         out << "<tr>";
-            for (int column = 0; column < columnCount; column++)
+        for (int column = 0; column < columnCount; column++)
+        {
+            if (!ui->treeView->isColumnHidden(column))
             {
-                if (!ui->treeView->isColumnHidden(column))
-                {
-                    QString data = ui->treeView->model()->data(ui->treeView->model()->index(row, column)).toString().simplified();
-                    out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
-                }
+                QString data = ui->treeView->model()->data(ui->treeView->model()->index(row, column)).toString().simplified();
+                out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
             }
-            out << "</tr>\n";
         }
+        out << "</tr>\n";
+    }
     out <<  "</table>\n"
             "</body>\n"
             "</html>\n";
@@ -10419,7 +10297,7 @@ void MainWindow::actioncopy()
     }
     if(ui->lineEdit_16->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10436,7 +10314,7 @@ void MainWindow::actioncopy()
     }
     if(ui->lineEdit_14->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10453,7 +10331,7 @@ void MainWindow::actioncopy()
     }
     if(ui->lineEdit_17->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10470,7 +10348,7 @@ void MainWindow::actioncopy()
     }
     if(ui->lineEdit_15->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10487,7 +10365,7 @@ void MainWindow::actioncopy()
     }
     if(ui->lineEdit_18->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10504,7 +10382,7 @@ void MainWindow::actioncopy()
     }
     if(sesion_name_value1->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10533,7 +10411,7 @@ void MainWindow::actionpaste()
     }
     if(ui->lineEdit_13->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10547,7 +10425,7 @@ void MainWindow::actionpaste()
     }
     if(ui->lineEdit_16->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10561,7 +10439,7 @@ void MainWindow::actionpaste()
     }
     if(ui->lineEdit_14->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10575,7 +10453,7 @@ void MainWindow::actionpaste()
     }
     if(ui->lineEdit_17->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10589,7 +10467,7 @@ void MainWindow::actionpaste()
     }
     if(ui->lineEdit_15->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10603,7 +10481,7 @@ void MainWindow::actionpaste()
     }
     if(ui->lineEdit_18->text().isEmpty())
     {
-    return;
+        return;
     }
     else
     {
@@ -10617,7 +10495,7 @@ void MainWindow::actionpaste()
     }
     if(sesion_name_value1->text().isEmpty())
     {
-    return;
+        return;
     }
 }
 
@@ -10717,7 +10595,7 @@ void MainWindow::actionredo()
         ui->lineEdit_18->redo();
         undoOperation = false;
     }
-   /* if(redoText == "tablewidget")
+    /* if(redoText == "tablewidget")
     {
         undoOperation = true;
         ui->tableWidget->redo();
@@ -10918,16 +10796,16 @@ void MainWindow::loadFile(const QString &fileName)
 {
     // setWindowTitle(fileName + QString(" - IM View"));
     // dat->table();
-     //on_LoadProgect_clicked();
-     LoadProject(fileName);
-     setCurrentFile(fileName);
+    //on_LoadProgect_clicked();
+    LoadProject(fileName);
+    setCurrentFile(fileName);
 
-     QFileInfo fi(fileName);
-     QString base = fi.baseName();
-     ui->label_9->setText(base);
-     int index = ui->tabWidget->currentIndex();
-     QString currentTabText = ui->tabWidget->tabText(index);
-     setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
+    QFileInfo fi(fileName);
+    QString base = fi.baseName();
+    ui->label_9->setText(base);
+    int index = ui->tabWidget->currentIndex();
+    QString currentTabText = ui->tabWidget->tabText(index);
+    setWindowTitle(currentTabText + "@" + QString(base) + QString(" - IM View"));
 }
 
 void::MainWindow::close_progect()
@@ -11079,49 +10957,49 @@ void MainWindow::poisk()
     }
 
 
-// if ((number == 2) && (number < 3))    {
+    // if ((number == 2) && (number < 3))    {
 
 
-//         if(ui->tableWidget_16->isEnabled() == true)
-//         {
-//             for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
-//             {
-//                 for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
-//                 {
-//                     moc_2 = ui->tableWidget_16->item(x,i)->text();
+    //         if(ui->tableWidget_16->isEnabled() == true)
+    //         {
+    //             for(x = xz; x <ui->tableWidget_16->rowCount(); x++)
+    //             {
+    //                 for(i = iz; i <ui->tableWidget_16->columnCount(); i++)
+    //                 {
+    //                     moc_2 = ui->tableWidget_16->item(x,i)->text();
 
-//                     j = jz;
-//                     while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
-//                     {
-//                         ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
+    //                     j = jz;
+    //                     while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive )) != -1)
+    //                     {
+    //                         ui->tableWidget_16->item(x,i)->setBackground(Qt::green);
 
-//                         QSettings settings( "BRU", "IM View");
-//                         settings.setValue( "iz", i+1);
-//                         settings.setValue( "jz", j+1);
-//                         settings.setValue( "xz", x);
+    //                         QSettings settings( "BRU", "IM View");
+    //                         settings.setValue( "iz", i+1);
+    //                         settings.setValue( "jz", j+1);
+    //                         settings.setValue( "xz", x);
 
-//                         if(x == ui->tableWidget_16->rowCount()-1)
-//                         {
-//                             settings.setValue( "iz", i+1);
-//                         }
-//                         return;
-//                     }
-//                     jz = 0;
-//                 }
-//                 iz = 0;
-//             }
+    //                         if(x == ui->tableWidget_16->rowCount()-1)
+    //                         {
+    //                             settings.setValue( "iz", i+1);
+    //                         }
+    //                         return;
+    //                     }
+    //                     jz = 0;
+    //                 }
+    //                 iz = 0;
+    //             }
 
-//             QSettings settings( "BRU", "IM View");
-//             settings.setValue( "iz", 0);
-//             settings.setValue( "xz", 0);
-//             settings.setValue( "jz", 0);
-//             settings.setValue( "number", 3);
-//             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
-//             ui->tabWidget->setCurrentIndex(3);
-//             ui->tabWidget_2->setCurrentIndex(0);
-//             ui->electromagn_result->setFocus();
-//         }
-//     }
+    //             QSettings settings( "BRU", "IM View");
+    //             settings.setValue( "iz", 0);
+    //             settings.setValue( "xz", 0);
+    //             settings.setValue( "jz", 0);
+    //             settings.setValue( "number", 3);
+    //             QMessageBox::information(this, tr("IM View"), tr("Анализ таблицы закончен"));
+    //             ui->tabWidget->setCurrentIndex(3);
+    //             ui->tabWidget_2->setCurrentIndex(0);
+    //             ui->electromagn_result->setFocus();
+    //         }
+    //     }
 
     if ((number == 3) && (number < 4))
     {
@@ -11954,7 +11832,7 @@ void MainWindow::zakr()
                 ui->tableWidget_10->item(x,i)->setBackground( QColor(200, 255, 255));
             }
         }
-    }    
+    }
 
     QSettings settings( "BRU", "IM View");
     settings.setValue( "ii", 0);
@@ -11994,13 +11872,13 @@ void MainWindow::select_all()
                 //int j = 0;
                 //while ((j = moc_2.indexOf(str, j, Qt::CaseSensitive)) != -1)
                 //{
-                    // QColor color(Qt::yellow);
-                    // QBrush br(color);
-                    // br.setColor(color);
-                   // ui->widget->modd->item(x,i)->setBackground(Qt::yellow);
-                    //ui->widget->ui->tableView->model()->setData(index,br, Qt::BackgroundRole);
-                   // ++j;
-              //  }
+                // QColor color(Qt::yellow);
+                // QBrush br(color);
+                // br.setColor(color);
+                // ui->widget->modd->item(x,i)->setBackground(Qt::yellow);
+                //ui->widget->ui->tableView->model()->setData(index,br, Qt::BackgroundRole);
+                // ++j;
+                //  }
 
                 // if(s==str)
                 // {
@@ -12283,7 +12161,7 @@ void MainWindow::rename()
     {
         for(x=xx;x<ui->graph_settings->rowCount();x++)
         {
-           QString moc_2 = ui->graph_settings->item(x,i)->text();
+            QString moc_2 = ui->graph_settings->item(x,i)->text();
 
             if(moc_2==str)
             {
@@ -12325,7 +12203,7 @@ void MainWindow::rename_all()
                 QSettings settings( "BRU", "IM View");
                 settings.setValue( "ii", i);
                 settings.setValue( "xx", x+1);
-               // return;
+                // return;
             }
         }
     }
@@ -12438,7 +12316,7 @@ void MainWindow::read_klass_izol()
         klass_izol.klass_B.B_B = 0.000102;
         G = klass_izol.klass_B.G_B;
         B = klass_izol.klass_B.B_B;
-            }
+    }
     else if(klass == "C")
     {
         klass_izol.klass_C.G_C = 21.8;
@@ -12786,14 +12664,14 @@ void MainWindow::onNodeExpandeds()
     buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this);
     //all_sesion_name_parametr->setIcon(QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-open.png"));
 
-   // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+    // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 }
 
 void MainWindow::onNodeCollapseds()
 {
     buttonColumnDelegate = new ButtonColumnDelegate(ui->treeView, this);
     all_sesion_name_parametr->setIcon(QIcon("/home/elf/ImView2_Qt6/data/img/icons/branch-closed.png"));
-   // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
+    // ui->treeView->setItemDelegateForColumn(1, buttonColumnDelegate);
 }
 
 void MainWindow::open_start_screen()
