@@ -137,6 +137,7 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug() << "Git hash:" << vers2;
 #endif
 
+    QString version = QString("Git hash: %1").arg(GIT_HASH);
 
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);

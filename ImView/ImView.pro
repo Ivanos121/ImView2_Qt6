@@ -174,6 +174,7 @@ HEADERS += \
     vent_settings.h \
     vent_tract.h \
     version.h \
+    version_hash.h \
     zerocorrector.h
 
 FORMS += \
@@ -224,4 +225,3 @@ RESOURCES += \
     Images.qrc 
 
 CODECFORSRC     = UTF-8
-
