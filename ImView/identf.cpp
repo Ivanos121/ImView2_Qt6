@@ -330,6 +330,17 @@ void identf::raschet_f()
         kpsi = wf->tuning_coefficient_kpsi_value->text().toDouble();
         gp = wf->tuning_coefficient_gp_value->text().toDouble();
         gpsi = wf->tuning_coefficient_gpsi_value->text().toDouble();
+
+        std::cout << gd << ki << gb << kpsi << gp << gpsi << std::endl;
+
+        // gd = 0.01;
+        // ki = 0.1;
+        // gb = 0.05;
+        // kpsi = 0.02;
+        // gp = 0.01;
+        // gpsi = 0.001;
+        model.init(base.P_nom, base.n_nom, base.U_fnom, base.cosf_nom, base.kpd_nom, base.muk, base.n_0,
+                   gd, gb, gp, ki,kpsi,gpsi);
     }
     else if (wf->calculation_mode_value->text() == "Автоматический" )
     {
@@ -377,6 +388,15 @@ void identf::raschet_f()
             kpsi = selectedKoeff.koeffs[4][col];
             gp = selectedKoeff.koeffs[5][col];
             gpsi = selectedKoeff.koeffs[6][col];
+
+            std::cout << gd << ki << gb << kpsi << gp << gpsi << std::endl;
+
+            // gd = 0.01;
+            // ki = 0.1;
+            // gb = 0.05;
+            // kpsi = 0.02;
+            // gp = 0.01;
+            // gpsi = 0.001;
         }
         else
         {
@@ -399,30 +419,30 @@ void identf::raschet_f()
     ui->plot->addPoint(3, 0, model.Lm);
 
 
-    if(wf->calculation_mode_value->text() == "Автоматический")
-    {
-        wf->ui->lineEdit_13->setText("0.01");
-        wf->ui->lineEdit_16->setText("0.1");
-        wf->ui->lineEdit_14->setText("0.05");
-        wf->ui->lineEdit_17->setText("0.02");
-        wf->ui->lineEdit_15->setText("0.01");
-        wf->ui->lineEdit_18->setText("0.0001");
-        wf->ui->lineEdit_13->setReadOnly(true);
-        wf->ui->lineEdit_16->setReadOnly(true);
-        wf->ui->lineEdit_14->setReadOnly(true);
-        wf->ui->lineEdit_17->setReadOnly(true);
-        wf->ui->lineEdit_15->setReadOnly(true);
-        wf->ui->lineEdit_18->setReadOnly(true);
-    }
-    else
-    {
-        wf->ui->lineEdit_13->setReadOnly(false);
-        wf->ui->lineEdit_16->setReadOnly(false);
-        wf->ui->lineEdit_14->setReadOnly(false);
-        wf->ui->lineEdit_17->setReadOnly(false);
-        wf->ui->lineEdit_15->setReadOnly(false);
-        wf->ui->lineEdit_18->setReadOnly(false);
-    }
+    // if(wf->calculation_mode_value->text() == "Автоматический")
+    // {
+    //     wf->ui->lineEdit_13->setText("0.01");
+    //     wf->ui->lineEdit_16->setText("0.1");
+    //     wf->ui->lineEdit_14->setText("0.05");
+    //     wf->ui->lineEdit_17->setText("0.02");
+    //     wf->ui->lineEdit_15->setText("0.01");
+    //     wf->ui->lineEdit_18->setText("0.0001");
+    //     wf->ui->lineEdit_13->setReadOnly(true);
+    //     wf->ui->lineEdit_16->setReadOnly(true);
+    //     wf->ui->lineEdit_14->setReadOnly(true);
+    //     wf->ui->lineEdit_17->setReadOnly(true);
+    //     wf->ui->lineEdit_15->setReadOnly(true);
+    //     wf->ui->lineEdit_18->setReadOnly(true);
+    // }
+    // else
+    // {
+    //     wf->ui->lineEdit_13->setReadOnly(false);
+    //     wf->ui->lineEdit_16->setReadOnly(false);
+    //     wf->ui->lineEdit_14->setReadOnly(false);
+    //     wf->ui->lineEdit_17->setReadOnly(false);
+    //     wf->ui->lineEdit_15->setReadOnly(false);
+    //     wf->ui->lineEdit_18->setReadOnly(false);
+    // }
     ui->plot->addPoint(0, key, model.R2);
     ui->plot->addPoint(1, key, model.L);
     ui->plot->addPoint(2, key, model.L);

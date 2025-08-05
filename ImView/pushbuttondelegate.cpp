@@ -139,7 +139,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(1000);
         return editor;
     }
     else if ((index.parent().row() == 1) && (index.row() == 2))
@@ -147,7 +147,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(1000);
         return editor;
     }
     else if ((index.parent().row() == 1) && (index.row() == 3))
@@ -155,7 +155,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(1000);
         return editor;
     }
     else if ((index.parent().row() == 1) && (index.row() == 4))
@@ -163,7 +163,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(1000);
         return editor;
     }
     else if ((index.parent().row() == 1) && (index.row() == 5))
@@ -171,7 +171,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(1000);
         return editor;
     }
     else if ((index.parent().row() == 1) && (index.row() == 6))
@@ -179,15 +179,17 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(1000);
         return editor;
     }
     else if ((index.parent().row() == 1) && (index.row() == 7))
     {
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
-        editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setDecimals(3);
+        editor->setMinimum(-1e9);
+        editor->setMaximum(1e9);
+
         return editor;
     }
     else if ((index.parent().row() == 2) && (index.row() == 0))
@@ -556,6 +558,12 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
         spinBox->setValue(value);
     }
+    else if ((index.parent().row() == 1) && (index.row() == 4))
+    {
+        double value = index.model()->data(index, Qt::EditRole).toDouble();
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->setValue(value);
+    }
     else if ((index.parent().row() == 1) && (index.row() == 5))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
@@ -566,8 +574,19 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
-    }    
+        //spinBox->setValue(value);
+        if (spinBox) {
+            spinBox->setValue(value);
+        }
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 7))
+    {
+        double value = index.model()->data(index, Qt::EditRole).toDouble();
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        if (spinBox) {
+            spinBox->setValue(value);
+        }
+    }
     else if ((index.parent().row() == 2) && (index.row() == 0))
     {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
@@ -919,6 +938,59 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QComboBox *comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
         model->setData(index, value);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 1))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 2))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 3))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 4))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 5))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 6))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+    else if ((index.parent().row() == 1) && (index.row() == 7))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        // spinBox->interpretText();
+        // double value = spinBox->value();
+        // model->setData(index, value, Qt::EditRole);
+        if (spinBox)
+        {
+            model->setData(index, spinBox->value(), Qt::EditRole);
+        }
     }
     else if ((index.parent().row() == 2) && (index.row() == 0))
     {

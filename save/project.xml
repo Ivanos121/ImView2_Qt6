@@ -2,7 +2,7 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="z1"/>
+            <project_name value="bb"/>
             <combobox_1 value="Внутренний источник данных"/>
             <project_path value="Указать каталог"/>
             <combobox_2 value="Внутренний источник данных"/>
@@ -13,13 +13,13 @@
             <combobox_6 value="Не сохранять"/>
             <combobox_7 value="Не сохранять"/>
             <combobox_8 value="Не сохранять"/>
-            <combobox_9 value="Автоматический"/>
-            <coeff_1 value="0"/>
-            <coeff_2 value="0"/>
-            <coeff_3 value="0"/>
-            <coeff_4 value="0"/>
-            <coeff_5 value="0"/>
-            <coeff_6 value="0"/>
+            <combobox_9 value="Ручной"/>
+            <coeff_1 value="0.01"/>
+            <coeff_2 value="0.1"/>
+            <coeff_3 value="0.05"/>
+            <coeff_4 value="0.02"/>
+            <coeff_5 value="0.01"/>
+            <coeff_6 value="2.01"/>
             <combobox_10 value="Одномассовая модель"/>
             <combobox_11 value="Cтатика"/>
             <combobox_12 value="Учитывать"/>
@@ -44,12 +44,6 @@
             <ind_L1 value="0.225"/>
             <ind_L2 value="0.225"/>
             <ind_Lm value="0.213"/>
-            <koeff_gd value="0.01"/>
-            <koeff_ki value="0.1"/>
-            <koeff_gb value="0.05"/>
-            <koeff_kpsi value="0.02"/>
-            <koeff_gp value="0.01"/>
-            <koeff_gpsi value="0.0001"/>
         </general_settings>
     </project>
 </resources>

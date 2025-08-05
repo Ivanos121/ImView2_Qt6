@@ -20,7 +20,7 @@ QWidget* SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
     // editor->setMaximum(100);
     editor->setRange(-100.0, 100.0);
     editor->setSingleStep(0.1);
-    editor->setDecimals(3);
+    editor->setDecimals(5);
 
     return editor;
 }
