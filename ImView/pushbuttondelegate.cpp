@@ -27,6 +27,15 @@ ButtonColumnDelegate::~ButtonColumnDelegate()
 
 }
 
+// QString ButtonColumnDelegate::displayText(const QVariant &value, const QLocale &locale) const {
+//     bool ok;
+//     double d = value.toDouble(&ok);
+//     if (ok) {
+//         return QString::number(d, 'f', 3); // 3 знака после запятой
+//     }
+//     return value.toString();
+// }
+
 QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 
@@ -189,7 +198,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         editor->setDecimals(3);
         editor->setMinimum(-1e9);
         editor->setMaximum(1e9);
-
+        editor->setSingleStep(0.001);
         return editor;
     }
     else if ((index.parent().row() == 2) && (index.row() == 0))
@@ -544,46 +553,88 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
+        if (spinBox)
+        {
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
+            spinBox->setValue(value);
+        }
     }
     else if ((index.parent().row() == 1) && (index.row() == 2))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
+        if (spinBox)
+        {
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
+            spinBox->setValue(value);
+        }
     }
     else if ((index.parent().row() == 1) && (index.row() == 3))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
+        if (spinBox)
+        {
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
+            spinBox->setValue(value);
+        }
     }
     else if ((index.parent().row() == 1) && (index.row() == 4))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
+        if (spinBox)
+        {
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
+            spinBox->setValue(value);
+        }
     }
     else if ((index.parent().row() == 1) && (index.row() == 5))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
+        if (spinBox)
+        {
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
+            spinBox->setValue(value);
+        }
     }
     else if ((index.parent().row() == 1) && (index.row() == 6))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        //spinBox->setValue(value);
         if (spinBox) {
-            spinBox->setValue(value);
-        }
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
+            spinBox->setValue(value);        }
     }
     else if ((index.parent().row() == 1) && (index.row() == 7))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        if (spinBox) {
+        if (spinBox)
+        {
+            spinBox->setDecimals(5); // минимум 3 знака после запятой
+            spinBox->setSingleStep(0.001);
+            spinBox->setMinimum(-1e9);
+            spinBox->setMaximum(1e9);
             spinBox->setValue(value);
         }
     }
@@ -984,12 +1035,11 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
     else if ((index.parent().row() == 1) && (index.row() == 7))
     {
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        // spinBox->interpretText();
-        // double value = spinBox->value();
-        // model->setData(index, value, Qt::EditRole);
         if (spinBox)
         {
-            model->setData(index, spinBox->value(), Qt::EditRole);
+            spinBox->interpretText();
+            double value = spinBox->value();
+            model->setData(index, value, Qt::EditRole);
         }
     }
     else if ((index.parent().row() == 2) && (index.row() == 0))

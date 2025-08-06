@@ -17,11 +17,21 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Список сохраненных параметров вентиляторов</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="Vent_datas" name="widget" native="true"/>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Tab 1</string>
+       <string>Аэродинамическая схема замещения вентиляционной сети</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
@@ -37,7 +47,7 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Tab 2</string>
+       <string>Диначические параметры</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
@@ -59,6 +69,12 @@
    <class>Plot</class>
    <extends>QWidget</extends>
    <header location="global">plot.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Vent_datas</class>
+   <extends>QWidget</extends>
+   <header>vent_datas.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

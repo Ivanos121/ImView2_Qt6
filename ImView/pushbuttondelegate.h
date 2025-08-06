@@ -30,6 +30,9 @@ public:
     void setNodeExpanded(const QModelIndex &index, bool expanded);
 
     void setRootIcon(const QIcon &icon);
+
+    //QString displayText(const QVariant &value, const QLocale &locale) const override;
+
 public slots:
     bool helpEvent( QHelpEvent* e, QAbstractItemView* view,
                    const QStyleOptionViewItem& option, const QModelIndex& index) override;

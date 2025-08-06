@@ -2722,8 +2722,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_7->setItem(8, 3, new QTableWidgetItem("град."));
     ui->tableWidget_7->setItem(9, 3, new QTableWidgetItem("град."));
     ui->tableWidget_7->setItem(10, 3, new QTableWidgetItem("alpha2"));
-    ui->tableWidget_7->setItem(11, 3, new QTableWidgetItem("м2"));
-    ui->tableWidget_7->setItem(12, 3, new QTableWidgetItem("м2"));
+    ui->tableWidget_7->setItem(11, 3, new QTableWidgetItem("м²"));
+    ui->tableWidget_7->setItem(12, 3, new QTableWidgetItem("м²"));
     ui->tableWidget_7->setItem(13, 3, new QTableWidgetItem("град."));
     ui->tableWidget_7->setItem(14, 3, new QTableWidgetItem("град."));
 
