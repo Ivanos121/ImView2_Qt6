@@ -231,7 +231,7 @@ public:
         *identf_scheme_zam_parametr,  *identf_scheme_zam_value;
     QStandardItem *item11, *item12, *calculation_mode_parametr, *calculation_mode_value,
         *item15, *item16, *electromagnetic_model_parametr, *electromagnetic_model_value, *engine_duty_cycle_parametr, *engine_duty_cycle_value;
-    QStandardItem *time_cycle_parametr, *time_cycle_value, *time_base_selection_parametr, *Time_base_selection_value, *tepl_model_parametr, *tepl_model_value, *start_tepl_temperature_parametr, *start_tepl_temperature_value, *temperature_regime_parametr, *temperature_regime_value;
+    QStandardItem *time_cycle_parametr, *time_cycle_value, *time_base_selection_parametr, *time_base_selection_value, *tepl_model_parametr, *tepl_model_value, *start_tepl_temperature_parametr, *start_tepl_temperature_value, *temperature_regime_parametr, *temperature_regime_value;
     QStandardItem *ventilation_model_parametr, *ventilation_model_value, *ventilation_regime_parametr, *ventilation_regime_value, *design_ventilation_system_parametr, *design_ventilation_system_value, *barometric_pressure_parametr, *barometric_pressure_value, *predicting_temperature_parametr, *predicting_temperature_value;
     QStandardItem *value_one_parametr, *value_one_value, *value_two_parametr, *value_two_value, *value_three_parametr, *value_three_value, *estimation_residual_thermal_life_parametr, *estimation_residual_thermal_life_value, *value_four_parametr, *value_four_value;
     QStandardItem *value_five_parametr, *value_five_value, *value_six_parametr, *value_six_value, *output_data_parametr, *output_data_value, *value_seven_parametr, *value_seven_value, *value_nine_parametr, *value_eight_value;
@@ -250,7 +250,7 @@ public:
         *tuning_coefficient_kpsi_parametr, *tuning_coefficient_kpsi_value;
     QStandardItem *tuning_coefficient_gp_parametr, *tuning_coefficient_gp_value,
         *tuning_coefficient_gpsi_parametr, *tuning_coefficient_gpsi_value,
-        *load_data_ruchn_identf_parametr,*load_data_ruchn_identf_value, *time_base_selection_value, *item108,
+        *load_data_ruchn_identf_parametr,*load_data_ruchn_identf_value, *item108,
         *item109, *item110;
     QStandardItem *item111, *item112, *item113, *item114, *item115,*search_kanals_parametr,
         *search_kanals_value, *item118, *item119, *item120;

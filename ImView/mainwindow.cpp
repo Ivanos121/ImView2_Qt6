@@ -3265,7 +3265,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(enter_type_experiment_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_3);
     connect(data_identification_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_4);
     connect(calculation_modes_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_5);
-    connect(time_work_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
+    connect(time_base_selection_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
     connect(time_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
     connect(time_start_in_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
 
@@ -4191,6 +4191,7 @@ void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
 {
     if (item == time_base_selection_value)
     {
+        volatile auto asd = item->text();
         if (item->text() == "Текущее время")
         {
             time_work_parametr->setEnabled(true);
@@ -4203,6 +4204,7 @@ void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
         }
     }
 }
+
 
 void MainWindow::modelItemChangedSlot_7(QStandardItem *item)
 {
