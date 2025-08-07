@@ -22,7 +22,7 @@ public:
     void raschet_vent_identf();
 public slots:
     void realtimeDataSlot();
-private:
+public:
     Ui::Vent_identf *ui;
 };
 

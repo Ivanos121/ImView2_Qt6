@@ -20,7 +20,7 @@ public:
     QStandardItemModel *modd2;
 
     void table();
-private:
+public:
     Ui::Vent_datas *ui;
     QSqlDatabase sdc;
     QString dataSourceFilename;

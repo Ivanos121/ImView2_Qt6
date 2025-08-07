@@ -1,5 +1,4 @@
 #include "vent_datas.h"
-#include "qsqlerror.h"
 #include "ui_vent_datas.h"
 #include "doubledelegate.h"
 
@@ -14,19 +13,19 @@ Vent_datas::Vent_datas(QWidget *parent)
     , ui(new Ui::Vent_datas)
 {
     ui->setupUi(this);
-    QSqlDatabase::removeDatabase("connection2");
-    sdc = QSqlDatabase::addDatabase("QSQLITE", "connection2");
-    sdc.setDatabaseName(QFileInfo("../data/base_db/ventdb.db").absoluteFilePath());
-    if (!sdc.open()) {
-        qDebug() << "Ошибка открытия базы данных 2:" << sdc.lastError().text();
-        return;
-    }
-    else
-    {
-        qDebug() << "база загружена2";
-    }
+    // QSqlDatabase::removeDatabase("connection2");
+    // sdc = QSqlDatabase::addDatabase("QSQLITE", "connection2");
+    // sdc.setDatabaseName(QFileInfo("../data/base_db/ventdb.db").absoluteFilePath());
+    // if (!sdc.open()) {
+    //     qDebug() << "Ошибка открытия базы данных 2:" << sdc.lastError().text();
+    //     return;
+    // }
+    // else
+    // {
+    //     qDebug() << "база загружена2";
+    // }
 
-    //table();
+    table();
 }
 
 Vent_datas::~Vent_datas()
@@ -41,19 +40,19 @@ void Vent_datas::table()
     model2->setEditStrategy(QSqlTableModel::OnFieldChange);
     model2->select();
 
-    QSortFilterProxyModel *proxy1 = new QSortFilterProxyModel();
-    proxy1->setSourceModel(model2);
+    QSortFilterProxyModel *proxy2 = new QSortFilterProxyModel();
+    proxy2->setSourceModel(model2);
 
     modd2=new QStandardItemModel();
     modd2->setSortRole(Qt::UserRole);
 
-    for (int z =0; z< proxy1->rowCount(); ++z)
+    for (int z =0; z< proxy2->rowCount(); ++z)
     {
-        for (int y =0; y< proxy1->columnCount(); ++y)
+        for (int y =0; y< proxy2->columnCount(); ++y)
         {
             QStandardItem *item = new QStandardItem();
-            item->setData(proxy1->index(z,y).data().toString(), Qt::DisplayRole);
-            item->setData(proxy1->index(z,y).data().toString(), Qt::UserRole);
+            item->setData(proxy2->index(z,y).data().toString(), Qt::DisplayRole);
+            item->setData(proxy2->index(z,y).data().toString(), Qt::UserRole);
             item->setTextAlignment(Qt::AlignCenter);
             modd2->setItem(z,y,item);
         }

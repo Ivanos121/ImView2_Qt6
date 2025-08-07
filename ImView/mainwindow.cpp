@@ -66,6 +66,8 @@
 #include "ui_draw_line.h"
 #include "ui_draw_poper.h"
 #include "ui_teplschem.h"
+#include "ui_vent_datas.h"
+#include "ui_vent_identf.h"
 #include "ui_vent_model.h"
 #include "ui_trend.h"
 #include "ui_datas.h"
@@ -3366,12 +3368,14 @@ void MainWindow::closeEvent (QCloseEvent *event)
         switch (resBtn)
         {
         case QMessageBox::Save:
+            close_sql_base();
             ui->widget_3->stop();
             save_file();
             dir.removeRecursively();
             event->accept();
             break;
         case QMessageBox::Discard:
+            close_sql_base();
             ui->widget_3->stop();
             dir.removeRecursively();
             event->accept();
@@ -3381,6 +3385,34 @@ void MainWindow::closeEvent (QCloseEvent *event)
             event->ignore();
         }
     }
+}
+
+void MainWindow::close_sql_base()
+{
+    QSqlDatabase sda = QSqlDatabase::database("connection1");
+    if (sda.isOpen()) {
+        sda.close();
+    }
+    QSqlDatabase::removeDatabase("connection1");
+
+    QSqlDatabase sdb = QSqlDatabase::database("connection2");
+    if (sdb.isOpen()) {
+        sdb.close();
+    }
+    QSqlDatabase::removeDatabase("connection2");
+
+    QSqlDatabase sdc = QSqlDatabase::database("connection3");
+    if (sdc.isOpen()) {
+        sdc.close();
+    }
+    QSqlDatabase::removeDatabase("connection3");
+
+    QSqlDatabase sdd = QSqlDatabase::database("connection4");
+    if (sdd.isOpen()) {
+        sdd.close();
+    }
+    QSqlDatabase::removeDatabase("connection4");
+
 }
 
 MainWindow::~MainWindow()
@@ -5198,7 +5230,7 @@ void MainWindow::LoadProject(QString str)
     ui->save_file->setEnabled(true);
     ui->save_as_file->setEnabled(true);
     setCurrentFile(str);
-    ui->widget_2->ui->plot->load();
+    //ui->widget_2->ui->plot->load();
 }
 
 void MainWindow::switch_regim_upr(bool checked)
@@ -12720,6 +12752,62 @@ void MainWindow::ventidentf_start()
         if ((kind_ventilation_value->text() == "Принудительная вентиляция")||
                 (kind_ventilation_value->text() == "Независимая вентиляция"))
         {
+            QItemSelectionModel *selectionModel1 = ui->widget->ui->tableView->selectionModel();
+
+            if (!selectionModel1->hasSelection()) {
+                qDebug() << "Нет выбранной строки в первой таблице.";
+                return;
+            }
+
+            // Получаем выбранную строку
+            QModelIndex selectedIndex = selectionModel1->currentIndex();
+            int selectedRow = selectedIndex.row();
+            auto model1 = static_cast<QStandardItemModel*>(ui->widget->ui->tableView->model());
+            int rowCount = model1->rowCount();
+            // Получаем ключевое слово из первой колонки выбранной строки
+            if (selectedRow < 0 || selectedRow >= rowCount)
+            {
+                qDebug() << "Некорректный индекс строки:" << selectedRow;
+                return;
+            }
+            QModelIndex keyIndex = model1->index(selectedRow, 1);
+            QString keyWord = model1->data(keyIndex).toString();
+
+            auto model2 = qobject_cast<QStandardItemModel*>(ui->widget_7->ui->widget->ui->tableView->model());
+
+            int targetRow = -1;
+            for (int row = 0; row < model2->rowCount(); ++row)
+            {
+                QModelIndex index = model2->index(row, 1);
+                QString cellText = model2->data(index).toString();
+                if (cellText == keyWord) {
+                    targetRow = row;
+                    break;
+                }
+            }
+
+            if (targetRow == -1) {
+                qDebug() << "Строка с ключевым словом не найдена во второй таблице.";
+                return;
+            }
+
+            // Выделяем найденную строку во второй таблице
+            ui->widget_7->ui->widget->ui->tableView->selectionModel()->select(
+                        model2->index(targetRow, 1),
+                        QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows
+                        );
+
+            // Сохраняем содержимое ячеек этой строки в переменные
+            QString cellData[17]; // допустим, максимум 10 столбцов
+            int columnCount = model2->columnCount();
+
+            for (int col = 1; col < columnCount; ++col)
+            {
+                QModelIndex index = model2->index(targetRow, col);
+                cellData[col] = model2->data(index).toString();
+                qDebug() << "Ячейка" << col << ":" << cellData[col];
+            }
+
             ui->tabWidget->show();
             ui->tabWidget->setCurrentIndex(3);
             ui->stackedWidget->hide();

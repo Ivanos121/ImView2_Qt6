@@ -24,18 +24,18 @@ datas::datas(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QSqlDatabase::removeDatabase("connection1");
+    // QSqlDatabase::removeDatabase("connection1");
 
-    sdb = QSqlDatabase::addDatabase("QSQLITE", "connection1");
-    sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
-    if (!sdb.open()) {
-        qDebug() << "Ошибка открытия базы данных 1:" << sdb.lastError().text();
-        return;
-    }
-    else
-    {
-        qDebug() << "база загружена";
-    }
+    // sdb = QSqlDatabase::addDatabase("QSQLITE", "connection1");
+    // sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
+    // if (!sdb.open()) {
+    //     qDebug() << "Ошибка открытия базы данных 1:" << sdb.lastError().text();
+    //     return;
+    // }
+    // else
+    // {
+    //     qDebug() << "база загружена";
+    // }
     table();
     ui->widget_2->setVisible(false);
 

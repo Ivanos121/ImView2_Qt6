@@ -136,25 +136,25 @@ SettingsCanals::SettingsCanals(QWidget *parent) :
     }
 
 
-    sdb = QSqlDatabase::addDatabase("QSQLITE","Net_settings"); //объявление базы данных sqlite3
-//    if(QSqlDatabase::contains("Net_settings"))
-//    {
-//        sdb = QSqlDatabase::database("Net_settings");
-//    }
-//    else
-//    {
-//        sdb = QSqlDatabase::addDatabase("QSQLITE", "Net_settings");
-//    }
+//     sdb = QSqlDatabase::addDatabase("QSQLITE","Net_settings"); //объявление базы данных sqlite3
+// //    if(QSqlDatabase::contains("Net_settings"))
+// //    {
+// //        sdb = QSqlDatabase::database("Net_settings");
+// //    }
+// //    else
+// //    {
+// //        sdb = QSqlDatabase::addDatabase("QSQLITE", "Net_settings");
+// //    }
 
-    sdb.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath()); //подключение к базе данных
-    sdb.open();
+//     sdb.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath()); //подключение к базе данных
+//     sdb.open();
 
-    if(sdb.open())
-    {
-        qDebug() << "sdb opened OK...";
-    }else{
-        qDebug() << " sdb opening failed...";
-    }
+//     if(sdb.open())
+//     {
+//         qDebug() << "sdb opened OK...";
+//     }else{
+//         qDebug() << " sdb opening failed...";
+//     }
     QSqlQuery query=QSqlQuery(sdb);
 
     if (query.exec("SELECT Id, Имя FROM Net_settings"))

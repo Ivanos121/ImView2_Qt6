@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QCoreApplication>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QIcon>
@@ -9,27 +10,75 @@
 #include <QScreen>
 
 #include "mainwindow.h"
+#include "qsqlerror.h"
 #include "settings.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    QSqlDatabase::removeDatabase("connection1");
+    QSqlDatabase::removeDatabase("connection2");
+    QSqlDatabase::removeDatabase("connection3");
+    QSqlDatabase::removeDatabase("connection4");
+
+    QSqlDatabase sda = QSqlDatabase::addDatabase("QSQLITE", "connection1");
+    sda.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
+    sda.open();
+    if (!sda.open()) {
+        qDebug() << "Ошибка открытия базы данных 1:" << sda.lastError().text();
+        return -1;
+    }
+    else
+    {
+        qDebug() << "база загружена";
+    }
+
+    QSqlDatabase::removeDatabase("connection2");
+    QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE", "connection2");
+    sdb.setDatabaseName(QFileInfo("../data/base_db/ventdb.db").absoluteFilePath());
+    sdb.open();
+    if (!sdb.open()) {
+        qDebug() << "Ошибка открытия базы данных 2:" << sdb.lastError().text();
+        return -1;
+    }
+    else
+    {
+        qDebug() << "база загружена2";
+    }
+
+    QSqlDatabase sdc = QSqlDatabase::addDatabase("QSQLITE", "connection3"); //объявление базы данных sqlite3
+    sdc.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath());
+    sdc.open();
+    if (!sdc.open()) {
+        qDebug() << "Ошибка открытия базы данных 3:" << sdc.lastError().text();
+        return -1;
+    }
+    else
+    {
+        qDebug() << "база загружена3";
+    }
+
+    QSqlDatabase sdd = QSqlDatabase::addDatabase("QSQLITE","connection4");
+    sdd.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath());
+    sdd.open();
+    if (!sdc.open()) {
+        qDebug() << "Ошибка открытия базы данных 4:" << sdd.lastError().text();
+        return -1;
+    }
+    else
+    {
+        qDebug() << "база загружена4";
+    }
+
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
     qputenv("QT_QUICK_BACKEND", "software");
+
     QSettings settings( "BRU", "IM View");
 
     QCoreApplication::setOrganizationName("ImView");
     QCoreApplication::setApplicationName("ImView");
     a.setWindowIcon(QIcon(":/icons/data/img/icons/IM_16x16.png"));
-
-    // if(QGuiApplication::platformName() == QLatin1String("xcb"))
-    // {
-    //     QGuiApplication::setWindowIcon(QIcon(":/icons/data/img/icons/IM_24_blue.png"));
-    // }
-    // else if(QGuiApplication::platformName() == QLatin1String("wayland"))
-    // {
-    //     QGuiApplication::setDesktopFileName("org.imvew.IMView.desktop");
-    // }
 
     QFont font = QApplication::font();
     font.setPointSize(10); // Устанавливаем размер шрифта в логических пикселях
@@ -66,11 +115,6 @@ int main(int argc, char *argv[])
             }
         }
 
-    // delete qtLanguageTranslator;
-    // qtLanguageTranslator = nullptr;
-
-
-
     MainWindow w;
 
         // Получаем размеры экрана
@@ -93,6 +137,11 @@ int main(int argc, char *argv[])
     {
         QString filename(argv[1]);
         w.LoadProject(filename);
+    }
+
+    else
+    {
+        qDebug() << "база загружена2";
     }
 
     w.show();

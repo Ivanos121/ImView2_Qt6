@@ -98,11 +98,12 @@ Kalibr::~Kalibr()
 
 void Kalibr::open_sdb()
 {
-    //инициализация базы данных sqlite3
-    sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
-    sdb.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath()); //подключение к базе данных
+    // //инициализация базы данных sqlite3
+    // sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
+    // sdb.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath()); //подключение к базе данных
 
     modell = new Modell;
+    modell = new QSqlTableModel(this, QSqlDatabase::database("connection3"));
     modell->setTable("Net settings"); //Установка для таблицы базы данных, с которой работает модель, tableName
     modell->setEditStrategy(QSqlTableModel::OnManualSubmit); //Все изменения будут кэшироваться в модели до тех пор, пока не будет вызван сигнал submitAll()
 
@@ -1166,7 +1167,7 @@ void Kalibr::closeAllBase_Yes()
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
     sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
-    sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
+    // sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
 }
 
 void Kalibr::closeAllBase_No()
@@ -1175,8 +1176,8 @@ void Kalibr::closeAllBase_No()
     ui->tabWidget->setCurrentIndex(0);
     QString currentTabText = ui->tabWidget->tabText(0);
     setWindowTitle(currentTabText + "@" + QString("base") + QString(" - IM View"));
-    sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
-    sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
+    // sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
+    // sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
 }
 
 void Kalibr::closeAllBase_Otmena()

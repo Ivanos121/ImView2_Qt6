@@ -276,6 +276,7 @@ public:
 
     void printColumnValues(const KoeffBase &koeffObj, int col);
     KoeffBase *findKoeffByName(const std::vector<std::reference_wrapper<KoeffBase> > &koeffs, const std::string &targetName);
+    void close_sql_base();
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);
