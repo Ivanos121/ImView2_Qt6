@@ -26,7 +26,7 @@
             <combobox_13 value="Режим S1"/>
             <time_cikle value="6"/>
             <time_work value="2"/>
-            <combobox_14 value="30"/>
+            <combobox_14 value="Текущее время"/>
             <combobox_15 value="Прямой пуск"/>
             <napragenie value="220"/>
             <moment value="20"/>
@@ -34,7 +34,7 @@
             <combobox_16 value="Статика (статор)"/>
             <combobox_17 value="Одномассовая модель"/>
             <combobox_18 value="Одномассовая модель"/>
-            <time_step value="30"/>
+            <time_step value="Текущее время"/>
             <combobox_19 value="Статика"/>
             <combobox_20 value="Один вентилятор"/>
             <pressure value="102"/>

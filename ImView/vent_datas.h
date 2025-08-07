@@ -17,7 +17,7 @@ class Vent_datas : public QWidget
 public:
     explicit Vent_datas(QWidget *parent = nullptr);
     ~Vent_datas();
-    QStandardItemModel *modd;
+    QStandardItemModel *modd2;
 
     void table();
 private:
@@ -25,7 +25,7 @@ private:
     QSqlDatabase sdc;
     QString dataSourceFilename;
     //ischodn_dannie *isdn;
-    QSqlTableModel *model;
+    QSqlTableModel *model2;
 };
 
 #endif // VENT_DATAS_H

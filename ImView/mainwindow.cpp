@@ -137,8 +137,6 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug() << "Git hash:" << vers2;
 #endif
 
-    QString version = QString("Git hash: %1").arg(GIT_HASH);
-
     ui->actionaction_graph->setCheckable(true);
     ui->action_gruph->setCheckable(true);
     ui->widget_2->ui->widget->hide();
@@ -205,6 +203,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->treeView, &QTreeView::expanded, this, &MainWindow::onNodeExpandeds);
     connect(ui->treeView, &QTreeView::collapsed, this, &MainWindow::onNodeCollapseds);
 
+    //Управление меню для sql-баз
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged);
+    onTabChanged(0);
+
     //поиск - замена
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
@@ -233,6 +235,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->enter_dannie, &QAction::triggered, this, &MainWindow::enter_dannie);
     connect(ui->save_dannie, &QAction::triggered, this, &MainWindow::save_dannie);
     connect(ui->delete_dannie, &QAction::triggered, this, &MainWindow::delete_dannie);
+
+    connect(ui->enter_dannie_vent, &QAction::triggered, this, &MainWindow::enter_dannie_vent);
+    connect(ui->save_dannie_vent, &QAction::triggered, this, &MainWindow::save_dannie_vent);
+    connect(ui->delete_dannie_vent, &QAction::triggered, this, &MainWindow::delete_dannie_vent);
+
     connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
     connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
     connect(ui->actionteplident_start, &QAction::triggered, this, &MainWindow::actionteplident_start);
@@ -1011,15 +1018,15 @@ MainWindow::MainWindow(QWidget *parent)
     tepl_model_parametr->appendRow(start_tepl_temperature);
     start_tepl_temperature.clear();
 
-    time_base_selection_parametr = new QStandardItem(tr("Шаг выбора точек"));
-    time_base_selection_parametr->setEditable(false);
+    point_selection_step_parametr = new QStandardItem(tr("Шаг выбора точек"));
+    point_selection_step_parametr->setEditable(false);
     QString time_base_selection_parameter_tooltip = time_base_selection_parametr->text();
-    time_base_selection_parametr->setToolTip(time_base_selection_parameter_tooltip);
-    time_base_selection_value = new QStandardItem(tr("0"));
-    QString time_base_selection_valuex_tooltip = time_base_selection_value->text();
-    time_base_selection_value->setToolTip(time_base_selection_valuex_tooltip);
-    start_tepl_temperature.append(time_base_selection_parametr);
-    start_tepl_temperature.append(time_base_selection_value);
+    point_selection_step_parametr->setToolTip(time_base_selection_parameter_tooltip);
+    point_selection_step_value = new QStandardItem(tr("0"));
+    QString time_base_selection_valuex_tooltip = point_selection_step_value->text();
+    point_selection_step_value->setToolTip(time_base_selection_valuex_tooltip);
+    start_tepl_temperature.append(point_selection_step_parametr);
+    start_tepl_temperature.append(point_selection_step_value);
     tepl_model_parametr->appendRow(start_tepl_temperature);
     start_tepl_temperature.clear();
 
@@ -4191,16 +4198,15 @@ void MainWindow::modelItemChangedSlot_6(QStandardItem *item)
 {
     if (item == time_base_selection_value)
     {
-        volatile auto asd = item->text();
         if (item->text() == "Текущее время")
-        {
-            time_work_parametr->setEnabled(true);
-            time_work_value->setEnabled(true);
-        }
-        else
         {
             time_work_parametr->setEnabled(false);
             time_work_value->setEnabled(false);
+        }
+        else
+        {
+            time_work_parametr->setEnabled(true);
+            time_work_value->setEnabled(true);
         }
     }
 }
@@ -12471,12 +12477,13 @@ void MainWindow::electromagn_tick()
     temp_prev = temp;
     dPprev = dP;
 
+    double P1sum = 0;
+    double P2sum = 0;
+
     if (tt > maxTime)
     {
         electromagn_stop();
 
-        double P1sum = 0.0;
-        double P2sum = 0.0;
         for (int i = 0; i < tepl_ident_P1.size(); i++)
         {
             P1sum += tepl_ident_P1[i];
@@ -12740,4 +12747,38 @@ void MainWindow::ventidentf_stop()
     ui->stackedWidget->show();
 }
 
+void MainWindow::enter_dannie_vent()
+{
 
+}
+
+void MainWindow::save_dannie_vent()
+{
+
+}
+
+void MainWindow::delete_dannie_vent()
+{
+
+}
+
+void MainWindow::onTabChanged(int index)
+{
+    if (index == 0)
+    {
+        ui->enter_dannie->setVisible(true);
+        ui->save_dannie->setVisible(true);
+        ui->delete_dannie->setVisible(true);
+        ui->enter_dannie_vent->setVisible(false);
+        ui->save_dannie_vent->setVisible(false);
+        ui->delete_dannie_vent->setVisible(false);
+    } else if (index == 3)
+    {
+        ui->enter_dannie->setVisible(false);
+        ui->save_dannie->setVisible(false);
+        ui->delete_dannie->setVisible(false);
+        ui->enter_dannie_vent->setVisible(true);
+        ui->save_dannie_vent->setVisible(true);
+        ui->delete_dannie_vent->setVisible(true);
+    }
+}

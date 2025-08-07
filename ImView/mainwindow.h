@@ -264,7 +264,7 @@ public:
     QStandardItem *kind_thermal_model_3_parametr, *ventilation_identification_parametr,
         *ventilation_identification_value, *kind_ventilation_parametr,*kind_ventilation_value,
         *calculation_modes_parametr, *calculation_modes_value, *geometry_parameters_parametr,
-        *geometry_parameters_value;
+        *geometry_parameters_value, *point_selection_step_parametr, *point_selection_step_value;
     QStandardItem *Heat_processes_accounting_parameter, *Heat_processes_accounting_value,
         *item163, *item164, *item165,*item166, *item167, *item168, *item169, *item170;
     QStandardItem *item171, *item172, *time_work_parametr, *time_work_value, *time_work_in_cycle_parametr,*time_work_in_cycle_value, *time_start_in_cycle_parametr,
@@ -283,11 +283,15 @@ public slots:
 
     void ventidentf_start();
     void ventidentf_stop();
+    void enter_dannie_vent();
+    void save_dannie_vent();
+    void delete_dannie_vent();
 protected slots:
     void onNodeExpandeds();
     void onNodeCollapseds();
     void open_start_screen();
     void enable_disable_actionsdtart_app();
+    void onTabChanged(int index);
 private:
     QHash<QModelIndex, bool> rootNodeStates;
 };

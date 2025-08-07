@@ -13,11 +13,9 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
     qputenv("QT_QUICK_BACKEND", "software");
-
-    QApplication a(argc, argv);
-
     QSettings settings( "BRU", "IM View");
 
     QCoreApplication::setOrganizationName("ImView");

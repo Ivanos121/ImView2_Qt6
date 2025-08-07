@@ -11,6 +11,7 @@
 #include <QScreen>
 #include <QSortFilterProxyModel>
 #include <QSqlQuery>
+#include <QSqlDatabase>
 
 #include "datas.h"
 #include "ui_datas.h"
@@ -23,14 +24,22 @@ datas::datas(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    sdb = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase::removeDatabase("connection1");
+
+    sdb = QSqlDatabase::addDatabase("QSQLITE", "connection1");
     sdb.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
-
+    if (!sdb.open()) {
+        qDebug() << "Ошибка открытия базы данных 1:" << sdb.lastError().text();
+        return;
+    }
+    else
+    {
+        qDebug() << "база загружена";
+    }
     table();
-
     ui->widget_2->setVisible(false);
-    // QHeaderView *tableHeader = ui->tableView->horizontalHeader();
-    //connect(tableHeader, &QHeaderView::sectionClicked, this, &datas::on_sectionClicked);
+
+
 }
 
 datas::~datas()
@@ -40,16 +49,13 @@ datas::~datas()
 
 void datas::table()
 {
-    model = new QSqlTableModel;
+    model = new QSqlTableModel(this, QSqlDatabase::database("connection1"));
     model->setTable("dvigatels");
     model->setEditStrategy(QSqlTableModel::OnFieldChange);
     model->select();
 
     QSortFilterProxyModel *proxy1 = new QSortFilterProxyModel();
     proxy1->setSourceModel(model);
-    // proxy1->setAlignment(0, Qt::AlignCenter);
-    // proxy1->setAlignment(1, Qt::AlignCenter);
-
     modd=new QStandardItemModel();
     modd->setSortRole(Qt::UserRole);
 
@@ -83,12 +89,14 @@ void datas::table()
 
     QHeaderView *header=ui->tableView->horizontalHeader();
 
-    for(int i=1;i<10;i++)
+    int columnCount = modd->columnCount();
+
+    for(int i=1;i<columnCount;i++)
     {
         header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
     }
 
-    for(int i=1;i<10;i++)
+    for(int i=1;i<columnCount;i++)
     {
         ui->tableView->horizontalHeader()->setSectionsClickable(i);
 
