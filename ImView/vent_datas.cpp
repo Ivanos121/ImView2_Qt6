@@ -6,7 +6,6 @@
 #include <QSortFilterProxyModel>
 #include <QSqlDatabase>
 #include <QStandardItemModel>
-#include <QSqlDatabase>
 
 Vent_datas::Vent_datas(QWidget *parent)
     : QWidget(parent)

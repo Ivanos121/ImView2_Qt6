@@ -26,7 +26,7 @@
 
 double key;
 Model model;
-Modell modell;
+//Modell modell;
 //const double R1=2.419;
 int count = 0;
 static double minR2, maxR2, middleR2;

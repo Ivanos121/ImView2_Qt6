@@ -247,7 +247,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionteplident_start, &QAction::triggered, this, &MainWindow::actionteplident_start);
     connect(ui->actionteplident_stop, &QAction::triggered, this, &MainWindow::actionteplident_stop);
     connect(ui->ventidentf_start, &QAction::triggered, this, &MainWindow::ventidentf_start);
-    connect(ui->ventidentf_start, &QAction::triggered, this, &MainWindow::ventidentf_start);
+    connect(ui->vent_identf_stop, &QAction::triggered, this, &MainWindow::ventidentf_stop);
     connect(ui->electromagn_start, &QAction::triggered, this, &MainWindow::electromagn_start);
     connect(ui->electromagn_stop, &QAction::triggered, this, &MainWindow::electromagn_stop);
     connect(ui->kalibr_osc, &QAction::triggered, this, &MainWindow::kalibr_osc);
@@ -3368,14 +3368,14 @@ void MainWindow::closeEvent (QCloseEvent *event)
         switch (resBtn)
         {
         case QMessageBox::Save:
-            close_sql_base();
+            //close_sql_base();
             ui->widget_3->stop();
             save_file();
             dir.removeRecursively();
             event->accept();
             break;
         case QMessageBox::Discard:
-            close_sql_base();
+            //close_sql_base();
             ui->widget_3->stop();
             dir.removeRecursively();
             event->accept();
@@ -3387,7 +3387,7 @@ void MainWindow::closeEvent (QCloseEvent *event)
     }
 }
 
-void MainWindow::close_sql_base()
+/*void MainWindow::close_sql_base()
 {
     QSqlDatabase sda = QSqlDatabase::database("connection1");
     if (sda.isOpen()) {
@@ -3413,7 +3413,7 @@ void MainWindow::close_sql_base()
     }
     QSqlDatabase::removeDatabase("connection4");
 
-}
+}*/
 
 MainWindow::~MainWindow()
 {
@@ -12512,7 +12512,8 @@ void MainWindow::electromagn_tick()
     double P1sum = 0;
     double P2sum = 0;
 
-    if (tt > maxTime)
+    //if (tt > maxTime)
+    if ((tt > maxTime) && (time_base_selection_value->text() == "Фиксированное время"))
     {
         electromagn_stop();
 
@@ -12762,7 +12763,7 @@ void MainWindow::ventidentf_start()
             // Получаем выбранную строку
             QModelIndex selectedIndex = selectionModel1->currentIndex();
             int selectedRow = selectedIndex.row();
-            auto model1 = static_cast<QStandardItemModel*>(ui->widget->ui->tableView->model());
+            auto *model1 = static_cast<QStandardItemModel*>(ui->widget->ui->tableView->model());
             int rowCount = model1->rowCount();
             // Получаем ключевое слово из первой колонки выбранной строки
             if (selectedRow < 0 || selectedRow >= rowCount)
@@ -12773,7 +12774,7 @@ void MainWindow::ventidentf_start()
             QModelIndex keyIndex = model1->index(selectedRow, 1);
             QString keyWord = model1->data(keyIndex).toString();
 
-            auto model2 = qobject_cast<QStandardItemModel*>(ui->widget_7->ui->widget->ui->tableView->model());
+            auto *model2 = qobject_cast<QStandardItemModel*>(ui->widget_7->ui->widget->ui->tableView->model());
 
             int targetRow = -1;
             for (int row = 0; row < model2->rowCount(); ++row)
@@ -12798,14 +12799,16 @@ void MainWindow::ventidentf_start()
                         );
 
             // Сохраняем содержимое ячеек этой строки в переменные
-            QString cellData[17]; // допустим, максимум 10 столбцов
+            //QString cellData[17]; // допустим, максимум 10 столбцов
+
+            QVector<QString> cellData;
             int columnCount = model2->columnCount();
 
             for (int col = 1; col < columnCount; ++col)
             {
                 QModelIndex index = model2->index(targetRow, col);
-                cellData[col] = model2->data(index).toString();
-                qDebug() << "Ячейка" << col << ":" << cellData[col];
+                cellData.push_back(model2->data(index).toString());
+                qDebug() << "Ячейка" << col << ":" << cellData[col - 1];
             }
 
             ui->tabWidget->show();
