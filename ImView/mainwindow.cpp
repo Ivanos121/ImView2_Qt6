@@ -55,6 +55,7 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "tepl_dannie.h"
+#include "ui_nastroiki.h"
 #include "ui_ostat_resurs.h"
 #include "ui_poisk.h"
 #include "ui_tepl_dannie.h"
@@ -208,6 +209,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged);
     onTabChanged(0);
 
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged_2);
+
+    onTabChanged_2(1);
+
+
     //поиск - замена
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
@@ -252,7 +258,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->kalibr_osc, &QAction::triggered, this, &MainWindow::kalibr_osc);
     connect(ui->actionresult, &QAction::triggered, this, &MainWindow::actionresult);
     connect(ui->actionresultidentf, &QAction::triggered, this, &MainWindow::actionresultidentf);
-
+    connect(ui->identf_nastr, &QAction::triggered, this,&MainWindow::open_identf_nastr);
+    connect(ui->identf_nastr_2, &QAction::triggered, this,&MainWindow::open_identf_nastr_2);
+    connect(ui->identf_nastr_3, &QAction::triggered, this,&MainWindow::open_identf_nastr_3);
 
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::actionExit);
     connect(ui->actionabout, &QAction::triggered, this, &MainWindow::actionabout);
@@ -12891,4 +12899,53 @@ void MainWindow::onTabChanged(int index)
         ui->save_dannie_vent->setVisible(true);
         ui->delete_dannie_vent->setVisible(true);
     }
+}
+
+void MainWindow::onTabChanged_2(int index)
+{
+    if (index == 1)
+    {
+        ui->identf_pusk->setVisible(true);
+        ui->identf_stop->setVisible(true);
+        ui->actionteplident_start->setVisible(false);
+        ui->actionteplident_stop->setVisible(false);
+        ui->ventidentf_start->setVisible(false);
+        ui->vent_identf_stop->setVisible(false);
+    } else if (index == 2)
+    {
+        ui->identf_pusk->setVisible(false);
+        ui->identf_stop->setVisible(false);
+        ui->actionteplident_start->setVisible(true);
+        ui->actionteplident_stop->setVisible(true);
+        ui->ventidentf_start->setVisible(false);
+        ui->vent_identf_stop->setVisible(false);
+    }
+    else if (index == 3)
+    {
+        ui->identf_pusk->setVisible(false);
+        ui->identf_stop->setVisible(false);
+        ui->actionteplident_start->setVisible(false);
+        ui->actionteplident_stop->setVisible(false);
+        ui->ventidentf_start->setVisible(true);
+        ui->vent_identf_stop->setVisible(true);
+    }
+}
+
+void MainWindow::open_identf_nastr()
+{
+    nastroiki();
+    if(ui->tabWidget->currentIndex()!=1)
+    {
+        ui->tabWidget->setCurrentIndex(1);
+    }
+}
+
+void MainWindow::open_identf_nastr_2()
+{
+    nastroiki();
+}
+
+void MainWindow::open_identf_nastr_3()
+{
+    nastroiki();
 }

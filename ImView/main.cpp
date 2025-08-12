@@ -89,14 +89,14 @@ int main(int argc, char *argv[])
         QSqlDatabase sdc = QSqlDatabase::addDatabase("QSQLITE", "connection3"); //объявление базы данных sqlite3
         sdc.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath());
         sdc.open();
-        if (!sdc.open()) {
-            qDebug() << "Ошибка открытия базы данных 3:" << sdc.lastError().text();
-            return -1;
-        }
-        else
-        {
-            qDebug() << "база загружена3";
-        }
+        // if (!sdc.open()) {
+        //     qDebug() << "Ошибка открытия базы данных 3:" << sdc.lastError().text();
+        //     return -1;
+        // }
+        // else
+        // {
+        //     qDebug() << "база загружена3";
+        // }
 
         QSqlDatabase sdd = QSqlDatabase::addDatabase("QSQLITE","connection4");
         sdd.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath());

@@ -190,8 +190,6 @@ public:
     Kalibr *kalibr;
     Ksettings *set;
     Nastroiki *nastr;
-    //Settings *settings;
-    //SettinsKanals *rsc3;
     QString dataSourceFilename;
     QString dirName;
     bool isChanged = false;
@@ -294,6 +292,10 @@ protected slots:
     void open_start_screen();
     void enable_disable_actionsdtart_app();
     void onTabChanged(int index);
+    void onTabChanged_2(int index);
+    void open_identf_nastr();
+    void open_identf_nastr_2();
+    void open_identf_nastr_3();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
 };

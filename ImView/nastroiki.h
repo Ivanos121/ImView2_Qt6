@@ -31,7 +31,7 @@ private slots:
     void enabled_button();
     void enabled_button_2();
 
-private:
+public:
     Ui::Nastroiki *ui;
     QTranslator qtLanguageTranslator;
 };

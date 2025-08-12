@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2281,10 +2281,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
-     <string>&amp;Идентификация параметров</string>
+     <string>&amp;Идентификация параметров двигателя</string>
     </property>
     <addaction name="identf_pusk"/>
     <addaction name="identf_stop"/>
+    <addaction name="separator"/>
+    <addaction name="actionteplident_start"/>
+    <addaction name="actionteplident_stop"/>
+    <addaction name="separator"/>
+    <addaction name="ventidentf_start"/>
+    <addaction name="vent_identf_stop"/>
     <addaction name="separator"/>
     <addaction name="identf_nastr"/>
    </widget>
@@ -2295,9 +2301,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="enter_dannie"/>
     <addaction name="save_dannie"/>
     <addaction name="delete_dannie"/>
+    <addaction name="separator"/>
     <addaction name="enter_dannie_vent"/>
     <addaction name="save_dannie_vent"/>
     <addaction name="delete_dannie_vent"/>
+    <addaction name="separator"/>
+    <addaction name="identf_nastr_2"/>
    </widget>
    <widget class="QMenu" name="menu_5">
     <property name="title">
@@ -2306,6 +2315,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="electromagn_start"/>
     <addaction name="electromagn_stop"/>
     <addaction name="kalibr_osc"/>
+    <addaction name="identf_nastr_3"/>
    </widget>
    <addaction name="menufile"/>
    <addaction name="menu_2"/>
@@ -2542,7 +2552,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_2.svg</iconset>
    </property>
    <property name="text">
-    <string>Пуск</string>
+    <string>Запуск идентификации параметров схемы замещения</string>
    </property>
    <property name="toolTip">
     <string>Запуск предварительной идентификации параметров схемы замещения</string>
@@ -2554,7 +2564,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_2.svg</iconset>
    </property>
    <property name="text">
-    <string>Стоп</string>
+    <string>Останов идентификации параметров схемы замещения</string>
    </property>
   </action>
   <action name="identf_nastr">
@@ -2728,13 +2738,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <normaloff>:/system_icons/data/img/system_icons/media-playback-start_3.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-start_3.svg</iconset>
    </property>
    <property name="text">
-    <string>Пуск2</string>
+    <string>Запуск тепловой идентификация двигателя</string>
    </property>
    <property name="toolTip">
     <string>Запуск идентификации параметров тепловой модели</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="actionteplident_stop">
@@ -2743,10 +2753,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <normaloff>:/system_icons/data/img/system_icons/media-playback-stop_3.svg</normaloff>:/system_icons/data/img/system_icons/media-playback-stop_3.svg</iconset>
    </property>
    <property name="text">
-    <string>Стоп2</string>
+    <string>Останов тепловой идентификация двигателя</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="print_preview">
@@ -2840,7 +2850,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Идентификация параметров вентиляционной модели</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="vent_identf_stop">
@@ -2855,7 +2865,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Останов</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="actionaction_graph">
@@ -2867,7 +2877,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>action_graph</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="action_gruph">
@@ -2879,7 +2889,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>action_gruph</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="actionsdtart_app">
@@ -2891,7 +2901,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>sdtart_app</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::MenuRole::TextHeuristicRole</enum>
    </property>
   </action>
   <action name="enter_dannie_vent">
@@ -2919,6 +2929,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="text">
     <string>Удалить данные исследуемого вентилятора</string>
+   </property>
+  </action>
+  <action name="identf_nastr_2">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
+   </property>
+  </action>
+  <action name="identf_nastr_3">
+   <property name="icon">
+    <iconset resource="Images.qrc">
+     <normaloff>:/system_icons/data/img/system_icons/configure.svg</normaloff>:/system_icons/data/img/system_icons/configure.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
    </property>
   </action>
  </widget>

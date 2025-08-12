@@ -65,6 +65,7 @@ void Vent_identf::raschet_vent_identf()
     double qq=((1/sqrt(s_kr))-sqrt(s_kr));
     double q = ((pow(qq,2)/((base.muk/20)-1)))-2;
 
+
     int N = 100; // количество точек
     QVector<double> w(N);
     QVector<double> M(N);
@@ -88,7 +89,43 @@ void Vent_identf::raschet_vent_identf()
         ui->plot->addPoint(0, s, w[s_idx]);
         ui->plot->addPoint(1, s, M[s_idx]);
 
+
     }
+
+    // double Q =0;
+    // double H1 = 0;
+    // double H2 = 0;
+    // //double ne = 0;
+    // double Pv = 0;
+    // double P_ct = 0;
+    // double P_din = 0;
+    // double v = 1.5;
+    // double N = 0;
+    // double Nu = 0;
+    // double Nu_ct = 0;
+    // double M = 0;
+    // double omega = 0;
+    ui->plot->clear();
+    ui->plot->addDataLine(QColor(Qt::red), 0);
+    ui->plot->addDataLine(QColor(Qt::green), 0);
+    ui->plot->addDataLine(QColor(Qt::blue), 0);
+    ui->plot->addDataLine(QColor(Qt::green), 0);
+    ui->plot->addDataLine(QColor(Qt::blue), 0);
+
+    // while (Q < Qp)
+    // {
+    //     Q+=0.00001;
+    //     H1 = Z0/100 * pow(Q,2);
+    //     H2 = H0/100 *(1 - pow((Q/Qmax),2));
+    //     Pv=Q*H1;
+    //     P_din=1.2*pow(v,2);
+    //     P_ct=Pv-P_din;
+    //     ui->plot->addPoint(0, Q, H1);
+    //     ui->plot->addPoint(1, Q, H2);
+    //     ui->plot->addPoint(2, Q, Pv);
+    //     ui->plot->addPoint(3, Q, P_din);
+    //     ui->plot->addPoint(4, Q, P_ct);
+    // }
 
 
     isFinished = false;

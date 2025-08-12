@@ -92,7 +92,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label">
@@ -208,6 +208,36 @@
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#000000;&quot;&gt;Идентификация&lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#000000;&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_8">
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>171</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>тепловая идентификация</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_9">
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>241</width>
+       <height>18</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Вентиляционная идентификация</string>
      </property>
     </widget>
    </widget>

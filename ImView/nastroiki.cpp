@@ -2,6 +2,7 @@
 #include "ui_nastroiki.h"
 #include <QSettings>
 #include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 
 Nastroiki::Nastroiki(QWidget *parent)
@@ -16,12 +17,16 @@ Nastroiki::Nastroiki(QWidget *parent)
     ui->listWidget->addItem(item_2);
     QListWidgetItem *item_3=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-matrix-new.svg"), "Идентификация параметров");
     ui->listWidget->addItem(item_3);
-    QListWidgetItem *item_4=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg"), "Энергетические показатели");
+    QListWidgetItem *item_4=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-matrix-new.svg"), "Идентификация параметров");
     ui->listWidget->addItem(item_4);
-    QListWidgetItem *item_5=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-zoom-out-y.svg"), "Тепловентиляция");
+    QListWidgetItem *item_5=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-matrix-new.svg"), "Идентификация параметров");
     ui->listWidget->addItem(item_5);
-    QListWidgetItem *item_6=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/map-flat.svg"), "Выходные данные");
+    QListWidgetItem *item_6=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-xy-interpolation-curve.svg"), "Энергетические показатели");
     ui->listWidget->addItem(item_6);
+    QListWidgetItem *item_7=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/labplot-zoom-out-y.svg"), "Тепловентиляция");
+    ui->listWidget->addItem(item_7);
+    QListWidgetItem *item_8=new QListWidgetItem(QIcon(":/system_icons/data/img/system_icons/map-flat.svg"), "Выходные данные");
+    ui->listWidget->addItem(item_8);
 
     QModelIndex firstRow = ui->listWidget->model()->index(0, 0);
     ui->listWidget->selectionModel()->select(firstRow,
@@ -84,6 +89,28 @@ Nastroiki::Nastroiki(QWidget *parent)
     connect(ui->pushButton_2, &QPushButton::clicked, this, &Nastroiki::apply_action);
     connect(ui->pushButton, &QPushButton::clicked, this, &Nastroiki::enter_action);
     connect(ui->pushButton_3, &QPushButton::clicked, this, &Nastroiki::close_action);
+
+    if(wf->ui->tabWidget->currentIndex()==1)
+    {
+        ui->listWidget->setCurrentRow(2);
+        ui->stackedWidget->setCurrentIndex(2);
+    }
+    if(wf->ui->tabWidget->currentIndex()==2)
+    {
+        ui->listWidget->setCurrentRow(3);
+        ui->stackedWidget->setCurrentIndex(3);
+    }
+    if(wf->ui->tabWidget->currentIndex()==3)
+    {
+        ui->listWidget->setCurrentRow(4);
+        ui->stackedWidget->setCurrentIndex(4);
+    }
+    if(wf->ui->tabWidget->currentIndex()==4)
+    {
+        ui->listWidget->setCurrentRow(5);
+        ui->stackedWidget->setCurrentIndex(5);
+    }
+
 }
 
 void Nastroiki::enabled_button()
