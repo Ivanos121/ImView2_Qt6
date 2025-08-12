@@ -49,6 +49,7 @@ public:
     void updateRecentFileActions();
     void actionhelp();
     void updateWindowSize();
+    void loadMotorParameters();
 
 private:
     QString sessionFileName;
@@ -58,7 +59,7 @@ private:
 
     void setCurrentFile(const QString &fileName);
     QString strippedName(const QString &fullFileName);
-    void loadMotorParameters();
+
 
 private slots:
     void actionabout();

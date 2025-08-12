@@ -1357,7 +1357,6 @@ void ButtonColumnDelegate::m_paintFunc2(QPainter* painter, const QStyleOptionVie
     {
         painter->save();
         QColor fillColor(Qt::green);
-        painter->save();
         painter->setRenderHint(QPainter::Antialiasing);
         painter->setBrush(fillColor);
         painter->setPen(Qt::NoPen);

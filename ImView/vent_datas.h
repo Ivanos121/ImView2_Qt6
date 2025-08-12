@@ -5,6 +5,9 @@
 #include <QSqlTableModel>
 #include <QStandardItemModel>
 #include <QWidget>
+#include <QSqlQuery>
+
+class Vent_settings;
 
 namespace Ui {
 class Vent_datas;
@@ -20,12 +23,21 @@ public:
     QStandardItemModel *modd2;
 
     void table();
+
+public slots:
+    void enterDannieV();
+    void saveDannieV();
+    void deleteDannieV();
+
 public:
     Ui::Vent_datas *ui;
-    QSqlDatabase sdc;
+    Vent_settings *vsn;
+    QSqlDatabase sdb;
+    QSqlQuery *query;
     QString dataSourceFilename;
-    //ischodn_dannie *isdn;
+
     QSqlTableModel *model2;
+    void zapis();
 };
 
 #endif // VENT_DATAS_H

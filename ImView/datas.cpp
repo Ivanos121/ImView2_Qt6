@@ -5,7 +5,6 @@
 #include <QStandardItem>
 #include <QTableView>
 #include <QStyle>
-#include <QPainter>
 #include <QIntValidator>
 #include <QFileDialog>
 #include <QScreen>

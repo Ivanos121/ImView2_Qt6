@@ -41,9 +41,7 @@
 #include <QDBusInterface>
 #include <QImageWriter>
 #include <iostream>
-#include <typeinfo>
 #include <cxxabi.h>
-#include <memory>
 
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
@@ -60,7 +58,6 @@
 #include "ui_ostat_resurs.h"
 #include "ui_poisk.h"
 #include "ui_tepl_dannie.h"
-#include "ui_tepl_identf.h"
 #include "ui_teplovent.h"
 #include "ui_electromagn.h"
 #include "ui_draw_line.h"
@@ -91,9 +88,11 @@
 #include "version.h"
 #include "version_hash.h"
 #include "Identf_kpeff.h"
+#include "Base_tepl_vent.h"
 
 Base base;
 Base_tepl base_tepl;
+VentParam ventparam;
 Klass_izol klass_izol;
 Model modelss;
 extern Model_el model_el;
@@ -12799,7 +12798,6 @@ void MainWindow::ventidentf_start()
                         );
 
             // Сохраняем содержимое ячеек этой строки в переменные
-            //QString cellData[17]; // допустим, максимум 10 столбцов
 
             QVector<QString> cellData;
             int columnCount = model2->columnCount();
@@ -12810,6 +12808,27 @@ void MainWindow::ventidentf_start()
                 cellData.push_back(model2->data(index).toString());
                 qDebug() << "Ячейка" << col << ":" << cellData[col - 1];
             }
+
+            ventparam.name = cellData[0];
+            ventparam.d1p = cellData[1].toDouble();
+            ventparam.d2p = cellData[2].toDouble();
+            ventparam.b = cellData[3].toDouble();
+            ventparam.n = cellData[4].toDouble();
+            ventparam.ro = cellData[5].toDouble();
+            ventparam.sotv = cellData[6].toDouble();
+            ventparam.s0 = cellData[7].toDouble();
+            ventparam.s1 = cellData[8].toDouble();
+            ventparam.a1 = cellData[9].toDouble();
+            ventparam.s2 = cellData[10].toDouble();
+            ventparam.a2 = cellData[11].toDouble();
+            ventparam.s3 = cellData[12].toDouble();
+            ventparam.s4 = cellData[13].toDouble();
+            ventparam.fi = cellData[14].toDouble();
+            ventparam.fi2 = cellData[15].toDouble();
+
+
+
+
 
             ui->tabWidget->show();
             ui->tabWidget->setCurrentIndex(3);
@@ -12840,17 +12859,17 @@ void MainWindow::ventidentf_stop()
 
 void MainWindow::enter_dannie_vent()
 {
-
+    ui->widget_7->ui->widget->enterDannieV();
 }
 
 void MainWindow::save_dannie_vent()
 {
-
+    ui->widget_7->ui->widget->saveDannieV();
 }
 
 void MainWindow::delete_dannie_vent()
 {
-
+    ui->widget_7->ui->widget->deleteDannieV();
 }
 
 void MainWindow::onTabChanged(int index)

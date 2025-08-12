@@ -24,6 +24,7 @@ public slots:
     void realtimeDataSlot();
 public:
     Ui::Vent_identf *ui;
+        QVector<QColor> dataLineColors_vent_identf;
 };
 
 #endif // VENT_IDENTF_H

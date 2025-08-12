@@ -1,8 +1,14 @@
 #include "vent_datas.h"
+#include "qscreen.h"
+#include "qsqlerror.h"
+#include "qsqlquery.h"
 #include "ui_vent_datas.h"
 #include "doubledelegate.h"
+#include "vent_settings.h"
+#include "Base_tepl_vent.h"
 
 #include <QFileInfo>
+#include <QMessageBox>
 #include <QSortFilterProxyModel>
 #include <QSqlDatabase>
 #include <QStandardItemModel>
@@ -12,17 +18,6 @@ Vent_datas::Vent_datas(QWidget *parent)
     , ui(new Ui::Vent_datas)
 {
     ui->setupUi(this);
-    // QSqlDatabase::removeDatabase("connection2");
-    // sdc = QSqlDatabase::addDatabase("QSQLITE", "connection2");
-    // sdc.setDatabaseName(QFileInfo("../data/base_db/ventdb.db").absoluteFilePath());
-    // if (!sdc.open()) {
-    //     qDebug() << "Ошибка открытия базы данных 2:" << sdc.lastError().text();
-    //     return;
-    // }
-    // else
-    // {
-    //     qDebug() << "база загружена2";
-    // }
 
     table();
 }
@@ -108,4 +103,75 @@ void Vent_datas::table()
     ui->tableView->setSortingEnabled(true);
 
     modd2->sort(2, Qt::DescendingOrder);
+}
+
+void Vent_datas::zapis()
+{
+    QSqlQuery query(QSqlDatabase::database("connection2"));
+    query.prepare("INSERT INTO ventilators (id, name, d1p, d2p, b, n, ro, sotv, s0, s1, a1, s2, a2, s3, s4 ,fi, fi2) "
+                  "VALUES (:id, :name, :d1p, :d2p, :b, :n, :ro, :sotv, :s0, :s1, :a1, :s2, :a2, :s3, :s4, :fi, :fi2)");
+    query.bindValue(":id", QVariant(QString()));
+    query.bindValue(":name", QString(ventparam.name));
+    query.bindValue(":d1p",QString::number(ventparam.d1p, 'f', 3));
+    query.bindValue(":d2p",QString("%1").arg(ventparam.d2p, 0, 'f', 3));
+    query.bindValue(":b",QString("%1").arg(ventparam.b, 0, 'f', 3));
+    query.bindValue(":n",QString("%1").arg(ventparam.n, 0, 'f', 3));
+    query.bindValue(":ro",QString("%1").arg(ventparam.ro, 0, 'f', 3));
+    query.bindValue(":sotv",QString("%1").arg(ventparam.sotv, 0, 'f', 3));
+    query.bindValue(":s0",QString("%1").arg(ventparam.s0, 0, 'f', 3));
+    query.bindValue(":s1",QString("%1").arg(ventparam.s1, 0, 'f', 3));
+    query.bindValue(":a1",QString("%1").arg(ventparam.a1, 0, 'f', 3));
+    query.bindValue(":s2",QString("%1").arg(ventparam.s2, 0, 'f', 3));
+    query.bindValue(":a2",QString("%1").arg(ventparam.a2, 0, 'f', 3));
+    query.bindValue(":s3",QString("%1").arg(ventparam.s3, 0, 'f', 3));
+    query.bindValue(":s4",QString("%1").arg(ventparam.s4, 0, 'f', 3));
+    query.bindValue(":fi",QString("%1").arg(ventparam.fi, 0, 'f', 3));
+    query.bindValue(":fi2",QString("%1").arg(ventparam.fi2, 0, 'f', 3));
+    if(!query.exec()){
+        qDebug() << query.lastError().databaseText();
+        qDebug() << query.lastError().driverText();
+        return;
+    }
+}
+
+void Vent_datas::enterDannieV()
+{
+    QScreen *screen = QGuiApplication::primaryScreen();
+    vsn=new Vent_settings(this);
+    vsn->wf = this;
+    vsn->exec();
+    vsn->setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            vsn->size(),
+            screen->geometry()));
+}
+
+void Vent_datas::saveDannieV()
+{
+    model2->database().transaction();
+    if(model2->submitAll())
+        model2->database().commit();
+    else
+        model2->database().rollback();
+}
+
+
+void Vent_datas::deleteDannieV()
+{
+    QItemSelectionModel *selectModel = ui->tableView->selectionModel();
+    if(selectModel->selectedRows().isEmpty())
+    {
+        QMessageBox::critical(this, tr("Ошибка!"), tr("Выберите необходимую строку"));
+    }
+    else
+    {
+        QSqlQuery query(QSqlDatabase::database("connection2"));
+        int rowNumber = ui->tableView->selectionModel()->selection().indexes()[0].row();
+        query.prepare("DELETE FROM ventilators WHERE id=:id");
+        query.bindValue(":id", ui->tableView->model()->index(rowNumber, 0).data().toString());
+        query.exec();
+        table();
+    }
 }

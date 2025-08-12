@@ -111,6 +111,22 @@
         <file>../data/img/icons/branch-open.png</file>
         <file>../data/img/icons/branch-closed.png</file>
         <file>../data/img/images/tepl_schem_zam.svg</file>
+        <file>../data/img/images/vent_settings_1.svg</file>
+        <file>../data/img/images/vent_settings_2.svg</file>
+        <file>../data/img/images/vent_settings_3.svg</file>
+        <file>../data/img/images/vent_settings_4.svg</file>
+        <file>../data/img/images/vent_settings_5.svg</file>
+        <file>../data/img/images/vent_settings_6.svg</file>
+        <file>../data/img/images/vent_settings_7.svg</file>
+        <file>../data/img/images/vent_settings_8.svg</file>
+        <file>../data/img/images/vent_settings_9.svg</file>
+        <file>../data/img/images/vent_settings_10.svg</file>
+        <file>../data/img/images/vent_settings_11.svg</file>
+        <file>../data/img/images/vent_settings_12.svg</file>
+        <file>../data/img/images/vent_settings_13.svg</file>
+        <file>../data/img/images/vent_settings_14.svg</file>
+        <file>../data/img/images/vent_settings_15.svg</file>
+        <file>../data/img/images/vent_settings_16.svg</file>
     </qresource>
     <qresource prefix="/databases">
         <file>../data/databases/mydb.db</file>

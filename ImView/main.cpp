@@ -16,7 +16,7 @@
 
 void close_sql_base()
 {
-    qDebug() << "Closing database connections";
+   // qDebug() << "Closing database connections";
     {
         QSqlDatabase sda = QSqlDatabase::database("connection1");
         if (sda.isOpen()) {
@@ -64,27 +64,27 @@ int main(int argc, char *argv[])
         QSqlDatabase sda = QSqlDatabase::addDatabase("QSQLITE", "connection1");
         sda.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
         sda.open();
-        if (!sda.open()) {
-            qDebug() << "Ошибка открытия базы данных 1:" << sda.lastError().text();
-            return -1;
-        }
-        else
-        {
-            qDebug() << "база загружена";
-        }
+        // if (!sda.open()) {
+        //     qDebug() << "Ошибка открытия базы данных 1:" << sda.lastError().text();
+        //     return -1;
+        // }
+        // else
+        // {
+        //     qDebug() << "база загружена";
+        // }
 
         QSqlDatabase::removeDatabase("connection2");
         QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE", "connection2");
         sdb.setDatabaseName(QFileInfo("../data/base_db/ventdb.db").absoluteFilePath());
         sdb.open();
-        if (!sdb.open()) {
-            qDebug() << "Ошибка открытия базы данных 2:" << sdb.lastError().text();
-            return -1;
-        }
-        else
-        {
-            qDebug() << "база загружена2";
-        }
+        // if (!sdb.open()) {
+        //     qDebug() << "Ошибка открытия базы данных 2:" << sdb.lastError().text();
+        //     return -1;
+        // }
+        // else
+        // {
+        //     qDebug() << "база загружена2";
+        // }
 
         QSqlDatabase sdc = QSqlDatabase::addDatabase("QSQLITE", "connection3"); //объявление базы данных sqlite3
         sdc.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath());
@@ -101,14 +101,14 @@ int main(int argc, char *argv[])
         QSqlDatabase sdd = QSqlDatabase::addDatabase("QSQLITE","connection4");
         sdd.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath());
         sdd.open();
-        if (!sdc.open()) {
-            qDebug() << "Ошибка открытия базы данных 4:" << sdd.lastError().text();
-            return -1;
-        }
-        else
-        {
-            qDebug() << "база загружена4";
-        }
+        // if (!sdc.open()) {
+        //     qDebug() << "Ошибка открытия базы данных 4:" << sdd.lastError().text();
+        //     return -1;
+        // }
+        // else
+        // {
+        //     qDebug() << "база загружена4";
+        // }
 
         qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
         qputenv("QT_QUICK_BACKEND", "software");
@@ -176,11 +176,6 @@ int main(int argc, char *argv[])
         {
             QString filename(argv[1]);
             w.LoadProject(filename);
-        }
-
-        else
-        {
-            qDebug() << "база загружена2";
         }
 
         w.show();

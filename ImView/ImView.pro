@@ -50,7 +50,6 @@ SOURCES += \
     draw_poper.cpp \
     electromagn.cpp \
     fillicondelegate.cpp \
-    gridlinedelegate.cpp \
     gybrid_tepl_model.cpp \
     identf.cpp \
     ischodn_dannie.cpp \
@@ -132,7 +131,6 @@ HEADERS += \
     draw_poper.h \
     electromagn.h \
     fillicondelegate.h \
-    gridlinedelegate.h \
     gybrid_tepl_model.h \
     identf.h \
     intens_star_izol.h \
