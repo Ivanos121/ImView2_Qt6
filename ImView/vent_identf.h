@@ -25,6 +25,9 @@ public slots:
 public:
     Ui::Vent_identf *ui;
         QVector<QColor> dataLineColors_vent_identf;
+    std::vector<double> polyfit(const std::vector<double> &x, const std::vector<double> &y, int degree);
+        double computeError(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &coeffs);
+    int bestDegree(const QVector<double> &Q, const QVector<double> &w);
 };
 
 #endif // VENT_IDENTF_H

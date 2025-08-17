@@ -118,6 +118,7 @@ private slots:
     void modelItemChangedSlot_6(QStandardItem *item);
     void modelItemChangedSlot_7(QStandardItem *item);
     void modelItemChangedSlot_8(QStandardItem *item);
+    void modelItemChangedSlot_9(QStandardItem *item);
     void projectFileSelectedSlot(QString projectFile);
     void projectFileSelectedSlot_2(QString projectFile_2);
     void projectFileSelectedSlot_3(QString projectFile_3);
@@ -263,7 +264,9 @@ public:
     QStandardItem *kind_thermal_model_3_parametr, *ventilation_identification_parametr,
         *ventilation_identification_value, *kind_ventilation_parametr,*kind_ventilation_value,
         *calculation_modes_parametr, *calculation_modes_value, *geometry_parameters_parametr,
-        *geometry_parameters_value, *point_selection_step_parametr, *point_selection_step_value;
+        *geometry_parameters_value, *point_selection_step_parametr, *point_selection_step_value,
+        *data_approximation_mode_parameter, *data_approximation_mode_value, *degree_approximating_polynomial_parameter,
+        *degree_approximating_polynomial_value;
     QStandardItem *Heat_processes_accounting_parameter, *Heat_processes_accounting_value,
         *item163, *item164, *item165,*item166, *item167, *item168, *item169, *item170;
     QStandardItem *item171, *item172, *time_work_parametr, *time_work_value, *time_work_in_cycle_parametr,*time_work_in_cycle_value, *time_start_in_cycle_parametr,
@@ -295,7 +298,7 @@ protected slots:
     void onTabChanged_2(int index);
     void open_identf_nastr();
     void open_identf_nastr_2();
-    void open_identf_nastr_3();
+    void open_identf_nastr_3();    
 private:
     QHash<QModelIndex, bool> rootNodeStates;
 };

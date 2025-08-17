@@ -210,7 +210,6 @@ MainWindow::MainWindow(QWidget *parent)
     onTabChanged(0);
 
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged_2);
-
     onTabChanged_2(1);
 
 
@@ -248,13 +247,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->delete_dannie_vent, &QAction::triggered, this, &MainWindow::delete_dannie_vent);
 
     connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
+    connect(ui->identf_pusk_panel, &QAction::triggered, this, &MainWindow::identf_pusk);
     connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
+    connect(ui->identf_stop_panel, &QAction::triggered, this, &MainWindow::identf_stop);
     connect(ui->actionteplident_start, &QAction::triggered, this, &MainWindow::actionteplident_start);
+    connect(ui->actionteplident_start_panel, &QAction::triggered, this, &MainWindow::actionteplident_start);
     connect(ui->actionteplident_stop, &QAction::triggered, this, &MainWindow::actionteplident_stop);
+    connect(ui->actionteplident_stop_panel, &QAction::triggered, this, &MainWindow::actionteplident_stop);
     connect(ui->ventidentf_start, &QAction::triggered, this, &MainWindow::ventidentf_start);
-    connect(ui->vent_identf_stop, &QAction::triggered, this, &MainWindow::ventidentf_stop);
+    connect(ui->ventidentf_start_panel, &QAction::triggered, this, &MainWindow::ventidentf_start);
+    connect(ui->vent_identf_stop_panel, &QAction::triggered, this, &MainWindow::ventidentf_stop);
     connect(ui->electromagn_start, &QAction::triggered, this, &MainWindow::electromagn_start);
+    connect(ui->electromagn_start_panel, &QAction::triggered, this, &MainWindow::electromagn_start);
     connect(ui->electromagn_stop, &QAction::triggered, this, &MainWindow::electromagn_stop);
+    connect(ui->electromagn_stop_panel, &QAction::triggered, this, &MainWindow::electromagn_stop);
     connect(ui->kalibr_osc, &QAction::triggered, this, &MainWindow::kalibr_osc);
     connect(ui->actionresult, &QAction::triggered, this, &MainWindow::actionresult);
     connect(ui->actionresultidentf, &QAction::triggered, this, &MainWindow::actionresultidentf);
@@ -826,6 +832,32 @@ MainWindow::MainWindow(QWidget *parent)
     Heat_processes_accounting_value->setToolTip(Heat_processes_accounting_value_tooltip);
     iteventilation_identificationms18.append(Heat_processes_accounting_parameter);
     iteventilation_identificationms18.append(Heat_processes_accounting_value);
+    ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
+
+    data_approximation_mode_parameter = new QStandardItem(tr("Режим аппроксимации данных"));
+    data_approximation_mode_parameter->setEditable(false);
+    QString data_approximation_mode_parameter_tooltip = data_approximation_mode_parameter->text();
+    data_approximation_mode_parameter->setToolTip(data_approximation_mode_parameter_tooltip);
+    data_approximation_mode_value = new QStandardItem(tr("Автоматический"));
+    QString data_approximation_mode_value_tooltip = data_approximation_mode_value->text();
+    data_approximation_mode_value->setToolTip(data_approximation_mode_value_tooltip);
+    iteventilation_identificationms18.append(data_approximation_mode_parameter);
+    iteventilation_identificationms18.append(data_approximation_mode_value);
+    ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
+    iteventilation_identificationms18.clear();
+
+    degree_approximating_polynomial_parameter = new QStandardItem(tr("Степень полинома аппроксимации"));
+    degree_approximating_polynomial_parameter->setEditable(false);
+    degree_approximating_polynomial_parameter->setEnabled(false);
+    QString degree_approximating_polynomial_parameter_tooltip = degree_approximating_polynomial_parameter->text();
+    degree_approximating_polynomial_parameter->setToolTip(degree_approximating_polynomial_parameter_tooltip);
+    degree_approximating_polynomial_value = new QStandardItem(tr("Введите данные"));
+    degree_approximating_polynomial_value->setEnabled(false);
+    QString degree_approximating_polynomial_value_tooltip = degree_approximating_polynomial_value->text();
+    degree_approximating_polynomial_value->setToolTip(degree_approximating_polynomial_value_tooltip);
+    iteventilation_identificationms18.append(degree_approximating_polynomial_parameter);
+    iteventilation_identificationms18.append(degree_approximating_polynomial_value);
     ventilation_identification_parametr->appendRow(iteventilation_identificationms18);
     iteventilation_identificationms18.clear();
 
@@ -3121,67 +3153,67 @@ MainWindow::MainWindow(QWidget *parent)
     p19.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_19->setPalette(p19);
 
-    ui->tableWidget_20->setRowCount(30);
-    ui->tableWidget_20->setColumnCount(4);
-    QStringList name_20;
-    name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    // ui->tableWidget_20->setRowCount(30);
+    // ui->tableWidget_20->setColumnCount(4);
+    // QStringList name_20;
+    // name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
 
-    ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
-    ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_20->verticalHeader()->setVisible(true);
-    ui->tableWidget_20->resizeColumnsToContents();
+    // ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
+    // ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    // ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    // ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
+    // ui->tableWidget_20->verticalHeader()->setVisible(true);
+    // ui->tableWidget_20->resizeColumnsToContents();
 
-    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
-    {
-        for(int column = 0; column<ui->tableWidget_20->columnCount(); column++)
-        {
-            ui->tableWidget_20->setItem(row, column, new QTableWidgetItem());
+    // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    // {
+    //     for(int column = 0; column<ui->tableWidget_20->columnCount(); column++)
+    //     {
+    //         ui->tableWidget_20->setItem(row, column, new QTableWidgetItem());
 
-        }
-    }
+    //     }
+    // }
 
-    for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
-    {
+    // for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
+    // {
 
-        if (ui->tableWidget_20->item(i, 1) != 0)
-        {
-            ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_20->item(i, 3) != 0)
-        {
-            ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
+    //     if (ui->tableWidget_20->item(i, 1) != 0)
+    //     {
+    //         ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+    //     }
+    //     if (ui->tableWidget_20->item(i, 3) != 0)
+    //     {
+    //         ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+    //     }
+    // }
 
 
-    //запрет редактирования первого столбца
-    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
-    {
-        if (ui->tableWidget_20->item(row,0) != 0)
-        {
-            ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_20->item(row,1) != 0)
-        {
-            ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_20->item(row,2) != 0)
-        {
-            ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
-            ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_20->item(row,3) != 0)
-        {
-            ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-    }
+    // //запрет редактирования первого столбца
+    // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    // {
+    //     if (ui->tableWidget_20->item(row,0) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    //     }
+    //     if (ui->tableWidget_20->item(row,1) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    //     }
+    //     if (ui->tableWidget_20->item(row,2) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+    //         ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
+    //     }
+    //     if (ui->tableWidget_20->item(row,3) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    //     }
+    // }
 
-    QPalette p_20=ui->tableWidget_20->palette();
-    p_20.setColor(QPalette::Base, QColor(255, 255, 191));
-    p_20.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    ui->tableWidget_20->setPalette(p_20);
+    // QPalette p_20=ui->tableWidget_20->palette();
+    // p_20.setColor(QPalette::Base, QColor(255, 255, 191));
+    // p_20.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
+    // ui->tableWidget_20->setPalette(p_20);
 
 
 
@@ -3284,6 +3316,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(time_base_selection_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_6);
     connect(time_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
     connect(time_start_in_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
+    connect(data_approximation_mode_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_9);
 
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);
@@ -4289,21 +4322,25 @@ void MainWindow::modelItemChangedSlot_8(QStandardItem *item)
     }
 }
 
+void MainWindow::modelItemChangedSlot_9(QStandardItem *item)
+{
+    if (item == data_approximation_mode_value)
+    {
+        if (item->text() == "Ручной")
+        {
+            degree_approximating_polynomial_parameter->setEnabled(true);
+            degree_approximating_polynomial_value->setEnabled(true);
+        }
+        else
+        {
+            degree_approximating_polynomial_parameter->setEnabled(false);
+            degree_approximating_polynomial_value->setEnabled(false);
+        }
+    }
+}
+
 void MainWindow::SaveProgectToFile()
 {
-    // QFileDialog saveDialog;
-    // saveDialog.setAcceptMode(QFileDialog::AcceptSave);
-    // saveDialog.setDefaultSuffix("imview");
-    // saveDialog.setNameFilter(tr("Файл конфигурации проекта (*.imview);;Все файлы (*.*)"));
-    // saveDialog.setViewMode(QFileDialog::Detail);
-    // saveDialog.setDirectory("../Output");
-    // saveDialog.exec();
-    // QString str = "../" + saveDialog.selectedFiles().constFirst();
-
-    // QFile file(QString("../save/project.xml"));
-    // file.open(QIODevice::WriteOnly);
-
-
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
 
@@ -4407,6 +4444,26 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeAttribute("value", (kind_ventilation_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeAttribute("value", (calculation_modes_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeAttribute("value", (Heat_processes_accounting_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeAttribute("value", (data_approximation_mode_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_17");
+    xmlWriter.writeAttribute("value", (degree_approximating_polynomial_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_18");
     xmlWriter.writeAttribute("value", (engine_duty_cycle_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4418,11 +4475,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (time_work_in_cycle_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_19");
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeStartElement("combobox_20");
     xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4438,15 +4495,15 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeStartElement("combobox_21");
     xmlWriter.writeAttribute("value", (temperature_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_17");
+    xmlWriter.writeStartElement("combobox_22");
     xmlWriter.writeAttribute("value", (temperature_regime_static_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_18");
+    xmlWriter.writeStartElement("combobox_23");
     xmlWriter.writeAttribute("value", (temperature_regime_dinamic_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4454,11 +4511,11 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_19");
+    xmlWriter.writeStartElement("combobox_24");
     xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_20");
+    xmlWriter.writeStartElement("combobox_25");
     xmlWriter.writeAttribute("value", (design_ventilation_system_value->text()));
     xmlWriter.writeEndElement();
 
@@ -4522,6 +4579,12 @@ void MainWindow::SaveProgectToFile()
     {
         xmlWriter.writeStartElement("time_work");
         xmlWriter.writeAttribute("value", (time_work_value->text()));
+        xmlWriter.writeEndElement();
+    }
+    if (data_approximation_mode_value->text() == "Ручной")
+    {
+        xmlWriter.writeStartElement("degree_approximating_polynomial_value");
+        xmlWriter.writeAttribute("value", (degree_approximating_polynomial_value->text()));
         xmlWriter.writeEndElement();
     }
 
@@ -4844,8 +4907,63 @@ void MainWindow::LoadProject(QString str)
                             kind_thermal_model_4_value->setText(attribute_value);
                         }
                     }
-                }
+                }                
                 else if(xmlReader.name() == "combobox_13")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            kind_ventilation_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_14")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            calculation_modes_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_15")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            Heat_processes_accounting_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_16")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            data_approximation_mode_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_17")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            degree_approximating_polynomial_value->setText(attribute_value);
+                        }
+                    }
+                }
+                else if(xmlReader.name() == "combobox_18")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4878,7 +4996,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_14")
+                else if(xmlReader.name() == "combobox_19")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4889,7 +5007,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_15")
+                else if(xmlReader.name() == "combobox_20")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4933,7 +5051,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_16")
+                else if(xmlReader.name() == "combobox_21")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4944,7 +5062,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_17")
+                else if(xmlReader.name() == "combobox_22")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4955,7 +5073,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "combobox_18")
+                else if(xmlReader.name() == "combobox_23")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4977,7 +5095,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_19")
+                if(xmlReader.name() == "combobox_24")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -4988,7 +5106,7 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                if(xmlReader.name() == "combobox_20")
+                if(xmlReader.name() == "combobox_25")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
@@ -5142,8 +5260,17 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-
-
+                if(xmlReader.name() == "degree_approximating_polynomial_value")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            degree_approximating_polynomial_value->setText(attribute_value);
+                        }
+                    }
+                }
                 if(xmlReader.name() == "selected_row")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -9966,6 +10093,26 @@ void MainWindow::save_file()
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("combobox_13");
+    xmlWriter.writeAttribute("value", (kind_ventilation_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeAttribute("value", (calculation_modes_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeAttribute("value", (Heat_processes_accounting_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeAttribute("value", (data_approximation_mode_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_17");
+    xmlWriter.writeAttribute("value", (degree_approximating_polynomial_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("combobox_18");
     xmlWriter.writeAttribute("value", (engine_duty_cycle_value->text()));
     xmlWriter.writeEndElement();
 
@@ -9977,11 +10124,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (time_work_in_cycle_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_14");
+    xmlWriter.writeStartElement("combobox_19");
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_15");
+    xmlWriter.writeStartElement("combobox_20");
     xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
@@ -9997,15 +10144,15 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_16");
+    xmlWriter.writeStartElement("combobox_21");
     xmlWriter.writeAttribute("value", (temperature_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_17");
+    xmlWriter.writeStartElement("combobox_22");
     xmlWriter.writeAttribute("value", (temperature_regime_static_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_18");
+    xmlWriter.writeStartElement("combobox_23");
     xmlWriter.writeAttribute("value", (temperature_regime_dinamic_value->text()));
     xmlWriter.writeEndElement();
 
@@ -10013,11 +10160,11 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_19");
+    xmlWriter.writeStartElement("combobox_24");
     xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("combobox_20");
+    xmlWriter.writeStartElement("combobox_25");
     xmlWriter.writeAttribute("value", (design_ventilation_system_value->text()));
     xmlWriter.writeEndElement();
 
@@ -10081,6 +10228,12 @@ void MainWindow::save_file()
     {
         xmlWriter.writeStartElement("time_work");
         xmlWriter.writeAttribute("value", (time_work_value->text()));
+        xmlWriter.writeEndElement();
+    }
+    if (data_approximation_mode_value->text() == "Ручной")
+    {
+        xmlWriter.writeStartElement("degree_approximating_polynomial_value");
+        xmlWriter.writeAttribute("value", (degree_approximating_polynomial_value->text()));
         xmlWriter.writeEndElement();
     }
 

@@ -10,6 +10,7 @@
 #include <QScreen>
 #include <QSqlError>
 #include <QSqlDatabase>
+#include <QLoggingCategory>
 
 #include "mainwindow.h"
 #include "settings.h"
@@ -56,6 +57,7 @@ int main(int argc, char *argv[])
     int res;
     QApplication a(argc, argv);
     {
+        //QLoggingCategory::setFilterRules(QStringLiteral("*.debug=true"));
         /*QSqlDatabase::removeDatabase("connection1");
         QSqlDatabase::removeDatabase("connection2");
         QSqlDatabase::removeDatabase("connection3");

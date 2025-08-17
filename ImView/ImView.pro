@@ -3,7 +3,7 @@ QT       += core gui sql webenginewidgets serialport printsupport svgwidgets xml
 CONFIG += c++20 debug
 CONFIG -= qml_debug
 
-QMAKE_CXXFLAGS += -Og
+QMAKE_CXXFLAGS += -O0
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

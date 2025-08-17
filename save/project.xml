@@ -24,20 +24,25 @@
                 <combobox_10 value="Одномассовая модель"/>
                 <combobox_11 value="Cтатика"/>
                 <combobox_12 value="Учитывать"/>
-                <combobox_13 value="Режим S1"/>
+                <combobox_13 value="Принудительная вентиляция"/>
+                <combobox_14 value="Автоматический"/>
+                <combobox_15 value="Учитывать"/>
+                <combobox_16 value="Ручной"/>
+                <combobox_17 value="2"/>
+                <combobox_18 value="Ручной"/>
                 <time_cikle value="6"/>
                 <time_work value="2"/>
-                <combobox_14 value="Текущее время"/>
-                <combobox_15 value="Прямой пуск"/>
+                <combobox_19 value="Текущее время"/>
+                <combobox_20 value="2"/>
                 <napragenie value="220"/>
                 <moment value="20"/>
                 <start_temp value="20"/>
-                <combobox_16 value="Статика (статор)"/>
-                <combobox_17 value="Одномассовая модель"/>
-                <combobox_18 value="Одномассовая модель"/>
+                <combobox_21 value="Текущее время"/>
+                <combobox_22 value="Текущее время"/>
+                <combobox_23 value="Прямой пуск"/>
                 <time_step value="Текущее время"/>
-                <combobox_19 value="Статика"/>
-                <combobox_20 value="Один вентилятор"/>
+                <combobox_24 value="Статика (статор)"/>
+                <combobox_25 value="Одномассовая модель"/>
                 <pressure value="102"/>
                 <selected_row value="0"/>
                 <sopr_R1 value="2.132"/>
@@ -45,6 +50,7 @@
                 <ind_L1 value="0.225"/>
                 <ind_L2 value="0.225"/>
                 <ind_Lm value="0.213"/>
+                <degree_approximating_polynomial_value value="2"/>
             </general_settings>
         </general_settings>
     </project>
