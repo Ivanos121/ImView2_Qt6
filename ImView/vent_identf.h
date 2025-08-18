@@ -17,17 +17,21 @@ public:
     explicit Vent_identf(QWidget *parent = nullptr);
     ~Vent_identf();
     MainWindow *wf;
-    QTimer *times;
+    //QTimer *times;
 
     void raschet_vent_identf();
-public slots:
-    void realtimeDataSlot();
+
 public:
     Ui::Vent_identf *ui;
-        QVector<QColor> dataLineColors_vent_identf;
-    std::vector<double> polyfit(const std::vector<double> &x, const std::vector<double> &y, int degree);
-        double computeError(const std::vector<double> &x, const std::vector<double> &y, const std::vector<double> &coeffs);
-    int bestDegree(const QVector<double> &Q, const QVector<double> &w);
+    QVector<QColor> dataLineColors_vent_identf;
+    QVector<double> approximate(const QVector<double>& x,
+                                const QVector<double>& y,
+                                size_t degree);
+    double computeError(const QVector<double> &x, const QVector<double> &y, const QVector<double> &coeffs);
+    int bestDegree(const QVector<double> &x, const QVector<double> &y);
+
+private:
+    bool isFinished;
 };
 
 #endif // VENT_IDENTF_H
