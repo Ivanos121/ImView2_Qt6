@@ -30,6 +30,8 @@ public:
     double computeError(const QVector<double> &x, const QVector<double> &y, const QVector<double> &coeffs);
     int bestDegree(const QVector<double> &x, const QVector<double> &y);
 
+    void on_tabWidget_currentChanged();
+    void save_vent_identf();
 private:
     bool isFinished;
 };

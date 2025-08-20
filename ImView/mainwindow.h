@@ -95,7 +95,7 @@ private slots:
     void tabClicked_3();
     void tabClicked_4();
     void tabClicked_5();
-    //void tabClicked_6();
+    void tabClicked_6();
     void itemEdit();
     void createUndoView();
     void edit();
@@ -148,6 +148,9 @@ private slots:
     void radioButton_8_toggled(bool checked);
     void radioButton_9_toggled(bool checked);
     void radioButton_10_toggled(bool checked);
+    void radioButton_22_toggled(bool checked);
+    void radioButton_17_toggled(bool checked);
+    void radioButton_14_toggled(bool checked);
 
     void save_electromagn_graph_file();
     void on_save_electromagn2_file_clicked();
@@ -279,6 +282,8 @@ public:
     void printColumnValues(const KoeffBase &koeffObj, int col);
     KoeffBase *findKoeffByName(const std::vector<std::reference_wrapper<KoeffBase> > &koeffs, const std::string &targetName);
     void close_sql_base();
+
+    void save_vent_in_file();
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);

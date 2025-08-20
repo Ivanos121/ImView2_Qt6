@@ -297,13 +297,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->radioButton_8,&QRadioButton::toggled, this, &MainWindow::radioButton_8_toggled);
     connect(ui->radioButton_9,&QRadioButton::toggled, this, &MainWindow::radioButton_9_toggled);
     connect(ui->radioButton_10,&QRadioButton::toggled, this, &MainWindow::radioButton_10_toggled);
-    //connect(ui->radioButton_11,&QRadioButton::toggled, this, &MainWindow::radioButton_11_toggled);
-    //connect(ui->radioButton_12,&QRadioButton::toggled, this, &MainWindow::radioButton_12_toggled);
-    //connect(ui->radioButton_13,&QRadioButton::toggled, this, &MainWindow::radioButton_13_toggled);
+    connect(ui->radioButton_22,&QRadioButton::toggled, this, &MainWindow::radioButton_22_toggled);
+    connect(ui->radioButton_17,&QRadioButton::toggled, this, &MainWindow::radioButton_17_toggled);
+    connect(ui->radioButton_14,&QRadioButton::toggled, this, &MainWindow::radioButton_14_toggled);
 
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
+    //connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_vent_in_file);
 
     //connect(ui->widget->ui->tableView, &QAbstractItemView::clicked, this, &MainWindow::saveDataSQL);
     connect(ui->widget->ui->tableView->itemDelegate(), &QAbstractItemDelegate::closeEditor, this, &MainWindow::saveDataSQL);
@@ -3153,17 +3154,17 @@ MainWindow::MainWindow(QWidget *parent)
     p19.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_19->setPalette(p19);
 
-    // ui->tableWidget_20->setRowCount(30);
-    // ui->tableWidget_20->setColumnCount(4);
-    // QStringList name_20;
-    // name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    ui->tableWidget_20->setRowCount(6);
+    ui->tableWidget_20->setColumnCount(4);
+    QStringList name_20;
+    name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
 
-    // ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
-    // ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    // ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
-    // ui->tableWidget_20->verticalHeader()->setVisible(true);
-    // ui->tableWidget_20->resizeColumnsToContents();
+    ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
+    ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_20->verticalHeader()->setVisible(true);
+    ui->tableWidget_20->resizeColumnsToContents();
 
     // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
     // {
@@ -3174,48 +3175,75 @@ MainWindow::MainWindow(QWidget *parent)
     //     }
     // }
 
-    // for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
-    // {
+    ui->tableWidget_20->setItem(0, 0, new QTableWidgetItem("Рабочий расход воздуха"));
+    ui->tableWidget_20->setItem(1, 0, new QTableWidgetItem("Максимальный расход воздуха"));
+    ui->tableWidget_20->setItem(2, 0, new QTableWidgetItem("Начальное давление вентилятора"));
+    ui->tableWidget_20->setItem(3, 0, new QTableWidgetItem("Рабочий набор вентилятора"));
+    ui->tableWidget_20->setItem(4, 0, new QTableWidgetItem("Суммарное сопротивление вентиляционной сети"));
+    ui->tableWidget_20->setItem(5, 0, new QTableWidgetItem("Потребляемая вентилятором мощность"));
 
-    //     if (ui->tableWidget_20->item(i, 1) != 0)
-    //     {
-    //         ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
-    //     }
-    //     if (ui->tableWidget_20->item(i, 3) != 0)
-    //     {
-    //         ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-    //     }
-    // }
+    ui->tableWidget_20->setItem(0, 1, new QTableWidgetItem("Qp"));
+    ui->tableWidget_20->setItem(1, 1, new QTableWidgetItem("Qmax"));
+    ui->tableWidget_20->setItem(2, 1, new QTableWidgetItem("H0"));
+    ui->tableWidget_20->setItem(3, 1, new QTableWidgetItem("Hp"));
+    ui->tableWidget_20->setItem(4, 1, new QTableWidgetItem("Z0"));
+    ui->tableWidget_20->setItem(5, 1, new QTableWidgetItem("Pvent"));
 
+    ui->tableWidget_20->setItem(0, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(1, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(2, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(3, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(4, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(5, 2, new QTableWidgetItem(" "));
 
-    // //запрет редактирования первого столбца
-    // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
-    // {
-    //     if (ui->tableWidget_20->item(row,0) != 0)
-    //     {
-    //         ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-    //     }
-    //     if (ui->tableWidget_20->item(row,1) != 0)
-    //     {
-    //         ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-    //     }
-    //     if (ui->tableWidget_20->item(row,2) != 0)
-    //     {
-    //         ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
-    //         ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
-    //     }
-    //     if (ui->tableWidget_20->item(row,3) != 0)
-    //     {
-    //         ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-    //     }
-    // }
-
-    // QPalette p_20=ui->tableWidget_20->palette();
-    // p_20.setColor(QPalette::Base, QColor(255, 255, 191));
-    // p_20.setColor(QPalette::AlternateBase, QColor(255, 255, 222));
-    // ui->tableWidget_20->setPalette(p_20);
+    ui->tableWidget_20->setItem(0, 3, new QTableWidgetItem("м³/c"));
+    ui->tableWidget_20->setItem(1, 3, new QTableWidgetItem("м³/c"));
+    ui->tableWidget_20->setItem(2, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_20->setItem(3, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_20->setItem(4, 3, new QTableWidgetItem("--"));
+    ui->tableWidget_20->setItem(5, 3, new QTableWidgetItem("Вт"));
 
 
+    for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_20->item(i, 1) != 0)
+        {
+            ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_20->item(i, 3) != 0)
+        {
+            ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    {
+        if (ui->tableWidget_20->item(row,0) != 0)
+        {
+            ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_20->item(row,1) != 0)
+        {
+            ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_20->item(row,2) != 0)
+        {
+            ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_20->item(row,3) != 0)
+        {
+            ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_20=ui->tableWidget_20->palette();
+    p_20.setColor(QPalette::Base, QColor(225, 255, 255));
+    p_20.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_20->setPalette(p_20);
 
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -3329,7 +3357,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->widget_5->ui->tabWidget_2, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_3);
     connect(ui->widget_6->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_4);
     connect(ui->tabWidget_3, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_5);
-    //connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
+    connect(ui->widget_7->ui->tabWidget, &QTabWidget::currentChanged, this,&MainWindow::tabClicked_6);
     connect(model_treeView, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible);
     connect(model_treeView, &QStandardItemModel::itemChanged, this, &MainWindow::button_visible_2);
 
@@ -5289,6 +5317,7 @@ void MainWindow::LoadProject(QString str)
 
         if(data_identification_value->text() == "Сохранить")
         {
+
             QXmlStreamReader xmlReader2;
             xmlReader2.setDevice(&file);
             xmlReader2.readNext();
@@ -5351,9 +5380,86 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }xmlReader.readNext(); // Переходим к следующему элементу файла
-
             }file.close();
+
+            QFile file3(QString("/tmp/imview/vent_identf.xml"));
+            QXmlStreamReader xmlReader3;
+            xmlReader3.setDevice(&file3);
+            xmlReader3.readNext();
+            while(!xmlReader3.atEnd())
+            {
+                if(xmlReader2.isStartElement())
+                {
+                    if(xmlReader3.name() == "Fan_working_set_Qp")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Maximum_air_flow_Qmax")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(1,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Initial_fan_pressure_H0")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(2,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Fan_working_set_Hp")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Total_resistance_of_ventilation_network_Z0")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Fan_power_consumption_Pvent")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                }xmlReader.readNext();
+            }file3.close();
         }
+        file.close();
     }
 
     sessionFileName = QFileInfo(str).baseName();
@@ -5428,7 +5534,7 @@ void MainWindow::tabClicked()
     if(ui->tabWidget->currentIndex()==3)
     {
         ui->stackedWidget->show();
-        ui->stackedWidget->setCurrentIndex(22);
+        ui->stackedWidget->setCurrentIndex(24);
     }
 
     if(ui->tabWidget->currentIndex()==4)
@@ -5568,21 +5674,31 @@ void MainWindow::tabClicked_5()
         ui->tabWidget_2->show();
         ui->tabWidget_2->setCurrentIndex(1);
     }
+    if(ui->tabWidget_3->currentIndex() == 1)
+    {
+        ui->tabWidget_2->show();
+        ui->tabWidget_2->setCurrentIndex(1);
+    }
 }
 
-// void MainWindow::tabClicked_6()
-// {
-//     if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
-//     {
-//         ui->stackedWidget->show();
-//         ui->stackedWidget->setCurrentIndex(12);
-//     }
-//     if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
-//     {
-//         ui->stackedWidget->show();
-//         ui->stackedWidget->setCurrentIndex(4);
-//     }
-// }
+void MainWindow::tabClicked_6()
+{
+    if(ui->widget_7->ui->tabWidget->currentIndex() == 0)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(24);
+    }
+    if(ui->widget_7->ui->tabWidget->currentIndex() == 1)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(23);
+    }
+    if(ui->widget_7->ui->tabWidget->currentIndex() == 2)
+    {
+        ui->stackedWidget->show();
+        ui->stackedWidget->setCurrentIndex(22);
+    }
+}
 
 void MainWindow::setcolorincell(int row, int column)
 {
@@ -6490,6 +6606,92 @@ void MainWindow::radioButton_10_toggled(bool checked)
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065-6').show();"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1053').show();"));
                 ui->widget_5->ui->webEngineView_3->page()->runJavaScript(QString("$('#text1065').show();"));
+            }
+        }
+    }
+}
+
+void MainWindow::radioButton_22_toggled(bool checked)
+{
+    if (kind_ventilation_value->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (kind_ventilation_value->text() == "Принудительная вентиляция")
+        {
+            if (checked)
+            {
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">1</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text913').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">2</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text917').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">3</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text921').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">4</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text925').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">5</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text929').html('Z<tspan style=\"font-size: 15px;\" dy=\"3\">6</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text953').html('Q<tspan style=\"font-size: 15px;\" dy=\"3\">p</tspan>');"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text941').html('H<tspan style=\"font-size: 15px;\" dy=\"3\">p</tspan>');"));
+            }
+        }
+    }
+}
+
+void MainWindow::radioButton_14_toggled(bool checked)
+{
+    if (kind_ventilation_value->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (kind_ventilation_value->text() == "Принудительная вентиляция")
+        {
+            if (checked)
+            {
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 °C');").arg(ventparam.Z1, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 °C');").arg(ventparam.Z2, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 °C');").arg(ventparam.Z3, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 °C');").arg(ventparam.Z4, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 °C');").arg(ventparam.Z5, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 °C');").arg(ventparam.Z6, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 °C');").arg(ventparam.Qp, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 °C');").arg(ventparam.Hp, 0, 'f', 2));
+            }
+        }
+    }
+}
+
+void MainWindow::radioButton_17_toggled(bool checked)
+{
+    if (kind_ventilation_value->text() == "Выберите режим")
+    {
+        QMessageBox::critical(this, "Ошибка!", "Выберите тип эксперимента в настройках сеанса");
+    }
+    else
+    {
+        if (kind_ventilation_value->text() == "Принудительная вентиляция")
+        {
+            if (checked)
+            {
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text913').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text917').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text921').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text925').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text929').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text953').hide();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text941').hide();"));
+            }
+            else
+            {
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text913').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text917').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text921').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text925').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text929').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text953').show();"));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text941').show();"));
             }
         }
     }
@@ -12606,6 +12808,89 @@ void MainWindow::save_identf_in_file()
     fout << std::endl;
 
     fout.close();
+}
+
+void MainWindow::save_vent_in_file()
+{
+    QFile file(QString("/home/elf/ImView/data/vent.xml"));
+    file.open(QIODevice::WriteOnly);
+
+    //Создаем объект, с помощью которого осуществляется запись в файл
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
+    xmlWriter.writeStartDocument();     // Запускаем запись в документ
+    xmlWriter.writeStartElement("resources");   // Записываем первый элемент с его именем
+    xmlWriter.writeStartElement("vent_dannie");  // Записываем тег с именем для первого итема
+
+    xmlWriter.writeStartElement("general_settings");
+
+    xmlWriter.writeStartElement("intenal_diameter_ventilator");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(0,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("extenal_diameter_ventilator");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(1,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("shirina_lopatki_ventilatora");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(2,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("chastota_vrasachenia_ventilatora");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(3,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("plotnost_vozducha");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(4,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("summarnaja_ploschad_otverstiy_v_setke_kogucha");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(5,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Obchaja_ploschad_setki_kogucha");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(6,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ploschad_sechenia_v_meste_povorota_k_rabochemu_kolesu");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(7,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ugol_povorota_potoka_k_vchodnim_kromkam_lopatok_rabochego_kolesa");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(8,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ploschad_sechenia_v_meste_povorota_pered_vchodom_v_megrebernye_kanaly");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(9,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ugol_povorota_potoka_pered_vhodom_v_megrebernye_kanaly");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(10,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ploschad_sechenia_pered_vhodom_v_megrebernye_kanaly");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(11,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ploschad_sechenia_megrebernyh_kanalov_ot_staniny_do_koguha_ventilatora");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(12,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ugol_natekania_potoka_na_rebra_staniny");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(13,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("Ugol_povorota_potoka_v_megrebernych_kanalah");
+    xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(14,2)->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndElement();
+    xmlWriter.writeEndDocument();
+    file.close();   // Закрываем файл
+
+    //JlCompress::compressDir(str, "/home/elf/ImView/data/");
 }
 
 void MainWindow::saveDataSQL()

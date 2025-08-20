@@ -59,6 +59,7 @@ struct VentParam
     double P_ct;
     double P_din;
     double v;
+    QString ventIdentfFileName;
 };
 
 extern TeplParam teplparam;

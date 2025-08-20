@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <vent_identf>
+        <general_settings>
+            <Fan_working_set_Qp value="0.00734315"/>
+            <Maximum_air_flow_Qmax value="0.00855729"/>
+            <Initial_fan_pressure_H0 value="232.131"/>
+            <Fan_working_set_Hp value="61.1981"/>
+            <Total_resistance_of_ventilation_network_Z0 value="61.1981"/>
+            <Fan_power_consumption_Pvent value="6.29783"/>
+        </general_settings>
+    </vent_identf>
+</resources>

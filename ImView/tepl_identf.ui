@@ -58,7 +58,7 @@
   <customwidget>
    <class>Plot</class>
    <extends>QWidget</extends>
-   <header location="global">plot.h</header>
+   <header>plot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

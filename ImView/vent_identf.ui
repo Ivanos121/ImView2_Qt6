@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -68,7 +68,7 @@
   <customwidget>
    <class>Plot</class>
    <extends>QWidget</extends>
-   <header location="global">plot.h</header>
+   <header>plot.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

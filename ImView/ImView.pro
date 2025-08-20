@@ -73,6 +73,7 @@ SOURCES += \
     paintdelegate.cpp \
     plot.cpp \
     poisk.cpp \
+    polynomial.cpp \
     pushbuttondelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
@@ -155,6 +156,7 @@ HEADERS += \
     paintdelegate.h \
     plot.h \
     poisk.h \
+    polynomial.h \
     pushbuttondelegate.h \
     save_progect.h \
     settings.h \
