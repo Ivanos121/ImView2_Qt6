@@ -10,9 +10,9 @@
             <combobox_3 value="Сохранить"/>
             <combobox_4 value="Сохранить"/>
             <combobox_5 value="Сохранить"/>
-            <combobox_6 value="Не сохранять"/>
-            <combobox_7 value="Не сохранять"/>
-            <combobox_8 value="Не сохранять"/>
+            <combobox_6 value="Сохранить"/>
+            <combobox_7 value="Сохранить"/>
+            <combobox_8 value="Сохранить"/>
             <combobox_9 value="Ручной"/>
             <coeff_1 value="0.01"/>
             <coeff_2 value="0.1"/>
@@ -44,12 +44,16 @@
             <combobox_25 value="Одномассовая модель"/>
             <pressure value="102"/>
             <selected_row value="0.0"/>
-            <sopr_R1 value="2.132"/>
-            <sopr_R2 value="2.343"/>
-            <ind_L1 value="0.225"/>
-            <ind_L2 value="0.225"/>
-            <ind_Lm value="0.213"/>
-            <degree_approximating_polynomial_value value="2"/>
+            <data_tepl_identification_value value="Сохранить">
+                <data_vent_identification_value value="Сохранить">
+                    <sopr_R1 value="2.132"/>
+                    <sopr_R2 value="2.343"/>
+                    <ind_L1 value="0.225"/>
+                    <ind_L2 value="0.225"/>
+                    <ind_Lm value="0.213"/>
+                    <degree_approximating_polynomial_value value="2"/>
+                </data_vent_identification_value>
+            </data_tepl_identification_value>
         </general_settings>
     </project>
 </resources>

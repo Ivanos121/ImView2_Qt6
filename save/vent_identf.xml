@@ -8,6 +8,9 @@
             <Fan_working_set_Hp value="61.1981"/>
             <Total_resistance_of_ventilation_network_Z0 value="61.1981"/>
             <Fan_power_consumption_Pvent value="6.29783"/>
+            <koefficient_0 value="1.51788e-18"/>
+            <koefficient_1 value="5.44774e-05"/>
+            <koefficient_2 value="-1.85288e-22"/>
         </general_settings>
     </vent_identf>
 </resources>

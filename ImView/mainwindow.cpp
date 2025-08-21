@@ -55,7 +55,7 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "tepl_dannie.h"
-#include "ui_nastroiki.h"
+//#include "ui_nastroiki.h"
 #include "ui_ostat_resurs.h"
 #include "ui_poisk.h"
 #include "ui_tepl_dannie.h"
@@ -525,7 +525,7 @@ MainWindow::MainWindow(QWidget *parent)
     all_sesion_name_parametr->appendRow(sesion_name);
     sesion_name.clear();
 
-    data_identification_parametr = new QStandardItem(tr("Данные идентификации"));
+    data_identification_parametr = new QStandardItem(tr("Данные идентификации параметров схемы замещения"));
     data_identification_parametr->setEditable(false);
     QString data_identification_parametr_tooltip = data_identification_parametr->text();
     data_identification_parametr->setToolTip(data_identification_parametr_tooltip);
@@ -534,6 +534,30 @@ MainWindow::MainWindow(QWidget *parent)
     data_identification_value->setToolTip(data_identification_value_tooltip);
     sesion_name.append(data_identification_parametr);
     sesion_name.append(data_identification_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
+
+    data_tepl_identification_parametr = new QStandardItem(tr("Данные тепловой идентификации"));
+    data_tepl_identification_parametr->setEditable(false);
+    QString data_tepl_identification_parametr_tooltip = data_tepl_identification_parametr->text();
+    data_tepl_identification_parametr->setToolTip(data_tepl_identification_parametr_tooltip);
+    data_tepl_identification_value = new QStandardItem(tr("Выбрать режим"));
+    QString data_tepl_identification_value_tooltip = data_tepl_identification_value->text();
+    data_tepl_identification_value->setToolTip(data_tepl_identification_value_tooltip);
+    sesion_name.append(data_tepl_identification_parametr);
+    sesion_name.append(data_tepl_identification_value);
+    save_data_parametr->appendRow(sesion_name);
+    sesion_name.clear();
+
+    data_vent_identification_parametr = new QStandardItem(tr("Данные вентиляционной идентификации"));
+    data_vent_identification_parametr->setEditable(false);
+    QString data_vent_identification_parametr_tooltip = data_vent_identification_parametr->text();
+    data_vent_identification_parametr->setToolTip(data_vent_identification_parametr_tooltip);
+    data_vent_identification_value = new QStandardItem(tr("Выбрать режим"));
+    QString data_vent_identification_value_tooltip = data_vent_identification_value->text();
+    data_vent_identification_value->setToolTip(data_vent_identification_value_tooltip);
+    sesion_name.append(data_vent_identification_parametr);
+    sesion_name.append(data_vent_identification_value);
     save_data_parametr->appendRow(sesion_name);
     sesion_name.clear();
 
@@ -4555,6 +4579,12 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", QString("%1").arg(QString::number(rowNumber,'f',1)));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("data_tepl_identification_value");
+    xmlWriter.writeAttribute("value", (data_tepl_identification_value->text()));
+
+    xmlWriter.writeStartElement("data_vent_identification_value");
+    xmlWriter.writeAttribute("value", (data_vent_identification_value->text()));
+
     if(data_identification_value->text() == "Сохранить")
     {
         xmlWriter.writeStartElement("sopr_R1");
@@ -4660,7 +4690,6 @@ void MainWindow::SaveProgectToFile()
         xmlWriter2.writeEndDocument();
         file2.close();   // Закрываем файл
     }
-
     JlCompress::compressDir(str, "../save/");
 
     sessionFileName = QFileInfo(str).baseName();
@@ -5310,164 +5339,215 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-            }
-            xmlReader.readNext(); // Переходим к следующему элементу файла
-        }
-
-        if(data_identification_value->text() == "Сохранить")
-        {
-
-            QXmlStreamReader xmlReader2;
-            xmlReader2.setDevice(&file);
-            xmlReader2.readNext();
-            while(!xmlReader2.atEnd())
-            {
-                if(xmlReader2.isStartElement())
+                if(xmlReader.name() == "data_tepl_identification_value")
                 {
-                    if(xmlReader.name() == "stator_resistance")
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        if (attr.name().toString() == "value")
                         {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->lineEdit_12->setText(attribute_value);
-                            }
+                            QString attribute_value = attr.value().toString();
+                            data_tepl_identification_value->setText(attribute_value);
                         }
                     }
-                    if(xmlReader2.name() == "rotor_resistance")
+                }
+                if(xmlReader.name() == "data_vent_identification_value")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                     {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                        if (attr.name().toString() == "value")
                         {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->lineEdit_11->setText(attribute_value);                        }
+                            QString attribute_value = attr.value().toString();
+                            data_vent_identification_value->setText(attribute_value);
                         }
                     }
-                    if(xmlReader2.name() == "stator_inductance")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->lineEdit_10->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader2.name() == "rotor_inductance")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->lineEdit_9->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader2.name() == "mutual_inductance")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->lineEdit_8->setText(attribute_value);
-                            }
-                        }
-                    }
-                }xmlReader.readNext(); // Переходим к следующему элементу файла
-            }
-        }
-        file.close();
+                }
+            }xmlReader.readNext(); // Переходим к следующему элементу файла
+        }file.close();
     }
 
-    QFile file3(QString("/tmp/imview/vent_identf.xml"));
-    if (!file3.open(QFile::ReadOnly | QFile::Text))
+
+    if(data_vent_identification_value->text() == "Сохранить")
     {
-        QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
-    }
-    else
-    {
-        QXmlStreamReader xmlReader3;
-        xmlReader3.setDevice(&file3);
-        xmlReader3.readNext();
-        while(!xmlReader3.atEnd())
+        QFile file3(QString("/tmp/imview/vent_identf.xml"));
+        if (!file3.open(QFile::ReadOnly | QFile::Text))
         {
-            if(xmlReader3.isStartElement())
-            {
-                if(xmlReader3.name() == "Fan_working_set_Qp")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                        }
-                    }
-                }
-                if(xmlReader3.name() == "Maximum_air_flow_Qmax")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->tableWidget_20->item(1,2)->setText(attribute_value);
-                        }
-                    }
-                }
-                if(xmlReader3.name() == "Initial_fan_pressure_H0")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->tableWidget_20->item(2,2)->setText(attribute_value);
-                        }
-                    }
-                }
-                if(xmlReader3.name() == "Fan_working_set_Hp")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                        }
-                    }
-                }
-                if(xmlReader3.name() == "Total_resistance_of_ventilation_network_Z0")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                        }
-                    }
-                }
-                if(xmlReader3.name() == "Fan_power_consumption_Pvent")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                        }
-                    }
-                }
-            }
+            QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
+        }
+        else
+        {
+            QXmlStreamReader xmlReader3;
+            xmlReader3.setDevice(&file3);
             xmlReader3.readNext();
-        }
-        file3.close();
+            while(!xmlReader3.atEnd())
+            {
+                if(xmlReader3.isStartElement())
+                {
+                    if(xmlReader3.name() == "Fan_working_set_Qp")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Maximum_air_flow_Qmax")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(1,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Initial_fan_pressure_H0")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(2,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Fan_working_set_Hp")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(3,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Total_resistance_of_ventilation_network_Z0")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(4,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+                    if(xmlReader3.name() == "Fan_power_consumption_Pvent")
+                    {
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                QString attribute_value = attr.value().toString();
+                                ui->tableWidget_20->item(5,2)->setText(attribute_value);
+                            }
+                        }
+                    }
+
+                    if (xmlReader3.name() == "koefficient_0")
+                    {
+                        QString attribute_value;
+
+                        // Ищем нужный атрибут
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                attribute_value = attr.value().toString();
+                                break; // нашли нужный атрибут
+                            }
+                        }
+
+                        // Добавляем новую строку
+                        int newRow = ui->tableWidget_20->rowCount();
+                        ui->tableWidget_20->insertRow(newRow);
+
+                        //Заполняем ячейку
+                        QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                        ui->tableWidget_20->setItem(newRow, 2, item);
+                        QTableWidgetItem *item2 = new QTableWidgetItem("Koefficient_0");
+                        ui->tableWidget_20->setItem(newRow, 0, item2);
+                        ui->tableWidget_20->setItem(newRow, 1, new QTableWidgetItem("a_0"));
+                        ui->tableWidget_20->setItem(newRow, 3, new QTableWidgetItem("--"));
+
+                        for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                        {
+                            ui->tableWidget_20->item(newRow, i)->setTextAlignment(Qt::AlignCenter);
+
+                        }
+                    }
+                    if (xmlReader3.name() == "koefficient_1")
+                    {
+                        QString attribute_value;
+
+                        // Ищем нужный атрибут
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                attribute_value = attr.value().toString();
+                                break; // нашли нужный атрибут
+                            }
+                        }
+
+                        // Добавляем новую строку
+                        int newRow2 = ui->tableWidget_20->rowCount();
+                        ui->tableWidget_20->insertRow(newRow2);
+
+
+                        // Заполняем ячейку
+                        QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                        ui->tableWidget_20->setItem(newRow2, 2, item);
+                        ui->tableWidget_20->setItem(newRow2, 0, new QTableWidgetItem("Koefficient_1"));
+                        ui->tableWidget_20->setItem(newRow2, 1, new QTableWidgetItem("a_1"));
+                        ui->tableWidget_20->setItem(newRow2, 3, new QTableWidgetItem("--"));
+
+                        for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                        {
+                            ui->tableWidget_20->item(newRow2, i)->setTextAlignment(Qt::AlignCenter);
+
+                        }
+                    }
+                    if (xmlReader3.name() == "koefficient_2")
+                    {
+                        QString attribute_value;
+
+                        // Ищем нужный атрибут
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                attribute_value = attr.value().toString();
+                                break; // нашли нужный атрибут
+                            }
+                        }
+
+                        // Добавляем новую строку
+                        int newRow3 = ui->tableWidget_20->rowCount();
+                        ui->tableWidget_20->insertRow(newRow3);
+
+
+                        // Заполняем ячейку
+                        QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                        ui->tableWidget_20->setItem(newRow3, 2, item);
+                        ui->tableWidget_20->setItem(newRow3, 0, new QTableWidgetItem("Koefficient_2"));
+                        ui->tableWidget_20->setItem(newRow3, 1, new QTableWidgetItem("a_2"));
+                        ui->tableWidget_20->setItem(newRow3, 3, new QTableWidgetItem("--"));
+
+                        for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                        {
+                            ui->tableWidget_20->item(newRow3, i)->setTextAlignment(Qt::AlignCenter);
+
+                        }
+                    }
+                }xmlReader3.readNext();
+            }
+        }file3.close();
     }
 
     sessionFileName = QFileInfo(str).baseName();
@@ -6656,14 +6736,15 @@ void MainWindow::radioButton_14_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').text('%1 °C');").arg(ventparam.Z1, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 °C');").arg(ventparam.Z2, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 °C');").arg(ventparam.Z3, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 °C');").arg(ventparam.Z4, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1153').text('%1 °C');").arg(ventparam.Z5, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1025').text('%1 °C');").arg(ventparam.Z6, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 °C');").arg(ventparam.Qp, 0, 'f', 2));
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1053').text('%1 °C');").arg(ventparam.Hp, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').css({'font-size':'14px'}).text('%1 зс');").arg(QString::number(ventparam.Z1, 'e', 2)));
+                //ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').text('%1 зс');").arg(ventparam.Z1, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text913').text('%1 зс');").arg(ventparam.Z2, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text917').text('%1 зс');").arg(ventparam.Z3, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text921').text('%1 зс');").arg(ventparam.Z4, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text925').text('%1 зс');").arg(ventparam.Z5, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text929').text('%1 зс');").arg(ventparam.Z6, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text953').text('%1 Дж');").arg(ventparam.Qp, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text941').text('%1 Вт');").arg(ventparam.Hp, 0, 'f', 2));
             }
         }
     }
@@ -10386,6 +10467,14 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", QString::number(rowNumber));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("data_tepl_identification_value");
+    xmlWriter.writeAttribute("value", (data_tepl_identification_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("data_vent_identification_value");
+    xmlWriter.writeAttribute("value", (data_vent_identification_value->text()));
+
+
     if(data_identification_value->text() == "Сохранить")
     {
         xmlWriter.writeStartElement("sopr_R1");
@@ -12962,8 +13051,8 @@ void MainWindow::electromagn_tick()
     temp_prev = temp;
     dPprev = dP;
 
-    double P1sum = 0;
-    double P2sum = 0;
+    double P1sum = 0.0;
+    double P2sum = 0.0;
 
     //if (tt > maxTime)
     if ((tt > maxTime) && (time_base_selection_value->text() == "Фиксированное время"))

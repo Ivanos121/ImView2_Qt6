@@ -290,7 +290,7 @@ void Vent_identf::raschet_vent_identf()
         // Закрываем файл
         outFile2.close();
 
-        if(wf->data_identification_value->text() == "Сохранить")
+        if(wf->data_vent_process_value->text() == "Сохранить")
         {
             save_vent_identf();
         }
@@ -484,6 +484,13 @@ void Vent_identf::save_vent_identf()
     //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(5,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Pvent)));
     xmlWriter.writeEndElement();
+
+    for (int i = 0; i < ventparam.w_Q_inv_koeffss.size(); ++i)
+    {
+        xmlWriter.writeStartElement("koefficient_" + QString::number(i));
+        xmlWriter.writeAttribute("value", QString::number(ventparam.w_Q_inv_koeffss[i]));
+        xmlWriter.writeEndElement();
+    }
 
     xmlWriter.writeEndElement();
     xmlWriter.writeEndElement();

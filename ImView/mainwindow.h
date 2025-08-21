@@ -239,8 +239,9 @@ public:
     QStandardItem *value_one_parametr, *value_one_value, *value_two_parametr, *value_two_value, *value_three_parametr, *value_three_value, *estimation_residual_thermal_life_parametr, *estimation_residual_thermal_life_value, *value_four_parametr, *value_four_value;
     QStandardItem *value_five_parametr, *value_five_value, *value_six_parametr, *value_six_value, *output_data_parametr, *output_data_value, *value_seven_parametr, *value_seven_value, *value_nine_parametr, *value_eight_value;
     QStandardItem *value_nine_value, *value_eight_parametr, *item63, *item64, *save_data_parametr, *save_data_value,
-        *data_identification_parametr, *data_identification_value, *data_electomagn_process_parametr,
-        *data_electomagn_process_value;
+        *data_tepl_identification_parametr, *data_tepl_identification_value, *data_electomagn_process_parametr,
+        *data_electomagn_process_value, *data_identification_parametr, *data_identification_value,
+        *data_vent_identification_parametr, *data_vent_identification_value;
     QStandardItem *data_tepl_process_parametr, *data_tepl_process_value, *data_vent_process_parametr,
         *data_vent_process_value, *data_tepl_prognose_parametr, *data_tepl_prognose_value,
         *data_ostat_tepl_resurs_parametr, *data_ostat_tepl_resurs_value,
