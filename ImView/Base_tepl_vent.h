@@ -2,6 +2,7 @@
 #define BASE_TEPL_VENT_H
 
 #include <QString>
+#include <QVector>
 
 struct TeplParam
 {
@@ -52,14 +53,12 @@ struct VentParam
     double cosf;
     double K;
     double nu2;
-    double Q;
-    double H1;
-    double H2;
-    double Pv;
-    double P_ct;
-    double P_din;
     double v;
     QString ventIdentfFileName;
+    QVector<double> w_Q_inv_koeffss;
+    QVector<double> Q_H1_koeffss;
+    QVector<double> Q_H2_koeffss;
+    QVector<double> Q_Pv_koeffss;
 };
 
 extern TeplParam teplparam;

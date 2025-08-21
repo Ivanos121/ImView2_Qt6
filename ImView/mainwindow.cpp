@@ -4935,7 +4935,7 @@ void MainWindow::LoadProject(QString str)
                             kind_thermal_model_4_value->setText(attribute_value);
                         }
                     }
-                }                
+                }
                 else if(xmlReader.name() == "combobox_13")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -5313,7 +5313,6 @@ void MainWindow::LoadProject(QString str)
             }
             xmlReader.readNext(); // Переходим к следующему элементу файла
         }
-        // file.close(); // Закрываем файл
 
         if(data_identification_value->text() == "Сохранить")
         {
@@ -5380,86 +5379,95 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }xmlReader.readNext(); // Переходим к следующему элементу файла
-            }file.close();
-
-            QFile file3(QString("/tmp/imview/vent_identf.xml"));
-            QXmlStreamReader xmlReader3;
-            xmlReader3.setDevice(&file3);
-            xmlReader3.readNext();
-            while(!xmlReader3.atEnd())
-            {
-                if(xmlReader2.isStartElement())
-                {
-                    if(xmlReader3.name() == "Fan_working_set_Qp")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader3.name() == "Maximum_air_flow_Qmax")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->tableWidget_20->item(1,2)->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader3.name() == "Initial_fan_pressure_H0")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->tableWidget_20->item(2,2)->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader3.name() == "Fan_working_set_Hp")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader3.name() == "Total_resistance_of_ventilation_network_Z0")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                            }
-                        }
-                    }
-                    if(xmlReader3.name() == "Fan_power_consumption_Pvent")
-                    {
-                        foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                        {
-                            if (attr.name().toString() == "value")
-                            {
-                                QString attribute_value = attr.value().toString();
-                                ui->tableWidget_20->item(0,2)->setText(attribute_value);
-                            }
-                        }
-                    }
-                }xmlReader.readNext();
-            }file3.close();
+            }
         }
         file.close();
+    }
+
+    QFile file3(QString("/tmp/imview/vent_identf.xml"));
+    if (!file3.open(QFile::ReadOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
+    }
+    else
+    {
+        QXmlStreamReader xmlReader3;
+        xmlReader3.setDevice(&file3);
+        xmlReader3.readNext();
+        while(!xmlReader3.atEnd())
+        {
+            if(xmlReader3.isStartElement())
+            {
+                if(xmlReader3.name() == "Fan_working_set_Qp")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader3.name() == "Maximum_air_flow_Qmax")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->tableWidget_20->item(1,2)->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader3.name() == "Initial_fan_pressure_H0")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->tableWidget_20->item(2,2)->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader3.name() == "Fan_working_set_Hp")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader3.name() == "Total_resistance_of_ventilation_network_Z0")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader3.name() == "Fan_power_consumption_Pvent")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            ui->tableWidget_20->item(0,2)->setText(attribute_value);
+                        }
+                    }
+                }
+            }
+            xmlReader3.readNext();
+        }
+        file3.close();
     }
 
     sessionFileName = QFileInfo(str).baseName();
@@ -6648,7 +6656,7 @@ void MainWindow::radioButton_14_toggled(bool checked)
         {
             if (checked)
             {
-                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1223').text('%1 °C');").arg(ventparam.Z1, 0, 'f', 2));
+                ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text909').text('%1 °C');").arg(ventparam.Z1, 0, 'f', 2));
                 ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text883').text('%1 °C');").arg(ventparam.Z2, 0, 'f', 2));
                 ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1195').text('%1 °C');").arg(ventparam.Z3, 0, 'f', 2));
                 ui->widget_7->ui->webEngineView->page()->runJavaScript(QString("$('#text1113').text('%1 °C');").arg(ventparam.Z4, 0, 'f', 2));

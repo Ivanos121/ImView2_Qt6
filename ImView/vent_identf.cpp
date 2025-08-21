@@ -180,23 +180,21 @@ void Vent_identf::raschet_vent_identf()
             ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
         }
 
-          ui->plot->U_offset = 0.1;
+        ui->plot->U_offset = 0.1;
 
         for (int s_idx1 = 0; s_idx1 < N; ++s_idx1)
         {
-            ventparam.Q = Q_min + s_idx1 * steps;
-            double anser = ventparam.Q;
-            Q[s_idx1] = anser;
-            H1[s_idx1] = ventparam.Z0/100 * pow(ventparam.Q,2);
-            H2[s_idx1] = ventparam.H0/100 *(1 - pow((ventparam.Q/ventparam.Qmax),2));
-            Pv[s_idx1] = ventparam.Q*ventparam.H1;
+            Q[s_idx1] = Q_min + s_idx1 * steps;
+            H1[s_idx1] = ventparam.Z0/100 * pow(Q[s_idx1],2);
+            H2[s_idx1] = ventparam.H0/100 *(1 - pow((Q[s_idx1]/ventparam.Qmax),2));
+            Pv[s_idx1] = Q[s_idx1]*H1[s_idx1];
             P_din[s_idx1] = 1.2*pow(ventparam.v,2);
-            P_ct[s_idx1] = ventparam.Pv-ventparam.P_din;
-            ui->plot->addPoint(0, ventparam.Q, H1[s_idx1]);
-            ui->plot->addPoint(1, ventparam.Q, H2[s_idx1]);
-            ui->plot->addPoint(2, ventparam.Q, Pv[s_idx1]);
-            ui->plot->addPoint(3, ventparam.Q, P_din[s_idx1]);
-            ui->plot->addPoint(4, ventparam.Q, P_ct[s_idx1]);
+            P_ct[s_idx1] = Pv[s_idx1]-P_din[s_idx1];
+            ui->plot->addPoint(0, Q[s_idx1], H1[s_idx1]);
+            ui->plot->addPoint(1, Q[s_idx1], H2[s_idx1]);
+            ui->plot->addPoint(2, Q[s_idx1], Pv[s_idx1]);
+            ui->plot->addPoint(3, Q[s_idx1], P_din[s_idx1]);
+            ui->plot->addPoint(4, Q[s_idx1], P_ct[s_idx1]);
         }
 
         QVector<double> Q_inv;
@@ -237,39 +235,34 @@ void Vent_identf::raschet_vent_identf()
         }
         else if(wf->data_approximation_mode_value->text() == "Автоматический")
         {
-            optimalDegree = bestDegree(Q_inv, w);
+            optimalDegree = bestDegree(w, Q_inv);
         }
 
-        // QVector<double> H1(N);
-        // QVector<double> H2(N);
-        // QVector<double> Pv(N);
-        // QVector<double> P_din(N);
-        // QVector<double> P_ct(N);
-        auto koeffss = approximate(Q_inv, w, optimalDegree);
-        auto koeffss2 = approximate(Q_inv, H1, optimalDegree);
-        auto koeffss3 = approximate(Q_inv, H2, optimalDegree);
-        auto koeffss4 = approximate(Q_inv, Pv, optimalDegree);
+        ventparam.w_Q_inv_koeffss = approximate(w, Q_inv, optimalDegree);
+        ventparam.Q_H1_koeffss = approximate(Q, H1, optimalDegree);
+        ventparam.Q_H2_koeffss = approximate(Q, H2, optimalDegree);
+        ventparam.Q_Pv_koeffss = approximate(Q, Pv, optimalDegree);
 
-        Polynomial poly(koeffss);
-        Polynomial poly2(koeffss2);
-        Polynomial poly3(koeffss3);
-        Polynomial poly4(koeffss4);
+        Polynomial w_Q_inv_poly(ventparam.w_Q_inv_koeffss);
+        Polynomial Q_H1_poly(ventparam.Q_H1_koeffss);
+        Polynomial Q_H2_poly(ventparam.Q_H2_koeffss);
+        Polynomial Q_Pv_poly(ventparam.Q_Pv_koeffss);
 
-        QVector<double> result(N);
-        QVector<double> result2(N);
-        QVector<double> result3(N);
-        QVector<double> result4(N);
+        QVector<double> Q_appr(N);
+        QVector<double> H1_appr(N);
+        QVector<double> H2_appr(N);
+        QVector<double> Pv_appr(N);
 
         for(int i=0;i<N; ++i)
         {
-            result[i] = poly.evaluate(w[i]);
-            result2[i] = poly2.evaluate(w[i]);
-            result3[i] = poly3.evaluate(w[i]);
-            result4[i] = poly4.evaluate(w[i]);
-            ui->plot->addPoint(5, result[i], w[i]);
-            ui->plot->addPoint(6, result2[i], w[i]);
-            ui->plot->addPoint(7, result3[i], w[i]);
-            ui->plot->addPoint(8, result4[i], w[i]);
+            Q_appr[i] = w_Q_inv_poly.evaluate(w[i]);
+            H1_appr[i] = Q_H1_poly.evaluate(Q_appr[i]);
+            H2_appr[i] = Q_H2_poly.evaluate(Q_appr[i]);
+            Pv_appr[i] = Q_Pv_poly.evaluate(Q_appr[i]);
+            ui->plot->addPoint(5, Q_appr[i], w[i]);
+            ui->plot->addPoint(6, Q_appr[i], H1_appr[i]);
+            ui->plot->addPoint(7, Q_appr[i], H2_appr[i]);
+            ui->plot->addPoint(8, Q_appr[i], Pv_appr[i]);
         }
 
         std::ofstream outFile2("output2.txt");
@@ -288,10 +281,10 @@ void Vent_identf::raschet_vent_identf()
             // Записываем одну строку с данными из всех массивов
             outFile2 << w[i] << "\t"
                      << Q[i] << "\t"
-                     << result[i] << "\t"
-                     << result2[i] << "\t"
-                     << result3[i] << "\t"
-                     << result4[i] << "\n";
+                     << Q_appr[i] << "\t"
+                     << H1_appr[i] << "\t"
+                     << H2_appr[i] << "\t"
+                     << Pv_appr[i] << "\n";
         }
 
         // Закрываем файл
