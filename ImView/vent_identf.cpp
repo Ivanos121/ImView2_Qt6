@@ -10,11 +10,9 @@
 #include <iostream>
 #include <fstream>
 #include <QVector>
-
 #include <stdio.h>
 #include <gsl/gsl_multifit.h>
 #include <gsl/gsl_blas.h>
-
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QSettings>
@@ -43,8 +41,16 @@ Vent_identf::Vent_identf(QWidget *parent)
     dataLineColors_vent_identf.append(Qt::yellow);
     dataLineColors_vent_identf.append(Qt::green);
 
-    ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html")
-                                                      .absoluteFilePath()));
+    // if(wf->kind_ventilation_value->text() == "Принудительная вентиляция")
+    // {
+    //     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html")
+    //                                                   .absoluteFilePath()));
+    // }
+    // else if(wf->kind_ventilation_value->text() == "Независимая вентиляция")
+    // {
+    //     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/two_vent_schem_zam/two_vent_energo_scheme.html")
+    //                                                       .absoluteFilePath()));
+    // }
     ui->tabWidget->setCurrentIndex(0);
     connect(ui->tabWidget, &QTabWidget::currentChanged,
             this, &Vent_identf::on_tabWidget_currentChanged);
@@ -227,21 +233,21 @@ void Vent_identf::raschet_vent_identf()
 
         /* выбор степени полинома аппроксимации данных */
 
-        int optimalDegree = -1;
+        ventparam.optimalDegree = -1;
 
         if(wf->data_approximation_mode_value->text() == "Ручной")
         {
-            optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
+            ventparam.optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
         }
         else if(wf->data_approximation_mode_value->text() == "Автоматический")
         {
-            optimalDegree = bestDegree(w, Q_inv);
+            ventparam.optimalDegree = bestDegree(w, Q_inv);
         }
 
-        ventparam.w_Q_inv_koeffss = approximate(w, Q_inv, optimalDegree);
-        ventparam.Q_H1_koeffss = approximate(Q, H1, optimalDegree);
-        ventparam.Q_H2_koeffss = approximate(Q, H2, optimalDegree);
-        ventparam.Q_Pv_koeffss = approximate(Q, Pv, optimalDegree);
+        ventparam.w_Q_inv_koeffss = approximate(w, Q_inv, ventparam.optimalDegree);
+        ventparam.Q_H1_koeffss = approximate(Q, H1, ventparam.optimalDegree);
+        ventparam.Q_H2_koeffss = approximate(Q, H2, ventparam.optimalDegree);
+        ventparam.Q_Pv_koeffss = approximate(Q, Pv, ventparam.optimalDegree);
 
         Polynomial w_Q_inv_poly(ventparam.w_Q_inv_koeffss);
         Polynomial Q_H1_poly(ventparam.Q_H1_koeffss);
@@ -295,6 +301,9 @@ void Vent_identf::raschet_vent_identf()
             save_vent_identf();
         }
 
+        QSettings settings( "BRU", "IM View");
+        settings.setValue( "degree", ventparam.optimalDegree);
+
         isFinished = false;
         wf->statusbar_label_9->setVisible(true);
         wf->statusbar_progres->setVisible(true);
@@ -302,7 +311,7 @@ void Vent_identf::raschet_vent_identf()
         wf->statusbar_progres->reset();
         isFinished = false;
 
-        QSettings settings( "BRU", "IM View");
+
         settings.beginGroup( "System_messages" );
         QString lokal = settings.value( "Messages", "").toString();
         settings.endGroup();
@@ -452,43 +461,57 @@ void Vent_identf::save_vent_identf()
     xmlWriter.writeStartDocument();     // Запускаем запись в документ
     xmlWriter.writeStartElement("resources");   // Записываем первый элемент с его именем
     xmlWriter.writeStartElement("vent_identf");  // Записываем тег с именем для первого итема
-
     xmlWriter.writeStartElement("general_settings");
 
     xmlWriter.writeStartElement("Fan_working_set_Qp");
-    //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(0,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Qp)));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Maximum_air_flow_Qmax");
-    //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(1,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Qmax)));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Initial_fan_pressure_H0");
-    //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(2,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.H0)));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Fan_working_set_Hp");
-    //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(3,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Hp)));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Total_resistance_of_ventilation_network_Z0");
-    //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(4,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Hp)));
     xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("Fan_power_consumption_Pvent");
-    //xmlWriter.writeAttribute("value", (ui->tableWidget_7->item(5,2)->text()));
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Pvent)));
     xmlWriter.writeEndElement();
 
     for (int i = 0; i < ventparam.w_Q_inv_koeffss.size(); ++i)
     {
-        xmlWriter.writeStartElement("koefficient_" + QString::number(i));
+        xmlWriter.writeStartElement("koefficient_1_" + QString::number(i));
         xmlWriter.writeAttribute("value", QString::number(ventparam.w_Q_inv_koeffss[i]));
+        xmlWriter.writeEndElement();
+    }
+
+    for (int i = 0; i < ventparam.Q_H1_koeffss.size(); ++i)
+    {
+        xmlWriter.writeStartElement("koefficient_2_" + QString::number(i));
+        xmlWriter.writeAttribute("value", QString::number(ventparam.Q_H1_koeffss[i]));
+        xmlWriter.writeEndElement();
+    }
+
+    for (int i = 0; i < ventparam.Q_H2_koeffss.size(); ++i)
+    {
+        xmlWriter.writeStartElement("koefficient_3_" + QString::number(i));
+        xmlWriter.writeAttribute("value", QString::number(ventparam.Q_H2_koeffss[i]));
+        xmlWriter.writeEndElement();
+    }
+
+    for (int i = 0; i < ventparam.Q_Pv_koeffss.size(); ++i)
+    {
+        xmlWriter.writeStartElement("koefficient_4_" + QString::number(i));
+        xmlWriter.writeAttribute("value", QString::number(ventparam.Q_Pv_koeffss[i]));
         xmlWriter.writeEndElement();
     }
 
@@ -497,5 +520,4 @@ void Vent_identf::save_vent_identf()
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
     file.close();
-
 }

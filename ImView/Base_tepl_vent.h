@@ -55,6 +55,8 @@ struct VentParam
     double nu2;
     double v;
     QString ventIdentfFileName;
+    int Degree;
+    int optimalDegree;
     QVector<double> w_Q_inv_koeffss;
     QVector<double> Q_H1_koeffss;
     QVector<double> Q_H2_koeffss;

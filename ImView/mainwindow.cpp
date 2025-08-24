@@ -117,6 +117,7 @@ QString currentTabText;
 QString klass;
 double G,B;
 int rowNumber;
+int degree;
 
 QVector<double> tepl_ident_t;
 QVector<double> tepl_ident_StatorTemp;
@@ -352,6 +353,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/energo_scheme/energo_scheme.html").absoluteFilePath()));
     ui->widget_5->ui->widget->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView_2->setUrl(QUrl::fromLocalFile(QFileInfo("../data/grad_line/grad_line_2.html").absoluteFilePath()));
+
+    // if(kind_ventilation_value->text() == "Принудительная вентиляция")
+    // {
+    //     ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html")
+    //                                                   .absoluteFilePath()));
+    // }
+    // else if(kind_ventilation_value->text() == "Независимая вентиляция")
+    // {
+    //     ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/two_vent_schem_zam/two_vent_energo_scheme.html")
+    //                                                       .absoluteFilePath()));
+    // }
 
     showMaximized();
 
@@ -3227,7 +3239,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_20->setItem(4, 3, new QTableWidgetItem("--"));
     ui->tableWidget_20->setItem(5, 3, new QTableWidgetItem("Вт"));
 
-
     for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
     {
 
@@ -5449,7 +5460,44 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
 
-                    if (xmlReader3.name() == "koefficient_0")
+                    // QSettings settings( "BRU", "IM View");
+                    // int w = settings.value( "degree", "").toInt();
+
+                    // int newRow = ui->tableWidget_20->rowCount();
+
+                    // for (int i = 0; i < w+1; ++i)
+                    // {
+                    //     if (xmlReader3.name() == "koefficient_" + QString::number(i))
+                    //     {
+                    //         QString attribute_value;
+
+                    //         foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                    //         {
+                    //             if (attr.name().toString() == "value")
+                    //             {
+                    //                 attribute_value = attr.value().toString();
+                    //                 break;
+                    //             }
+
+                    //             ui->tableWidget_20->insertRow(newRow);
+
+                    //             //Заполняем ячейку
+                    //             QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                    //             ui->tableWidget_20->setItem(newRow, 2, item);
+                    //             QTableWidgetItem *item2 = new QTableWidgetItem("Koefficient_" +  QString::number(i));
+                    //             ui->tableWidget_20->setItem(newRow, 0, item2);
+                    //             ui->tableWidget_20->setItem(newRow, 1, new QTableWidgetItem("a_" + QString::number(i)));
+                    //             ui->tableWidget_20->setItem(newRow, 3, new QTableWidgetItem("--"));
+
+                    //             for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                    //             {
+                    //                 ui->tableWidget_20->item(newRow, i)->setTextAlignment(Qt::AlignCenter);
+                    //             }
+                    //         }
+                    //     }++newRow;
+                    // }
+
+                    if (xmlReader3.name() == "koefficient_0_0")
                     {
                         QString attribute_value;
 
@@ -5470,9 +5518,9 @@ void MainWindow::LoadProject(QString str)
                         //Заполняем ячейку
                         QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
                         ui->tableWidget_20->setItem(newRow, 2, item);
-                        QTableWidgetItem *item2 = new QTableWidgetItem("Koefficient_0");
+                        QTableWidgetItem *item2 = new QTableWidgetItem("Koefficient_0_0");
                         ui->tableWidget_20->setItem(newRow, 0, item2);
-                        ui->tableWidget_20->setItem(newRow, 1, new QTableWidgetItem("a_0"));
+                        ui->tableWidget_20->setItem(newRow, 1, new QTableWidgetItem("a_0_0"));
                         ui->tableWidget_20->setItem(newRow, 3, new QTableWidgetItem("--"));
 
                         for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
@@ -5481,7 +5529,7 @@ void MainWindow::LoadProject(QString str)
 
                         }
                     }
-                    if (xmlReader3.name() == "koefficient_1")
+                    if (xmlReader3.name() == "koefficient_0_1")
                     {
                         QString attribute_value;
 
@@ -5503,8 +5551,8 @@ void MainWindow::LoadProject(QString str)
                         // Заполняем ячейку
                         QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
                         ui->tableWidget_20->setItem(newRow2, 2, item);
-                        ui->tableWidget_20->setItem(newRow2, 0, new QTableWidgetItem("Koefficient_1"));
-                        ui->tableWidget_20->setItem(newRow2, 1, new QTableWidgetItem("a_1"));
+                        ui->tableWidget_20->setItem(newRow2, 0, new QTableWidgetItem("Koefficient_0_1"));
+                        ui->tableWidget_20->setItem(newRow2, 1, new QTableWidgetItem("a_0_1"));
                         ui->tableWidget_20->setItem(newRow2, 3, new QTableWidgetItem("--"));
 
                         for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
@@ -5513,7 +5561,7 @@ void MainWindow::LoadProject(QString str)
 
                         }
                     }
-                    if (xmlReader3.name() == "koefficient_2")
+                    if (xmlReader3.name() == "koefficient_0_2")
                     {
                         QString attribute_value;
 
@@ -5535,8 +5583,8 @@ void MainWindow::LoadProject(QString str)
                         // Заполняем ячейку
                         QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
                         ui->tableWidget_20->setItem(newRow3, 2, item);
-                        ui->tableWidget_20->setItem(newRow3, 0, new QTableWidgetItem("Koefficient_2"));
-                        ui->tableWidget_20->setItem(newRow3, 1, new QTableWidgetItem("a_2"));
+                        ui->tableWidget_20->setItem(newRow3, 0, new QTableWidgetItem("Koefficient_0_2"));
+                        ui->tableWidget_20->setItem(newRow3, 1, new QTableWidgetItem("a_0_2"));
                         ui->tableWidget_20->setItem(newRow3, 3, new QTableWidgetItem("--"));
 
                         for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
@@ -5545,6 +5593,106 @@ void MainWindow::LoadProject(QString str)
 
                         }
                     }
+                    if (xmlReader3.name() == "koefficient_1_0")
+                    {
+                        QString attribute_value;
+
+                        // Ищем нужный атрибут
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                attribute_value = attr.value().toString();
+                                break; // нашли нужный атрибут
+                            }
+                        }
+
+                        // Добавляем новую строку
+                        int newRow4 = ui->tableWidget_20->rowCount();
+                        ui->tableWidget_20->insertRow(newRow4);
+
+
+                        // Заполняем ячейку
+                        QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                        ui->tableWidget_20->setItem(newRow4, 2, item);
+                        ui->tableWidget_20->setItem(newRow4, 0, new QTableWidgetItem("Koefficient_1_0"));
+                        ui->tableWidget_20->setItem(newRow4, 1, new QTableWidgetItem("a_1_0"));
+                        ui->tableWidget_20->setItem(newRow4, 3, new QTableWidgetItem("--"));
+
+                        for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                        {
+                            ui->tableWidget_20->item(newRow4, i)->setTextAlignment(Qt::AlignCenter);
+
+                        }
+                    }
+                    if (xmlReader3.name() == "koefficient_1_1")
+                    {
+                        QString attribute_value;
+
+                        // Ищем нужный атрибут
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                attribute_value = attr.value().toString();
+                                break; // нашли нужный атрибут
+                            }
+                        }
+
+                        // Добавляем новую строку
+                        int newRow5 = ui->tableWidget_20->rowCount();
+                        ui->tableWidget_20->insertRow(newRow5);
+
+
+                        // Заполняем ячейку
+                        QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                        ui->tableWidget_20->setItem(newRow5, 2, item);
+                        ui->tableWidget_20->setItem(newRow5, 0, new QTableWidgetItem("Koefficient_1_1"));
+                        ui->tableWidget_20->setItem(newRow5, 1, new QTableWidgetItem("a_1_1"));
+                        ui->tableWidget_20->setItem(newRow5, 3, new QTableWidgetItem("--"));
+
+                        for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                        {
+                            ui->tableWidget_20->item(newRow5, i)->setTextAlignment(Qt::AlignCenter);
+
+                        }
+                    }
+
+                    if (xmlReader3.name() == "koefficient_1_2")
+                    {
+                        QString attribute_value;
+
+                        // Ищем нужный атрибут
+                        foreach(const QXmlStreamAttribute &attr, xmlReader3.attributes())
+                        {
+                            if (attr.name().toString() == "value")
+                            {
+                                attribute_value = attr.value().toString();
+                                break; // нашли нужный атрибут
+                            }
+                        }
+
+                        // Добавляем новую строку
+                        int newRow6 = ui->tableWidget_20->rowCount();
+                        ui->tableWidget_20->insertRow(newRow6);
+
+
+                        // Заполняем ячейку
+                        QTableWidgetItem *item = new QTableWidgetItem(attribute_value);
+                        ui->tableWidget_20->setItem(newRow6, 2, item);
+                        ui->tableWidget_20->setItem(newRow6, 0, new QTableWidgetItem("Koefficient_1_2"));
+                        ui->tableWidget_20->setItem(newRow6, 1, new QTableWidgetItem("a_1_2"));
+                        ui->tableWidget_20->setItem(newRow6, 3, new QTableWidgetItem("--"));
+
+                        for (int i=1; i<ui->tableWidget_20->columnCount(); i++)
+                        {
+                            ui->tableWidget_20->item(newRow6, i)->setTextAlignment(Qt::AlignCenter);
+
+                        }
+
+                    }
+
+
                 }xmlReader3.readNext();
             }
         }file3.close();
@@ -11364,6 +11512,16 @@ void::MainWindow::close_progect()
     ui->widget_15->show();
     ui->widget->ui->tableView->clearSelection();
 
+    QSettings settings( "BRU", "IM View");
+    int degree = settings.value( "degree", "").toInt();
+
+    int rowCount = ui->tableWidget_20->rowCount();
+    int rowsToRemove = qMin(4*(degree + 1), rowCount); // Убедимся, что не удаляем больше строк, чем есть
+
+    for (int i = 0; i < rowsToRemove; ++i)
+    {
+        ui->tableWidget_20->removeRow(rowCount - 1 - i);
+    }
 }
 
 void MainWindow::open_panel()
