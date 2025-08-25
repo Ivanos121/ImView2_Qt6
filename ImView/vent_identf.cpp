@@ -41,19 +41,9 @@ Vent_identf::Vent_identf(QWidget *parent)
     dataLineColors_vent_identf.append(Qt::yellow);
     dataLineColors_vent_identf.append(Qt::green);
 
-    // if(wf->kind_ventilation_value->text() == "Принудительная вентиляция")
-    // {
-    //     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html")
-    //                                                   .absoluteFilePath()));
-    // }
-    // else if(wf->kind_ventilation_value->text() == "Независимая вентиляция")
-    // {
-    //     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/two_vent_schem_zam/two_vent_energo_scheme.html")
-    //                                                       .absoluteFilePath()));
-    // }
     ui->tabWidget->setCurrentIndex(0);
-    connect(ui->tabWidget, &QTabWidget::currentChanged,
-            this, &Vent_identf::on_tabWidget_currentChanged);
+    // connect(ui->tabWidget, &QTabWidget::currentChanged,
+    //         this, &Vent_identf::on_tabWidget_currentChanged);
 }
 
 Vent_identf::~Vent_identf()
@@ -61,14 +51,25 @@ Vent_identf::~Vent_identf()
     delete ui;
 }
 
-void Vent_identf::on_tabWidget_currentChanged()
-{
-    wf->ui->stackedWidget->show();
-    wf->ui->stackedWidget->setCurrentIndex(22);    
-}
+// void Vent_identf::on_tabWidget_currentChanged()
+// {
+//     wf->ui->stackedWidget->show();
+//     wf->ui->stackedWidget->setCurrentIndex(22);
+// }
 
 void Vent_identf::raschet_vent_identf()
 {
+    if(wf->kind_ventilation_value->text() == "Принудительная вентиляция")
+    {
+        ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html")
+                                                      .absoluteFilePath()));
+    }
+    else if(wf->kind_ventilation_value->text() == "Независимая вентиляция")
+    {
+        ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/two_vent_schem_zam/two_vent_energo_scheme.html")
+                                                          .absoluteFilePath()));
+    }
+
     if(wf->kind_ventilation_value->text() == "Независимая вентиляция")
     {
         QMessageBox::critical(this, "cc","cc");
@@ -164,7 +165,7 @@ void Vent_identf::raschet_vent_identf()
         ventparam.nu2 = 0.7;
         ventparam.Pvent = 9.81 * (ventparam.Qp * ventparam.Hp / ventparam.nu2);
 
-        qDebug() << "Qp = " << ventparam.Qp << " " << "Qmax =" << ventparam.Qmax;
+        //qDebug() << "Qp = " << ventparam.Qp << " " << "Qmax =" << ventparam.Qmax;
 
         ventparam.v = 1.5;
 
@@ -233,21 +234,30 @@ void Vent_identf::raschet_vent_identf()
 
         /* выбор степени полинома аппроксимации данных */
 
-        ventparam.optimalDegree = -1;
+        ventparam.w_Q_inv_optimalDegree = -1;
+        ventparam.Q_H1_optimalDegree = -1;
+        ventparam.Q_H2_optimalDegree = -1;
+        ventparam.Q_Pv_optimalDegree = -1;
 
         if(wf->data_approximation_mode_value->text() == "Ручной")
         {
-            ventparam.optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
+            ventparam.w_Q_inv_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
+            ventparam.Q_H1_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
+            ventparam.Q_H2_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
+            ventparam.Q_Pv_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
         }
         else if(wf->data_approximation_mode_value->text() == "Автоматический")
         {
-            ventparam.optimalDegree = bestDegree(w, Q_inv);
+            ventparam.w_Q_inv_optimalDegree = bestDegree(w, Q_inv);
+            ventparam.Q_H1_optimalDegree = bestDegree(Q, H1);
+            ventparam.Q_H2_optimalDegree = bestDegree(Q, H2);
+            ventparam.Q_Pv_optimalDegree = bestDegree(Q, Pv);
         }
 
-        ventparam.w_Q_inv_koeffss = approximate(w, Q_inv, ventparam.optimalDegree);
-        ventparam.Q_H1_koeffss = approximate(Q, H1, ventparam.optimalDegree);
-        ventparam.Q_H2_koeffss = approximate(Q, H2, ventparam.optimalDegree);
-        ventparam.Q_Pv_koeffss = approximate(Q, Pv, ventparam.optimalDegree);
+        ventparam.w_Q_inv_koeffss = approximate(w, Q_inv, ventparam.w_Q_inv_optimalDegree);
+        ventparam.Q_H1_koeffss = approximate(Q, H1, ventparam.Q_H1_optimalDegree);
+        ventparam.Q_H2_koeffss = approximate(Q, H2, ventparam.Q_H2_optimalDegree);
+        ventparam.Q_Pv_koeffss = approximate(Q, Pv, ventparam.Q_Pv_optimalDegree);
 
         Polynomial w_Q_inv_poly(ventparam.w_Q_inv_koeffss);
         Polynomial Q_H1_poly(ventparam.Q_H1_koeffss);
@@ -280,7 +290,6 @@ void Vent_identf::raschet_vent_identf()
         }
 
         // Записываем данные
-
 
         for (int i = 0; i < N; ++i)
         {
@@ -374,12 +383,12 @@ QVector<double> Vent_identf::approximate(const QVector<double>& x,
     }
 
     // Вывод полученных коэффициентов
-    printf("Коэффициенты полинома:\n");
+    //printf("Коэффициенты полинома:\n");
     for (size_t j=0; j<degree; j++) {
         koeffs[j] = gsl_vector_get(c,j);
         printf("a_%zu = %g\n", j, gsl_vector_get(c,j));
     }
-    printf("Отклонение (chisq): %g\n", chisq);
+    //printf("Отклонение (chisq): %g\n", chisq);
 
     // Используем модель для оценки новых значений
     double x_eval = x[0];
@@ -387,7 +396,7 @@ QVector<double> Vent_identf::approximate(const QVector<double>& x,
     for (size_t j=0; j<degree; j++) {
         y_eval += gsl_vector_get(c,j) * pow(x_eval,j);
     }
-    printf("Оценка в точке x=%.2f: y=%.2f\n", x_eval,y_eval);
+    //printf("Оценка в точке x=%.2f: y=%.2f\n", x_eval,y_eval);
 
     // Освобождение ресурсов
     gsl_multifit_linear_free(work);
@@ -443,7 +452,7 @@ int Vent_identf::bestDegree(const QVector<double>& x, const QVector<double>& y)
         }
     }
 
-    std::cout<<"Оптимальная степень: "<<bestDegree<<", ошибка: "<<bestError<<std::endl;
+    //std::cout<<"Оптимальная степень: "<<bestDegree<<", ошибка: "<<bestError<<std::endl;
     return bestDegree;
 }
 
