@@ -301,9 +301,6 @@ void Vent_identf::raschet_vent_identf()
             save_vent_identf();
         }
 
-        QSettings settings( "BRU", "IM View");
-        settings.setValue( "degree", ventparam.optimalDegree);
-
         isFinished = false;
         wf->statusbar_label_9->setVisible(true);
         wf->statusbar_progres->setVisible(true);
@@ -311,7 +308,7 @@ void Vent_identf::raschet_vent_identf()
         wf->statusbar_progres->reset();
         isFinished = false;
 
-
+        QSettings settings( "BRU", "IM View");
         settings.beginGroup( "System_messages" );
         QString lokal = settings.value( "Messages", "").toString();
         settings.endGroup();
@@ -452,7 +449,7 @@ int Vent_identf::bestDegree(const QVector<double>& x, const QVector<double>& y)
 
 void Vent_identf::save_vent_identf()
 {
-    QFile file(QString("/home/elf/ImView2_Qt6/save/vent_identf.xml"));
+    QFile file(QString("../save/vent_identf.xml"));
     file.open(QIODevice::WriteOnly);
 
     //Создаем объект, с помощью которого осуществляется запись в файл
@@ -487,12 +484,20 @@ void Vent_identf::save_vent_identf()
     xmlWriter.writeAttribute("value", (QString::number(ventparam.Pvent)));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("koefficient_1_size");
+    xmlWriter.writeAttribute("value", QString::number(ventparam.w_Q_inv_koeffss.size()));
+    xmlWriter.writeEndElement();
+
     for (int i = 0; i < ventparam.w_Q_inv_koeffss.size(); ++i)
     {
         xmlWriter.writeStartElement("koefficient_1_" + QString::number(i));
         xmlWriter.writeAttribute("value", QString::number(ventparam.w_Q_inv_koeffss[i]));
         xmlWriter.writeEndElement();
     }
+
+    xmlWriter.writeStartElement("koefficient_2_size");
+    xmlWriter.writeAttribute("value", QString::number(ventparam.Q_H1_koeffss.size()));
+    xmlWriter.writeEndElement();
 
     for (int i = 0; i < ventparam.Q_H1_koeffss.size(); ++i)
     {
@@ -501,12 +506,20 @@ void Vent_identf::save_vent_identf()
         xmlWriter.writeEndElement();
     }
 
+    xmlWriter.writeStartElement("koefficient_3_size");
+    xmlWriter.writeAttribute("value", QString::number(ventparam.Q_H2_koeffss.size()));
+    xmlWriter.writeEndElement();
+
     for (int i = 0; i < ventparam.Q_H2_koeffss.size(); ++i)
     {
         xmlWriter.writeStartElement("koefficient_3_" + QString::number(i));
         xmlWriter.writeAttribute("value", QString::number(ventparam.Q_H2_koeffss[i]));
         xmlWriter.writeEndElement();
     }
+
+    xmlWriter.writeStartElement("koefficient_4_size");
+    xmlWriter.writeAttribute("value", QString::number(ventparam.Q_Pv_koeffss.size()));
+    xmlWriter.writeEndElement();
 
     for (int i = 0; i < ventparam.Q_Pv_koeffss.size(); ++i)
     {

@@ -2,24 +2,28 @@
 <resources>
     <vent_identf>
         <general_settings>
-            <Fan_working_set_Qp value="0.00734315"/>
-            <Maximum_air_flow_Qmax value="0.00855729"/>
-            <Initial_fan_pressure_H0 value="232.131"/>
-            <Fan_working_set_Hp value="61.1981"/>
-            <Total_resistance_of_ventilation_network_Z0 value="61.1981"/>
-            <Fan_power_consumption_Pvent value="6.29783"/>
-            <koefficient_1_0 value="1.51788e-18"/>
-            <koefficient_1_1 value="5.44774e-05"/>
-            <koefficient_1_2 value="-1.85288e-22"/>
-            <koefficient_2_0 value="1.38778e-16"/>
-            <koefficient_2_1 value="-2.84217e-14"/>
-            <koefficient_2_2 value="11349.4"/>
-            <koefficient_3_0 value="2.32131"/>
-            <koefficient_3_1 value="8.17124e-14"/>
-            <koefficient_3_2 value="-31700"/>
-            <koefficient_4_0 value="0.000344889"/>
-            <koefficient_4_1 value="-0.496149"/>
-            <koefficient_4_2 value="145.68"/>
+            <Fan_working_set_Qp value="0"/>
+            <Maximum_air_flow_Qmax value="0.006"/>
+            <Initial_fan_pressure_H0 value="0"/>
+            <Fan_working_set_Hp value="0"/>
+            <Total_resistance_of_ventilation_network_Z0 value="0"/>
+            <Fan_power_consumption_Pvent value="0"/>
+            <koefficient_1_size value="3"/>
+            <koefficient_1_0 value="1.84314e-18"/>
+            <koefficient_1_1 value="3.81972e-05"/>
+            <koefficient_1_2 value="-2.38228e-22"/>
+            <koefficient_2_size value="3"/>
+            <koefficient_2_0 value="-2.11758e-22"/>
+            <koefficient_2_1 value="2.03288e-19"/>
+            <koefficient_2_2 value="0.0211224"/>
+            <koefficient_3_size value="3"/>
+            <koefficient_3_0 value="0"/>
+            <koefficient_3_1 value="0"/>
+            <koefficient_3_2 value="0"/>
+            <koefficient_4_size value="3"/>
+            <koefficient_4_0 value="2.21256e-10"/>
+            <koefficient_4_1 value="-4.53956e-07"/>
+            <koefficient_4_2 value="0.000190102"/>
         </general_settings>
     </vent_identf>
 </resources>
