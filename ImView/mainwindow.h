@@ -304,7 +304,8 @@ protected slots:
     void onTabChanged_2(int index);
     void open_identf_nastr();
     void open_identf_nastr_2();
-    void open_identf_nastr_3();    
+    void open_identf_nastr_3();
+    void loadDefaultPage();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
 };

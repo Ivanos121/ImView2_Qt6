@@ -213,7 +213,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged_2);
     onTabChanged_2(1);
 
-
     //поиск - замена
     connect(ui->actionpoisk, &QAction::triggered, this, &MainWindow::open_panel);
     connect(ui->widget_12->ui->pushButton_7,&QPushButton::clicked, this, &MainWindow::zakr);
@@ -5663,6 +5662,8 @@ void MainWindow::LoadProject(QString str)
     ui->save_as_file->setEnabled(true);
     setCurrentFile(str);
     //ui->widget_2->ui->plot->load();
+
+    loadDefaultPage();
 }
 
 void MainWindow::switch_regim_upr(bool checked)
@@ -13600,3 +13601,17 @@ void MainWindow::open_identf_nastr_3()
 {
     nastroiki();
 }
+
+void MainWindow::loadDefaultPage()
+{
+    if(kind_ventilation_value->text() == "Принудительная вентиляция")
+    {
+        ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile("/home/elf/ImView2_Qt6/data/vent_schem_zam/vent_schem_zam.html"));
+    }
+    else if (kind_ventilation_value->text() == "Независимая вентиляция")
+    {
+        ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile("/home/elf/ImView2_Qt6/data/two_vent_schem_zam/two_vent_energo_scheme.html"));
+    }
+}
+
+
