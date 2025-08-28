@@ -17,7 +17,6 @@ public:
     explicit Vent_identf(QWidget *parent = nullptr);
     ~Vent_identf();
     MainWindow *wf;
-    //QTimer *times;
 
     void raschet_vent_identf();
 

@@ -93,7 +93,7 @@
 
 Base base;
 Base_tepl base_tepl;
-VentParam ventparam;
+
 Klass_izol klass_izol;
 Model modelss;
 extern Model_el model_el;

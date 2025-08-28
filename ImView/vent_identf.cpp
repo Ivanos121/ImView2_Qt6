@@ -20,6 +20,9 @@
 
 #define N 100
 
+VentParam ventparam;
+VentParam2 ventparam2;
+
 Vent_identf::Vent_identf(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Vent_identf)
@@ -341,185 +344,227 @@ void Vent_identf::one_vent()
 
 void Vent_identf::two_vent()
 {
-    // wf->loadMotorParameters();
-    // double w_0 = (2.0*M_PI)*base.n_0/60;
-    // int w_nom = 2.0*M_PI*base.n_nom/60;
-    // int M_nom = base.P_nom/w_nom;
-    // double M_kr = M_nom*base.muk;
-    // double s_nom = (w_0-w_nom)/w_0;
-    // double s_kr = (sqrt(s_nom)+sqrt(((base.muk)-1)/((base.muk/2)-1)))
-    //               /((1/sqrt(s_nom))+sqrt(((base.muk)-1)/((base.muk/2)-1)));
-    // double qq=((1/sqrt(s_kr))-sqrt(s_kr));
-    // double q = ((pow(qq,2)/((base.muk/2)-1)))-2;
+    wf->loadMotorParameters();
+    double w_0 = (2.0*M_PI)*base.n_0/60;
+    int w_nom = 2.0*M_PI*base.n_nom/60;
+    int M_nom = base.P_nom/w_nom;
+    double M_kr = M_nom*base.muk;
+    double s_nom = (w_0-w_nom)/w_0;
+    double s_kr = (sqrt(s_nom)+sqrt(((base.muk)-1)/((base.muk/2)-1)))
+                   /((1/sqrt(s_nom))+sqrt(((base.muk)-1)/((base.muk/2)-1)));
+    double qq=((1/sqrt(s_kr))-sqrt(s_kr));
+    double q = ((pow(qq,2)/((base.muk/2)-1)))-2;
 
-    // /*Расчет параметров */
+    /*Расчет параметров */
 
-    // QVector<double> w_2(N);
-    // QVector<double> M_2(N);
+    QVector<double> w_2(N);
+    QVector<double> M_2(N);
 
-    // double s_min = 0.0;
-    // double s_max = 1.0;
-    // double step = (s_max - s_min) / (N - 1);
-
-    // ui->plot->clear();
-
-    // for (int i = 0; i < 9; i++)
-    // {
-    //     ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
-    // }
-
-    // for (int s_idx = 0; s_idx < N; ++s_idx)
-    // {
-    //     double s = s_min + s_idx * step;
-    //     w_2[s_idx] = w_0 * (1 - s);
-    //     M_2[s_idx] = (M_kr * (2 + q)) / ((s / s_kr) + (s_kr / s) + q);
-    //     // ui->plot->addPoint(0, s, w[s_idx]);
-    //     // ui->plot->addPoint(1, M[s_idx], w[s_idx]);
-    // }
-    // //Начальное давление вентилятора:
-    // ventparam.H0_2=0.00695 * pow(ventparam.n_2,2) * (pow(ventparam.d2p_2,2) - pow(ventparam.d1p_2,2));
-
-    // //Максимальный расход воздуха:
-    // ventparam.Qmax_2 = 0.006 * pow(ventparam.d2p_2,2) * ventparam.b_2 * ventparam.n_2;
-
-    // //Сопротивление входа в кожух через решетку с острыми кромками
-    // ventparam.epsilon1_2 = 0.5;
-    // ventparam.Z1_2 = ventparam.epsilon1_2 * (ventparam.ro_2 / (2 * pow(ventparam.sotv_2,2)));
-
-    // //Сопротивление поворота потока за входной решеткой перед входом в вентилятор
-    // ventparam.epsilon2_2 = 0.5;
-    // ventparam.Z2_2 = ventparam.epsilon2_2 * (ventparam.ro_2 / (2 * pow(ventparam.s1_2,2)));
-
-    // //Сопротивление потока за входным вентилятором перед входом в межреберные каналы
-    // ventparam.epsilon3_2 = 0.5;
-    // ventparam.Z3_2 = ventparam.epsilon3_2 * (ventparam.ro_2 / (2 * pow(ventparam.s2_2,2)));
-
-    // //Сопротивление косого входа в межреберные каналы
-    // ventparam.epsilon4_2 = 0.5;
-    // ventparam.cosf_2 = 0.7;
-    // ventparam.Z4_2 = ventparam.epsilon4_2 * (ventparam.ro_2 / (2 * pow(ventparam.s4_2,2) * pow(ventparam.cosf_2,2)));
-
-    // //Сопротивление поворота потока в межреберных каналах под кожухом
-    // ventparam.epsilon5_2 = 0.5;
-    // ventparam.Z5_2 = ventparam.epsilon5_2 * (ventparam.ro_2 / (2 * pow(ventparam.s4_2,2)));
-
-    // //Сопротивление выхода воздуха из межреберных каналов в воздушное пространство
-    // ventparam.epsilon6_2 = 0.5;
-    // ventparam.Z6_2 = ventparam.epsilon6_2 * (ventparam.ro_2 / (2 * pow(ventparam.s4_2,2)));
-
-    // //Суммарное сопротивление вентиляционной сети
-    // ventparam.Z0_2 = 1.2 *(ventparam.Z1_2 + ventparam.Z2_2 + ventparam.Z3_2 + ventparam.Z4_2 + ventparam.Z5_2 + ventparam.Z6_2);
-
-    // //Рабочий расход воздуха
-    // ventparam.Qp_2 = ventparam.Qmax_2 * sqrt(ventparam.H0_2 /(ventparam.H0_2 + ventparam.Z0_2 * pow(ventparam.Qmax_2,2)));
-
-    // //Рабочий набор вентилятора
-    // ventparam.Hp_2 = ventparam.Z0_2 * pow(ventparam.Qp_2,2);
-
-    // //Средняя скорость воздуха в межреберных каналах
-    // ventparam.K_2 = 1;
-    // ventparam.Vcp_2 = ventparam.K_2 *ventparam.Qp_2 / ventparam.s4_2;
-
-    // //Потребляемая вентилятором мощность
-    // ventparam.nu2_2 = 0.7;
-    // ventparam.Pvent_2 = 9.81 * (ventparam.Qp_2 * ventparam.Hp_2 / ventparam.nu2_2);
-
-    // ventparam.v_2 = 1.5;
-
-    // QVector<double> Q_2(N);
-    // QVector<double> H1_2(N);
-    // QVector<double> H2_2(N);
-    // QVector<double> Pv_2(N);
-    // QVector<double> P_din_2(N);
-    // QVector<double> P_ct_2(N);
-
-    // double Q_min_2 = 0.0;
-    // double Q_max_2 = ventparam.Qmax_2;
-    // double steps_2 = (Q_max_2 - Q_min_2) / (N - 1);
+    double s_min = 0.0;
+    double s_max = 1.0;
+    double step = (s_max - s_min) / (N - 1);
 
     // ui->plot->clear();
-    // for (int i = 0; i < 9; i++)
-    // {
-    //     ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
-    // }
 
-    // ui->plot->U_offset = 0.1;
+    for (int i = 0; i < 9; i++)
+    {
+        ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
+    }
 
-    // for (int s_idx1 = 0; s_idx1 < N; ++s_idx1)
-    // {
-    //     Q_2[s_idx1] = Q_min_2 + s_idx1 * steps_2;
-    //     H1_2[s_idx1] = ventparam.Z0_2/100 * pow(Q_2[s_idx1],2);
-    //     H2_2[s_idx1] = ventparam.H0_2/100 *(1 - pow((Q_2[s_idx1]/ventparam.Qmax_2),2));
-    //     Pv_2[s_idx1] = Q_2[s_idx1]*H1_2[s_idx1];
-    //     P_din_2[s_idx1] = 1.2*pow(ventparam.v_2,2);
-    //     P_ct_2[s_idx1] = Pv_2[s_idx1]-P_din_2[s_idx1];
-    //     ui->plot->addPoint(0, Q_2[s_idx1], H1_2[s_idx1]);
-    //     ui->plot->addPoint(1, Q_2[s_idx1], H2_2[s_idx1]);
-    //     ui->plot->addPoint(2, Q_2[s_idx1], Pv_2[s_idx1]);
-    //     ui->plot->addPoint(3, Q_2[s_idx1], P_din_2[s_idx1]);
-    //     ui->plot->addPoint(4, Q_2[s_idx1], P_ct_2[s_idx1]);
-    // }
+    for (int s_idx = 0; s_idx < N; ++s_idx)
+    {
+         double s = s_min + s_idx * step;
+         w_2[s_idx] = w_0 * (1 - s);
+         M_2[s_idx] = (M_kr * (2 + q)) / ((s / s_kr) + (s_kr / s) + q);
+         // ui->plot->addPoint(0, s, w[s_idx]);
+         // ui->plot->addPoint(1, M[s_idx], w[s_idx]);
+     }
+     //Начальное давление вентилятора:
+     ventparam2.H0_2=0.00695 * pow(ventparam2.n_2,2) * (pow(ventparam2.d2p_2,2) - pow(ventparam2.d1p_2,2));
 
-    // QVector<double> Q_inv_2;
-    // Q_inv_2.reserve(Q_2.size());
+    //Максимальный расход воздуха:
+    ventparam2.Qmax_2 = 0.006 * pow(ventparam2.d2p_2,2) * ventparam2.b_2 * ventparam2.n_2;
 
-    // // добавляем элементы в обратном порядке
-    // for (int i = Q_2.size() - 1; i >= 0; --i) {
-    //     Q_inv_2.append(Q_2[i]);
-    // }
+    //Сопротивление входа в кожух через решетку с острыми кромками
+    ventparam2.epsilon1_2 = 0.5;
+    ventparam2.Z1_2 = ventparam2.epsilon1_2 * (ventparam2.ro_2 / (2 * pow(ventparam2.sotv_2,2)));
 
-    // // Открываем файл для записи
-    // std::ofstream outFile("output.txt");
+    //Сопротивление поворота потока за входной решеткой перед входом в вентилятор
+    ventparam2.epsilon2_2 = 0.5;
+    ventparam2.Z2_2 = ventparam2.epsilon2_2 * (ventparam2.ro_2 / (2 * pow(ventparam2.s1_2,2)));
 
-    // // Проверяем успешность открытия файла
-    // if (!outFile.is_open()) {
-    //     std::cerr << "Не удалось открыть файл для записи." << std::endl;
-    //     return; // или обработка ошибки
-    // }
+    //Сопротивление потока за входным вентилятором перед входом в межреберные каналы
+    ventparam2.epsilon3_2 = 0.5;
+    ventparam2.Z3_2 = ventparam2.epsilon3_2 * (ventparam2.ro_2 / (2 * pow(ventparam2.s2_2,2)));
 
-    // // Записываем данные
-    // // Например, по одной точке на строку: w[i] и Q[i]
-    // size_t size = std::min(w_2.size(), Q_inv_2.size());
-    // for (size_t i = 0; i < size; ++i)
-    // {
-    //     outFile << w_2[i] << " " << Q_inv_2[i] << "\n";
-    // }
-    // /* выбор степени полинома аппроксимации данных */
+    //Сопротивление косого входа в межреберные каналы
+    ventparam2.epsilon4_2 = 0.5;
+    ventparam2.cosf_2 = 0.7;
+    ventparam2.Z4_2 = ventparam2.epsilon4_2 * (ventparam2.ro_2 / (2 * pow(ventparam2.s4_2,2) * pow(ventparam2.cosf_2,2)));
 
-    // ventparam.w_Q_inv_optimalDegree_2 = -1;
-    // ventparam.Q_H1_optimalDegree_2 = -1;
-    // ventparam.Q_H2_optimalDegree_2 = -1;
-    // ventparam.Q_Pv_optimalDegree_2 = -1;
+    //Сопротивление поворота потока в межреберных каналах под кожухом
+    ventparam2.epsilon5_2 = 0.5;
+    ventparam2.Z5_2 = ventparam2.epsilon5_2 * (ventparam2.ro_2 / (2 * pow(ventparam2.s4_2,2)));
 
-    // if(wf->data_approximation_mode_value->text() == "Ручной")
-    // {
-    //     ventparam.w_Q_inv_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
-    //     ventparam.Q_H1_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
-    //     ventparam.Q_H2_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
-    //     ventparam.Q_Pv_optimalDegree = wf->degree_approximating_polynomial_value->text().toInt();
-    // }
-    // else if(wf->data_approximation_mode_value->text() == "Автоматический")
-    // {
-    //     ventparam.w_Q_inv_optimalDegree = bestDegree(w, Q_inv);
-    //     ventparam.Q_H1_optimalDegree = bestDegree(Q, H1);
-    //     ventparam.Q_H2_optimalDegree = bestDegree(Q, H2);
-    //     ventparam.Q_Pv_optimalDegree = bestDegree(Q, Pv);
-    // }
+    //Сопротивление выхода воздуха из межреберных каналов в воздушное пространство
+    ventparam2.epsilon6_2 = 0.5;
+    ventparam2.Z6_2 = ventparam2.epsilon6_2 * (ventparam2.ro_2 / (2 * pow(ventparam2.s4_2,2)));
 
-    // ventparam.w_Q_inv_koeffss = approximate(w, Q_inv, ventparam.w_Q_inv_optimalDegree);
-    // ventparam.Q_H1_koeffss = approximate(Q, H1, ventparam.Q_H1_optimalDegree);
-    // ventparam.Q_H2_koeffss = approximate(Q, H2, ventparam.Q_H2_optimalDegree);
-    // ventparam.Q_Pv_koeffss = approximate(Q, Pv, ventparam.Q_Pv_optimalDegree);
+    //Суммарное сопротивление вентиляционной сети
+    ventparam2.Z0_2 = 1.2 *(ventparam2.Z1_2 + ventparam2.Z2_2 + ventparam2.Z3_2 + ventparam2.Z4_2 + ventparam2.Z5_2 + ventparam2.Z6_2);
 
-    // Polynomial w_Q_inv_poly(ventparam.w_Q_inv_koeffss);
-    // Polynomial Q_H1_poly(ventparam.Q_H1_koeffss);
-    // Polynomial Q_H2_poly(ventparam.Q_H2_koeffss);
-    // Polynomial Q_Pv_poly(ventparam.Q_Pv_koeffss);
+    //Рабочий расход воздуха
+    ventparam2.Qp_2 = ventparam2.Qmax_2 * sqrt(ventparam2.H0_2 /(ventparam2.H0_2 + ventparam2.Z0_2 * pow(ventparam2.Qmax_2,2)));
 
-    // QVector<double> Q_appr(N);
-    // QVector<double> H1_appr(N);
-    // QVector<double> H2_appr(N);
-    // QVector<double> Pv_appr(N);
+    //Рабочий набор вентилятора
+    ventparam2.Hp_2 = ventparam2.Z0_2 * pow(ventparam2.Qp_2,2);
+
+    //Средняя скорость воздуха в межреберных каналах
+    ventparam2.K_2 = 1;
+    ventparam2.Vcp_2 = ventparam2.K_2 *ventparam2.Qp_2 / ventparam2.s4_2;
+
+    //Потребляемая вентилятором мощность
+    ventparam2.nu2_2 = 0.7;
+    ventparam2.Pvent_2 = 9.81 * (ventparam2.Qp_2 * ventparam2.Hp_2 / ventparam2.nu2_2);
+
+    ventparam2.v_2 = 1.5;
+
+    QVector<double> Q_2(N);
+    QVector<double> H1_2(N);
+    QVector<double> H2_2(N);
+    QVector<double> Pv_2(N);
+    QVector<double> P_din_2(N);
+    QVector<double> P_ct_2(N);
+
+    double Q_min_2 = 0.0;
+    double Q_max_2 = ventparam2.Qmax_2;
+    double steps_2 = (Q_max_2 - Q_min_2) / (N - 1);
+
+    ui->plot->clear();
+    for (int i = 0; i < 9; i++)
+    {
+         ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
+    }
+
+    ui->plot->U_offset = 0.1;
+
+    for (int s_idx1 = 0; s_idx1 < N; ++s_idx1)
+    {
+        Q_2[s_idx1] = Q_min_2 + s_idx1 * steps_2;
+        H1_2[s_idx1] = ventparam2.Z0_2/100 * pow(Q_2[s_idx1],2);
+        H2_2[s_idx1] = ventparam2.H0_2/100 *(1 - pow((Q_2[s_idx1]/ventparam2.Qmax_2),2));
+        Pv_2[s_idx1] = Q_2[s_idx1]*H1_2[s_idx1];
+        P_din_2[s_idx1] = 1.2*pow(ventparam2.v_2,2);
+        P_ct_2[s_idx1] = Pv_2[s_idx1]-P_din_2[s_idx1];
+        ui->plot->addPoint(0, Q_2[s_idx1], H1_2[s_idx1]);
+        ui->plot->addPoint(1, Q_2[s_idx1], H2_2[s_idx1]);
+        ui->plot->addPoint(2, Q_2[s_idx1], Pv_2[s_idx1]);
+        ui->plot->addPoint(3, Q_2[s_idx1], P_din_2[s_idx1]);
+        ui->plot->addPoint(4, Q_2[s_idx1], P_ct_2[s_idx1]);
+    }
+
+    QVector<double> Q_inv_2;
+    Q_inv_2.reserve(Q_2.size());
+
+    // добавляем элементы в обратном порядке
+    for (int i = Q_2.size() - 1; i >= 0; --i) {
+        Q_inv_2.append(Q_2[i]);
+    }
+
+    // Открываем файл для записи
+    std::ofstream outFile("output.txt");
+
+    // Проверяем успешность открытия файла
+    if (!outFile.is_open()) {
+        std::cerr << "Не удалось открыть файл для записи." << std::endl;
+        return; // или обработка ошибки
+    }
+
+    // Записываем данные
+    // Например, по одной точке на строку: w[i] и Q[i]
+    size_t size = std::min(w_2.size(), Q_inv_2.size());
+    for (size_t i = 0; i < size; ++i)
+    {
+        outFile << w_2[i] << " " << Q_inv_2[i] << "\n";
+    }
+
+    /* выбор степени полинома аппроксимации данных */
+
+    ventparam2.w_Q_inv_optimalDegree_2 = -1;
+    ventparam2.Q_H1_optimalDegree_2 = -1;
+    ventparam2.Q_H2_optimalDegree_2 = -1;
+    ventparam2.Q_Pv_optimalDegree_2 = -1;
+
+    if(wf->data_approximation_mode_value->text() == "Ручной")
+    {
+        ventparam2.w_Q_inv_optimalDegree_2 = wf->degree_approximating_polynomial_value->text().toInt();
+        ventparam2.Q_H1_optimalDegree_2 = wf->degree_approximating_polynomial_value->text().toInt();
+        ventparam2.Q_H2_optimalDegree_2 = wf->degree_approximating_polynomial_value->text().toInt();
+        ventparam2.Q_Pv_optimalDegree_2 = wf->degree_approximating_polynomial_value->text().toInt();
+    }
+    else if(wf->data_approximation_mode_value->text() == "Автоматический")
+    {
+        ventparam2.w_Q_inv_optimalDegree_2 = bestDegree(w_2, Q_inv_2);
+        ventparam2.Q_H1_optimalDegree_2 = bestDegree(Q_2, H1_2);
+        ventparam2.Q_H2_optimalDegree_2 = bestDegree(Q_2, H2_2);
+        ventparam2.Q_Pv_optimalDegree_2 = bestDegree(Q_2, Pv_2);
+    }
+
+    ventparam2.w_Q_inv_koeffss_2 = approximate(w_2, Q_inv_2, ventparam2.w_Q_inv_optimalDegree_2);
+    ventparam2.Q_H1_koeffss_2 = approximate(Q_2, H1_2, ventparam2.Q_H1_optimalDegree_2);
+    ventparam2.Q_H2_koeffss_2 = approximate(Q_2, H2_2, ventparam2.Q_H2_optimalDegree_2);
+    ventparam2.Q_Pv_koeffss_2 = approximate(Q_2, Pv_2, ventparam2.Q_Pv_optimalDegree_2);
+
+    Polynomial w_Q_inv_poly(ventparam2.w_Q_inv_koeffss_2);
+    Polynomial Q_H1_poly(ventparam2.Q_H1_koeffss_2);
+    Polynomial Q_H2_poly(ventparam2.Q_H2_koeffss_2);
+    Polynomial Q_Pv_poly(ventparam2.Q_Pv_koeffss_2);
+
+    QVector<double> Q_appr_2(N);
+    QVector<double> H1_appr_2(N);
+    QVector<double> H2_appr_2(N);
+    QVector<double> Pv_appr_2(N);
+
+    for(int i=0;i<N; ++i)
+    {
+        Q_appr_2[i] = w_Q_inv_poly.evaluate(w_2[i]);
+        H1_appr_2[i] = Q_H1_poly.evaluate(Q_appr_2[i]);
+        H2_appr_2[i] = Q_H2_poly.evaluate(Q_appr_2[i]);
+        Pv_appr_2[i] = Q_Pv_poly.evaluate(Q_appr_2[i]);
+        ui->plot->addPoint(5, Q_appr_2[i], w_2[i]);
+        ui->plot->addPoint(6, Q_appr_2[i], H1_appr_2[i]);
+        ui->plot->addPoint(7, Q_appr_2[i], H2_appr_2[i]);
+        ui->plot->addPoint(8, Q_appr_2[i], Pv_appr_2[i]);
+    }
+
+    std::ofstream outFile2("output2.txt");
+
+    // Проверяем успешность открытия файла
+    if (!outFile2.is_open()) {
+        std::cerr << "Не удалось открыть файл для записи." << std::endl;
+        return; // или обработка ошибки
+    }
+
+    // Записываем данные
+
+    for (int i = 0; i < N; ++i)
+    {
+        // Записываем одну строку с данными из всех массивов
+        outFile2 << w_2[i] << "\t"
+                 << Q_2[i] << "\t"
+                 << Q_appr_2[i] << "\t"
+                 << H1_appr_2[i] << "\t"
+                 << H2_appr_2[i] << "\t"
+                 << Pv_appr_2[i] << "\n";
+    }
+
+    // Закрываем файл
+    outFile2.close();
+
+    if(wf->data_vent_process_value->text() == "Сохранить")
+    {
+        save_vent_identf();
+    }
 }
 
 
