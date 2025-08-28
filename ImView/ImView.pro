@@ -58,6 +58,8 @@ SOURCES += \
     linedelegate.cpp \
     main.cpp \
     mainwindow.cpp \
+    mainwindow_constructor.cpp \
+    mainwindow_loadsave.cpp \
     model.cpp \
     model_el.cpp \
     modelidentf.cpp \

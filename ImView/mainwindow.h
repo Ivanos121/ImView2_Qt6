@@ -306,8 +306,12 @@ protected slots:
     void open_identf_nastr_2();
     void open_identf_nastr_3();
     void loadDefaultPage();
+    void on_textChanged();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
+    bool isNablLaunched = false;
+    QString currentTabText;
+    int rowNumber;
 };
 
 #endif // MAINWINDOW_H
