@@ -7229,14 +7229,3 @@ void MainWindow::open_identf_nastr_3()
     nastroiki();
 }
 
-void MainWindow::loadDefaultPage()
-{
-    if(kind_ventilation_value->text() == "Принудительная вентиляция")
-    {
-        ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile("/home/elf/ImView2_Qt6/data/vent_schem_zam/vent_schem_zam.html"));
-    }
-    else if (kind_ventilation_value->text() == "Независимая вентиляция")
-    {
-        ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile("/home/elf/ImView2_Qt6/data/two_vent_schem_zam/two_vent_energo_scheme.html"));
-    }
-}

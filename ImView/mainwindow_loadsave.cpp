@@ -50,6 +50,7 @@
 #include "ui_tepl_dannie.h"
 #include "ui_teplovent.h"
 #include "ui_datas.h"
+#include "ui_vent_identf.h"
 #include "vent_model.h"
 #include "tepl_identf.h"
 #include "settings.h"
@@ -3136,4 +3137,20 @@ void MainWindow::save_file()
 
     JlCompress::compressDir(QString("../Output/") + sessionFileName + ".imview", "../save/");
     ui->save_file->setEnabled(false);
+}
+
+void MainWindow::loadDefaultPage()
+{
+    if(kind_ventilation_value->text() == "Принудительная вентиляция")
+    {
+        QString relativePath = "../data/vent_schem_zam/vent_schem_zam.html";
+        QString absolutePath = QCoreApplication::applicationDirPath() + QDir::separator() + relativePath;
+        ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile(absolutePath));
+    }
+    else if (kind_ventilation_value->text() == "Независимая вентиляция")
+    {
+        QString relativePath = "../data/two_vent_schem_zam/two_vent_energo_scheme.html";
+        QString absolutePath = QCoreApplication::applicationDirPath() + QDir::separator() + relativePath;
+        ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile(absolutePath));
+    }
 }
