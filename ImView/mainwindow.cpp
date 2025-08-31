@@ -7041,7 +7041,8 @@ void MainWindow::ventidentf_start()
         {
             QItemSelectionModel *selectionModel1 = ui->widget->ui->tableView->selectionModel();
 
-            if (!selectionModel1->hasSelection()) {
+            if (!selectionModel1->hasSelection())
+            {
                 qDebug() << "Нет выбранной строки в первой таблице.";
                 return;
             }
@@ -7113,10 +7114,6 @@ void MainWindow::ventidentf_start()
             ventparam.fi = cellData[14].toDouble();
             ventparam.fi2 = cellData[15].toDouble();
 
-
-
-
-
             ui->tabWidget->show();
             ui->tabWidget->setCurrentIndex(3);
             ui->stackedWidget->hide();
@@ -7130,7 +7127,6 @@ void MainWindow::ventidentf_start()
             ui->widget_7->raschet_vent_identf();
         }
     }
-
 }
 
 void MainWindow::ventidentf_stop()

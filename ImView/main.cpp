@@ -57,60 +57,22 @@ int main(int argc, char *argv[])
     int res;
     QApplication a(argc, argv);
     {
-        //QLoggingCategory::setFilterRules(QStringLiteral("*.debug=true"));
-        /*QSqlDatabase::removeDatabase("connection1");
-        QSqlDatabase::removeDatabase("connection2");
-        QSqlDatabase::removeDatabase("connection3");
-        QSqlDatabase::removeDatabase("connection4");*/
-
         QSqlDatabase sda = QSqlDatabase::addDatabase("QSQLITE", "connection1");
         sda.setDatabaseName(QFileInfo("../data/base_db/mydb.db").absoluteFilePath());
         sda.open();
-        // if (!sda.open()) {
-        //     qDebug() << "Ошибка открытия базы данных 1:" << sda.lastError().text();
-        //     return -1;
-        // }
-        // else
-        // {
-        //     qDebug() << "база загружена";
-        // }
 
         QSqlDatabase::removeDatabase("connection2");
         QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE", "connection2");
         sdb.setDatabaseName(QFileInfo("../data/base_db/ventdb.db").absoluteFilePath());
         sdb.open();
-        // if (!sdb.open()) {
-        //     qDebug() << "Ошибка открытия базы данных 2:" << sdb.lastError().text();
-        //     return -1;
-        // }
-        // else
-        // {
-        //     qDebug() << "база загружена2";
-        // }
 
         QSqlDatabase sdc = QSqlDatabase::addDatabase("QSQLITE", "connection3"); //объявление базы данных sqlite3
         sdc.setDatabaseName(QFileInfo("../data/base_db/netdb.db").absoluteFilePath());
         sdc.open();
-        // if (!sdc.open()) {
-        //     qDebug() << "Ошибка открытия базы данных 3:" << sdc.lastError().text();
-        //     return -1;
-        // }
-        // else
-        // {
-        //     qDebug() << "база загружена3";
-        // }
 
         QSqlDatabase sdd = QSqlDatabase::addDatabase("QSQLITE","connection4");
         sdd.setDatabaseName(QFileInfo("../data/base_db/netdb2.db").absoluteFilePath());
         sdd.open();
-        // if (!sdc.open()) {
-        //     qDebug() << "Ошибка открытия базы данных 4:" << sdd.lastError().text();
-        //     return -1;
-        // }
-        // else
-        // {
-        //     qDebug() << "база загружена4";
-        // }
 
         qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
         qputenv("QT_QUICK_BACKEND", "software");
