@@ -273,6 +273,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget->wf=this;
     ui->widget_15->wf=this;
     ui->widget_10->wf=this;
+    ui->widget_7->ui->widget->wf = this;
 
     //формирование поведения файловых операций
     ui->LoadProgect->setVisible(false);
@@ -3341,27 +3342,34 @@ void MainWindow::on_textChanged()
 void MainWindow::loadTable1()
 {
     loadTable("ventilators"); // Замените на имя вашей первой таблицы
+    //vent_datas->table();
 }
 
 void MainWindow::loadTable2()
 {
     loadTable("vent__lopast"); // Замените на имя вашей второй таблицы
+    //vent_datas->table_2();
 }
 
 void MainWindow::loadTable(const QString &tableName)
 {
-    if (vent_model)
+    // if (vent_model)
+    // {
+    //     delete vent_model;
+    // }
+
+    if (vent_datas->model2)
     {
-        delete vent_model;
+        delete vent_datas->model2;
     }
 
-    vent_model = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
-    vent_model->setTable(tableName);
-    if (!vent_model->select())
+    vent_datas->model2 = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
+    vent_datas->model2->setTable(tableName);
+    if (!vent_datas->model2->select())
     {
-        QMessageBox::critical(this, "Ошибка", vent_model->lastError().text());
+        QMessageBox::critical(this, "Ошибка", vent_datas->model2->lastError().text());
         return;
     }
-    vent_model->select();
-    ui->widget_7->ui->widget->ui->tableView->setModel(vent_model);
+    vent_datas->model2->select();
+    ui->widget_7->ui->widget->ui->tableView->setModel(vent_datas->model2);
 }

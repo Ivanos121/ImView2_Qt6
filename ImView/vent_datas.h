@@ -7,6 +7,8 @@
 #include <QWidget>
 #include <QSqlQuery>
 
+class MainWindow;
+
 class Vent_settings;
 
 namespace Ui {
@@ -35,9 +37,11 @@ public:
     QSqlDatabase sdb;
     QSqlQuery *query;
     QString dataSourceFilename;
+    MainWindow *wf;
 
     QSqlTableModel *model2;
     void zapis();
+    void table_2();
 };
 
 #endif // VENT_DATAS_H

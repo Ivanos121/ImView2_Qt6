@@ -20,6 +20,7 @@
 #include "aboutdialog.h"
 #include "action_create.h"
 #include "pushbuttondelegate.h"
+#include "vent_datas.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,6 +42,7 @@ public:
     void LoadProject(QString str);
     QVector<QColor> dataLineColors;
     QSqlTableModel *vent_model;
+    Vent_datas *vent_datas;
 
     void setcolorincell(int row, int column);
     void translate_en();

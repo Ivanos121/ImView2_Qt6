@@ -105,6 +105,75 @@ void Vent_datas::table()
     modd2->sort(2, Qt::DescendingOrder);
 }
 
+void Vent_datas::table_2()
+{
+    model2 = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
+    model2->setTable("vent__lopast");
+    model2->setEditStrategy(QSqlTableModel::OnFieldChange);
+    model2->select();
+
+    QSortFilterProxyModel *proxy2 = new QSortFilterProxyModel();
+    proxy2->setSourceModel(model2);
+
+    modd2=new QStandardItemModel();
+    modd2->setSortRole(Qt::UserRole);
+
+    for (int z =0; z< proxy2->rowCount(); ++z)
+    {
+        for (int y =0; y< proxy2->columnCount(); ++y)
+        {
+            QStandardItem *item = new QStandardItem();
+            item->setData(proxy2->index(z,y).data().toString(), Qt::DisplayRole);
+            item->setData(proxy2->index(z,y).data().toString(), Qt::UserRole);
+            item->setTextAlignment(Qt::AlignCenter);
+            modd2->setItem(z,y,item);
+        }
+    }
+
+    ui->tableView->setModel(modd2);
+    ui->tableView->setColumnHidden(0, true); //скрытие колонки id
+    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
+    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
+
+    modd2->setHeaderData(1, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+    modd2->setHeaderData(2, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+    modd2->setHeaderData(3, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+    modd2->setHeaderData(4, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+    modd2->setHeaderData(5, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+    modd2->setHeaderData(6, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+    modd2->setHeaderData(7, Qt::Horizontal, tr("Заголовок 1"), Qt::DisplayRole);
+
+    QHeaderView *header=ui->tableView->horizontalHeader();
+    //header->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    int columnCount = modd2->columnCount();
+
+    for(int i=1;i<columnCount;i++)
+    {
+        header->setSectionResizeMode(i,QHeaderView::ResizeToContents);
+    }
+
+    ui->tableView->resizeColumnsToContents();
+
+    for(int i=1;i<columnCount;i++)
+    {
+        ui->tableView->horizontalHeader()->setSectionsClickable(i);
+
+    }
+
+    ui->tableView->resizeRowsToContents();
+    ui->tableView->verticalHeader()->hide();
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter | (Qt::Alignment)Qt::TextWordWrap);
+    ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
+    ui->tableView->horizontalHeader()->setFixedHeight(150);
+    ui->tableView->setItemDelegate(new DoubleDelegate(ui->tableView));
+
+    ui->tableView->setSortingEnabled(true);
+
+    modd2->sort(2, Qt::DescendingOrder);
+}
+
 void Vent_datas::zapis()
 {
     QSqlQuery query(QSqlDatabase::database("connection2"));
@@ -175,3 +244,4 @@ void Vent_datas::deleteDannieV()
         table();
     }
 }
+
