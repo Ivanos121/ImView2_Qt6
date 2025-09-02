@@ -20,11 +20,9 @@ Vent_settings::Vent_settings(QWidget *parent)
     QStringList name;
     name << "Величина" << "Обозначение" << "Значение" << "Размерность";
     ui->tableWidget->setHorizontalHeaderLabels(name);
-    //ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget->verticalHeader()->setVisible(true);
-    //ui->tableWidget->resizeColumnToContents(0);
 
     // Для первого столбца — подгонка по содержимому
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
@@ -217,55 +215,72 @@ void Vent_settings::onCellClicked(int row, int column)
 
     QString imagePath;
 
-    if (row == 0)        {
-        //imagePath = ":/image/data/img/images/vent_settings_1.svg";
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_1.svg";
-    } else if (row == 1) {
-        //imagePath = basePath + "/ввв.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_2.svg";
-    } else if (row == 2) {
-        //imagePath = basePath + "/дддд.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_3.svg";
-    } else if (row == 3) {
-        //imagePath = basePath + "/tery3b.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_4.svg";
-    } else if (row == 4) {
-        //imagePath = ":/image/data/img/images/vent_settings_1.svg";
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_5.svg";
-    } else if (row == 5) {
-        //imagePath = basePath + "/ввв.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_6.svg";
-    } else if (row == 6) {
-        //imagePath = basePath + "/дддд.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_7.svg";
-    } else if (row == 7) {
-        //imagePath = basePath + "/tery3b.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_8.svg";
-    } else if (row == 8) {
-        //imagePath = basePath + "/ввв.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_9.svg";
-    } else if (row == 9) {
-        //imagePath = basePath + "/дддд.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_10.svg";
-    } else if (row == 10) {
-        //imagePath = basePath + "/tery3b.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_11.svg";
-    } else if (row == 11) {
-        //imagePath = ":/image/data/img/images/vent_settings_1.svg";
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_12.svg";
-    } else if (row == 12) {
-        //imagePath = basePath + "/ввв.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_13.svg";
-    } else if (row == 13) {
-        //imagePath = basePath + "/дддд.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_14.svg";
-    } else if (row == 14) {
-        //imagePath = basePath + "/tery3b.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_15.svg";
-    } /*else if (row == 15) {
-        //imagePath = basePath + "/дддд.jpg"; // замените на свой путь
-        imagePath = "/home/elf/ImView2_Qt6/data/img/images/vent_settings_16.svg";
-    }*/ else {
+    if (row == 0)
+    {
+        imagePath = "../data/img/images/vent_settings_1.svg";
+    }
+    else if (row == 1)
+    {
+        imagePath = "../data/img/images/vent_settings_2.svg";
+    }
+    else if (row == 2)
+    {
+        imagePath = "../data/img/images/vent_settings_3.svg";
+    }
+    else if (row == 3)
+    {
+        imagePath = "../data/img/images/vent_settings_4.svg";
+    }
+    else if (row == 4)
+    {
+        imagePath = "../data/img/images/vent_settings_5.svg";
+    }
+    else if (row == 5)
+    {
+        imagePath = "../data/img/images/vent_settings_6.svg";
+    }
+    else if (row == 6)
+    {
+        imagePath = "../data/img/images/vent_settings_7.svg";
+    }
+    else if (row == 7)
+    {
+        imagePath = "../data/img/images/vent_settings_8.svg";
+    }
+    else if (row == 8)
+    {
+        imagePath = "../data/img/images/vent_settings_9.svg";
+    }
+    else if (row == 9)
+    {
+        imagePath = "../data/img/images/vent_settings_10.svg";
+    }
+    else if (row == 10)
+    {
+        imagePath = "../data/img/images/vent_settings_11.svg";
+    }
+    else if (row == 11)
+    {
+        imagePath = "../data/img/images/vent_settings_12.svg";
+    }
+    else if (row == 12)
+    {
+        imagePath = "../data/img/images/vent_settings_13.svg";
+    }
+    else if (row == 13)
+    {
+        imagePath = "../data/img/images/vent_settings_14.svg";
+    }
+    else if (row == 14)
+    {
+        imagePath = "../data/img/images/vent_settings_15.svg";
+    }
+    else if (row == 15)
+    {
+        imagePath = "../data/img/images/vent_settings_16.svg";
+    }
+    else
+    {
         return; // если строка не ожидается
     }
 

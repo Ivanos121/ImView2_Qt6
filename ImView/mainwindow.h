@@ -40,6 +40,8 @@ public:
     void closeEvent (QCloseEvent *event) override;
     void LoadProject(QString str);
     QVector<QColor> dataLineColors;
+    QSqlTableModel *vent_model;
+
     void setcolorincell(int row, int column);
     void translate_en();
     void translate_ru();
@@ -54,7 +56,7 @@ public:
 private:
     QString sessionFileName;
     QSqlDatabase sdb;
-    QSqlTableModel *model, *models;
+    QSqlTableModel *model;
     QStandardItemModel *modd;
 
     void setCurrentFile(const QString &fileName);

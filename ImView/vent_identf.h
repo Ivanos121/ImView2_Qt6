@@ -20,10 +20,10 @@ public:
     MainWindow *wf;
 
     void raschet_vent_identf();
+    void setDefaultVentModel();
 
 public:
     Ui::Vent_identf *ui;
-    QSqlTableModel *models;
     QVector<QColor> dataLineColors_vent_identf;
     QVector<double> approximate(const QVector<double>& x,
                                 const QVector<double>& y,

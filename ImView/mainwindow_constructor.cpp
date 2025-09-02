@@ -268,6 +268,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_5->wf=this;
     ui->widget_6->wf=this;
     ui->widget_7->wf=this;
+    ui->widget_7->setDefaultVentModel();
     ui->widget_5->ui->widget_4->wf=this;
     ui->widget->wf=this;
     ui->widget_15->wf=this;
@@ -3349,18 +3350,18 @@ void MainWindow::loadTable2()
 
 void MainWindow::loadTable(const QString &tableName)
 {
-    // if (models)
-    // {
-    //     delete models;
-    // }
-
-    models = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
-    models->setTable(tableName);
-    if (!models->select())
+    if (vent_model)
     {
-        QMessageBox::critical(this, "Ошибка", models->lastError().text());
+        delete vent_model;
+    }
+
+    vent_model = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
+    vent_model->setTable(tableName);
+    if (!vent_model->select())
+    {
+        QMessageBox::critical(this, "Ошибка", vent_model->lastError().text());
         return;
     }
-    models->select();
-    ui->widget_7->ui->widget->ui->tableView->setModel(models);
+    vent_model->select();
+    ui->widget_7->ui->widget->ui->tableView->setModel(vent_model);
 }

@@ -46,12 +46,6 @@ Vent_identf::Vent_identf(QWidget *parent)
     dataLineColors_vent_identf.append(Qt::green);
 
     ui->tabWidget->setCurrentIndex(0);
-
-    models = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
-    models->setTable("ventilators");
-    models->select();
-
-    ui->widget->ui->tableView->setModel(models);
 }
 
 Vent_identf::~Vent_identf()
@@ -776,4 +770,14 @@ void Vent_identf::save_vent_identf()
     xmlWriter.writeEndElement();
     xmlWriter.writeEndDocument();
     file.close();
+}
+
+void Vent_identf::setDefaultVentModel()
+{
+
+    /*wf->vent_model = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
+    wf->vent_model->setTable("ventilators");
+    wf->vent_model->select();
+
+    ui->widget->ui->tableView->setModel(wf->vent_model);*/
 }
