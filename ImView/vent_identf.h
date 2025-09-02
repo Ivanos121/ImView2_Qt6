@@ -1,6 +1,7 @@
 #ifndef VENT_IDENTF_H
 #define VENT_IDENTF_H
 
+#include "qsqltablemodel.h"
 #include <QWidget>
 
 class MainWindow;
@@ -22,6 +23,7 @@ public:
 
 public:
     Ui::Vent_identf *ui;
+    QSqlTableModel *models;
     QVector<QColor> dataLineColors_vent_identf;
     QVector<double> approximate(const QVector<double>& x,
                                 const QVector<double>& y,

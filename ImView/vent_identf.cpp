@@ -1,5 +1,6 @@
 #include "vent_identf.h"
 #include "qxmlstream.h"
+#include "ui_vent_datas.h"
 #include "ui_vent_identf.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -45,6 +46,12 @@ Vent_identf::Vent_identf(QWidget *parent)
     dataLineColors_vent_identf.append(Qt::green);
 
     ui->tabWidget->setCurrentIndex(0);
+
+    models = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
+    models->setTable("ventilators");
+    models->select();
+
+    ui->widget->ui->tableView->setModel(models);
 }
 
 Vent_identf::~Vent_identf()

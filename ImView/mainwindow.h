@@ -54,7 +54,7 @@ public:
 private:
     QString sessionFileName;
     QSqlDatabase sdb;
-    QSqlTableModel *model;
+    QSqlTableModel *model, *models;
     QStandardItemModel *modd;
 
     void setCurrentFile(const QString &fileName);
@@ -285,6 +285,8 @@ public:
     void close_sql_base();
 
     void save_vent_in_file();
+    void loadTable(const QString &tableName);
+
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);
@@ -307,11 +309,14 @@ protected slots:
     void open_identf_nastr_3();
     void loadDefaultPage();
     void on_textChanged();
+    void loadTable1();
+    void loadTable2();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
     bool isNablLaunched = false;
     QString currentTabText;
     int rowNumber;
+
 };
 
 #endif // MAINWINDOW_H

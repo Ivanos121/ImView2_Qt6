@@ -53,6 +53,7 @@
 #include "ui_draw_line.h"
 #include "ui_draw_poper.h"
 #include "ui_teplschem.h"
+#include "ui_vent_datas.h"
 #include "ui_vent_identf.h"
 #include "ui_vent_model.h"
 #include "ui_trend.h"
@@ -246,6 +247,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->radioButton_22,&QRadioButton::toggled, this, &MainWindow::radioButton_22_toggled);
     connect(ui->radioButton_17,&QRadioButton::toggled, this, &MainWindow::radioButton_17_toggled);
     connect(ui->radioButton_14,&QRadioButton::toggled, this, &MainWindow::radioButton_14_toggled);
+    connect(ui->radioButton_15,&QRadioButton::toggled, this, &MainWindow::loadTable1);
+    connect(ui->radioButton_16,&QRadioButton::toggled, this, &MainWindow::loadTable2);
 
     //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
@@ -3332,4 +3335,32 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::on_textChanged()
 {
   isNablLaunched = true;
+}
+
+void MainWindow::loadTable1()
+{
+    loadTable("ventilators"); // Замените на имя вашей первой таблицы
+}
+
+void MainWindow::loadTable2()
+{
+    loadTable("vent__lopast"); // Замените на имя вашей второй таблицы
+}
+
+void MainWindow::loadTable(const QString &tableName)
+{
+    // if (models)
+    // {
+    //     delete models;
+    // }
+
+    models = new QSqlTableModel(this, QSqlDatabase::database("connection2"));
+    models->setTable(tableName);
+    if (!models->select())
+    {
+        QMessageBox::critical(this, "Ошибка", models->lastError().text());
+        return;
+    }
+    models->select();
+    ui->widget_7->ui->widget->ui->tableView->setModel(models);
 }
