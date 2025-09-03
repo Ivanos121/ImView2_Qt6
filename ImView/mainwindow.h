@@ -42,7 +42,6 @@ public:
     void LoadProject(QString str);
     QVector<QColor> dataLineColors;
     QSqlTableModel *vent_model;
-    Vent_datas *vent_datas;
 
     void setcolorincell(int row, int column);
     void translate_en();
