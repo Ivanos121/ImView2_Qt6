@@ -254,6 +254,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton_5, &QPushButton::clicked,this, &MainWindow::electrostart);
     connect(ui->pushButton_8, &QPushButton::clicked,this, &MainWindow::electrostop);
 
+    ui->pushButton_8->setEnabled(false);
+
     connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
     connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
     connect(ui->horizontalSlider_3,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_3_valueChanged);
@@ -3370,11 +3372,9 @@ void MainWindow::loadTable(const QString &tableName)
 
 void MainWindow::electrostart()
 {
+    ui->pushButton_8->setEnabled(true);
     base.Mc_n = enter_moment_value->text().toDouble();
-
     base.Um = enter_voltage_im_mashine_value->text().toDouble();
-
-    qDebug() << "Mc = " << base.Mc_n << "Um = " << base.Um;
     ui->horizontalSlider_4->setValue(base.Mc_n);
     ui->horizontalSlider_3->setValue(base.Um);
     ui->lineEdit_26->setText(QString("%1").arg(base.Mc_n));
@@ -3389,4 +3389,5 @@ void MainWindow::electrostop()
     ui->lineEdit_26->setText(QString("%1").arg(0));
     ui->lineEdit_25->setText(QString("%1").arg(0));
     ui->widget_6->vent_model_stop();
+    ui->pushButton_8->setEnabled(false);
 }

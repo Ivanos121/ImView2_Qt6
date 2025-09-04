@@ -168,7 +168,7 @@ void identf::realtimeDataSlot()
 {
     wf->statusbar_label_9->setVisible(true);
     wf->statusbar_progres->setVisible(true);
-    wf->statusbar_progres->setRange(0, 0);
+    wf->statusbar_progres->setRange(0, 100);
     wf->statusbar_progres->reset();
     // calculate two new data points:
     key = time->elapsed()/1000.0; // time elapsed since start of demo, in seconds
