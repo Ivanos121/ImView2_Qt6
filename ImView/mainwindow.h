@@ -314,6 +314,10 @@ protected slots:
     void on_textChanged();
     void loadTable1();
     void loadTable2();
+    void electrostart();
+    void electrostop();
+    void horizontalSlider_3_valueChanged(int value);
+    void horizontalSlider_4_valueChanged(int value);
 private:
     QHash<QModelIndex, bool> rootNodeStates;
     bool isNablLaunched = false;

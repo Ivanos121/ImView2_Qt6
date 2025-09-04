@@ -35,6 +35,7 @@ public:
     void save_vent_identf();
     void one_vent();
     void two_vent();
+
 private:
     bool isFinished;
 };

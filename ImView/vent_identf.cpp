@@ -46,12 +46,15 @@ Vent_identf::Vent_identf(QWidget *parent)
     dataLineColors_vent_identf.append(Qt::green);
 
     ui->tabWidget->setCurrentIndex(0);
+
+
 }
 
 Vent_identf::~Vent_identf()
 {
     delete ui;
 }
+
 
 void Vent_identf::raschet_vent_identf()
 {

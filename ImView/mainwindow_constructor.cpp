@@ -37,6 +37,7 @@
 #include <QImageWriter>
 #include <cxxabi.h>
 
+#include "base.h"
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
 #include "datas.h"
@@ -250,8 +251,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->radioButton_15,&QRadioButton::toggled, this, &MainWindow::loadTable1);
     connect(ui->radioButton_16,&QRadioButton::toggled, this, &MainWindow::loadTable2);
 
-    //connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
-    //connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
+    connect(ui->pushButton_5, &QPushButton::clicked,this, &MainWindow::electrostart);
+    connect(ui->pushButton_8, &QPushButton::clicked,this, &MainWindow::electrostop);
+
+    connect(ui->horizontalSlider,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_valueChanged);
+    connect(ui->horizontalSlider_2,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_2_valueChanged);
+    connect(ui->horizontalSlider_3,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_3_valueChanged);
+    connect(ui->horizontalSlider_4,&QSlider::valueChanged, this, &MainWindow::horizontalSlider_4_valueChanged);
     connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_identf_in_file);
     //connect(ui->save_identf_in_file, &QPushButton::clicked, this, &MainWindow::save_vent_in_file);
 
@@ -3367,4 +3373,25 @@ void MainWindow::loadTable(const QString &tableName)
     }
     ui->widget_7->ui->widget->model2->select();
     ui->widget_7->ui->widget->ui->tableView->setModel(ui->widget_7->ui->widget->model2);
+}
+
+void MainWindow::electrostart()
+{
+    base.Mc_n = enter_moment_value->text().toDouble();
+
+    base.Um = enter_voltage_im_mashine_value->text().toDouble();
+
+    qDebug() << "Mc = " << base.Mc_n << "Um = " << base.Um;
+    ui->horizontalSlider_4->setValue(base.Mc_n);
+    ui->horizontalSlider_3->setValue(base.Um);
+    ui->lineEdit_26->setText(QString("%1").arg(base.Mc_n));
+    ui->lineEdit_25->setText(QString("%1").arg(base.Um));
+}
+
+void MainWindow::electrostop()
+{
+    ui->horizontalSlider_4->setValue(0);
+    ui->horizontalSlider_3->setValue(0);
+    ui->lineEdit_26->setText(QString("%1").arg(0));
+    ui->lineEdit_25->setText(QString("%1").arg(0));
 }

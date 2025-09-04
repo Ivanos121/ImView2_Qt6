@@ -4155,6 +4155,16 @@ void MainWindow::horizontalSlider_2_valueChanged(int value)
     ui->lineEdit_2->setText(QString("%1").arg(value));
 }
 
+void MainWindow::horizontalSlider_3_valueChanged(int value)
+{
+    ui->lineEdit_25->setText(QString("%1").arg(value));
+}
+
+void MainWindow::horizontalSlider_4_valueChanged(int value)
+{
+    ui->lineEdit_26->setText(QString("%1").arg(value));
+}
+
 
 
 void MainWindow::on_radioButton_11_toggled(bool checked)
