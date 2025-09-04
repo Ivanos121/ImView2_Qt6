@@ -287,13 +287,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->save_file->setEnabled(false);
     ui->save_as_file->setEnabled(false);
 
-    //Настройка виджета График
-    ui->widget_6->ui->plot->t_max = 0.01;
-    ui->widget_6->ui->plot->U_max = 500.0;
-    ui->widget_6->ui->plot->margin_bottom = 40;
-    ui->widget_6->ui->plot->margin_left = 100;
-    ui->widget_6->ui->plot->reset();
-
     //Отображение картинов в приложении
     ui->widget_5->ui->widget->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/ax_var/ax_var_2.html").absoluteFilePath()));
     ui->widget_5->ui->widget_5->ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/rad_var/rad_var.html").absoluteFilePath()));
@@ -3386,6 +3379,7 @@ void MainWindow::electrostart()
     ui->horizontalSlider_3->setValue(base.Um);
     ui->lineEdit_26->setText(QString("%1").arg(base.Mc_n));
     ui->lineEdit_25->setText(QString("%1").arg(base.Um));
+    ui->widget_6->vent_model_start();
 }
 
 void MainWindow::electrostop()
@@ -3394,4 +3388,5 @@ void MainWindow::electrostop()
     ui->horizontalSlider_3->setValue(0);
     ui->lineEdit_26->setText(QString("%1").arg(0));
     ui->lineEdit_25->setText(QString("%1").arg(0));
+    ui->widget_6->vent_model_stop();
 }

@@ -29,7 +29,7 @@ Vent_identf::Vent_identf(QWidget *parent)
     , ui(new Ui::Vent_identf)
 {
     ui->setupUi(this);
-    ui->plot->t_max = 0.01;
+    ui->plot->t_max = 0.011;
     ui->plot->U_max = 3.0;
     ui->plot->margin_bottom = 40;
     ui->plot->margin_left = 100;
@@ -535,7 +535,7 @@ void Vent_identf::two_vent()
         H1_appr_2[i] = Q_H1_poly.evaluate(Q_appr_2[i]);
         H2_appr_2[i] = Q_H2_poly.evaluate(Q_appr_2[i]);
         Pv_appr_2[i] = Q_Pv_poly.evaluate(Q_appr_2[i]);
-        ui->plot->addPoint(5, Q_appr_2[i], w_2[i]);
+        //ui->plot->addPoint(5, Q_appr_2[i], w_2[i]);
         ui->plot->addPoint(6, Q_appr_2[i], H1_appr_2[i]);
         ui->plot->addPoint(7, Q_appr_2[i], H2_appr_2[i]);
         ui->plot->addPoint(8, Q_appr_2[i], Pv_appr_2[i]);
