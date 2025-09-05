@@ -2,49 +2,50 @@
 <resources>
     <project>
         <general_settings>
-            <project_name value="bbb"/>
-            <combobox_1 value="Внутренний источник данных"/>
-            <project_path value="Указать каталог"/>
-            <combobox_2 value="Внутренний источник данных"/>
-            <project_path_2 value="Указать каталог"/>
-            <combobox_3 value="Сохранить"/>
-            <combobox_4 value="Сохранить"/>
-            <combobox_5 value="Сохранить"/>
-            <combobox_6 value="Сохранить"/>
-            <combobox_7 value="Сохранить"/>
-            <combobox_8 value="Сохранить"/>
-            <combobox_9 value="Ручной"/>
-            <coeff_1 value="0.01"/>
-            <coeff_2 value="0.1"/>
-            <coeff_3 value="0.05"/>
-            <coeff_4 value="0.02"/>
-            <coeff_5 value="0.01"/>
-            <coeff_6 value="2.01"/>
-            <combobox_10 value="Одномассовая модель"/>
-            <combobox_11 value="Cтатика"/>
-            <combobox_12 value="Учитывать"/>
-            <combobox_13 value="Принудительная вентиляция"/>
-            <combobox_14 value="Ручной"/>
-            <combobox_15 value="Учитывать"/>
-            <combobox_16 value="Ручной"/>
-            <combobox_17 value="2"/>
-            <combobox_18 value="Режим S1"/>
-            <time_cikle value="6"/>
-            <time_work value="2"/>
-            <combobox_19 value="Текущее время"/>
-            <combobox_20 value="Прямой пуск"/>
-            <napragenie value="220"/>
-            <moment value="20"/>
-            <start_temp value="20"/>
-            <combobox_21 value="Текущее время"/>
-            <combobox_22 value="Текущее время"/>
-            <combobox_23 value="Прямой пуск"/>
-            <time_step value="Текущее время"/>
-            <combobox_24 value="Статика (статор)"/>
-            <combobox_25 value="Одномассовая модель"/>
-            <pressure value="102"/>
-            <selected_row value="553217920.0"/>
-            <data_tepl_identification_value value="Сохранить">
+            <general_settings>
+                <project_name value="bbb"/>
+                <combobox_1 value="Внутренний источник данных"/>
+                <project_path value="Указать каталог"/>
+                <combobox_2 value="Внутренний источник данных"/>
+                <project_path_2 value="Указать каталог"/>
+                <combobox_3 value="Сохранить"/>
+                <combobox_4 value="Сохранить"/>
+                <combobox_5 value="Сохранить"/>
+                <combobox_6 value="Сохранить"/>
+                <combobox_7 value="Сохранить"/>
+                <combobox_8 value="Сохранить"/>
+                <combobox_9 value="Ручной"/>
+                <coeff_1 value="0.01"/>
+                <coeff_2 value="0.1"/>
+                <coeff_3 value="0.05"/>
+                <coeff_4 value="0.02"/>
+                <coeff_5 value="0.01"/>
+                <coeff_6 value="2.01"/>
+                <combobox_10 value="Одномассовая модель"/>
+                <combobox_11 value="Cтатика"/>
+                <combobox_12 value="Учитывать"/>
+                <combobox_13 value="Принудительная вентиляция"/>
+                <combobox_14 value="Автоматический"/>
+                <combobox_15 value="Учитывать"/>
+                <combobox_16 value="Ручной"/>
+                <combobox_17 value="2"/>
+                <combobox_18 value="Режим S1"/>
+                <time_cikle value="6"/>
+                <time_work value="2"/>
+                <combobox_19 value="Текущее время"/>
+                <combobox_20 value="Прямой пуск"/>
+                <napragenie value="220"/>
+                <moment value="20"/>
+                <start_temp value="20"/>
+                <combobox_21 value="Текущее время"/>
+                <combobox_22 value="Текущее время"/>
+                <combobox_23 value="Прямой пуск"/>
+                <time_step value="Текущее время"/>
+                <combobox_24 value="Статика (статор)"/>
+                <combobox_25 value="Одномассовая модель"/>
+                <pressure value="102"/>
+                <selected_row value="254934144"/>
+                <data_tepl_identification_value value="Сохранить"/>
                 <data_vent_identification_value value="Сохранить">
                     <sopr_R1 value="2.132"/>
                     <sopr_R2 value="2.343"/>
@@ -53,7 +54,7 @@
                     <ind_Lm value="0.213"/>
                     <degree_approximating_polynomial_value value="2"/>
                 </data_vent_identification_value>
-            </data_tepl_identification_value>
+            </general_settings>
         </general_settings>
     </project>
 </resources>

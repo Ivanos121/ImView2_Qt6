@@ -195,6 +195,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->delete_dannie_vent, &QAction::triggered, this, &MainWindow::delete_dannie_vent);
 
     connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
+    ui->identf_stop->setEnabled(false);
     connect(ui->identf_pusk_panel, &QAction::triggered, this, &MainWindow::identf_pusk);
     connect(ui->identf_stop, &QAction::triggered, this, &MainWindow::identf_stop);
     connect(ui->identf_stop_panel, &QAction::triggered, this, &MainWindow::identf_stop);
