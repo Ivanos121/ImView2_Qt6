@@ -1,4 +1,4 @@
-QT       += core gui sql webenginewidgets serialport printsupport svgwidgets xml network core5compat dbus
+QT       += core gui sql webenginewidgets serialport printsupport svgwidgets xml network core5compat dbus charts
 
 CONFIG += c++20 debug
 CONFIG -= qml_debug
@@ -34,6 +34,7 @@ SOURCES += \
     comboboxerrorarchivedelegate.cpp \
     comboboxmodbusdelegate.cpp \
     comboboxvardelegate.cpp \
+    create_signal_builder.cpp \
     customhelpdelegate.cpp \
     datas.cpp \
     datasource.cpp \
@@ -79,6 +80,7 @@ SOURCES += \
     pushbuttondelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
+    signal_builder.cpp \
     spandelegate.cpp \
     spinboxdelegate.cpp \
     start_app.cpp \
@@ -118,6 +120,7 @@ HEADERS += \
     comboboxmodbusdelegate.h \
     comboboxvardelegate.h \
     crc.h \
+    create_signal_builder.h \
     customhelpdelegate.h \
     datas.h \
     datasource.h \
@@ -163,6 +166,7 @@ HEADERS += \
     save_progect.h \
     settings.h \
     settingscanals.h \
+    signal_builder.h \
     spandelegate.h \
     spinboxdelegate.h \
     start_app.h \
@@ -204,6 +208,7 @@ FORMS += \
     settings.ui \
     settingscanals.ui \
     settinsKanals.ui \
+    signal_builder.ui \
     start_app.ui \
     tepl_dannie.ui \
     tepl_identf.ui \

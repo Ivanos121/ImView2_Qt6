@@ -983,6 +983,18 @@ MainWindow::MainWindow(QWidget *parent)
     electromagnetic_model_parametr->appendRow(engine_duty_cycle);
     engine_duty_cycle.clear();
 
+    creating_motor_speed_change_chart_parametr = new QStandardItem(tr("Создание диаграммы изменения скорости вращения двигателя"));
+    creating_motor_speed_change_chart_parametr->setEditable(false);
+    QString creating_motor_speed_change_chart_parametr_tooltip = creating_motor_speed_change_chart_parametr->text();
+    creating_motor_speed_change_chart_parametr->setToolTip(creating_motor_speed_change_chart_parametr_tooltip );
+    creating_motor_speed_change_chart_value = new QStandardItem(tr("Нажмите на кнопку"));
+    QString creating_motor_speed_change_chart_value_tooltip = creating_motor_speed_change_chart_value->text();
+    creating_motor_speed_change_chart_value->setToolTip(creating_motor_speed_change_chart_value_tooltip);
+    engine_duty_cycle.append(creating_motor_speed_change_chart_parametr);
+    engine_duty_cycle.append(creating_motor_speed_change_chart_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
+
     /* секция "Тепловая модель" */
 
     QList<QStandardItem*> tepl_model;

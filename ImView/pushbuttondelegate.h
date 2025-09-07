@@ -44,6 +44,7 @@ protected slots:
     void btn_clicked_6();
     void btn_clicked_7();
     void btn_clicked_8();
+    void btn_clicked_9();
 
 private:
     QPushButton *btn;
