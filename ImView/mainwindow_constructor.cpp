@@ -959,15 +959,45 @@ MainWindow::MainWindow(QWidget *parent)
     electromagnetic_model_parametr->appendRow(engine_duty_cycle);
     engine_duty_cycle.clear();
 
+    creating_motor_voltage_change_chart_parametr = new QStandardItem(tr("Уровень напряжения питания"));
+    creating_motor_voltage_change_chart_parametr->setEditable(false);
+    QString creating_motor_voltage_change_chart_parametr_tooltip = creating_motor_voltage_change_chart_parametr->text();
+    creating_motor_voltage_change_chart_parametr->setToolTip(creating_motor_voltage_change_chart_parametr_tooltip );
+    creating_motor_voltage_change_chart_value = new QStandardItem(tr("Выберите режим"));
+    QString creating_motor_voltage_change_chart_tooltip = creating_motor_voltage_change_chart_value->text();
+    creating_motor_voltage_change_chart_value->setToolTip(creating_motor_voltage_change_chart_tooltip);
+    engine_duty_cycle.append(creating_motor_voltage_change_chart_parametr);
+    engine_duty_cycle.append(creating_motor_voltage_change_chart_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
+
     enter_voltage_im_mashine_parametr = new QStandardItem(tr("Ввод напряжения питания двигателя"));
     enter_voltage_im_mashine_parametr->setEditable(false);
+    enter_voltage_im_mashine_parametr->setEnabled(false);
     QString enter_voltage_im_mashine_parametr_tooltip = enter_voltage_im_mashine_parametr->text();
     enter_voltage_im_mashine_parametr->setToolTip(enter_voltage_im_mashine_parametr_tooltip );
     enter_voltage_im_mashine_value = new QStandardItem(tr("0"));
+    //enter_voltage_im_mashine_value->setEditable(false);
+    enter_voltage_im_mashine_value->setEnabled(false);
     QString enter_voltage_im_mashine_value_tooltip = enter_voltage_im_mashine_value->text();
     enter_voltage_im_mashine_value->setToolTip(enter_voltage_im_mashine_value_tooltip);
     engine_duty_cycle.append(enter_voltage_im_mashine_parametr);
     engine_duty_cycle.append(enter_voltage_im_mashine_value);
+    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
+    engine_duty_cycle.clear();
+
+    creating_motor_speed_change_chart_parametr = new QStandardItem(tr("Создание диаграммы изменения скорости вращения двигателя"));
+    creating_motor_speed_change_chart_parametr->setEditable(false);
+    creating_motor_speed_change_chart_parametr->setEnabled(false);
+    QString creating_motor_speed_change_chart_parametr_tooltip = creating_motor_speed_change_chart_parametr->text();
+    creating_motor_speed_change_chart_parametr->setToolTip(creating_motor_speed_change_chart_parametr_tooltip );
+    creating_motor_speed_change_chart_value = new QStandardItem(tr("Нажмите на кнопку"));
+    //creating_motor_speed_change_chart_value->setEditable(false);
+    creating_motor_speed_change_chart_value->setEnabled(false);
+    QString creating_motor_speed_change_chart_value_tooltip = creating_motor_speed_change_chart_value->text();
+    creating_motor_speed_change_chart_value->setToolTip(creating_motor_speed_change_chart_value_tooltip);
+    engine_duty_cycle.append(creating_motor_speed_change_chart_parametr);
+    engine_duty_cycle.append(creating_motor_speed_change_chart_value);
     electromagnetic_model_parametr->appendRow(engine_duty_cycle);
     engine_duty_cycle.clear();
 
@@ -980,18 +1010,6 @@ MainWindow::MainWindow(QWidget *parent)
     enter_moment_value->setToolTip(enter_moment_value_tooltip);
     engine_duty_cycle.append(enter_moment_parametr);
     engine_duty_cycle.append( enter_moment_value);
-    electromagnetic_model_parametr->appendRow(engine_duty_cycle);
-    engine_duty_cycle.clear();
-
-    creating_motor_speed_change_chart_parametr = new QStandardItem(tr("Создание диаграммы изменения скорости вращения двигателя"));
-    creating_motor_speed_change_chart_parametr->setEditable(false);
-    QString creating_motor_speed_change_chart_parametr_tooltip = creating_motor_speed_change_chart_parametr->text();
-    creating_motor_speed_change_chart_parametr->setToolTip(creating_motor_speed_change_chart_parametr_tooltip );
-    creating_motor_speed_change_chart_value = new QStandardItem(tr("Нажмите на кнопку"));
-    QString creating_motor_speed_change_chart_value_tooltip = creating_motor_speed_change_chart_value->text();
-    creating_motor_speed_change_chart_value->setToolTip(creating_motor_speed_change_chart_value_tooltip);
-    engine_duty_cycle.append(creating_motor_speed_change_chart_parametr);
-    engine_duty_cycle.append(creating_motor_speed_change_chart_value);
     electromagnetic_model_parametr->appendRow(engine_duty_cycle);
     engine_duty_cycle.clear();
 
@@ -3310,6 +3328,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(time_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_7);
     connect(time_start_in_cycle_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_8);
     connect(data_approximation_mode_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_9);
+
+    connect(creating_motor_voltage_change_chart_value->model(), &QStandardItemModel::itemChanged, this, &MainWindow::modelItemChangedSlot_10);
 
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected, this, &MainWindow::projectFileSelectedSlot);
     connect(buttonColumnDelegate, &ButtonColumnDelegate::projectFileSelected_2, this, &MainWindow::projectFileSelectedSlot_2);

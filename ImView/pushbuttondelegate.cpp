@@ -334,10 +334,9 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
     }
     else if ((index.parent().row() == 4) && (index.row() == 7))
     {
-        QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
-        editor->setFrame(false);
-        editor->setMinimum(0);
-        editor->setMaximum(600);
+        QComboBox *editor = new QComboBox(parent);
+        editor->insertItem(0, "Фиксированное напряжение");
+        editor->insertItem(1, "График изменения напряжения");
         return editor;
     }
     else if ((index.parent().row() == 4) && (index.row() == 8))
@@ -345,7 +344,7 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
         editor->setFrame(false);
         editor->setMinimum(0);
-        editor->setMaximum(100);
+        editor->setMaximum(600);
         return editor;
     }
     else if ((index.parent().row() == 4) && (index.row() == 9))
@@ -358,6 +357,14 @@ QWidget * ButtonColumnDelegate::createEditor(QWidget *parent, const QStyleOption
         btn->setText("...");
         connect(btn,SIGNAL(clicked()), this, SLOT(btn_clicked_9()));
         return btn;
+    }
+    else if ((index.parent().row() == 4) && (index.row() == 10))
+    {
+        QDoubleSpinBox *editor = new QDoubleSpinBox(parent);
+        editor->setFrame(false);
+        editor->setMinimum(0);
+        editor->setMaximum(100);
+        return editor;
     }
     else if ((index.parent().row() == 5) && (index.row() == 0))
     {
@@ -848,9 +855,15 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
     }
     else if ((index.parent().row() == 4) && (index.row() == 7))
     {
-        double value = index.model()->data(index, Qt::EditRole).toDouble();
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->setValue(value);
+        QString value = index.model()->data(index, Qt::DisplayRole).toString();
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        //comboBox->addItem(value);
+        if(value == "Фиксированное напряжение")
+            comboBox->setCurrentIndex(0);
+        else if(value == "График изменения напряжения")
+            comboBox->setCurrentIndex(1);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
     }
     else if ((index.parent().row() == 4) && (index.row() == 8))
     {
@@ -863,6 +876,13 @@ void ButtonColumnDelegate::setEditorData(QWidget *editor, const QModelIndex &ind
         QPushButton * btn = qobject_cast<QPushButton *>(editor);
         btn->setProperty("data_value", index.data());
     }
+    else if ((index.parent().row() == 4) && (index.row() == 10))
+    {
+        double value = index.model()->data(index, Qt::EditRole).toDouble();
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->setValue(value);
+    }
+
     else if ((index.parent().row() == 5) && (index.row() == 0))
     {
         double value = index.model()->data(index, Qt::EditRole).toDouble();
@@ -1231,10 +1251,9 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
     }
     else if ((index.parent().row() == 4) && (index.row() == 7))
     {
-        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
-        spinBox->interpretText();
-        double value = spinBox->value();
-        model->setData(index, value, Qt::EditRole);
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        QString value = comboBox->currentText();
+        model->setData(index, value);
     }
     else if ((index.parent().row() == 4) && (index.row() == 8))
     {
@@ -1248,6 +1267,14 @@ void ButtonColumnDelegate::setModelData(QWidget *editor, QAbstractItemModel *mod
         QPushButton *btn = qobject_cast<QPushButton *>(editor);
         model->setData(index, btn->property("data_value"));
     }
+    else if ((index.parent().row() == 4) && (index.row() == 10))
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);
+        spinBox->interpretText();
+        double value = spinBox->value();
+        model->setData(index, value, Qt::EditRole);
+    }
+
     else if ((index.parent().row() == 5) && (index.row() == 0))
     {
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox*>(editor);

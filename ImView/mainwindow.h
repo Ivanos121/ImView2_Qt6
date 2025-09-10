@@ -123,6 +123,7 @@ private slots:
     void modelItemChangedSlot_7(QStandardItem *item);
     void modelItemChangedSlot_8(QStandardItem *item);
     void modelItemChangedSlot_9(QStandardItem *item);
+    void modelItemChangedSlot_10(QStandardItem *item);
     void projectFileSelectedSlot(QString projectFile);
     void projectFileSelectedSlot_2(QString projectFile_2);
     void projectFileSelectedSlot_3(QString projectFile_3);
@@ -237,11 +238,20 @@ public:
         *sesion_name_value1,  *item5,  *item6,  *kind_experiment_parametr,  *kind_experiment_value,
         *identf_scheme_zam_parametr,  *identf_scheme_zam_value;
     QStandardItem *item11, *item12, *calculation_mode_parametr, *calculation_mode_value,
-        *item15, *item16, *electromagnetic_model_parametr, *electromagnetic_model_value, *engine_duty_cycle_parametr, *engine_duty_cycle_value;
-    QStandardItem *time_cycle_parametr, *time_cycle_value, *time_base_selection_parametr, *time_base_selection_value, *tepl_model_parametr, *tepl_model_value, *start_tepl_temperature_parametr, *start_tepl_temperature_value, *temperature_regime_parametr, *temperature_regime_value;
-    QStandardItem *ventilation_model_parametr, *ventilation_model_value, *ventilation_regime_parametr, *ventilation_regime_value, *design_ventilation_system_parametr, *design_ventilation_system_value, *barometric_pressure_parametr, *barometric_pressure_value, *predicting_temperature_parametr, *predicting_temperature_value;
-    QStandardItem *value_one_parametr, *value_one_value, *value_two_parametr, *value_two_value, *value_three_parametr, *value_three_value, *estimation_residual_thermal_life_parametr, *estimation_residual_thermal_life_value, *value_four_parametr, *value_four_value;
-    QStandardItem *value_five_parametr, *value_five_value, *value_six_parametr, *value_six_value, *output_data_parametr, *output_data_value, *value_seven_parametr, *value_seven_value, *value_nine_parametr, *value_eight_value;
+        *item15, *item16, *electromagnetic_model_parametr, *electromagnetic_model_value,
+        *engine_duty_cycle_parametr, *engine_duty_cycle_value;
+    QStandardItem *time_cycle_parametr, *time_cycle_value, *time_base_selection_parametr,
+        *time_base_selection_value, *tepl_model_parametr, *tepl_model_value, *start_tepl_temperature_parametr,
+        *start_tepl_temperature_value, *temperature_regime_parametr, *temperature_regime_value;
+    QStandardItem *ventilation_model_parametr, *ventilation_model_value, *ventilation_regime_parametr,
+        *ventilation_regime_value, *design_ventilation_system_parametr, *design_ventilation_system_value,
+        *barometric_pressure_parametr, *barometric_pressure_value, *predicting_temperature_parametr, *predicting_temperature_value;
+    QStandardItem *value_one_parametr, *value_one_value, *value_two_parametr, *value_two_value,
+        *value_three_parametr, *value_three_value, *estimation_residual_thermal_life_parametr,
+        *estimation_residual_thermal_life_value, *value_four_parametr, *value_four_value;
+    QStandardItem *value_five_parametr, *value_five_value, *value_six_parametr, *value_six_value,
+        *output_data_parametr, *output_data_value, *value_seven_parametr, *value_seven_value,
+        *value_nine_parametr, *value_eight_value;
     QStandardItem *value_nine_value, *value_eight_parametr, *item63, *item64, *save_data_parametr, *save_data_value,
         *data_tepl_identification_parametr, *data_tepl_identification_value, *data_electomagn_process_parametr,
         *data_electomagn_process_value, *data_identification_parametr, *data_identification_value,
@@ -253,8 +263,10 @@ public:
     QStandardItem *read_data_identf_observer_parametr, *read_data_identf_observer_value,
         *item83, *item84, *item85, *item86, *identification_switch_parametr,
         *identification_switch_value, *item89, *item90;
-    QStandardItem *switch_system_electrodrive_parametr, *switch_system_electrodrive_value, *tuning_coefficient_gd_parametr, *tuning_coefficient_gd_value,
-        *tuning_coefficient_ki_parametr, *tuning_coefficient_ki_value, *tuning_coefficient_gb_parametr, *tuning_coefficient_gb_value,
+    QStandardItem *switch_system_electrodrive_parametr, *switch_system_electrodrive_value,
+        *tuning_coefficient_gd_parametr, *tuning_coefficient_gd_value,
+        *tuning_coefficient_ki_parametr, *tuning_coefficient_ki_value, *tuning_coefficient_gb_parametr,
+        *tuning_coefficient_gb_value,
         *tuning_coefficient_kpsi_parametr, *tuning_coefficient_kpsi_value;
     QStandardItem *tuning_coefficient_gp_parametr, *tuning_coefficient_gp_value,
         *tuning_coefficient_gpsi_parametr, *tuning_coefficient_gpsi_value,
@@ -266,8 +278,10 @@ public:
         *item128, *enter_voltage_im_mashine_parametr, *enter_voltage_im_mashine_value;
     QStandardItem *enter_moment_parametr, * enter_moment_value, *item133, *item134, *item135,*item136, *item137,
         *item138, *item139, *temperature_regime_static_parametr;
-    QStandardItem *temperature_regime_static_value, *temperature_regime_dinamic_value, *item143, *temperature_regime_dinamic_parametr, *thermal_identification_parametr,
-        *thermal_identification_value, *kind_thermal_model_parametr, *kind_thermal_model_value, *kind_thermal_model_2_parametr, *kind_thermal_model_2_value,
+    QStandardItem *temperature_regime_static_value, *temperature_regime_dinamic_value, *item143,
+        *temperature_regime_dinamic_parametr, *thermal_identification_parametr,
+        *thermal_identification_value, *kind_thermal_model_parametr, *kind_thermal_model_value,
+        *kind_thermal_model_2_parametr, *kind_thermal_model_2_value,
         *kind_thermal_model_3_value, *kind_thermal_model_4_parametr, *kind_thermal_model_4_value;
     QStandardItem *kind_thermal_model_3_parametr, *ventilation_identification_parametr,
         *ventilation_identification_value, *kind_ventilation_parametr,*kind_ventilation_value,
@@ -275,10 +289,12 @@ public:
         *geometry_parameters_value, *point_selection_step_parametr, *point_selection_step_value,
         *data_approximation_mode_parameter, *data_approximation_mode_value, *degree_approximating_polynomial_parameter,
         *degree_approximating_polynomial_value, *creating_motor_speed_change_chart_parametr,
-        *creating_motor_speed_change_chart_value;
+        *creating_motor_speed_change_chart_value, *creating_motor_voltage_change_chart_parametr,
+        *creating_motor_voltage_change_chart_value;
     QStandardItem *Heat_processes_accounting_parameter, *Heat_processes_accounting_value,
         *item163, *item164, *item165,*item166, *item167, *item168, *item169, *item170;
-    QStandardItem *item171, *item172, *time_work_parametr, *time_work_value, *time_work_in_cycle_parametr,*time_work_in_cycle_value, *time_start_in_cycle_parametr,
+    QStandardItem *item171, *item172, *time_work_parametr, *time_work_value, *time_work_in_cycle_parametr,
+        *time_work_in_cycle_value, *time_start_in_cycle_parametr,
         *time_start_in_cycle_value, *item179, *item180;
 
     void changeEvent(QEvent *event) override;

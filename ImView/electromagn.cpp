@@ -1313,7 +1313,15 @@ void electromagn::raschet_el()
     if (wf->enter_type_experiment_value->text() == tr("Внутренний источник данных"))
     {
         base.Mc_n = wf-> enter_moment_value->text().toDouble();
-        base.Um = wf->enter_voltage_im_mashine_value->text().toDouble();
+
+        if(wf->creating_motor_voltage_change_chart_value->text() == "Фиксированное напряжение")
+        {
+            base.Um = wf->enter_voltage_im_mashine_value->text().toDouble();
+        }
+        else if(wf->creating_motor_voltage_change_chart_value->text() == "График изменения напряжения")
+        {
+            //base.Um = base.data;
+        }
 
         wf->ui->horizontalSlider->setValue(base.Mc_n);
         wf->ui->horizontalSlider_2->setValue(base.Um);
@@ -1357,12 +1365,6 @@ void electromagn::raschet_el()
             wf->ui->label_25->setText(tr("Регулирование частоты"));
         }
 
-
-        /*  Model_el.init_el(base.R1, base.R2, base.L1, base.L2, base.Lm, wf->item20->text(),
-                         Model_el.Tc=wf->item22->text().toDouble(),
-                         Model_el.tp=wf->item24->text().toDouble(),
-                         Model_el.Mc=wf->item90->text().toDouble());
-*/
         connect(&model_el, &Model_el::ready, this, &electromagn::realtimeDataSlot);
     }
 
@@ -1631,4 +1633,41 @@ void electromagn::edit_graf()
     ui->tableWidget->item(3,5)->setText(QString::number((model_el.Mc + Mc_offset)*Mc_scale,'f',3));
 
     ui->plot->repaint();
+}
+
+double linearInterpolation(const QVector<QPair<double, double>>& data, double t)
+{
+    // Проверка на наличие данных
+    if (data.isEmpty()) {
+        qDebug() << "Ошибка: массив данных пуст.";
+        return 0.0; // Возвращаем 0.0 в случае ошибки
+    }
+
+    // Ищем две ближайшие точки
+    QPair<double, double> point1, point2;
+    bool found = false;
+
+    for (int i = 0; i < data.size() - 1; ++i) {
+        if (t >= data[i].first && t <= data[i + 1].first) {
+            point1 = data[i];
+            point2 = data[i + 1];
+            found = true;
+            break;
+        }
+    }
+
+    // Если t вне диапазона данных
+    if (!found) {
+        qDebug() << "Ошибка: значение времени вне диапазона.";
+        return 0.0; // Возвращаем 0.0 в случае ошибки
+    }
+
+    // Линейная интерполяция
+    double t1 = point1.first;
+    double V1 = point1.second;
+    double t2 = point2.first;
+    double V2 = point2.second;
+
+    double V = V1 + (V2 - V1) / (t2 - t1) * (t - t1);
+    return V;
 }

@@ -1105,6 +1105,33 @@ void MainWindow::modelItemChangedSlot_9(QStandardItem *item)
     }
 }
 
+void MainWindow::modelItemChangedSlot_10(QStandardItem *item)
+{
+    if (item == creating_motor_voltage_change_chart_value)
+    {
+        if (item->text() == "Фиксированное напряжение")
+        {
+            enter_voltage_im_mashine_parametr->setEnabled(true);
+            enter_voltage_im_mashine_value->setEnabled(true);
+        }
+        else
+        {
+            enter_voltage_im_mashine_parametr->setEnabled(false);
+            enter_voltage_im_mashine_value->setEnabled(false);
+        }
+        if (item->text() == "График изменения напряжения")
+        {
+            creating_motor_speed_change_chart_parametr->setEnabled(true);
+            creating_motor_speed_change_chart_value->setEnabled(true);
+        }
+        else
+        {
+            creating_motor_speed_change_chart_parametr->setEnabled(false);
+            creating_motor_speed_change_chart_value->setEnabled(false);
+        }
+    }
+}
+
 void MainWindow::switch_regim_upr(bool checked)
 {
     if(checked)
