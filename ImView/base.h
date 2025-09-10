@@ -1,7 +1,9 @@
 #ifndef BASE_H
 #define BASE_H
 
+#include "qpoint.h"
 #include <QString>
+#include <QVector>
 
 struct DigitOscParams
 {
@@ -91,6 +93,7 @@ struct Base
     DigitMomentParams digitMomentParams;
     PlcParams plcParams;
     ArchieverParams archieverParams;
+    QVector<QPointF> data;
 };
 
 extern Base base;

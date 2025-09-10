@@ -5,6 +5,8 @@
 #include "qlineseries.h"
 #include "qvalueaxis.h"
 #include "create_signal_builder.h"
+#include "base.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -42,14 +44,14 @@ protected slots:
     bool savePointsToXml(const QString &fileName);
     bool loadPointsFromXml(const QString &fileName);
     void resieve_dannie();
-private slots:
-    void on_pushButtonAdd_clicked();
-    void on_pushButtonClear_clicked();
+    void add_time_value_pushButton();
+    void clear_pushButton();
 
 private:
     void updateChart();
     Create_signal_builder signalBuilder;
-    QVector<QPointF> paintdata;
+    //QVector<QPointF> paintdata;
+
     QChart *chart;
     QString fileName;
     //Graph *graph;
