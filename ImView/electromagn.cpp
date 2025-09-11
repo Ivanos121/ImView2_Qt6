@@ -227,6 +227,42 @@ electromagn::~electromagn()
     delete ui;
 }
 
+double electromagn::linearInterpolation(const QVector<QPointF>& data, double t) {
+    // Проверка на наличие данных
+    if (data.isEmpty()) {
+        qDebug() << "Ошибка: массив данных пуст.";
+        return 0.0; // Возвращаем 0.0 в случае ошибки
+    }
+
+    // Ищем две ближайшие точки
+    QPointF point1, point2;
+    bool found = false;
+
+    for (int i = 0; i < data.size() - 1; ++i) {
+        if (t >= data[i].x() && t <= data[i + 1].x()) {
+            point1 = data[i];
+            point2 = data[i + 1];
+            found = true;
+            break;
+        }
+    }
+
+    // Если t вне диапазона данных
+    if (!found) {
+        qDebug() << "Ошибка: значение времени вне диапазона.";
+        return 0.0; // Возвращаем 0.0 в случае ошибки
+    }
+
+    // Линейная интерполяция
+    double t1 = point1.x();
+    double V1 = point1.y();
+    double t2 = point2.x();
+    double V2 = point2.y();
+
+    double V = V1 + (V2 - V1) / (t2 - t1) * (t - t1);
+    return V;
+}
+
 void electromagn::realtimeDataSlot()
 {
     //double a1=0,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18;
@@ -239,7 +275,14 @@ void electromagn::realtimeDataSlot()
     if(wf->enter_type_experiment_value->text() == "Внутренний источник данных")
     {
         base.Mc_n = wf->ui->horizontalSlider->value();
-        base.Um = wf->ui->horizontalSlider_2->value();
+        if (wf->creating_motor_voltage_change_chart_value->text() == "График изменения напряжения")
+        {
+            base.Um = linearInterpolation(base.data, model_el.t);
+        }
+        else
+        {
+            base.Um = wf->ui->horizontalSlider_2->value();
+        }
 
         for (int i = 0; i < 1000; i++)
         {
@@ -1313,15 +1356,7 @@ void electromagn::raschet_el()
     if (wf->enter_type_experiment_value->text() == tr("Внутренний источник данных"))
     {
         base.Mc_n = wf-> enter_moment_value->text().toDouble();
-
-        if(wf->creating_motor_voltage_change_chart_value->text() == "Фиксированное напряжение")
-        {
-            base.Um = wf->enter_voltage_im_mashine_value->text().toDouble();
-        }
-        else if(wf->creating_motor_voltage_change_chart_value->text() == "График изменения напряжения")
-        {
-            //base.Um = base.data;
-        }
+        base.Um = wf->enter_voltage_im_mashine_value->text().toDouble();
 
         wf->ui->horizontalSlider->setValue(base.Mc_n);
         wf->ui->horizontalSlider_2->setValue(base.Um);

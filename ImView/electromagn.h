@@ -55,6 +55,7 @@ private:
     void addDataLines();
     int connectMomentPort();
     void connectTcpPort();
+    double linearInterpolation(const QVector<QPointF>& data, double t);
 
 signals:
     void tick();

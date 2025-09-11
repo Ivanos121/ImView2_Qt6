@@ -64,7 +64,7 @@ void Model_el::rasch()
     double tt=t;
     tcpp =t;
 
-    double Um = base.U_fnom;
+    double Um = base.Um;
     double w0 = Um / 220.0 * 314.0;
 
     double McReakt;
