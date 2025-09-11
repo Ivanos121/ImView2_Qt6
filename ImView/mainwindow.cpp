@@ -1132,6 +1132,34 @@ void MainWindow::modelItemChangedSlot_10(QStandardItem *item)
     }
 }
 
+void MainWindow::modelItemChangedSlot_11(QStandardItem *item)
+{
+    if (item == creating_motor_torque_change_chart_value)
+    {
+        if (item->text() == "Фиксированный момент")
+        {
+            enter_moment_parametr->setEnabled(true);
+            enter_moment_value->setEnabled(true);
+        }
+        else
+        {
+            enter_moment_parametr->setEnabled(false);
+            enter_moment_value->setEnabled(false);
+        }
+        if (item->text() == "График изменения момента")
+        {
+            creating_motor_moment_change_chart_parametr->setEnabled(true);
+            creating_motor_moment_change_chart_value->setEnabled(true);
+        }
+        else
+        {
+            creating_motor_moment_change_chart_parametr->setEnabled(false);
+            creating_motor_moment_change_chart_value->setEnabled(false);
+        }
+
+    }
+}
+
 void MainWindow::switch_regim_upr(bool checked)
 {
     if(checked)

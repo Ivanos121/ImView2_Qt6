@@ -124,6 +124,7 @@ private slots:
     void modelItemChangedSlot_8(QStandardItem *item);
     void modelItemChangedSlot_9(QStandardItem *item);
     void modelItemChangedSlot_10(QStandardItem *item);
+    void modelItemChangedSlot_11(QStandardItem *item);
     void projectFileSelectedSlot(QString projectFile);
     void projectFileSelectedSlot_2(QString projectFile_2);
     void projectFileSelectedSlot_3(QString projectFile_3);
@@ -290,7 +291,9 @@ public:
         *data_approximation_mode_parameter, *data_approximation_mode_value, *degree_approximating_polynomial_parameter,
         *degree_approximating_polynomial_value, *creating_motor_speed_change_chart_parametr,
         *creating_motor_speed_change_chart_value, *creating_motor_voltage_change_chart_parametr,
-        *creating_motor_voltage_change_chart_value;
+        *creating_motor_voltage_change_chart_value, *creating_motor_torque_change_chart_parametr,
+        *creating_motor_torque_change_chart_value, *creating_motor_moment_change_chart_parametr,
+        *creating_motor_moment_change_chart_value;
     QStandardItem *Heat_processes_accounting_parameter, *Heat_processes_accounting_value,
         *item163, *item164, *item165,*item166, *item167, *item168, *item169, *item170;
     QStandardItem *item171, *item172, *time_work_parametr, *time_work_value, *time_work_in_cycle_parametr,

@@ -34,6 +34,7 @@ SOURCES += \
     comboboxerrorarchivedelegate.cpp \
     comboboxmodbusdelegate.cpp \
     comboboxvardelegate.cpp \
+    create_moment_signal_builder.cpp \
     create_signal_builder.cpp \
     customhelpdelegate.cpp \
     datas.cpp \
@@ -65,6 +66,7 @@ SOURCES += \
     model_el.cpp \
     modelidentf.cpp \
     modell.cpp \
+    moment_signal_builder.cpp \
     mylabel.cpp \
     mysvgwidget.cpp \
     mytablewidget_2.cpp \
@@ -120,6 +122,7 @@ HEADERS += \
     comboboxmodbusdelegate.h \
     comboboxvardelegate.h \
     crc.h \
+    create_moment_signal_builder.h \
     create_signal_builder.h \
     customhelpdelegate.h \
     datas.h \
@@ -149,6 +152,7 @@ HEADERS += \
     model_el.h \
     modelidentf.h \
     modell.h \
+    moment_signal_builder.h \
     mylabel.h \
     mysvgwidget.h \
     mytablewidget_2.h \
@@ -202,6 +206,7 @@ FORMS += \
     itogs.ui \
     kalibr.ui \
     mainwindow.ui \
+    moment_signal_builder.ui \
     nastroiki.ui \
     ostat_resurs.ui \
     poisk.ui \
