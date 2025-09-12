@@ -274,10 +274,18 @@ void electromagn::realtimeDataSlot()
 
     if(wf->enter_type_experiment_value->text() == "Внутренний источник данных")
     {
-        base.Mc_n = wf->ui->horizontalSlider->value();
+        if (wf->creating_motor_torque_change_chart_value->text() == "График изменения момента")
+        {
+            base.Mc_n = linearInterpolation(base.momentData, model_el.t);
+        }
+        else
+        {
+            base.Mc_n = wf->ui->horizontalSlider->value();
+        }
+
         if (wf->creating_motor_voltage_change_chart_value->text() == "График изменения напряжения")
         {
-            base.Um = linearInterpolation(base.data, model_el.t);
+            base.Um = linearInterpolation(base.voltageData, model_el.t);
         }
         else
         {

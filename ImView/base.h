@@ -93,7 +93,8 @@ struct Base
     DigitMomentParams digitMomentParams;
     PlcParams plcParams;
     ArchieverParams archieverParams;
-    QVector<QPointF> data;
+    QVector<QPointF> voltageData;
+    QVector<QPointF> momentData;
 };
 
 extern Base base;

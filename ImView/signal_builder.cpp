@@ -74,7 +74,7 @@ Signal_builder::~Signal_builder()
 
 void Signal_builder::apply_signal_builder()
 {
-    base.data = series->points();  // Получить массив точек
+    base.voltageData = series->points();  // Получить массив точек
     close();
 }
 

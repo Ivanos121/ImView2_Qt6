@@ -67,7 +67,7 @@ Moment_signal_builder::~Moment_signal_builder()
 
 void Moment_signal_builder::applybutton()
 {
-    base.data = series->points();
+    base.momentData = series->points();
     close();
 }
 
