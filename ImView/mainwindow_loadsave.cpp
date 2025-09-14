@@ -440,28 +440,28 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
-                else if(xmlReader.name() == "napragenie")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            enter_voltage_im_mashine_value->setText(attribute_value);
-                        }
-                    }
-                }
-                else if(xmlReader.name() == "moment")
-                {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                    {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            enter_moment_value->setText(attribute_value);
-                        }
-                    }
-                }
+                // else if(xmlReader.name() == "napragenie")
+                // {
+                //     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                //     {
+                //         if (attr.name().toString() == "value")
+                //         {
+                //             QString attribute_value = attr.value().toString();
+                //             enter_voltage_im_mashine_value->setText(attribute_value);
+                //         }
+                //     }
+                // }
+                // else if(xmlReader.name() == "moment")
+                // {
+                //     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                //     {
+                //         if (attr.name().toString() == "value")
+                //         {
+                //             QString attribute_value = attr.value().toString();
+                //             enter_moment_value->setText(attribute_value);
+                //         }
+                //     }
+                // }
                 if(xmlReader.name() == "start_temp")
                 {
                     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
@@ -514,6 +514,28 @@ void MainWindow::LoadProject(QString str)
                         {
                             QString attribute_value = attr.value().toString();
                             time_base_selection_value->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "voltage_step")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            creating_motor_voltage_change_chart_value->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "moment_step")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            creating_motor_torque_change_chart_value->setText(attribute_value);
                         }
                     }
                 }
@@ -726,6 +748,28 @@ void MainWindow::LoadProject(QString str)
                         }
                     }
                 }
+                if(xmlReader.name() == "fix_voltage")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            enter_voltage_im_mashine_value->setText(attribute_value);
+                        }
+                    }
+                }
+                if(xmlReader.name() == "fix_moment")
+                {
+                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    {
+                        if (attr.name().toString() == "value")
+                        {
+                            QString attribute_value = attr.value().toString();
+                            enter_moment_value->setText(attribute_value);
+                        }
+                    }
+                }
             }xmlReader.readNext(); // Переходим к следующему элементу файла
         }file.close();
     }
@@ -751,7 +795,6 @@ void MainWindow::LoadProject(QString str)
 
             while(!xmlReader3.atEnd())
             {
-                //volatile auto aaaa = xmlReader3.name();
                 if(xmlReader3.isStartElement())
                 {
                     if(xmlReader3.name() == "Fan_working_set_Qp")
@@ -1165,14 +1208,6 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (switch_system_electrodrive_value->text()));
     xmlWriter.writeEndElement();
 
-    xmlWriter.writeStartElement("napragenie");
-    xmlWriter.writeAttribute("value", (enter_voltage_im_mashine_value->text()));
-    xmlWriter.writeEndElement();
-
-    xmlWriter.writeStartElement("moment");
-    xmlWriter.writeAttribute("value", ( enter_moment_value->text()));
-    xmlWriter.writeEndElement();
-
     xmlWriter.writeStartElement("start_temp");
     xmlWriter.writeAttribute("value", (start_tepl_temperature_value->text()));
     xmlWriter.writeEndElement();
@@ -1193,6 +1228,14 @@ void MainWindow::SaveProgectToFile()
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("voltage_step");
+    xmlWriter.writeAttribute("value", (creating_motor_voltage_change_chart_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("moment_step");
+    xmlWriter.writeAttribute("value", (creating_motor_torque_change_chart_value->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("combobox_24");
     xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
@@ -1211,9 +1254,11 @@ void MainWindow::SaveProgectToFile()
 
     xmlWriter.writeStartElement("data_tepl_identification_value");
     xmlWriter.writeAttribute("value", (data_tepl_identification_value->text()));
+    xmlWriter.writeEndElement();
 
     xmlWriter.writeStartElement("data_vent_identification_value");
     xmlWriter.writeAttribute("value", (data_vent_identification_value->text()));
+    xmlWriter.writeEndElement();
 
     if(data_identification_value->text() == "Сохранить")
     {
@@ -1273,6 +1318,18 @@ void MainWindow::SaveProgectToFile()
     {
         xmlWriter.writeStartElement("degree_approximating_polynomial_value");
         xmlWriter.writeAttribute("value", (degree_approximating_polynomial_value->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(creating_motor_voltage_change_chart_value->text() == "Фиксированное напряжение")
+    {
+        xmlWriter.writeStartElement("fix_voltage");
+        xmlWriter.writeAttribute("value", (enter_voltage_im_mashine_value->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(creating_motor_torque_change_chart_value->text() == "Фиксированный момент")
+    {
+        xmlWriter.writeStartElement("fix_moment");
+        xmlWriter.writeAttribute("value", (enter_moment_value->text()));
         xmlWriter.writeEndElement();
     }
 
@@ -3003,6 +3060,14 @@ void MainWindow::save_file()
     xmlWriter.writeAttribute("value", (time_base_selection_value->text()));
     xmlWriter.writeEndElement();
 
+    xmlWriter.writeStartElement("voltage_step");
+    xmlWriter.writeAttribute("value", (creating_motor_voltage_change_chart_value->text()));
+    xmlWriter.writeEndElement();
+
+    xmlWriter.writeStartElement("moment_step");
+    xmlWriter.writeAttribute("value", (creating_motor_torque_change_chart_value->text()));
+    xmlWriter.writeEndElement();
+
     xmlWriter.writeStartElement("combobox_24");
     xmlWriter.writeAttribute("value", (ventilation_regime_value->text()));
     xmlWriter.writeEndElement();
@@ -3085,6 +3150,18 @@ void MainWindow::save_file()
     {
         xmlWriter.writeStartElement("degree_approximating_polynomial_value");
         xmlWriter.writeAttribute("value", (degree_approximating_polynomial_value->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(creating_motor_voltage_change_chart_value->text() == "Фиксированное напряжение")
+    {
+        xmlWriter.writeStartElement("fix_voltage");
+        xmlWriter.writeAttribute("value", (enter_voltage_im_mashine_value->text()));
+        xmlWriter.writeEndElement();
+    }
+    if(creating_motor_torque_change_chart_value->text() == "Фиксированный момент")
+    {
+        xmlWriter.writeStartElement("fix_moment");
+        xmlWriter.writeAttribute("value", (enter_moment_value->text()));
         xmlWriter.writeEndElement();
     }
 

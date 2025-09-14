@@ -3,6 +3,9 @@
 #include "ui_vent_model.h"
 #include "ui_mainwindow.h"
 #include "ui_datas.h"
+#include "Base_tepl_vent.h"
+#include "vent_identf.h"
+#include "polynomial.h"
 
 #include <QMessageBox>
 #include <QSettings>
@@ -30,6 +33,9 @@ void vent_model::vent_model_start()
 {
     ui->plot->clear();
     ui->plot->addDataLine(QColor(255,0,0), 0);
+    ui->plot->addDataLine(QColor(255,100,100), 0);
+    ui->plot->addDataLine(QColor(255,100,100), 0);
+    ui->plot->addDataLine(QColor(255,100,100), 0);
 
     base.R1 = wf->ui->lineEdit_12->text().toDouble();
     base.R2 = wf->ui->lineEdit_11->text().toDouble();
@@ -62,19 +68,24 @@ void vent_model::vent_model_start()
         wf->statusbar_progres->setRange(0, 100);
         wf->statusbar_progres->reset();
     }
-
-
 }
 
 void vent_model::modelReady()
 {
     base.Mc_n = wf->ui->horizontalSlider_4->value();
-    base.U_fnom = wf->ui->horizontalSlider_3->value();
+    base.Um = wf->ui->horizontalSlider_3->value();
 
     for (int i = 0; i < 1000; i++)
     {
         model_el.rasch();
+
     }
+
+    // Создание экземпляров полиномов
+    Polynomial w_Q_inv_poly(ventparam.w_Q_inv_koeffss);
+    Polynomial Q_H1_poly(ventparam.Q_H1_koeffss);
+    Polynomial Q_H2_poly(ventparam.Q_H2_koeffss);
+    Polynomial Q_Pv_poly(ventparam.Q_Pv_koeffss);
 
     double tt = model_el.t;
     int maxTime = wf->time_work_value->text().toInt();
@@ -84,7 +95,54 @@ void vent_model::modelReady()
     wf->statusbar_label_9->setAlignment(Qt::AlignTop);
     wf->statusbar_progres->setAlignment(Qt::AlignTop);
 
-    ui->plot->addPoint(0, model_el.t, model_el.omega);
+    // Q_appr[i] = w_Q_inv_poly.evaluate(w[i]);
+    // H1_appr[i] = Q_H1_poly.evaluate(Q_appr[i]);
+    // H2_appr[i] = Q_H2_poly.evaluate(Q_appr[i]);
+    // Pv_appr[i] = Q_Pv_poly.evaluate(Q_appr[i]);
+
+    //Расчет и вывод на plot omega and Qappr
+    double evaluatedQ = w_Q_inv_poly.evaluate(model_el.omega);
+    ventparam.Q_appr.append(evaluatedQ);
+
+    //ui->plot->addPoint(0, 0, model_el.omega);
+    ui->plot->addPoint(0, tt, model_el.omega);
+
+    //ui->plot->addPoint(1, 0, evaluatedQ);
+    ui->plot->addPoint(1, tt, evaluatedQ*1000);
+
+    double evaluatedH1;
+    double evaluatedH2;
+    double evaluatedH3;
+
+    //Расчет и вывод на plot H1appr
+    for (int i = 0; i < ventparam.Q_appr.size(); ++i)
+    {
+        evaluatedH1 = Q_H1_poly.evaluate(ventparam.Q_appr[i]);
+        ventparam.H1_appr.append(evaluatedH1);
+    }
+
+    //ui->plot->addPoint(2, 0, evaluatedH1);
+    ui->plot->addPoint(2, tt, evaluatedH1);
+
+    //Расчет и вывод на plot H2appr
+    for (int i = 0; i < ventparam.Q_appr.size(); ++i)
+    {
+        evaluatedH2 = Q_H2_poly.evaluate(ventparam.Q_appr[i]);
+        ventparam.H2_appr.append(evaluatedH2);
+    }
+
+    //ui->plot->addPoint(3, 0, evaluatedH2);
+    ui->plot->addPoint(3, tt, evaluatedH2);
+
+    //Расчет и вывод на plot Pv_appr
+    for (int i = 0; i < ventparam.Q_appr.size(); ++i)
+    {
+        evaluatedH3 = Q_H2_poly.evaluate(ventparam.Q_appr[i]);
+        ventparam.Pv_appr.append(evaluatedH3);
+    }
+
+    ui->plot->addPoint(4, 0, evaluatedH3);
+    ui->plot->addPoint(4, tt, evaluatedH3);
 
     if(wf->time_base_selection_value->text() == "Фиксированное время")
     {

@@ -66,6 +66,12 @@ struct VentParam
     QVector<double> Q_H1_koeffss;
     QVector<double> Q_H2_koeffss;
     QVector<double> Q_Pv_koeffss;
+
+    QVector<double> Q_appr;
+    QVector<double> H1_appr;
+    QVector<double> H2_appr;
+    QVector<double> Pv_appr;
+
 };
 
 struct VentParam2

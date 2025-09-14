@@ -58,17 +58,6 @@ Vent_identf::~Vent_identf()
 
 void Vent_identf::raschet_vent_identf()
 {
-    // if(wf->kind_ventilation_value->text() == "Принудительная вентиляция")
-    // {
-    //     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/vent_schem_zam/vent_schem_zam.html")
-    //                                                   .absoluteFilePath()));
-    // }
-    // else if(wf->kind_ventilation_value->text() == "Независимая вентиляция")
-    // {
-    //     ui->webEngineView->setUrl(QUrl::fromLocalFile(QFileInfo("../data/two_vent_schem_zam/two_vent_energo_scheme.html")
-    //                                                       .absoluteFilePath()));
-    // }
-
     if(wf->kind_ventilation_value->text() == "Независимая вентиляция")
     {
         wf->ui->stackedWidget->hide();
@@ -270,21 +259,21 @@ void Vent_identf::one_vent()
     Polynomial Q_H2_poly(ventparam.Q_H2_koeffss);
     Polynomial Q_Pv_poly(ventparam.Q_Pv_koeffss);
 
-    QVector<double> Q_appr(N);
-    QVector<double> H1_appr(N);
-    QVector<double> H2_appr(N);
-    QVector<double> Pv_appr(N);
+    ventparam.Q_appr.resize(N);
+    ventparam.H1_appr.resize(N);
+    ventparam.H2_appr.resize(N);
+    ventparam.Pv_appr.resize(N);
 
     for(int i=0;i<N; ++i)
     {
-        Q_appr[i] = w_Q_inv_poly.evaluate(w[i]);
-        H1_appr[i] = Q_H1_poly.evaluate(Q_appr[i]);
-        H2_appr[i] = Q_H2_poly.evaluate(Q_appr[i]);
-        Pv_appr[i] = Q_Pv_poly.evaluate(Q_appr[i]);
-        ui->plot->addPoint(5, Q_appr[i], w[i]);
-        ui->plot->addPoint(6, Q_appr[i], H1_appr[i]);
-        ui->plot->addPoint(7, Q_appr[i], H2_appr[i]);
-        ui->plot->addPoint(8, Q_appr[i], Pv_appr[i]);
+        ventparam.Q_appr[i] = w_Q_inv_poly.evaluate(w[i]);
+        ventparam.H1_appr[i] = Q_H1_poly.evaluate(ventparam.Q_appr[i]);
+        ventparam.H2_appr[i] = Q_H2_poly.evaluate(ventparam.Q_appr[i]);
+        ventparam.Pv_appr[i] = Q_Pv_poly.evaluate(ventparam.Q_appr[i]);
+        //ui->plot->addPoint(5, Q_appr[i], w[i]);
+        ui->plot->addPoint(6, ventparam.Q_appr[i], ventparam.H1_appr[i]);
+        ui->plot->addPoint(7, ventparam.Q_appr[i], ventparam.H2_appr[i]);
+        ui->plot->addPoint(8, ventparam.Q_appr[i], ventparam.Pv_appr[i]);
     }
 
     std::ofstream outFile2("output2.txt");
@@ -302,10 +291,10 @@ void Vent_identf::one_vent()
         // Записываем одну строку с данными из всех массивов
         outFile2 << w[i] << "\t"
                  << Q[i] << "\t"
-                 << Q_appr[i] << "\t"
-                 << H1_appr[i] << "\t"
-                 << H2_appr[i] << "\t"
-                 << Pv_appr[i] << "\n";
+                 << ventparam.Q_appr[i] << "\t"
+                 << ventparam.H1_appr[i] << "\t"
+                 << ventparam.H2_appr[i] << "\t"
+                 << ventparam.Pv_appr[i] << "\n";
     }
 
     // Закрываем файл
