@@ -3876,11 +3876,11 @@ void MainWindow::on_vent_result_clicked()
             }
             if (ui->tableWidget_8->item(7, 2) != 0)
             {
-                ui->tableWidget_8->item(7, 2)->setText(QString::number(M,'f',3));
+                ui->tableWidget_8->item(7, 2)->setText(QString::number(model_el.M,'f',3));
             }
             if (ui->tableWidget_8->item(8, 2) != 0)
             {
-                ui->tableWidget_8->item(8, 2)->setText(QString::number(omega,'f',3));
+                ui->tableWidget_8->item(8, 2)->setText(QString::number(model_el.omega,'f',3));
             }
 
             // ne=0.19*sin(M_PI)*(Qp/Qmax);

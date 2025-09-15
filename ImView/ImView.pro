@@ -62,6 +62,7 @@ SOURCES += \
     mainwindow.cpp \
     mainwindow_constructor.cpp \
     mainwindow_loadsave.cpp \
+    math_function.cpp \
     model.cpp \
     model_el.cpp \
     modelidentf.cpp \
@@ -148,6 +149,7 @@ HEADERS += \
     kalibr.h \
     linedelegate.h \
     mainwindow.h \
+    math_function.h \
     model.h \
     model_el.h \
     modelidentf.h \

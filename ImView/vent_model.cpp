@@ -6,6 +6,7 @@
 #include "Base_tepl_vent.h"
 #include "vent_identf.h"
 #include "polynomial.h"
+#include "math_function.h"
 
 #include <QMessageBox>
 #include <QSettings>
@@ -72,8 +73,26 @@ void vent_model::vent_model_start()
 
 void vent_model::modelReady()
 {
-    base.Mc_n = wf->ui->horizontalSlider_4->value();
-    base.Um = wf->ui->horizontalSlider_3->value();
+    // base.Mc_n = wf->ui->horizontalSlider_4->value();
+    // base.Um = wf->ui->horizontalSlider_3->value();
+
+    if (wf->creating_motor_torque_change_chart_value->text() == "График изменения момента")
+    {
+        base.Mc_n = linearInterpolation(base.momentData, model_el.t);
+    }
+    else
+    {
+        base.Mc_n = wf->ui->horizontalSlider_4->value();
+    }
+
+    if (wf->creating_motor_voltage_change_chart_value->text() == "График изменения напряжения")
+    {
+        base.Um = linearInterpolation(base.voltageData, model_el.t);
+    }
+    else
+    {
+        base.Um = wf->ui->horizontalSlider_3->value();
+    }
 
     for (int i = 0; i < 1000; i++)
     {
@@ -95,16 +114,10 @@ void vent_model::modelReady()
     wf->statusbar_label_9->setAlignment(Qt::AlignTop);
     wf->statusbar_progres->setAlignment(Qt::AlignTop);
 
-    // Q_appr[i] = w_Q_inv_poly.evaluate(w[i]);
-    // H1_appr[i] = Q_H1_poly.evaluate(Q_appr[i]);
-    // H2_appr[i] = Q_H2_poly.evaluate(Q_appr[i]);
-    // Pv_appr[i] = Q_Pv_poly.evaluate(Q_appr[i]);
-
     //Расчет и вывод на plot omega and Qappr
     double evaluatedQ = w_Q_inv_poly.evaluate(model_el.omega);
     ventparam.Q_appr.append(evaluatedQ);
 
-    //ui->plot->addPoint(0, 0, model_el.omega);
     ui->plot->addPoint(0, tt, model_el.omega);
 
     //ui->plot->addPoint(1, 0, evaluatedQ);
@@ -112,37 +125,79 @@ void vent_model::modelReady()
 
     double evaluatedH1;
     double evaluatedH2;
-    double evaluatedH3;
+    double evaluatedPv;
 
     //Расчет и вывод на plot H1appr
-    for (int i = 0; i < ventparam.Q_appr.size(); ++i)
-    {
-        evaluatedH1 = Q_H1_poly.evaluate(ventparam.Q_appr[i]);
+    // for (int i = 0; i < ventparam.Q_appr.size(); ++i)
+    // {
+        evaluatedH1 = Q_H1_poly.evaluate(evaluatedQ);
         ventparam.H1_appr.append(evaluatedH1);
-    }
+    // }
 
     //ui->plot->addPoint(2, 0, evaluatedH1);
     ui->plot->addPoint(2, tt, evaluatedH1);
 
     //Расчет и вывод на plot H2appr
-    for (int i = 0; i < ventparam.Q_appr.size(); ++i)
-    {
-        evaluatedH2 = Q_H2_poly.evaluate(ventparam.Q_appr[i]);
+    // for (int i = 0; i < ventparam.Q_appr.size(); ++i)
+    // {
+        evaluatedH2 = Q_H2_poly.evaluate(evaluatedQ);
         ventparam.H2_appr.append(evaluatedH2);
-    }
+    // }
 
-    //ui->plot->addPoint(3, 0, evaluatedH2);
     ui->plot->addPoint(3, tt, evaluatedH2);
 
     //Расчет и вывод на plot Pv_appr
-    for (int i = 0; i < ventparam.Q_appr.size(); ++i)
-    {
-        evaluatedH3 = Q_H2_poly.evaluate(ventparam.Q_appr[i]);
-        ventparam.Pv_appr.append(evaluatedH3);
-    }
+    // for (int i = 0; i < ventparam.Q_appr.size(); ++i)
+    // {
+        evaluatedPv = Q_H2_poly.evaluate(evaluatedQ);
+        ventparam.Pv_appr.append(evaluatedPv);
+            ui->plot->addPoint(4, tt, evaluatedPv);
+    // }
+        double P_ct = 0.0;
+        double P_din = 0.0;
+        double N = 0.0;
+        double Nu = 0.0;
+        double Nu_ct = 0.0;
 
-    ui->plot->addPoint(4, 0, evaluatedH3);
-    ui->plot->addPoint(4, tt, evaluatedH3);
+
+        if (wf->ui->tableWidget_8->item(0, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(0, 2)->setText(QString::number(P_ct,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(1, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(1, 2)->setText(QString::number(P_din,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(2, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(2, 2)->setText(QString::number(evaluatedPv,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(3, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(3, 2)->setText(QString::number(evaluatedQ,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(4, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(4, 2)->setText(QString::number(N,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(5, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(5, 2)->setText(QString::number(Nu,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(6, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(6, 2)->setText(QString::number(Nu_ct,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(7, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(7, 2)->setText(QString::number(model_el.M,'f',3));
+        }
+        if (wf->ui->tableWidget_8->item(8, 2) != 0)
+        {
+            wf->ui->tableWidget_8->item(8, 2)->setText(QString::number(model_el.omega,'f',3));
+        }
+
+
 
     if(wf->time_base_selection_value->text() == "Фиксированное время")
     {
