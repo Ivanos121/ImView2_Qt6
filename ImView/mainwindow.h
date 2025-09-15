@@ -311,6 +311,7 @@ public:
     void save_vent_in_file();
     void loadTable(const QString &tableName);
 
+    void Load_data_tableWidget_20();
 public slots:
     void saveDataSQL();
     void message_action(QString summary, QString body);

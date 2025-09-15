@@ -3169,95 +3169,97 @@ MainWindow::MainWindow(QWidget *parent)
     p19.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_19->setPalette(p19);
 
-    ui->tableWidget_20->setRowCount(6);
-    ui->tableWidget_20->setColumnCount(4);
-    QStringList name_20;
-    name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+    Load_data_tableWidget_20();
 
-    ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
-    ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableWidget_20->verticalHeader()->setVisible(true);
-    ui->tableWidget_20->resizeColumnsToContents();
+    // ui->tableWidget_20->setRowCount(6);
+    // ui->tableWidget_20->setColumnCount(4);
+    // QStringList name_20;
+    // name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
 
-    // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    // ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
+    // ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    // ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    // ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
+    // ui->tableWidget_20->verticalHeader()->setVisible(true);
+    // ui->tableWidget_20->resizeColumnsToContents();
+
+    // // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    // // {
+    // //     for(int column = 0; column<ui->tableWidget_20->columnCount(); column++)
+    // //     {
+    // //         ui->tableWidget_20->setItem(row, column, new QTableWidgetItem());
+
+    // //     }
+    // // }
+
+    // ui->tableWidget_20->setItem(0, 0, new QTableWidgetItem("Рабочий расход воздуха"));
+    // ui->tableWidget_20->setItem(1, 0, new QTableWidgetItem("Максимальный расход воздуха"));
+    // ui->tableWidget_20->setItem(2, 0, new QTableWidgetItem("Начальное давление вентилятора"));
+    // ui->tableWidget_20->setItem(3, 0, new QTableWidgetItem("Рабочий набор вентилятора"));
+    // ui->tableWidget_20->setItem(4, 0, new QTableWidgetItem("Суммарное сопротивление вентиляционной сети"));
+    // ui->tableWidget_20->setItem(5, 0, new QTableWidgetItem("Потребляемая вентилятором мощность"));
+
+    // ui->tableWidget_20->setItem(0, 1, new QTableWidgetItem("Qp"));
+    // ui->tableWidget_20->setItem(1, 1, new QTableWidgetItem("Qmax"));
+    // ui->tableWidget_20->setItem(2, 1, new QTableWidgetItem("H0"));
+    // ui->tableWidget_20->setItem(3, 1, new QTableWidgetItem("Hp"));
+    // ui->tableWidget_20->setItem(4, 1, new QTableWidgetItem("Z0"));
+    // ui->tableWidget_20->setItem(5, 1, new QTableWidgetItem("Pvent"));
+
+    // ui->tableWidget_20->setItem(0, 2, new QTableWidgetItem(" "));
+    // ui->tableWidget_20->setItem(1, 2, new QTableWidgetItem(" "));
+    // ui->tableWidget_20->setItem(2, 2, new QTableWidgetItem(" "));
+    // ui->tableWidget_20->setItem(3, 2, new QTableWidgetItem(" "));
+    // ui->tableWidget_20->setItem(4, 2, new QTableWidgetItem(" "));
+    // ui->tableWidget_20->setItem(5, 2, new QTableWidgetItem(" "));
+
+    // ui->tableWidget_20->setItem(0, 3, new QTableWidgetItem("м³/c"));
+    // ui->tableWidget_20->setItem(1, 3, new QTableWidgetItem("м³/c"));
+    // ui->tableWidget_20->setItem(2, 3, new QTableWidgetItem("Па"));
+    // ui->tableWidget_20->setItem(3, 3, new QTableWidgetItem("Па"));
+    // ui->tableWidget_20->setItem(4, 3, new QTableWidgetItem("--"));
+    // ui->tableWidget_20->setItem(5, 3, new QTableWidgetItem("Вт"));
+
+    // for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
     // {
-    //     for(int column = 0; column<ui->tableWidget_20->columnCount(); column++)
-    //     {
-    //         ui->tableWidget_20->setItem(row, column, new QTableWidgetItem());
 
+    //     if (ui->tableWidget_20->item(i, 1) != 0)
+    //     {
+    //         ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+    //     }
+    //     if (ui->tableWidget_20->item(i, 3) != 0)
+    //     {
+    //         ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
     //     }
     // }
 
-    ui->tableWidget_20->setItem(0, 0, new QTableWidgetItem("Рабочий расход воздуха"));
-    ui->tableWidget_20->setItem(1, 0, new QTableWidgetItem("Максимальный расход воздуха"));
-    ui->tableWidget_20->setItem(2, 0, new QTableWidgetItem("Начальное давление вентилятора"));
-    ui->tableWidget_20->setItem(3, 0, new QTableWidgetItem("Рабочий набор вентилятора"));
-    ui->tableWidget_20->setItem(4, 0, new QTableWidgetItem("Суммарное сопротивление вентиляционной сети"));
-    ui->tableWidget_20->setItem(5, 0, new QTableWidgetItem("Потребляемая вентилятором мощность"));
 
-    ui->tableWidget_20->setItem(0, 1, new QTableWidgetItem("Qp"));
-    ui->tableWidget_20->setItem(1, 1, new QTableWidgetItem("Qmax"));
-    ui->tableWidget_20->setItem(2, 1, new QTableWidgetItem("H0"));
-    ui->tableWidget_20->setItem(3, 1, new QTableWidgetItem("Hp"));
-    ui->tableWidget_20->setItem(4, 1, new QTableWidgetItem("Z0"));
-    ui->tableWidget_20->setItem(5, 1, new QTableWidgetItem("Pvent"));
+    // //запрет редактирования первого столбца
+    // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    // {
+    //     if (ui->tableWidget_20->item(row,0) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    //     }
+    //     if (ui->tableWidget_20->item(row,1) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    //     }
+    //     if (ui->tableWidget_20->item(row,2) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+    //         ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
+    //     }
+    //     if (ui->tableWidget_20->item(row,3) != 0)
+    //     {
+    //         ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    //     }
+    // }
 
-    ui->tableWidget_20->setItem(0, 2, new QTableWidgetItem(" "));
-    ui->tableWidget_20->setItem(1, 2, new QTableWidgetItem(" "));
-    ui->tableWidget_20->setItem(2, 2, new QTableWidgetItem(" "));
-    ui->tableWidget_20->setItem(3, 2, new QTableWidgetItem(" "));
-    ui->tableWidget_20->setItem(4, 2, new QTableWidgetItem(" "));
-    ui->tableWidget_20->setItem(5, 2, new QTableWidgetItem(" "));
-
-    ui->tableWidget_20->setItem(0, 3, new QTableWidgetItem("м³/c"));
-    ui->tableWidget_20->setItem(1, 3, new QTableWidgetItem("м³/c"));
-    ui->tableWidget_20->setItem(2, 3, new QTableWidgetItem("Па"));
-    ui->tableWidget_20->setItem(3, 3, new QTableWidgetItem("Па"));
-    ui->tableWidget_20->setItem(4, 3, new QTableWidgetItem("--"));
-    ui->tableWidget_20->setItem(5, 3, new QTableWidgetItem("Вт"));
-
-    for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
-    {
-
-        if (ui->tableWidget_20->item(i, 1) != 0)
-        {
-            ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_20->item(i, 3) != 0)
-        {
-            ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
-        }
-    }
-
-
-    //запрет редактирования первого столбца
-    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
-    {
-        if (ui->tableWidget_20->item(row,0) != 0)
-        {
-            ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_20->item(row,1) != 0)
-        {
-            ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-        if (ui->tableWidget_20->item(row,2) != 0)
-        {
-            ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
-            ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
-        }
-        if (ui->tableWidget_20->item(row,3) != 0)
-        {
-            ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        }
-    }
-
-    QPalette p_20=ui->tableWidget_20->palette();
-    p_20.setColor(QPalette::Base, QColor(225, 255, 255));
-    p_20.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
-    ui->tableWidget_20->setPalette(p_20);
+    // QPalette p_20=ui->tableWidget_20->palette();
+    // p_20.setColor(QPalette::Base, QColor(225, 255, 255));
+    // p_20.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    // ui->tableWidget_20->setPalette(p_20);
 
     ui->tabWidget->setCurrentIndex(0);
     ui->widget_5->ui->tabWidget->setCurrentIndex(0);
@@ -3456,4 +3458,97 @@ void MainWindow::electrostop()
     ui->lineEdit_25->setText(QString("%1").arg(0));
     ui->widget_6->vent_model_stop();
     ui->pushButton_8->setEnabled(false);
+}
+
+void MainWindow:: Load_data_tableWidget_20()
+{
+    ui->tableWidget_20->setRowCount(6);
+    ui->tableWidget_20->setColumnCount(4);
+    QStringList name_20;
+    name_20 << "Величина" << "Обозначение" << "Значение" << "Размерность";
+
+    ui->tableWidget_20->setHorizontalHeaderLabels(name_20);
+    ui->tableWidget_20->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget_20->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget_20->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget_20->verticalHeader()->setVisible(true);
+    ui->tableWidget_20->resizeColumnsToContents();
+
+    // for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    // {
+    //     for(int column = 0; column<ui->tableWidget_20->columnCount(); column++)
+    //     {
+    //         ui->tableWidget_20->setItem(row, column, new QTableWidgetItem());
+
+    //     }
+    // }
+
+    ui->tableWidget_20->setItem(0, 0, new QTableWidgetItem("Рабочий расход воздуха"));
+    ui->tableWidget_20->setItem(1, 0, new QTableWidgetItem("Максимальный расход воздуха"));
+    ui->tableWidget_20->setItem(2, 0, new QTableWidgetItem("Начальное давление вентилятора"));
+    ui->tableWidget_20->setItem(3, 0, new QTableWidgetItem("Рабочий набор вентилятора"));
+    ui->tableWidget_20->setItem(4, 0, new QTableWidgetItem("Суммарное сопротивление вентиляционной сети"));
+    ui->tableWidget_20->setItem(5, 0, new QTableWidgetItem("Потребляемая вентилятором мощность"));
+
+    ui->tableWidget_20->setItem(0, 1, new QTableWidgetItem("Qp"));
+    ui->tableWidget_20->setItem(1, 1, new QTableWidgetItem("Qmax"));
+    ui->tableWidget_20->setItem(2, 1, new QTableWidgetItem("H0"));
+    ui->tableWidget_20->setItem(3, 1, new QTableWidgetItem("Hp"));
+    ui->tableWidget_20->setItem(4, 1, new QTableWidgetItem("Z0"));
+    ui->tableWidget_20->setItem(5, 1, new QTableWidgetItem("Pvent"));
+
+    ui->tableWidget_20->setItem(0, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(1, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(2, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(3, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(4, 2, new QTableWidgetItem(" "));
+    ui->tableWidget_20->setItem(5, 2, new QTableWidgetItem(" "));
+
+    ui->tableWidget_20->setItem(0, 3, new QTableWidgetItem("м³/c"));
+    ui->tableWidget_20->setItem(1, 3, new QTableWidgetItem("м³/c"));
+    ui->tableWidget_20->setItem(2, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_20->setItem(3, 3, new QTableWidgetItem("Па"));
+    ui->tableWidget_20->setItem(4, 3, new QTableWidgetItem("--"));
+    ui->tableWidget_20->setItem(5, 3, new QTableWidgetItem("Вт"));
+
+    for (int i=0; i<ui->tableWidget_20->rowCount(); i++)
+    {
+
+        if (ui->tableWidget_20->item(i, 1) != 0)
+        {
+            ui->tableWidget_20->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_20->item(i, 3) != 0)
+        {
+            ui->tableWidget_20->item(i, 3)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+
+    //запрет редактирования первого столбца
+    for(int row = 0; row<ui->tableWidget_20->rowCount(); row++)
+    {
+        if (ui->tableWidget_20->item(row,0) != 0)
+        {
+            ui->tableWidget_20->item(row,0)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_20->item(row,1) != 0)
+        {
+            ui->tableWidget_20->item(row,1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+        if (ui->tableWidget_20->item(row,2) != 0)
+        {
+            ui->tableWidget_20->item(row,2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsEditable);
+            ui->tableWidget_20->item(row,2)->setTextAlignment(Qt::AlignCenter);
+        }
+        if (ui->tableWidget_20->item(row,3) != 0)
+        {
+            ui->tableWidget_20->item(row,3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+        }
+    }
+
+    QPalette p_20=ui->tableWidget_20->palette();
+    p_20.setColor(QPalette::Base, QColor(225, 255, 255));
+    p_20.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
+    ui->tableWidget_20->setPalette(p_20);
 }
