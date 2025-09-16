@@ -16,7 +16,7 @@
 #include "pushbuttondelegate.h"
 #include "settingscanals.h"
 #include "vent_settings.h"
-#include "signal_builder.h"
+#include "voltage_signal_builder.h"
 #include "moment_signal_builder.h"
 
 ButtonColumnDelegate::ButtonColumnDelegate(QTreeView *view, QObject *parent) :QStyledItemDelegate(parent), m_view(view)
@@ -1427,8 +1427,11 @@ void ButtonColumnDelegate::btn_clicked_8()
 
 void ButtonColumnDelegate::btn_clicked_9()
 {
-    Signal_builder *signal_builder = new Signal_builder();
-    signal_builder->show();
+    // Signal_builder *signal_builder = new Signal_builder();
+    // signal_builder->show();
+
+    Voltage_signal_builder *voltage_signal_builder = new Voltage_signal_builder();
+    voltage_signal_builder->show();
 }
 
 void ButtonColumnDelegate::btn_clicked_10()

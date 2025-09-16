@@ -124,7 +124,6 @@ struct VentParam2
     QVector<double> Q_H1_koeffss_2;
     QVector<double> Q_H2_koeffss_2;
     QVector<double> Q_Pv_koeffss_2;
-
 };
 
 extern TeplParam teplparam;

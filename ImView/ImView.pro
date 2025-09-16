@@ -35,7 +35,6 @@ SOURCES += \
     comboboxmodbusdelegate.cpp \
     comboboxvardelegate.cpp \
     create_moment_signal_builder.cpp \
-    create_signal_builder.cpp \
     customhelpdelegate.cpp \
     datas.cpp \
     datasource.cpp \
@@ -83,7 +82,6 @@ SOURCES += \
     pushbuttondelegate.cpp \
     settings.cpp \
     settingscanals.cpp \
-    signal_builder.cpp \
     spandelegate.cpp \
     spinboxdelegate.cpp \
     start_app.cpp \
@@ -99,6 +97,7 @@ SOURCES += \
     vent_model.cpp \
     vent_settings.cpp \
     vent_tract.cpp \
+    voltage_signal_builder.cpp \
     zerocorrector.cpp
 
 HEADERS += \
@@ -124,7 +123,6 @@ HEADERS += \
     comboboxvardelegate.h \
     crc.h \
     create_moment_signal_builder.h \
-    create_signal_builder.h \
     customhelpdelegate.h \
     datas.h \
     datasource.h \
@@ -156,6 +154,7 @@ HEADERS += \
     modell.h \
     moment_signal_builder.h \
     mylabel.h \
+    mylineedit.h \
     mysvgwidget.h \
     mytablewidget_2.h \
     nabludatel.h \
@@ -172,7 +171,6 @@ HEADERS += \
     save_progect.h \
     settings.h \
     settingscanals.h \
-    signal_builder.h \
     spandelegate.h \
     spinboxdelegate.h \
     start_app.h \
@@ -191,6 +189,7 @@ HEADERS += \
     vent_tract.h \
     version.h \
     version_hash.h \
+    voltage_signal_builder.h \
     zerocorrector.h
 
 FORMS += \
@@ -215,7 +214,6 @@ FORMS += \
     settings.ui \
     settingscanals.ui \
     settinsKanals.ui \
-    signal_builder.ui \
     start_app.ui \
     tepl_dannie.ui \
     tepl_identf.ui \
@@ -227,7 +225,8 @@ FORMS += \
     vent_identf.ui \
     vent_model.ui \
     vent_settings.ui \
-    vent_tract.ui
+    vent_tract.ui \
+    voltage_signal_builder.ui
 
 TRANSLATIONS += QtLanguage_ru.ts QtLanguage_en.ts
 

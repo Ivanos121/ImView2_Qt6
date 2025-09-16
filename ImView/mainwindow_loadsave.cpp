@@ -779,34 +779,6 @@ void MainWindow::LoadProject(QString str)
     {
         Load_data_tableWidget_20();
 
-            // Проверка количества строк и столбцов
-            if (ui->tableWidget_20->rowCount() > 0 && ui->tableWidget_20->columnCount() > 0)
-            {
-                qDebug() << "Таблица содержит строки и столбцы.";
-
-                // Проверка элементов
-                for (int row = 0; row < ui->tableWidget_20->rowCount(); ++row)
-                {
-                    for (int column = 0; column < ui->tableWidget_20->columnCount(); ++column)
-                    {
-                        QTableWidgetItem *item = ui->tableWidget_20->item(row, column);
-                        if (item != nullptr)
-                        {
-                            qDebug() << "Элемент на позиции (" << row << "," << column << "):" << item->text();
-                        } else
-                        {
-                            qDebug() << "Элемент на позиции (" << row << "," << column << ") не инициализирован.";
-                        }
-                    }
-                }
-            } else {
-                qDebug() << "Таблица не содержит строк или столбцов.";
-            }
-
-
-
-
-
         QFile file3(QString("/tmp/imview/vent_identf.xml"));
         if (!file3.open(QFile::ReadOnly | QFile::Text))
         {

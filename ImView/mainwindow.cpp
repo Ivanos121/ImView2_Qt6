@@ -3822,8 +3822,8 @@ void MainWindow::on_vent_result_clicked()
             double N = 0;
             double Nu = 0;
             double Nu_ct = 0;
-            double M = 0;
-            double omega = 0;
+            // double M = 0;
+            // double omega = 0;
             ui->widget_6->ui->plot->clear();
             ui->widget_6->ui->plot->addDataLine(QColor(Qt::red), 0);
             ui->widget_6->ui->plot->addDataLine(QColor(Qt::green), 0);
@@ -4382,8 +4382,6 @@ void MainWindow::open_file()
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
     LoadProject(str);
 }
-
-
 
 void MainWindow::save_as_file()
 {
@@ -6860,14 +6858,14 @@ void MainWindow::electromagn_tick()
     temp_prev = temp;
     dPprev = dP;
 
-    double P1sum = 0.0;
-    double P2sum = 0.0;
+
 
     //if (tt > maxTime)
     if ((tt > maxTime) && (time_base_selection_value->text() == "Фиксированное время"))
     {
         electromagn_stop();
-
+        double P1sum = 0.0;
+        double P2sum = 0.0;
         for (int i = 0; i < tepl_ident_P1.size(); i++)
         {
             P1sum += tepl_ident_P1[i];
