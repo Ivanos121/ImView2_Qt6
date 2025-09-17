@@ -25,9 +25,9 @@ protected slots:
     void loadGraph();
     bool savePointsToXml(const QString &fileName);
     bool loadPointsFromXml(const QString &fileName);
-
     void apply_pushButton();
     void close_pushButton();
+
 private:
     Ui::Voltage_signal_builder *ui;
     QChart *chart;

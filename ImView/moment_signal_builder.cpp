@@ -2,62 +2,50 @@
 #include "ui_moment_signal_builder.h"
 #include "base.h"
 
-#include <QFileDialog>
+#include <QFile>
 #include <QLineSeries>
-#include <QMessageBox>
 #include <QValueAxis>
 #include <QXmlStreamWriter>
+#include <QFileDialog>
+#include <QMessageBox>
+
 
 Moment_signal_builder::Moment_signal_builder(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Moment_signal_builder)
 {
     ui->setupUi(this);
+    connect(ui->pushButtonPlot, &QPushButton::clicked, this, &Moment_signal_builder::plotGraph);
+    connect(ui->clearButton, &QPushButton::clicked, this, &Moment_signal_builder::clearGraph);
+    connect(ui->saveButton, &QPushButton::clicked, this, &Moment_signal_builder::saveGraph);
+    connect(ui->loadButton, &QPushButton::clicked, this, &Moment_signal_builder::loadGraph);
+    connect(ui->apply_pushButton, &QPushButton::clicked, this, &Moment_signal_builder::apply_pushButton);
+    connect(ui->close_pushButton, &QPushButton::clicked, this, &Moment_signal_builder::close_pushButton);
 
-    series = new QLineSeries(this);
     chart = new QChart();
-    chart->legend()->hide();
+    chart->setTitle("График изменения сигнала");
+
+    // Создаем серию данных
+    series = new QLineSeries();
     chart->addSeries(series);
-    chart->createDefaultAxes();
 
-    // Получаем оси
-    QValueAxis *axisX = qobject_cast<QValueAxis*>(chart->axisX());
-    QValueAxis *axisY = qobject_cast<QValueAxis*>(chart->axisY());
+    // Создаем оси
+    axisX = new QValueAxis();
+    axisX->setTitleText("Ось X (Время)");
+    axisX->setRange(0, 3); // Устанавливаем диапазон оси X
 
-    if (axisX && axisY) {
-        // Включаем сетку на осях
-        axisX->setGridLineVisible(true);
-        axisY->setGridLineVisible(true);
-        // Можно настроить параметры сетки и осей, например шаг
-        axisX->setTickCount(6);  // количество делений по X
-        axisY->setTickCount(6);  // количество делений по Y
-    }
+    axisY = new QValueAxis();
+    axisY->setTitleText("Ось Y (Уровень)");
+    axisY->setRange(0, 10); // Устанавливаем диапазон оси Y
 
-    chartView = new QChartView(chart);
+    // Добавляем оси к графику
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisX);
+    series->attachAxis(axisY);
 
     // Устанавливаем график в QChartView
     ui->chartView->setChart(chart);
-
-    // Включаем анимацию (опционально)
-    chart->setAnimationOptions(QChart::AllAnimations);
-    chartView->setRenderHint(QPainter::Antialiasing);
-
-    updateChart();
-
-    connect(ui->SaveButton, &QPushButton::clicked, this, [this]()
-            {
-                savePointsToXml(this->fileName);
-            });
-
-    connect(ui->loadButton, &QPushButton::clicked, this, [this]()
-            {
-                loadPointsFromXml(this->fileName);
-            });
-
-    connect(ui->addPointButton, &QPushButton::clicked, this, &Moment_signal_builder::add_time_value_pushButton);
-    connect(ui->clearButton, &QPushButton::clicked, this, &Moment_signal_builder::clear_pushButton);
-    connect(ui->applyButton, &QPushButton::clicked, this, &Moment_signal_builder::applybutton);
-    connect(ui->closeButton, &QPushButton::clicked, this, &Moment_signal_builder::closebutton);
 }
 
 Moment_signal_builder::~Moment_signal_builder()
@@ -65,101 +53,200 @@ Moment_signal_builder::~Moment_signal_builder()
     delete ui;
 }
 
-void Moment_signal_builder::applybutton()
+void Moment_signal_builder::plotGraph()
 {
-    base.momentData = series->points();
-    close();
-}
+    // Считываем значения из QLineEdit
+    QString timeText = ui->lineEditX->text();
+    QString levelText = ui->lineEditY->text();
 
-void Moment_signal_builder::closebutton()
-{
-    close();
-}
+    // Отладочные сообщения
+    qDebug() << "Введенные значения для времени:" << timeText;
+    qDebug() << "Введенные значения для уровня:" << levelText;
 
-void Moment_signal_builder::add_time_value_pushButton()
-{
-    bool okTime, okValue;
-    double time = ui->lineEditTime->text().toDouble(&okTime);
-    double value = ui->lineEditValue->text().toDouble(&okValue);
+    // Разделяем строки на массивы чисел
+    QStringList timeValues = timeText.split(' ', Qt::SkipEmptyParts);
+    QStringList levelValues = levelText.split(' ', Qt::SkipEmptyParts);
 
-    if (!okTime || !okValue)
+    QVector<double> timeArray, levelArray;
+
+    // Преобразуем строки в числа для времени
+    for (const QString &value : std::as_const(timeValues))
     {
-        QMessageBox::warning(this, "Ошибка", "Введите корректные числа для времени и уровня");
-        return;
+        QString cleanedValue = value;
+        cleanedValue.remove('[').remove(']'); // Удаляем квадратные скобки
+        cleanedValue = cleanedValue.trimmed(); // Удаляем пробелы
+
+        bool ok;
+        double timeValue = cleanedValue.toDouble(&ok);
+        if (ok)
+        {
+            timeArray.append(timeValue);
+        }
+        else
+        {
+            qDebug() << "Ошибка преобразования строки:" << cleanedValue;
+        }
     }
 
-    moment_signal_builder.addPoint(time, value);
-    series->append(time, value);
+    // Преобразуем строки в числа для уровня
+    for (const QString &value : std::as_const(levelValues))
+    {
+        QString cleanedValue = value; // Создаем копию строки
+        cleanedValue.remove('[').remove(']'); // Удаляем квадратные скобки
+        cleanedValue = cleanedValue.trimmed(); // Удаляем пробелы
 
-    updateAxes();
+        bool ok;
+        double levelValue = cleanedValue.toDouble(&ok);
+        if (ok)
+        {
+            levelArray.append(levelValue);
+        }
+        else
+        {
+            qDebug() << "Ошибка преобразования строки уровня:" << cleanedValue;
+        }
+    }
 
-    updateChart();
+    // Отладочные сообщения
+    qDebug() << "Time Array:" << timeArray;
+    qDebug() << "Level Array:" << levelArray;
+
+    // Проверяем, что массивы имеют одинаковый размер
+    if (timeArray.size() != levelArray.size()) {
+        // Проверяем, есть ли возможность исправить размерности
+        if (timeArray.size() == 0 || levelArray.size() == 0)
+        {
+            QMessageBox::warning(this, "Внимание!", "Ошибка: Один из массивов пуст.");
+        } else
+        {
+            QMessageBox::warning(this, "Внимание!", "Ошибка: Массивы не совпадают по размеру.");
+        }
+        return; // Обработка ошибки: массивы не совпадают по размеру
+    }
+
+    // Удаляем предыдущую серию, если она существует
+    if (ui->chartView->chart()->series().size() > 0)
+    {
+        ui->chartView->chart()->removeAllSeries();
+    }
+
+    // Создаем серию для графика
+    series = new QLineSeries();
+
+    // Интерполяция
+    const int pointsPerSegment = 200; // Количество точек между узловыми
+    for (int i = 0; i < timeArray.size() - 1; ++i)
+    {
+        double x0 = timeArray[i];
+        double y0 = levelArray[i];
+        double x1 = timeArray[i + 1];
+        double y1 = levelArray[i + 1];
+
+        // Линейная интерполяция
+        for (int j = 0; j <= pointsPerSegment; ++j)
+        {
+            double t = static_cast<double>(j) / pointsPerSegment; // Нормализованный параметр
+            double interpolatedX = x0 + t * (x1 - x0);
+            double interpolatedY = y0 + t * (y1 - y0);
+            series->append(interpolatedX, interpolatedY);
+        }
+    }
+
+    // for (int i = 0; i < timeArray.size(); ++i)
+    // {
+    //     series->append(timeArray[i], levelArray[i]);
+    // }
 
 
-}
-
-void Moment_signal_builder::clear_pushButton()
-{
-    moment_signal_builder.clear();
-    series->clear();
-    updateAxes();
-    updateChart();
-
-    qDebug() << "Точек после clear:" << series->count();  // Должно быть 0
-
-    //ui->plot->clear();
-
-    ui->chartView->chart()->removeSeries(series);
+    // Добавляем серию к графику
     ui->chartView->chart()->addSeries(series);
-    qDebug() << "Точек после append:" << series->count();  // Должно быть 1 или больше
+    ui->chartView->chart()->createDefaultAxes();
 
-    ui->chartView->chart()->createDefaultAxes(); // если нужно обновить оси
-    ui->chartView->chart()->update();
+    // Проверяем, что массивы не пустые перед установкой диапазонов осей
+    if (timeArray.isEmpty() || levelArray.isEmpty())
+    {
+        QMessageBox::warning(this, "Внимание!", "Ошибка: Один из массивов пуст. Диапазоны осей не будут установлены.");
+    }
+    else
+    {
+        ui->chartView->chart()->axes(Qt::Horizontal).first()->setRange(*std::min_element(timeArray.begin(), timeArray.end()),
+                                                                       *std::max_element(timeArray.begin(), timeArray.end()));
+        ui->chartView->chart()->axes(Qt::Vertical).first()->setRange(*std::min_element(levelArray.begin(), levelArray.end()),
+                                                                     *std::max_element(levelArray.begin(), levelArray.end()));
+    }
 
+    // Подписываем оси
+    auto xAxis = qobject_cast<QValueAxis *>(ui->chartView->chart()->axes(Qt::Horizontal).first());
+    if (xAxis)
+    {
+        xAxis->setTitleText("Ось X (Время)"); // Подпись для оси X
+    }
+
+    auto yAxis = qobject_cast<QValueAxis *>(ui->chartView->chart()->axes(Qt::Vertical).first());
+    if (yAxis)
+    {
+        yAxis->setTitleText("Ось Y (Уровень)"); // Подпись для оси Y
+    }
+
+    // Отладочное сообщение о завершении
+    qDebug() << "График обновлен.";
 }
 
-void Moment_signal_builder::updateChart()
+void Moment_signal_builder::clearGraph()
 {
-    chart = ui->chartView->chart();
-
-    // Не удаляем серии полностью, просто очищаем данные
-    if (!series)
-        return;
-
-    series->clear();
-
-    const auto& points = moment_signal_builder.getPoints();
-    if (points.empty())
+    // Удаляем все серии из графика
+    if (ui->chartView->chart())
     {
-        chart->createDefaultAxes();
-        return;
+        ui->chartView->chart()->removeAllSeries();
     }
 
-    // Добавляем интерполированные точки
-    const int samples = 200;
-    double t_min = points.front().time;
-    double t_max = points.back().time;
+    // Удаляем оси (если необходимо)
+    auto axes = ui->chartView->chart()->axes();
 
-    for (int i = 0; i <= samples; ++i)
+    for (auto axis : std::as_const(axes))
     {
-        double t = t_min + (t_max - t_min) * i / samples;
-        double v = moment_signal_builder.getValue(t);
-        series->append(t, v);
+        ui->chartView->chart()->removeAxis(axis);// Удаляем все серии из графика
     }
 
-    // Если series ещё не добавлена в график, добавляем
-    if (!chart->series().contains(series))
-        chart->addSeries(series);
+    // Очистка QLineEdit (если необходимо)
+    ui->lineEditX->clear();
+    ui->lineEditY->clear();
 
-    chart->createDefaultAxes();
+    // Восстанавливаем квадратные скобки в QLineEdit
+    ui->lineEditX->setText("[]"); // Восстанавливаем квадратные скобки для времени
+    ui->lineEditY->setText("[]"); // Восстанавливаем квадратные скобки для уровня
 
-    auto axisX = qobject_cast<QValueAxis*>(chart->axes(Qt::Horizontal).constFirst());
-    auto axisY = qobject_cast<QValueAxis*>(chart->axes(Qt::Vertical).constFirst());
-    if (axisX) axisX->setTitleText("Время");
-    if (axisY) axisY->setTitleText("Уровень");
+    // Создаем новую серию
+    series = new QLineSeries();
+
+    // Создаем новые оси
+    QValueAxis *axisX = new QValueAxis;
+    QValueAxis *axisY = new QValueAxis;
+
+    // Устанавливаем диапазоны для осей (можно настроить по вашему усмотрению)
+    axisX->setRange(0, 10); // Пример диапазона для оси X
+    axisY->setRange(0, 10); // Пример диапазона для оси Y
+
+    // Добавляем оси в график
+    ui->chartView->chart()->addAxis(axisX, Qt::AlignBottom);
+    ui->chartView->chart()->addAxis(axisY, Qt::AlignLeft);
+
+    // Настройка сетки
+    axisX->setGridLineVisible(true);
+    axisY->setGridLineVisible(true);
+
+    // Привязываем оси к серии (если серия уже существует)
+    if (series)
+    {
+        series->attachAxis(axisX);
+        series->attachAxis(axisY);
+    }
+
+    // Отладочное сообщение
+    qDebug() << "График очищен и поля ввода восстановлены.";
 }
 
-void Moment_signal_builder::saveDataXml()
+void Moment_signal_builder::saveGraph()
 {
     QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", filter);
@@ -171,21 +258,6 @@ void Moment_signal_builder::saveDataXml()
     else
     {
         qDebug() << "Ошибка сохранения XML";
-    }
-}
-
-void Moment_signal_builder::loadDataXml()
-{
-    QVector<QPointF> loadedData;
-    bool loaded = loadPointsFromXml("points.xml");
-    if (loaded)
-    {
-        qDebug() << "Данные успешно загружены из XML, точек:" << loadedData.size();
-        // Можно обновить график: series->replace(loadedData); или аналогично
-    }
-    else
-    {
-        qDebug() << "Ошибка загрузки XML";
     }
 }
 
@@ -217,7 +289,8 @@ bool Moment_signal_builder::savePointsToXml(const QString &fileName)
     // Получаем точки из серии
     const auto points = series->points();
 
-    for (const QPointF &pt : points) {
+    for (const QPointF &pt : points)
+    {
         xml.writeStartElement("Point");
         xml.writeAttribute("x", QString::number(pt.x()));
         xml.writeAttribute("y", QString::number(pt.y()));
@@ -230,6 +303,21 @@ bool Moment_signal_builder::savePointsToXml(const QString &fileName)
     file.close();
     qDebug() << "Сохранено точек:" << points.size();
     return true;
+}
+
+void Moment_signal_builder::loadGraph()
+{
+    QVector<QPointF> loadedData;
+    bool loaded = loadPointsFromXml("points.xml");
+    if (loaded)
+    {
+        qDebug() << "Данные успешно загружены из XML, точек:" << loadedData.size();
+        // Можно обновить график: series->replace(loadedData); или аналогично
+    }
+    else
+    {
+        qDebug() << "Ошибка загрузки XML";
+    }
 }
 
 bool Moment_signal_builder::loadPointsFromXml(const QString &fileName)
@@ -296,6 +384,15 @@ bool Moment_signal_builder::loadPointsFromXml(const QString &fileName)
         return false;
     }
 
+    // Убедитесь, что series инициализирован
+    if (series) {
+        series = new QLineSeries(); // Создаем новый экземпляр серии
+        qDebug() << "Серия обновлена новыми точками.";
+    } else {
+        qWarning() << "Серия не инициализирована, не удалось обновить.";
+        return false;
+    }
+
     // Обновляем серию
     //series->clear();  // Очищаем старую серию
     series->replace(points);  // Добавляем новые точки
@@ -343,43 +440,46 @@ bool Moment_signal_builder::loadPointsFromXml(const QString &fileName)
     ui->chartView->setChart(chart);
     ui->chartView->repaint();
 
+    // Подписываем оси
+    auto xAxis = qobject_cast<QValueAxis *>(ui->chartView->chart()->axes(Qt::Horizontal).first());
+    if (xAxis) {
+        xAxis->setTitleText("Ось X (Время)"); // Подпись для оси X
+    }
+
+    auto yAxis = qobject_cast<QValueAxis *>(ui->chartView->chart()->axes(Qt::Vertical).first());
+    if (yAxis) {
+        yAxis->setTitleText("Ось Y (Уровень)"); // Подпись для оси Y
+    }
+
     return true;
 }
 
-void Moment_signal_builder::updateAxes()
+void Moment_signal_builder::apply_pushButton()
 {
-    if (!series)
-        return;
+    base.momentData = series->points();
 
-    // Получаем все точки серии
-    auto points = series->points();
-    if (points.isEmpty())
-        return;
-
-    double minX = points[0].x();
-    double maxX = points[0].x();
-    double minY = points[0].y();
-    double maxY = points[0].y();
-
-    for (const QPointF& p : points)
+    if (series->count() == 0)
     {
-        if (p.x() < minX) minX = p.x();
-        if (p.x() > maxX) maxX = p.x();
-        if (p.y() < minY) minY = p.y();
-        if (p.y() > maxY) maxY = p.y();
+        QMessageBox::warning(this, "Внимание!", "Ошибка: Нет данных для отображения в графике.");
+        return; // Выход из слота, если данных нет
     }
 
-    // Немного расширим диапазон для красоты
-    double marginX = (maxX - minX) * 0.1;
-    double marginY = (maxY - minY) * 0.1;
+    if (!base.momentData.isEmpty())
+    {
+        // Получаем последний элемент типа QPointF
+        QPointF lastPoint = base.momentData.last();
 
-    auto axisX = qobject_cast<QValueAxis*>(chart->axes(Qt::Horizontal).first());
-    auto axisY = qobject_cast<QValueAxis*>(chart->axes(Qt::Vertical).first());
+        // Извлекаем координаты
+        base.lastPointX = lastPoint.x();
+        //double lastY = lastPoint.y();
 
-    if (axisX)
-        axisX->setRange(minX - marginX + 0.1, maxX + marginX);
-    if (axisY)
-        axisY->setRange(minY - marginY + 0.1, maxY + marginY);
+        // Выводим значения (или используем их по вашему усмотрению)
+        //qDebug() << "Последняя точка: (" << base.lastPointX << ", " << lastY << ")";
+    }
+    close();
 }
 
-
+void Moment_signal_builder::close_pushButton()
+{
+    close();
+}

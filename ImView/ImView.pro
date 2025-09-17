@@ -34,7 +34,6 @@ SOURCES += \
     comboboxerrorarchivedelegate.cpp \
     comboboxmodbusdelegate.cpp \
     comboboxvardelegate.cpp \
-    create_moment_signal_builder.cpp \
     customhelpdelegate.cpp \
     datas.cpp \
     datasource.cpp \
@@ -122,7 +121,6 @@ HEADERS += \
     comboboxmodbusdelegate.h \
     comboboxvardelegate.h \
     crc.h \
-    create_moment_signal_builder.h \
     customhelpdelegate.h \
     datas.h \
     datasource.h \

@@ -7,6 +7,7 @@
 #include <QValueAxis>
 #include <QXmlStreamWriter>
 #include <QFileDialog>
+#include <QMessageBox>
 
 Voltage_signal_builder::Voltage_signal_builder(QWidget *parent)
     : QWidget(parent)
@@ -29,11 +30,11 @@ Voltage_signal_builder::Voltage_signal_builder(QWidget *parent)
 
     // Создаем оси
     axisX = new QValueAxis();
-    axisX->setTitleText("Ось X");
+    axisX->setTitleText("Ось X (Время)");
     axisX->setRange(0, 3); // Устанавливаем диапазон оси X
 
     axisY = new QValueAxis();
-    axisY->setTitleText("Ось Y");
+    axisY->setTitleText("Ось Y (Уровень)");
     axisY->setRange(0, 10); // Устанавливаем диапазон оси Y
 
     // Добавляем оси к графику
@@ -68,7 +69,8 @@ void Voltage_signal_builder::plotGraph()
     QVector<double> timeArray, levelArray;
 
     // Преобразуем строки в числа для времени
-    for (const QString &value : std::as_const(timeValues)) {
+    for (const QString &value : std::as_const(timeValues))
+    {
         QString cleanedValue = value;
         cleanedValue.remove('[').remove(']'); // Удаляем квадратные скобки
         cleanedValue = cleanedValue.trimmed(); // Удаляем пробелы
@@ -86,7 +88,8 @@ void Voltage_signal_builder::plotGraph()
     }
 
     // Преобразуем строки в числа для уровня
-    for (const QString &value : std::as_const(levelValues)) {
+    for (const QString &value : std::as_const(levelValues))
+    {
         QString cleanedValue = value; // Создаем копию строки
         cleanedValue.remove('[').remove(']'); // Удаляем квадратные скобки
         cleanedValue = cleanedValue.trimmed(); // Удаляем пробелы
@@ -108,9 +111,16 @@ void Voltage_signal_builder::plotGraph()
     qDebug() << "Level Array:" << levelArray;
 
     // Проверяем, что массивы имеют одинаковый размер
-    if (timeArray.size() != levelArray.size() || timeArray.isEmpty() || levelArray.isEmpty()) {
-        qDebug() << "Error: Arrays do not match in size or are empty.";
-        return; // Обработка ошибки: массивы не совпадают по размеру или пустые
+    if (timeArray.size() != levelArray.size()) {
+        // Проверяем, есть ли возможность исправить размерности
+        if (timeArray.size() == 0 || levelArray.size() == 0)
+        {
+            QMessageBox::warning(this, "Внимание!", "Ошибка: Один из массивов пуст.");
+        } else
+        {
+            QMessageBox::warning(this, "Внимание!", "Ошибка: Массивы не совпадают по размеру.");
+        }
+        return; // Обработка ошибки: массивы не совпадают по размеру
     }
 
     // Удаляем предыдущую серию, если она существует
@@ -151,11 +161,18 @@ void Voltage_signal_builder::plotGraph()
     ui->chartView->chart()->addSeries(series);
     ui->chartView->chart()->createDefaultAxes();
 
-    // Устанавливаем диапазоны осей
-    ui->chartView->chart()->axes(Qt::Horizontal).first()->setRange(*std::min_element(timeArray.begin(), timeArray.end()),
-                                                                   *std::max_element(timeArray.begin(), timeArray.end()));
-    ui->chartView->chart()->axes(Qt::Vertical).first()->setRange(*std::min_element(levelArray.begin(), levelArray.end()),
-                                                                 *std::max_element(levelArray.begin(), levelArray.end()));
+    // Проверяем, что массивы не пустые перед установкой диапазонов осей
+    if (timeArray.isEmpty() || levelArray.isEmpty())
+    {
+        QMessageBox::warning(this, "Внимание!", "Ошибка: Один из массивов пуст. Диапазоны осей не будут установлены.");
+    }
+    else
+    {
+        ui->chartView->chart()->axes(Qt::Horizontal).first()->setRange(*std::min_element(timeArray.begin(), timeArray.end()),
+                                                                       *std::max_element(timeArray.begin(), timeArray.end()));
+        ui->chartView->chart()->axes(Qt::Vertical).first()->setRange(*std::min_element(levelArray.begin(), levelArray.end()),
+                                                                     *std::max_element(levelArray.begin(), levelArray.end()));
+    }
 
     // Подписываем оси
     auto xAxis = qobject_cast<QValueAxis *>(ui->chartView->chart()->axes(Qt::Horizontal).first());
@@ -443,18 +460,31 @@ bool Voltage_signal_builder::loadPointsFromXml(const QString &fileName)
 void Voltage_signal_builder::apply_pushButton()
 {
     base.voltageData = series->points();
-    if (!base.voltageData.isEmpty())
+
+    if (series->count() == 0)
+    {
+        QMessageBox::warning(this, "Внимание!", "Ошибка: Нет данных для отображения в графике");
+        return; // Выход из слота, если данных нет
+    }
+    else if (!base.voltageData.isEmpty())
     {
         // Получаем последний элемент типа QPointF
         QPointF lastPoint = base.voltageData.last();
 
         // Извлекаем координаты
         base.lastPointX = lastPoint.x();
-        double lastY = lastPoint.y();
+        //double lastY = lastPoint.y();
 
         // Выводим значения (или используем их по вашему усмотрению)
-        qDebug() << "Последняя точка: (" << base.lastPointX << ", " << lastY << ")";
+        //qDebug() << "Последняя точка: (" << base.lastPointX << ", " << lastY << ")";
     }
+
+    // while (lastTime + timeStep <= maxTime)
+    // {
+    //     lastTime += timeStep;
+    //     series->append(lastTime, 0);  // Добавляем нулевую точку на оси Y
+    // }
+
     close();
 }
 
