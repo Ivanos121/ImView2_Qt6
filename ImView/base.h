@@ -95,7 +95,6 @@ struct Base
     ArchieverParams archieverParams;
     QVector<QPointF> voltageData;
     QVector<QPointF> momentData;
-    double lastPointX;
 };
 
 extern Base base;

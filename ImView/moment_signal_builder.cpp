@@ -464,18 +464,6 @@ void Moment_signal_builder::apply_pushButton()
         return; // Выход из слота, если данных нет
     }
 
-    if (!base.momentData.isEmpty())
-    {
-        // Получаем последний элемент типа QPointF
-        QPointF lastPoint = base.momentData.last();
-
-        // Извлекаем координаты
-        base.lastPointX = lastPoint.x();
-        //double lastY = lastPoint.y();
-
-        // Выводим значения (или используем их по вашему усмотрению)
-        //qDebug() << "Последняя точка: (" << base.lastPointX << ", " << lastY << ")";
-    }
     close();
 }
 

@@ -133,7 +133,7 @@ void Voltage_signal_builder::plotGraph()
     series = new QLineSeries();
 
     // Интерполяция
-    const int pointsPerSegment = 200; // Количество точек между узловыми
+    /*const int pointsPerSegment = 200; // Количество точек между узловыми
     for (int i = 0; i < timeArray.size() - 1; ++i)
     {
         double x0 = timeArray[i];
@@ -149,12 +149,12 @@ void Voltage_signal_builder::plotGraph()
             double interpolatedY = y0 + t * (y1 - y0);
             series->append(interpolatedX, interpolatedY);
         }
-    }
+    }*/
 
-    // for (int i = 0; i < timeArray.size(); ++i)
-    // {
-    //     series->append(timeArray[i], levelArray[i]);
-    // }
+    for (int i = 0; i < timeArray.size(); ++i)
+    {
+        series->append(timeArray[i], levelArray[i]);
+    }
 
 
     // Добавляем серию к графику
@@ -268,19 +268,6 @@ void Voltage_signal_builder::saveGraph()
 bool Voltage_signal_builder::savePointsToXml(const QString &fileName)
 {
     QString str = fileName;
-
-    QString filter = "Данные сигнала скорости (*.xml);;Все файлы (*.*)";
-    QString selectedFilter;  // Переменная для хранения выбранного фильтра
-
-    str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", QDir::homePath()
-                                       , filter, &selectedFilter);
-    if (!str.isEmpty())
-    {
-        if (selectedFilter == "Данные сигнала скорости (*.xml)" && !str.endsWith(".xml"))
-        {
-            str += ".xml";
-        }
-    }
 
     QFile file(str);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -466,24 +453,6 @@ void Voltage_signal_builder::apply_pushButton()
         QMessageBox::warning(this, "Внимание!", "Ошибка: Нет данных для отображения в графике");
         return; // Выход из слота, если данных нет
     }
-    else if (!base.voltageData.isEmpty())
-    {
-        // Получаем последний элемент типа QPointF
-        QPointF lastPoint = base.voltageData.last();
-
-        // Извлекаем координаты
-        base.lastPointX = lastPoint.x();
-        //double lastY = lastPoint.y();
-
-        // Выводим значения (или используем их по вашему усмотрению)
-        //qDebug() << "Последняя точка: (" << base.lastPointX << ", " << lastY << ")";
-    }
-
-    // while (lastTime + timeStep <= maxTime)
-    // {
-    //     lastTime += timeStep;
-    //     series->append(lastTime, 0);  // Добавляем нулевую точку на оси Y
-    // }
 
     close();
 }

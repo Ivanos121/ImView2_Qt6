@@ -8,6 +8,11 @@ double linearInterpolation(const QVector<QPointF>& data, double t) {
         return 0.0; // Возвращаем 0.0 в случае ошибки
     }
 
+    if (data.last().x() < t)
+    {
+        return data.last().y();
+    }
+
     // Ищем две ближайшие точки
     QPointF point1, point2;
     bool found = false;
