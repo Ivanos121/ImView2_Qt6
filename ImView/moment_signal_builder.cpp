@@ -55,6 +55,13 @@ Moment_signal_builder::~Moment_signal_builder()
 
 void Moment_signal_builder::plotGraph()
 {
+    // Проверяем, есть ли данные в серии
+    if (series->count() == 0)
+    {
+        QMessageBox::warning(this, "Внимание!", "Нет данных для построения");
+        return; // Выход из функции, если данных нет
+    }
+
     // Считываем значения из QLineEdit
     QString timeText = ui->lineEditX->text();
     QString levelText = ui->lineEditY->text();
@@ -133,29 +140,10 @@ void Moment_signal_builder::plotGraph()
     // Создаем серию для графика
     series = new QLineSeries();
 
-    // Интерполяция
-    const int pointsPerSegment = 200; // Количество точек между узловыми
-    for (int i = 0; i < timeArray.size() - 1; ++i)
+    for (int i = 0; i < timeArray.size(); ++i)
     {
-        double x0 = timeArray[i];
-        double y0 = levelArray[i];
-        double x1 = timeArray[i + 1];
-        double y1 = levelArray[i + 1];
-
-        // Линейная интерполяция
-        for (int j = 0; j <= pointsPerSegment; ++j)
-        {
-            double t = static_cast<double>(j) / pointsPerSegment; // Нормализованный параметр
-            double interpolatedX = x0 + t * (x1 - x0);
-            double interpolatedY = y0 + t * (y1 - y0);
-            series->append(interpolatedX, interpolatedY);
-        }
+        series->append(timeArray[i], levelArray[i]);
     }
-
-    // for (int i = 0; i < timeArray.size(); ++i)
-    // {
-    //     series->append(timeArray[i], levelArray[i]);
-    // }
 
 
     // Добавляем серию к графику
@@ -194,6 +182,13 @@ void Moment_signal_builder::plotGraph()
 
 void Moment_signal_builder::clearGraph()
 {
+    // Проверяем, есть ли данные в серии
+    if (series->count() == 0)
+    {
+        QMessageBox::warning(this, "Внимание!", "Нет данных для очистки");
+        return; // Выход из функции, если данных нет
+    }
+
     // Удаляем все серии из графика
     if (ui->chartView->chart())
     {
@@ -248,9 +243,28 @@ void Moment_signal_builder::clearGraph()
 
 void Moment_signal_builder::saveGraph()
 {
-    QString filter = "Файл конфигурации проекта (*.xml);;Все файлы (*.*)";
-    QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", filter);
-    bool saved = savePointsToXml(str);
+    // Проверяем, есть ли данные в серии
+    if (series->count() == 0)
+    {
+        QMessageBox::warning(this, "Внимание!", "Нет данных для очистки");
+        return; // Выход из функции, если данных нет
+    }
+
+    QString str;
+    QString filter = "Данные сигнала скорости (*.xml);;Все файлы (*.*)";
+    QString selectedFilter;  // Переменная для хранения выбранного фильтра
+
+    str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", QDir::homePath()
+                                       , filter, &selectedFilter);
+    if (!str.isEmpty())
+    {
+        if (selectedFilter == "Данные сигнала скорости (*.xml)" && !str.endsWith(".xml"))
+        {
+            str += ".xml";
+        }
+    }
+
+        bool saved = savePointsToXml(str);
     if (saved)
     {
         qDebug() << "Данные успешно сохранены в XML";
@@ -264,19 +278,6 @@ void Moment_signal_builder::saveGraph()
 bool Moment_signal_builder::savePointsToXml(const QString &fileName)
 {
     QString str = fileName;
-
-    QString filter = "Данные сигнала скорости (*.xml);;Все файлы (*.*)";
-    QString selectedFilter;  // Переменная для хранения выбранного фильтра
-
-    str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", QDir::homePath()
-                                       , filter, &selectedFilter);
-    if (!str.isEmpty())
-    {
-        if (selectedFilter == "Данные сигнала скорости (*.xml)" && !str.endsWith(".xml"))
-        {
-            str += ".xml";
-        }
-    }
 
     QFile file(str);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -384,11 +385,34 @@ bool Moment_signal_builder::loadPointsFromXml(const QString &fileName)
         return false;
     }
 
+    // Создаем QStringList для хранения всех значений x и y
+    QStringList xList;
+    QStringList yList;
+
+    for (const QPointF &point : points)
+    {
+        // Добавляем значения x и y в соответствующие списки
+        xList.append(QString::number(point.x()));
+        yList.append(QString::number(point.y()));
+    }
+
+    // Устанавливаем все значения x в первый QLineEdit с квадратными скобками
+    QString xValues = QString("[%1]").arg(xList.join(" ")); // Добавляем квадратные скобки
+    ui->lineEditX->setText(xValues); // Устанавливаем все значения X
+
+    // Устанавливаем все значения y во второй QLineEdit с квадратными скобками
+    QString yValues = QString("[%1]").arg(yList.join(" ")); // Добавляем квадратные скобки
+    ui->lineEditY->setText(yValues); // Устанавливаем все значения Y
+
+
     // Убедитесь, что series инициализирован
-    if (series) {
+    if (series)
+    {
         series = new QLineSeries(); // Создаем новый экземпляр серии
         qDebug() << "Серия обновлена новыми точками.";
-    } else {
+    }
+    else
+    {
         qWarning() << "Серия не инициализирована, не удалось обновить.";
         return false;
     }

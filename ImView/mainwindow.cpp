@@ -639,6 +639,23 @@ void MainWindow::electromagn_stop()
     ui->widget_3->stop();
     statusbar_progres->setVisible(false);
     statusbar_label_9->setVisible(false);
+
+    QSettings settings( "BRU", "IM View");
+    settings.beginGroup( "System_messages" );
+    QString lokal = settings.value( "Messages", "").toString();
+    settings.endGroup();
+
+    //Вывод сообщения об окончании электромагнитного расчета
+    if(lokal == "fix")
+    {
+        QMessageBox::information(this, tr("Сообщение"), tr("Электромагнитный расчет закончен"));
+    }
+    else if(lokal == "nonfix")
+    {
+        QString summary_s = "Сообщение";
+        QString body_s = "Электромагнитный расчет закончен";
+        message_action(summary_s, body_s);
+    }
 }
 
 void MainWindow::currentChanged(int index)
@@ -6874,7 +6891,9 @@ void MainWindow::electromagn_tick()
         P1sum /= tepl_ident_P1.size();
         P2sum /= tepl_ident_P2.size();
 
-
+        // Используем переменные для вывода
+        qDebug() << "Среднее значение P1: " << P1sum;
+        qDebug() << "Среднее значение P2: " << P2sum;
 
         //double A = tepl_ident_StatorTemp[tepl_ident_StatorTemp.size() - 1] / (P1sum - P2sum);
         //double t1 = tepl_ident_StatorTemp
@@ -7287,4 +7306,3 @@ void MainWindow::open_identf_nastr_3()
 {
     nastroiki();
 }
-

@@ -62,7 +62,6 @@
 #include "vent_model.h"
 #include "ui_vent_model.h"
 #include "customhelpdelegate.h"
-#include "plot.h"
 #include "tepl_identf.h"
 #include "settings.h"
 #include "poisk.h"
@@ -977,7 +976,6 @@ MainWindow::MainWindow(QWidget *parent)
     QString enter_voltage_im_mashine_parametr_tooltip = enter_voltage_im_mashine_parametr->text();
     enter_voltage_im_mashine_parametr->setToolTip(enter_voltage_im_mashine_parametr_tooltip );
     enter_voltage_im_mashine_value = new QStandardItem(tr("0"));
-    //enter_voltage_im_mashine_value->setEditable(false);
     enter_voltage_im_mashine_value->setEnabled(false);
     QString enter_voltage_im_mashine_value_tooltip = enter_voltage_im_mashine_value->text();
     enter_voltage_im_mashine_value->setToolTip(enter_voltage_im_mashine_value_tooltip);
@@ -991,8 +989,7 @@ MainWindow::MainWindow(QWidget *parent)
     creating_motor_speed_change_chart_parametr->setEnabled(false);
     QString creating_motor_speed_change_chart_parametr_tooltip = creating_motor_speed_change_chart_parametr->text();
     creating_motor_speed_change_chart_parametr->setToolTip(creating_motor_speed_change_chart_parametr_tooltip );
-    creating_motor_speed_change_chart_value = new QStandardItem(tr("Нажмите на кнопку"));
-    //creating_motor_speed_change_chart_value->setEditable(false);
+    creating_motor_speed_change_chart_value = new QStandardItem(tr("Дважды щелкните по ячейке"));
     creating_motor_speed_change_chart_value->setEnabled(false);
     QString creating_motor_speed_change_chart_value_tooltip = creating_motor_speed_change_chart_value->text();
     creating_motor_speed_change_chart_value->setToolTip(creating_motor_speed_change_chart_value_tooltip);
@@ -1032,8 +1029,7 @@ MainWindow::MainWindow(QWidget *parent)
     creating_motor_moment_change_chart_parametr->setEnabled(false);
     QString creating_motor_moment_change_chart_parametr_tooltip = creating_motor_moment_change_chart_parametr->text();
     creating_motor_moment_change_chart_parametr->setToolTip(creating_motor_moment_change_chart_parametr_tooltip );
-    creating_motor_moment_change_chart_value = new QStandardItem(tr("Нажмите на кнопку"));
-    //creating_motor_speed_change_chart_value->setEditable(false);
+    creating_motor_moment_change_chart_value = new QStandardItem(tr("Дважды щелкните по ячейке"));
     creating_motor_moment_change_chart_value->setEnabled(false);
     QString creating_motor_moment_change_chart_value_tooltip = creating_motor_moment_change_chart_value->text();
     creating_motor_moment_change_chart_value->setToolTip(creating_motor_moment_change_chart_value_tooltip);
@@ -1041,8 +1037,6 @@ MainWindow::MainWindow(QWidget *parent)
     engine_duty_cycle.append(creating_motor_moment_change_chart_value);
     electromagnetic_model_parametr->appendRow(engine_duty_cycle);
     engine_duty_cycle.clear();
-
-
 
     /* секция "Тепловая модель" */
 
