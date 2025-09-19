@@ -8,6 +8,7 @@
 #include <QXmlStreamWriter>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QGraphicsLayout>
 
 Voltage_signal_builder::Voltage_signal_builder(QWidget *parent)
     : QWidget(parent)
@@ -22,7 +23,9 @@ Voltage_signal_builder::Voltage_signal_builder(QWidget *parent)
     connect(ui->close_pushButton, &QPushButton::clicked, this, &Voltage_signal_builder::close_pushButton);
 
     chart = new QChart();
-    chart->setTitle("График изменения сигнала");
+    chart->layout()->setContentsMargins(0,0,0,0);
+
+    //chart->setTitle("График изменения сигнала");
 
     // Создаем серию данных
     series = new QLineSeries();

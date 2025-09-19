@@ -8,6 +8,7 @@
 #include <QXmlStreamWriter>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QGraphicsLayout>
 
 
 Moment_signal_builder::Moment_signal_builder(QWidget *parent)
@@ -23,6 +24,7 @@ Moment_signal_builder::Moment_signal_builder(QWidget *parent)
     connect(ui->close_pushButton, &QPushButton::clicked, this, &Moment_signal_builder::close_pushButton);
 
     chart = new QChart();
+    chart->layout()->setContentsMargins(0,0,0,0);
     chart->setTitle("График изменения сигнала");
 
     // Создаем серию данных

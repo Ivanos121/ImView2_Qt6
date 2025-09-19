@@ -51,6 +51,8 @@ void Model_el::init_el(double _R1,
     psi2b_prev = 0.0;
     Ia_prev = 0.0;
     Ib_prev = 0.0;
+    w0 = base.Um / 220.0 * 314.0;
+    Um = base.Um;
 
     timer.start(100);
 }
@@ -65,8 +67,10 @@ void Model_el::rasch()
     double tt=t;
     tcpp =t;
 
-    double Um = base.Um;
-    double w0 = Um / 220.0 * 314.0;
+    if ((elDriveSystem == FREQUENCY_REGULATION) || (elDriveSystem == VOLTAGE_REGULATION))
+    {
+        Um = base.Um;
+    }
 
     double McReakt;
 
