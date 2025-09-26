@@ -36,6 +36,7 @@
 #include <QDBusInterface>
 #include <QImageWriter>
 #include <cxxabi.h>
+#include <QProcess>
 
 #include "base.h"
 #include "ui_mainwindow.h"
@@ -192,6 +193,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->enter_dannie_vent, &QAction::triggered, this, &MainWindow::enter_dannie_vent);
     connect(ui->save_dannie_vent, &QAction::triggered, this, &MainWindow::save_dannie_vent);
     connect(ui->delete_dannie_vent, &QAction::triggered, this, &MainWindow::delete_dannie_vent);
+
+    connect(ui->approx_dannie, &QAction::triggered, this, &MainWindow::load_approx_dannie_progect);
 
     connect(ui->identf_pusk, &QAction::triggered, this, &MainWindow::identf_pusk);
     ui->identf_stop->setEnabled(false);
@@ -3545,4 +3548,9 @@ void MainWindow:: Load_data_tableWidget_20()
     p_20.setColor(QPalette::Base, QColor(225, 255, 255));
     p_20.setColor(QPalette::AlternateBase, QColor(200, 255, 255));
     ui->tableWidget_20->setPalette(p_20);
+}
+
+void MainWindow::load_approx_dannie_progect()
+{
+    QProcess::startDetached("/home/elf/ImView2_Qt6/utils/polinom_builder");
 }

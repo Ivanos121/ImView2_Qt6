@@ -340,6 +340,7 @@ protected slots:
     void electrostop();
     void horizontalSlider_3_valueChanged(int value);
     void horizontalSlider_4_valueChanged(int value);
+    void load_approx_dannie_progect();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
     bool isNablLaunched = false;

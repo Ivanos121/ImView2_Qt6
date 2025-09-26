@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>9</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2441,6 +2441,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <string>&amp;Инструменты</string>
     </property>
     <addaction name="nastroiki"/>
+    <addaction name="approx_dannie"/>
+    <addaction name="action_2"/>
+    <addaction name="action_3"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
@@ -3244,6 +3247,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="approx_dannie">
+   <property name="text">
+    <string>Аппроксимация опытных данных</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>Формирователь сигнала напряжения</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Формирователь сигнала момента</string>
    </property>
   </action>
  </widget>

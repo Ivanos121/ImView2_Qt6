@@ -241,3 +241,6 @@ RESOURCES += \
     Images.qrc 
 
 CODECFORSRC     = UTF-8
+
+DISTFILES += \
+    ../utils/polinom_builder

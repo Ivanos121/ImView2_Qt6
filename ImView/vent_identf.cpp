@@ -1,6 +1,5 @@
 #include "vent_identf.h"
 #include "qxmlstream.h"
-#include "ui_vent_datas.h"
 #include "ui_vent_identf.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -616,7 +615,7 @@ QVector<double> Vent_identf::approximate(const QVector<double>& x,
     for (size_t j=0; j<degree; j++) {
         y_eval += gsl_vector_get(c,j) * pow(x_eval,j);
     }
-    //printf("Оценка в точке x=%.2f: y=%.2f\n", x_eval,y_eval);
+    printf("Оценка в точке x=%.2f: y=%.2f\n", x_eval,y_eval);
 
     // Освобождение ресурсов
     gsl_multifit_linear_free(work);
@@ -672,7 +671,7 @@ int Vent_identf::bestDegree(const QVector<double>& x, const QVector<double>& y)
         }
     }
 
-    //std::cout<<"Оптимальная степень: "<<bestDegree<<", ошибка: "<<bestError<<std::endl;
+    std::cout<<"Оптимальная степень: "<<bestDegree<<", ошибка: "<<bestError<<std::endl;
     return bestDegree;
 }
 
