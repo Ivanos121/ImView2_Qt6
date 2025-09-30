@@ -76,6 +76,7 @@
 #include "fillicondelegate.h"
 #include "version.h"
 #include "version_hash.h"
+#include "Base_tepl_vent.h"
 
 struct Data
 {
@@ -3578,17 +3579,21 @@ void MainWindow::onNewConnection()
 {
     QLocalSocket *clientConnection = server->nextPendingConnection();
     connect(clientConnection, &QLocalSocket::readyRead, [this, clientConnection]()
-            {
+    {
         QByteArray data = clientConnection->readAll();
         QDataStream stream(data);
-        Data receivedData;
-        stream >> receivedData.value1 >> receivedData.value2 >> receivedData.value3;
+        Approx_coeffs approx_coeffs;
+        stream >> approx_coeffs.coeff_1 >> approx_coeffs.coeff_2 >> approx_coeffs.coeff_3
+            >> approx_coeffs.coeff_4 >> approx_coeffs.coeff_5 >> approx_coeffs.coeff_6;
 
         // Отображаем полученные данные в QLineEdit
-        ui->lineEdit_27->setText(QString("Value1: %1, Value2: %2, Value3: %3")
-                              .arg(receivedData.value1)
-                              .arg(receivedData.value2)
-                              .arg(receivedData.value3));
+        ui->lineEdit_27->setText(QString("Received: %1, %2, %3, %4, %5, %6")
+                                     .arg(approx_coeffs.coeff_1)
+                                     .arg(approx_coeffs.coeff_2)
+                                     .arg(approx_coeffs.coeff_3)
+                                     .arg(approx_coeffs.coeff_4)
+                                     .arg(approx_coeffs.coeff_5)
+                                     .arg(approx_coeffs.coeff_6));
 
         clientConnection->write("Data received");
         clientConnection->flush();

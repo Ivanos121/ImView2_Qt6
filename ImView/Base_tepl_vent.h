@@ -126,8 +126,20 @@ struct VentParam2
     QVector<double> Q_Pv_koeffss_2;
 };
 
+struct Approx_coeffs
+{
+    double coeff_1;
+    double coeff_2;
+    double coeff_3;
+    double coeff_4;
+    double coeff_5;
+    double coeff_6;
+
+};
+
 extern TeplParam teplparam;
 extern VentParam ventparam;
 extern VentParam2 ventparam2;
+extern Approx_coeffs approx_coeffs;
 
 #endif // BASE_TEPL_VENT_H
