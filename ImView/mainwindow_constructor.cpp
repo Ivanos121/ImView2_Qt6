@@ -37,6 +37,8 @@
 #include <QImageWriter>
 #include <cxxabi.h>
 #include <QProcess>
+#include <QLocalServer>
+#include <QLocalSocket>
 
 #include "base.h"
 #include "ui_mainwindow.h"
@@ -74,6 +76,13 @@
 #include "fillicondelegate.h"
 #include "version.h"
 #include "version_hash.h"
+
+struct Data
+{
+    double value1;
+    double value2;
+    double value3;
+};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -139,6 +148,16 @@ MainWindow::MainWindow(QWidget *parent)
     {
         connect(recentFileActs[i], &QAction::triggered, this, &MainWindow::openRecentFile);
     }
+
+    //настройка сервера LocalServer
+    server = new QLocalServer(this);
+    if (!server->listen("MyLocalServer"))
+    {
+        qDebug() << "Unable to start the server:" << server->errorString();
+        return;
+    }
+
+    connect(server, &QLocalServer::newConnection, this, &MainWindow::onNewConnection);
 
     //Настройкак поиска
     QSettings settings( "BRU", "IM View");
@@ -3553,4 +3572,26 @@ void MainWindow:: Load_data_tableWidget_20()
 void MainWindow::load_approx_dannie_progect()
 {
     QProcess::startDetached("/home/elf/ImView2_Qt6/utils/polinom_builder");
+}
+
+void MainWindow::onNewConnection()
+{
+    QLocalSocket *clientConnection = server->nextPendingConnection();
+    connect(clientConnection, &QLocalSocket::readyRead, [this, clientConnection]()
+            {
+        QByteArray data = clientConnection->readAll();
+        QDataStream stream(data);
+        Data receivedData;
+        stream >> receivedData.value1 >> receivedData.value2 >> receivedData.value3;
+
+        // Отображаем полученные данные в QLineEdit
+        ui->lineEdit_27->setText(QString("Value1: %1, Value2: %2, Value3: %3")
+                              .arg(receivedData.value1)
+                              .arg(receivedData.value2)
+                              .arg(receivedData.value3));
+
+        clientConnection->write("Data received");
+        clientConnection->flush();
+        clientConnection->disconnectFromServer();
+    });
 }

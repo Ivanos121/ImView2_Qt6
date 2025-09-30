@@ -1,4 +1,3 @@
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -12,6 +11,7 @@
 #include <QUndoStack>
 #include <QProgressBar>
 #include <QUndoView>
+#include <QLocalServer>
 
 #include "Identf_kpeff.h"
 #include "kalibr.h"
@@ -60,6 +60,7 @@ private:
     QSqlDatabase sdb;
     QSqlTableModel *model;
     QStandardItemModel *modd;
+    QLocalServer *server;
 
     void setCurrentFile(const QString &fileName);
     QString strippedName(const QString &fullFileName);
@@ -341,6 +342,7 @@ protected slots:
     void horizontalSlider_3_valueChanged(int value);
     void horizontalSlider_4_valueChanged(int value);
     void load_approx_dannie_progect();
+    void onNewConnection();
 private:
     QHash<QModelIndex, bool> rootNodeStates;
     bool isNablLaunched = false;

@@ -24,7 +24,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -217,7 +217,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>18</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QGridLayout" name="gridLayout_33">
@@ -311,6 +311,9 @@
            <string>Загрузить</string>
           </property>
          </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLineEdit" name="lineEdit_27"/>
         </item>
        </layout>
       </widget>
