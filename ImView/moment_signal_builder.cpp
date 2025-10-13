@@ -282,7 +282,12 @@ bool Moment_signal_builder::savePointsToXml(const QString &fileName)
     QString str = fileName;
 
     QFile file(str);
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
+
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file.errorString());
+        return false; // Обработка ошибки открытия файла
+    }
 
     QXmlStreamWriter xml(&file);
     xml.setAutoFormatting(true);

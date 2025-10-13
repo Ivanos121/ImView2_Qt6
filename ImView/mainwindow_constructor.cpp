@@ -93,6 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
 #ifdef GIT_HASH
     QString vers2 = QString("%1.%2.%3").arg(APP_VERSION_MAJOR).arg(APP_VERSION_MINOR).arg(GIT_HASH);
     qDebug() << "Git hash:" << vers2;

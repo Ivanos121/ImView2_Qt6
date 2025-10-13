@@ -343,7 +343,7 @@ void Vent_identf::two_vent()
     double M_kr = M_nom*base.muk;
     double s_nom = (w_0-w_nom)/w_0;
     double s_kr = (sqrt(s_nom)+sqrt(((base.muk)-1)/((base.muk/2)-1)))
-                   /((1/sqrt(s_nom))+sqrt(((base.muk)-1)/((base.muk/2)-1)));
+                  /((1/sqrt(s_nom))+sqrt(((base.muk)-1)/((base.muk/2)-1)));
     double qq=((1/sqrt(s_kr))-sqrt(s_kr));
     double q = ((pow(qq,2)/((base.muk/2)-1)))-2;
 
@@ -365,14 +365,14 @@ void Vent_identf::two_vent()
 
     for (int s_idx = 0; s_idx < N; ++s_idx)
     {
-         double s = s_min + s_idx * step;
-         w_2[s_idx] = w_0 * (1 - s);
-         M_2[s_idx] = (M_kr * (2 + q)) / ((s / s_kr) + (s_kr / s) + q);
-         // ui->plot->addPoint(0, s, w[s_idx]);
-         // ui->plot->addPoint(1, M[s_idx], w[s_idx]);
-     }
-     //Начальное давление вентилятора:
-     ventparam2.H0_2=0.00695 * pow(ventparam2.n_2,2) * (pow(ventparam2.d2p_2,2) - pow(ventparam2.d1p_2,2));
+        double s = s_min + s_idx * step;
+        w_2[s_idx] = w_0 * (1 - s);
+        M_2[s_idx] = (M_kr * (2 + q)) / ((s / s_kr) + (s_kr / s) + q);
+        // ui->plot->addPoint(0, s, w[s_idx]);
+        // ui->plot->addPoint(1, M[s_idx], w[s_idx]);
+    }
+    //Начальное давление вентилятора:
+    ventparam2.H0_2=0.00695 * pow(ventparam2.n_2,2) * (pow(ventparam2.d2p_2,2) - pow(ventparam2.d1p_2,2));
 
     //Максимальный расход воздуха:
     ventparam2.Qmax_2 = 0.006 * pow(ventparam2.d2p_2,2) * ventparam2.b_2 * ventparam2.n_2;
@@ -435,7 +435,7 @@ void Vent_identf::two_vent()
     ui->plot->clear();
     for (int i = 0; i < 9; i++)
     {
-         ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
+        ui->plot->addDataLine(dataLineColors_vent_identf[i], 0);
     }
 
     ui->plot->U_offset = 0.1;
@@ -678,7 +678,11 @@ int Vent_identf::bestDegree(const QVector<double>& x, const QVector<double>& y)
 void Vent_identf::save_vent_identf()
 {
     QFile file(QString("../save/vent_identf.xml"));
-    file.open(QIODevice::WriteOnly);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file.errorString());
+        return;
+    }
 
     //Создаем объект, с помощью которого осуществляется запись в файл
     QXmlStreamWriter xmlWriter(&file);

@@ -4397,6 +4397,14 @@ void MainWindow::open_file()
 {
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getOpenFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
+
+    if (ui->tabWidget == nullptr)
+    {
+        QMessageBox::warning(this, "Ошибка", "QTabWidget не инициализирован", QMessageBox::Ok);
+        // QTabWidget не инициализирован
+    }
+
+    initializeControls();
     LoadProject(str);
 }
 
@@ -6734,7 +6742,12 @@ void MainWindow::save_identf_in_file()
 void MainWindow::save_vent_in_file()
 {
     QFile file(QString("/home/elf/ImView/data/vent.xml"));
-    file.open(QIODevice::WriteOnly);
+
+    if (!file.open(QIODevice::WriteOnly))
+    {
+          QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file.errorString());
+          return; // Обработка ошибки открытия файла
+    }
 
     //Создаем объект, с помощью которого осуществляется запись в файл
     QXmlStreamWriter xmlWriter(&file);

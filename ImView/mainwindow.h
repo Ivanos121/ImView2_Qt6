@@ -323,6 +323,7 @@ public slots:
     void enter_dannie_vent();
     void save_dannie_vent();
     void delete_dannie_vent();
+    void initializeControls();
 protected slots:
     void onNodeExpandeds();
     void onNodeCollapseds();
@@ -348,6 +349,7 @@ private:
     bool isNablLaunched = false;
     QString currentTabText;
     int rowNumber;
+    bool isDataInitialized;
 
 };
 

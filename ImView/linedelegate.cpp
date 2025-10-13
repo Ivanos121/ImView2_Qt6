@@ -60,7 +60,7 @@ void LineDelegate::m_paintFunc1(QPainter* painter, const QStyleOptionViewItem& o
     //QStyledItemDelegate::paint(painter, option, index);
 
     // Получаем модель и текущий индекс
-    const QAbstractItemModel *model = index.model();
+    //const QAbstractItemModel *model = index.model();
 
     // Проверяем, есть ли у узла родители (чтобы рисовать ветви)
     QModelIndex parentIndex = index.parent();

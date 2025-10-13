@@ -15,7 +15,7 @@
                 <combobox_7 value="Сохранить"/>
                 <combobox_8 value="Сохранить"/>
                 <combobox_9 value="Ручной"/>
-                <coeff_1 value="0.01"/>
+                <coeff_1 value="0.014"/>
                 <coeff_2 value="0.1"/>
                 <coeff_3 value="0.05"/>
                 <coeff_4 value="0.02"/>
@@ -46,7 +46,7 @@
                 <combobox_24 value="Статика"/>
                 <combobox_25 value="Одномассовая модель"/>
                 <pressure value="102"/>
-                <selected_row value="-404644672"/>
+                <selected_row value="3"/>
                 <data_tepl_identification_value value="Сохранить"/>
                 <data_vent_identification_value value="Сохранить">
                     <sopr_R1 value="2.132"/>

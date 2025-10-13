@@ -46,7 +46,6 @@
 #include "kalibr.h"
 #include "teplovent.h"
 #include "tepl_dannie.h"
-//#include "ui_nastroiki.h"
 #include "ui_tepl_dannie.h"
 #include "ui_teplovent.h"
 #include "ui_datas.h"
@@ -55,8 +54,6 @@
 #include "tepl_identf.h"
 #include "settings.h"
 #include "start_app.h"
-//#include "spandelegate.h"
-//#include "branchdrawingdelegate.h"
 #include "version.h"
 #include "version_hash.h"
 #include "Base_tepl_vent.h"
@@ -67,713 +64,718 @@ void MainWindow::LoadProject(QString str)
     QDir().mkdir("/tmp/imview");
     JlCompress::extractDir(str,"/tmp/imview");
     QFile file(QString("/tmp/imview/project.xml"));
+
+    if (!isDataInitialized)
+    {
+        qDebug() << "Инициализация элементов управления...";
+        initializeControls();  // Вызов инициализации элементов управления
+    }
+    // ui->tabWidget->show();
+    // ui->stackedWidget->show();
+    // ui->switch_regim_upr->show();
+    // ui->toolBar->show();
+    // ui->toolBar_2->show();
+    // ui->statusbar->show();
+    // ui->widget_15->hide();
+    // ui->menu_2->menuAction()->setVisible(true);
+    // ui->menu_3->menuAction()->setVisible(true);
+    // ui->menu_4->menuAction()->setVisible(true);
+    // ui->menu_5->menuAction()->setVisible(true);
+    // ui->save_file->setVisible(true);
+    // ui->save_as_file->setVisible(true);
+    // ui->action_save_graph_file->setVisible(true);
+    // ui->action_close_progect->setVisible(true);
+    // ui->action_close_session->setVisible(true);
+    // ui->print_file->setVisible(true);
+    // ui->print_preview->setVisible(true);
+
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
         QMessageBox::warning(this, "Ошибка файла", "Не удалось открыть файл", QMessageBox::Ok);
+        return;
     }
-    else
+
+    QXmlStreamReader xmlReader;
+    xmlReader.setDevice(&file);
+    xmlReader.readNext();
+    while(!xmlReader.atEnd())
     {
-        ui->tabWidget->show();
-        ui->stackedWidget->show();
-        ui->switch_regim_upr->show();
-        ui->toolBar->show();
-        ui->toolBar_2->show();
-        ui->statusbar->show();
-        ui->widget_15->hide();
-        ui->menu_2->menuAction()->setVisible(true);
-        ui->menu_3->menuAction()->setVisible(true);
-        ui->menu_4->menuAction()->setVisible(true);
-        ui->menu_5->menuAction()->setVisible(true);
-        ui->save_file->setVisible(true);
-        ui->save_as_file->setVisible(true);
-        ui->action_save_graph_file->setVisible(true);
-        ui->action_close_progect->setVisible(true);
-        ui->action_close_session->setVisible(true);
-        ui->print_file->setVisible(true);
-        ui->print_preview->setVisible(true);
-
-        QXmlStreamReader xmlReader;
-        xmlReader.setDevice(&file);
-        xmlReader.readNext();
-        while(!xmlReader.atEnd())
+        if(xmlReader.isStartElement())
         {
-            if(xmlReader.isStartElement())
+            if(xmlReader.name() == "project_name")
             {
-                if(xmlReader.name() == "project_name")
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            sesion_name_value1->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        sesion_name_value1->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_1")
+            }
+            else if(xmlReader.name() == "combobox_1")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            identification_switch_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        identification_switch_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "project_path")
+            }
+            else if(xmlReader.name() == "project_path")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            load_data_ruchn_identf_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        load_data_ruchn_identf_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_2")
+            }
+            else if(xmlReader.name() == "combobox_2")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            enter_type_experiment_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        enter_type_experiment_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "project_path_2")
+            }
+            else if(xmlReader.name() == "project_path_2")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            read_data_identf_observer_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        read_data_identf_observer_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_3")
+            }
+            else if(xmlReader.name() == "combobox_3")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_identification_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_identification_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_4")
+            }
+            else if(xmlReader.name() == "combobox_4")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_electomagn_process_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_electomagn_process_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_5")
+            }
+            else if(xmlReader.name() == "combobox_5")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_tepl_process_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_tepl_process_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_6")
+            }
+            else if(xmlReader.name() == "combobox_6")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_vent_process_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_vent_process_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_7")
+            }
+            else if(xmlReader.name() == "combobox_7")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_tepl_prognose_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_tepl_prognose_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_8")
+            }
+            else if(xmlReader.name() == "combobox_8")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_ostat_tepl_resurs_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_ostat_tepl_resurs_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_9")
+            }
+            else if(xmlReader.name() == "combobox_9")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            calculation_mode_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        calculation_mode_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "coeff_1")
+            }
+            else if(xmlReader.name() == "coeff_1")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            tuning_coefficient_gd_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        tuning_coefficient_gd_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "coeff_2")
+            }
+            else if(xmlReader.name() == "coeff_2")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            tuning_coefficient_ki_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        tuning_coefficient_ki_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "coeff_3")
+            }
+            else if(xmlReader.name() == "coeff_3")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            tuning_coefficient_gb_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        tuning_coefficient_gb_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "coeff_4")
+            }
+            else if(xmlReader.name() == "coeff_4")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            tuning_coefficient_kpsi_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        tuning_coefficient_kpsi_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "coeff_5")
+            }
+            else if(xmlReader.name() == "coeff_5")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            tuning_coefficient_gp_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        tuning_coefficient_gp_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "coeff_6")
+            }
+            else if(xmlReader.name() == "coeff_6")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            tuning_coefficient_gpsi_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        tuning_coefficient_gpsi_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_10")
+            }
+            else if(xmlReader.name() == "combobox_10")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            kind_thermal_model_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        kind_thermal_model_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_11")
+            }
+            else if(xmlReader.name() == "combobox_11")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            kind_thermal_model_2_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        kind_thermal_model_2_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_12")
+            }
+            else if(xmlReader.name() == "combobox_12")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            kind_thermal_model_4_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        kind_thermal_model_4_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_13")
+            }
+            else if(xmlReader.name() == "combobox_13")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            kind_ventilation_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        kind_ventilation_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_14")
+            }
+            else if(xmlReader.name() == "combobox_14")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            calculation_modes_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        calculation_modes_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_15")
+            }
+            else if(xmlReader.name() == "combobox_15")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            Heat_processes_accounting_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        Heat_processes_accounting_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_16")
+            }
+            else if(xmlReader.name() == "combobox_16")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_approximation_mode_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_approximation_mode_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_17")
+            }
+            else if(xmlReader.name() == "combobox_17")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            degree_approximating_polynomial_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        degree_approximating_polynomial_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_18")
+            }
+            else if(xmlReader.name() == "combobox_18")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            engine_duty_cycle_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        engine_duty_cycle_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "time_cikle")
+            }
+            else if(xmlReader.name() == "time_cikle")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            time_cycle_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        time_cycle_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "time_work")
+            }
+            else if(xmlReader.name() == "time_work")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            time_work_in_cycle_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        time_work_in_cycle_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_19")
+            }
+            else if(xmlReader.name() == "combobox_19")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            time_base_selection_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        time_base_selection_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_20")
+            }
+            else if(xmlReader.name() == "combobox_20")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            switch_system_electrodrive_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        switch_system_electrodrive_value->setText(attribute_value);
                     }
                 }
-                // else if(xmlReader.name() == "napragenie")
-                // {
-                //     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                //     {
-                //         if (attr.name().toString() == "value")
-                //         {
-                //             QString attribute_value = attr.value().toString();
-                //             enter_voltage_im_mashine_value->setText(attribute_value);
-                //         }
-                //     }
-                // }
-                // else if(xmlReader.name() == "moment")
-                // {
-                //     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
-                //     {
-                //         if (attr.name().toString() == "value")
-                //         {
-                //             QString attribute_value = attr.value().toString();
-                //             enter_moment_value->setText(attribute_value);
-                //         }
-                //     }
-                // }
-                if(xmlReader.name() == "start_temp")
+            }
+            // else if(xmlReader.name() == "napragenie")
+            // {
+            //     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+            //     {
+            //         if (attr.name().toString() == "value")
+            //         {
+            //             QString attribute_value = attr.value().toString();
+            //             enter_voltage_im_mashine_value->setText(attribute_value);
+            //         }
+            //     }
+            // }
+            // else if(xmlReader.name() == "moment")
+            // {
+            //     foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+            //     {
+            //         if (attr.name().toString() == "value")
+            //         {
+            //             QString attribute_value = attr.value().toString();
+            //             enter_moment_value->setText(attribute_value);
+            //         }
+            //     }
+            // }
+            if(xmlReader.name() == "start_temp")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            start_tepl_temperature_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        start_tepl_temperature_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_21")
+            }
+            else if(xmlReader.name() == "combobox_21")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            temperature_regime_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        temperature_regime_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_22")
+            }
+            else if(xmlReader.name() == "combobox_22")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            temperature_regime_static_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        temperature_regime_static_value->setText(attribute_value);
                     }
                 }
-                else if(xmlReader.name() == "combobox_23")
+            }
+            else if(xmlReader.name() == "combobox_23")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            temperature_regime_dinamic_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        temperature_regime_dinamic_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "time_step")
+            }
+            if(xmlReader.name() == "time_step")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            time_base_selection_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        time_base_selection_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "voltage_step")
+            }
+            if(xmlReader.name() == "voltage_step")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            creating_motor_voltage_change_chart_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        creating_motor_voltage_change_chart_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "moment_step")
+            }
+            if(xmlReader.name() == "moment_step")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            creating_motor_torque_change_chart_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        creating_motor_torque_change_chart_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "combobox_24")
+            }
+            if(xmlReader.name() == "combobox_24")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ventilation_regime_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ventilation_regime_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "combobox_25")
+            }
+            if(xmlReader.name() == "combobox_25")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            design_ventilation_system_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        design_ventilation_system_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "pressure")
+            }
+            if(xmlReader.name() == "pressure")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            barometric_pressure_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        barometric_pressure_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "sopr_R1")
+            }
+            if(xmlReader.name() == "sopr_R1")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_12->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_12->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "sopr_R2")
+            }
+            if(xmlReader.name() == "sopr_R2")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_11->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_11->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "ind_L1")
+            }
+            if(xmlReader.name() == "ind_L1")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_10->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_10->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "ind_L2")
+            }
+            if(xmlReader.name() == "ind_L2")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_9->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_9->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "ind_Lm")
+            }
+            if(xmlReader.name() == "ind_Lm")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_8->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_8->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "koeff_gd")
+            }
+            if(xmlReader.name() == "koeff_gd")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_13->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_13->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "koeff_ki")
+            }
+            if(xmlReader.name() == "koeff_ki")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_16->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_16->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "koeff_gb")
+            }
+            if(xmlReader.name() == "koeff_gb")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_14->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_14->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "koeff_kpsi")
+            }
+            if(xmlReader.name() == "koeff_kpsi")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_17->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_17->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "koeff_gp")
+            }
+            if(xmlReader.name() == "koeff_gp")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_15->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_15->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "koeff_gpsi")
+            }
+            if(xmlReader.name() == "koeff_gpsi")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            ui->lineEdit_18->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        ui->lineEdit_18->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "time_work")
+            }
+            if(xmlReader.name() == "time_work")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            time_work_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        time_work_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "degree_approximating_polynomial_value")
+            }
+            if(xmlReader.name() == "degree_approximating_polynomial_value")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            degree_approximating_polynomial_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        degree_approximating_polynomial_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "selected_row")
+            }
+            if(xmlReader.name() == "selected_row")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            int attribute_value = attr.value().toInt();
-                            ui->widget->ui->tableView->selectRow(attribute_value);
-                        }
+                        int attribute_value = attr.value().toInt();
+                        ui->widget->ui->tableView->selectRow(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "data_tepl_identification_value")
+            }
+            if(xmlReader.name() == "data_tepl_identification_value")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_tepl_identification_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_tepl_identification_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "data_vent_identification_value")
+            }
+            if(xmlReader.name() == "data_vent_identification_value")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            data_vent_identification_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        data_vent_identification_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "fix_voltage")
+            }
+            if(xmlReader.name() == "fix_voltage")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            enter_voltage_im_mashine_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        enter_voltage_im_mashine_value->setText(attribute_value);
                     }
                 }
-                if(xmlReader.name() == "fix_moment")
+            }
+            if(xmlReader.name() == "fix_moment")
+            {
+                foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
                 {
-                    foreach(const QXmlStreamAttribute &attr, xmlReader.attributes())
+                    if (attr.name().toString() == "value")
                     {
-                        if (attr.name().toString() == "value")
-                        {
-                            QString attribute_value = attr.value().toString();
-                            enter_moment_value->setText(attribute_value);
-                        }
+                        QString attribute_value = attr.value().toString();
+                        enter_moment_value->setText(attribute_value);
                     }
                 }
-            }xmlReader.readNext(); // Переходим к следующему элементу файла
-        }file.close();
+            }
+        }xmlReader.readNext(); // Переходим к следующему элементу файла
     }
-
+    file.close();
 
     if(data_vent_identification_value->text() == "Сохранить")
     {
@@ -1071,12 +1073,20 @@ void MainWindow::SaveProgectToFile()
     QString filter = "Файл конфигурации проекта (*.imview);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../Output", filter);
 
-    QFile file(str);
-    file.open(QIODevice::WriteOnly);
+    if (str.isEmpty())
+    {
+        QMessageBox::warning(this, "Ошибка", "Имя файла не выбрано.");
+        return; // Прерываем выполнение, если файл не выбран
+    }
 
     //Создаем объект, с помощью которого осуществляется запись в файл
     QFile files(QString("../save/project.xml"));
-    files.open(QIODevice::WriteOnly);
+
+    if (!files.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи.");
+        return; // Обработка ошибки открытия файла
+    }
 
     QXmlStreamWriter xmlWriter(&files);
     xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
@@ -1343,8 +1353,13 @@ void MainWindow::SaveProgectToFile()
 
     if(data_identification_value->text() == "Сохранить")
     {
-        QFile file2(QString("/home/elf/Видео/ImView2/save/identification.xml"));
-        file2.open(QIODevice::WriteOnly);
+        QFile file2(QString("../save/identification.xml"));
+
+        if (!file2.open(QIODevice::WriteOnly))
+        {
+            QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file2.errorString());
+            return; // Обработка ошибки открытия файла
+        }
 
         //Создаем объект, с помощью которого осуществляется запись в файл
         QXmlStreamWriter xmlWriter2(&file2);
@@ -1391,9 +1406,12 @@ void MainWindow::on_save_tepl_dannie_clicked()
     QString filter = "Файл конфигурации тепловых данных (*.xml);;Все файлы (*.*)";
     QString str = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../save", filter);
 
-    // QFile file(QString("/home/elf/ImView/data/tepl.xml"));
     QFile file(str);
-    file.open(QIODevice::WriteOnly);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file.errorString());
+        return; // Обработка ошибки открытия файла
+    }
 
     //Создаем объект, с помощью которого осуществляется запись в файл
     QXmlStreamWriter xmlWriter(&file);
@@ -1722,9 +1740,13 @@ void MainWindow::on_save_Vent_dannie_clicked()
     QString filter2 = "Файл конфигурации вентиляционных данных (*.xml);;Все файлы (*.*)";
     QString str2 = QFileDialog::getSaveFileName(this, "Выбрать имя, под которым сохранить данные", "../save", filter2);
 
-    // QFile file(QString("/home/elf/ImView/data/vent.xml"));
     QFile file(str2);
-    file.open(QIODevice::WriteOnly);
+
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file.errorString());
+        return; // Обработка ошибки открытия файла
+    }
 
     //Создаем объект, с помощью которого осуществляется запись в файл
     QXmlStreamWriter xmlWriter(&file);
@@ -2896,8 +2918,25 @@ void MainWindow::save_file()
         return;
     }
 
-    QFile file(QString("../save/project.xml"));
-    file.open(QIODevice::WriteOnly);
+    QString path = "/home/elf/ImView2_Qt6/save/project.xml";
+
+    QDir dir(QFileInfo(path).absolutePath());
+
+    if (!dir.exists())
+    {
+        QMessageBox::warning(this, "Ошибка", "Директория не существует");
+    }
+
+    QFile file(path);
+
+    //QFile file(QString("/home/elf/ImView2_Qt6/save/project.xml"));
+
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: "
+                                                 + file.errorString() + " (Код ошибки: " + QString::number(file.error()) + ")");
+        return; // Обработка ошибки открытия файла
+    }
 
     //Создаем объект, с помощью которого осуществляется запись в файл
     QXmlStreamWriter xmlWriter(&file);
@@ -3176,7 +3215,11 @@ void MainWindow::save_file()
     if(data_identification_value->text() == "Сохранить")
     {
         QFile file2(QString("/home/elf/Видео/ImView2/save/identification.xml"));
-        file2.open(QIODevice::WriteOnly);
+        if (!file2.open(QIODevice::WriteOnly))
+        {
+            QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл для записи: " + file2.errorString());
+            return; // Обработка ошибки открытия файла
+        }
 
         //Создаем объект, с помощью которого осуществляется запись в файл
         QXmlStreamWriter xmlWriter2(&file2);
@@ -3232,4 +3275,30 @@ void MainWindow::loadDefaultPage()
         QString absolutePath = QCoreApplication::applicationDirPath() + QDir::separator() + relativePath;
         ui->widget_7->ui->webEngineView->setUrl(QUrl::fromLocalFile(absolutePath));
     }
+}
+
+void MainWindow::initializeControls()
+{
+
+    ui->tabWidget->show();
+    ui->stackedWidget->show();
+    ui->switch_regim_upr->show();
+    ui->toolBar->show();
+    ui->toolBar_2->show();
+    ui->statusbar->show();
+    ui->widget_15->hide();
+    ui->menu_2->menuAction()->setVisible(true);
+    ui->menu_3->menuAction()->setVisible(true);
+    ui->menu_4->menuAction()->setVisible(true);
+    ui->menu_5->menuAction()->setVisible(true);
+    ui->save_file->setVisible(true);
+    ui->save_as_file->setVisible(true);
+    ui->action_save_graph_file->setVisible(true);
+    ui->action_close_progect->setVisible(true);
+    ui->action_close_session->setVisible(true);
+    ui->print_file->setVisible(true);
+    ui->print_preview->setVisible(true);
+
+    // Здесь можно добавить другие настройки для элементов управления
+    isDataInitialized = true;                // Установите флаг инициализации
 }

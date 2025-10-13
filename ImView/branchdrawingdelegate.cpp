@@ -3,14 +3,13 @@
 #include <QStandardItemModel>
 #include <QSet>
 
-
-
 BranchDrawingDelegate::BranchDrawingDelegate(QTreeView *view, QObject *parent) :QStyledItemDelegate(parent), m_view(view)
 {
 
 }
 
-int BranchDrawingDelegate::getItemLevel(const QModelIndex &index) const {
+int BranchDrawingDelegate::getItemLevel(const QModelIndex &index) const
+{
     int level = 0;
     QModelIndex currentIndex = index;
 
@@ -60,36 +59,13 @@ void BranchDrawingDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
     QStyledItemDelegate::paint(painter, option, index);
 
     // Получаем модель и текущий индекс
-    const QAbstractItemModel *model = index.model();
+    //const QAbstractItemModel *model = index.model();
 
     // Проверяем, есть ли у узла родители (чтобы рисовать ветви)
     QModelIndex parentIndex = index.parent();
 
-    /*if (parentIndex.isValid())
+    if (parentIndex.isValid())
     {
-        QRect rect = option.rect;
-        int currentX = rect.left() - 10; // чуть левее текста
-
-        painter->save();
-        painter->setPen(QPen(Qt::black, 1));
-
-        // for (const QModelIndex &rootIdx : m_rootIndices) {
-        //     if (rootIdx == index)
-        //         continue; // не рисуем линию к самому себе
-
-
-        // }
-        QPoint startPoint(currentX, rect.top() + rect.height() / 2);
-        QPoint endPointParent(currentX, rect.top()); // чуть выше
-
-        painter->drawLine(startPoint, endPointParent);
-        painter->restore();
-    }
-*/
-    if (parentIndex.isValid()) {
-        //int rowCount = model->rowCount(parentIndex);
-        // Если не последний среди братьев
-        //if (!(rowCount > 0 && index.row() == rowCount - 1)) {
         if (!isItemLast(index, 0))
         {
             // Получаем координаты для рисования линий
@@ -145,12 +121,3 @@ void BranchDrawingDelegate::paint(QPainter *painter, const QStyleOptionViewItem 
         painter->restore();
     }
 }
-
-
-
-
-
-
-
-
-
